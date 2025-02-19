@@ -1,36 +1,3 @@
-<?php
-    require_once '../../config/config.php';
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $query = "SELECT * FROM users WHERE username = :username AND password = :password";
-        $stmt = getConnexion()->prepare($query);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
-        $stmt->execute();
-
-        if ($stmt->rowCount() > 0) {
-            echo "<script>alert('Welcome to the platform')</script>";
-        } else {
-            echo "<script>alert('Invalid credentials')</script>";
-        }
-
-        //Save session data
-        session_start();
-        $_SESSION['username'] = $username;
-        $_SESSION['password'] = $password;
-
-        //Redirect to the home page
-        header('Location: ../main/home.php');
-        exit();
-    }
-?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,9 +17,45 @@
 </head>
 
 <body class="p-4" style="font-family: 'Poppins';">
-    <form method="post" action="./src/pages/main/home.php"  class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+
+<?php
+session_start();
+include_once "../../config/config.php";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+
+        try {
+            $query = "SELECT * FROM users WHERE username = :username";
+            $stmt = getConnexion()->prepare($query);
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                if (password_verify($password, $user['password'])) {
+                    $_SESSION['username'] = $username;
+                    $_SESSION['user_id'] = $user['id'];
+
+                    header('Location: ../main/home.php');
+                    exit();
+                }
+            }
+            echo "<script>alert('Identifiants invalides');</script>";
+        } catch (PDOException $e) {
+            die("Erreur SQL : " . $e->getMessage());
+        }
+    } else {
+        echo "<script>alert('Veuillez remplir tous les champs');</script>";
+    }
+}
+?>
+
+    <form method="post" action="#" class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-            <!-- <img class="mx-auto w-80 h-80" src="../../../assets/sv.jpg" alt="Valentine's Day"> -->
+            <img class="mx-auto h-30 w-auto" src="../../../assets/logo.jpg" alt="Your Company">
             <h2 class="mt-10 mb-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 sm:text-3xl/9">
                 Sign in
             </h2>

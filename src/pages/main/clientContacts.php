@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Clients</title>
 
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg" />
+
     <!-- CSS Assets -->
     <link rel="stylesheet" href="../../components/app.css"/>
 
@@ -25,16 +28,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
           integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 
     <script>
         /**
-         * THIS SCRIPT REQUIRED FOR PREVENT FLICKERING IN SOME BROWSERS
+         * THIS SCRIPT  FOR PREVENT FLICKERING IN SOME BROWSERS
          */
         localStorage.getItem("_x_darkMode_on") === "true" &&
         document.documentElement.classList.add("dark");
     </script>
 </head>
-<body x-data class="is-header-blur" x-bind="$store.global.documentBody">
+<body x-data class="is-header-blur" x-bind="$store.global.documentBody" style="font-family: 'Poppins';">
 <!-- App preloader -->
 <div class="app-preloader fixed z-50 grid h-full w-full place-content-center bg-slate-50 dark:bg-navy-900">
     <div class="app-preloader-inner relative inline-block size-48"></div>
@@ -260,7 +264,271 @@
 
     <!-- Main Content Wrapper -->
     <main class="main-content w-full pb-8">
-        Clients Page
+        <!-- Main Content -->
+        <div class="pt-6 lg:px-32">
+            <div class="container full-container py-5">
+                <!----Breadcrumb Start---->
+                <div class="card bg-blue-500/5 dark:bg-navy-500 shadow-none dark:shadow-none position-relative overflow-hidden mb-6">
+                    <div class="card-body md:py-3 py-5">
+                        <div class=" items-center grid grid-cols-12 gap-6">
+                            <div class="col-span-9 p-5">
+                                <h4 class="font-semibold text-xl text-black mb-3">Clients</h4>
+                                <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
+                                    <li class="flex items-center">
+                                        <a class="opacity-80 text-sm leading-none"
+                                           href="../main/home.php">
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="p-0.5 rounded-full bg-black mx-2.5 flex items-center"></div>
+                                    </li>
+                                    <li class="flex items-center text-sm text-link dark:text-blacklink leading-none" aria-current="page">
+                                        Client
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="col-span-3 -mb-10">
+                                <div class="flex justify-center">
+                                    <img src="../../../assets/ChatBc.png" alt="" class="md:-mb-7 -mb-4 h-40 w-40" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!----Breadcrumb End---->
+
+                <!---Client search Card--->
+
+                <div class="card mb-6 ">
+                    <div class="card-body">
+                        <div class="grid grid-cols-12 gap-6 items-center justify-between">
+                            <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 p-8">
+                                <form class="max-w-[90rem] px-3 flex flex-1 items-center border rounded-full flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="size-4.5 transition-colors duration-200" fill="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path
+                                                d="M3.316 13.781l.73-.171-.73.171zm0-5.457l.73.171-.73-.171zm15.473 0l.73-.171-.73.171zm0 5.457l.73.171-.73-.171zm-5.008 5.008l-.171-.73.171.73zm-5.457 0l-.171.73.171-.73zm0-15.473l-.171-.73.171.73zm5.457 0l.171-.73-.171.73zM20.47 21.53a.75.75 0 101.06-1.06l-1.06 1.06zM4.046 13.61a11.198 11.198 0 010-5.115l-1.46-.342a12.698 12.698 0 000 5.8l1.46-.343zm14.013-5.115a11.196 11.196 0 010 5.115l1.46.342a12.698 12.698 0 000-5.8l-1.46.343zm-4.45 9.564a11.196 11.196 0 01-5.114 0l-.342 1.46c1.907.448 3.892.448 5.8 0l-.343-1.46zM8.496 4.046a11.198 11.198 0 015.115 0l.342-1.46a12.698 12.698 0 00-5.8 0l.343 1.46zm0 14.013a5.97 5.97 0 01-4.45-4.45l-1.46.343a7.47 7.47 0 005.568 5.568l.342-1.46zm5.457 1.46a7.47 7.47 0 005.568-5.567l-1.46-.342a5.97 5.97 0 01-4.45 4.45l.342 1.46zM13.61 4.046a5.97 5.97 0 014.45 4.45l1.46-.343a7.47 7.47 0 00-5.568-5.567l-.342 1.46zm-5.457-1.46a7.47 7.47 0 00-5.567 5.567l1.46.342a5.97 5.97 0 014.45-4.45l-.343-1.46zm8.652 15.28l3.665 3.664 1.06-1.06-3.665-3.665-1.06 1.06z"/>
+                                    </svg>
+                                    <input type="text" class="w-full border-none p-3 focus:border-none focus:ring-0 focus:outline-none"
+                                           id="input-search" placeholder="Search Clients..." />
+
+                                </form>
+                            </div>
+                            <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12 p-8">
+                                <div class="flex justify-end items-center gap-3">
+                                    <div class="action-btn show-btn" style="display: none">
+                                        <a href="javascript:void(0)"
+                                           class="delete-multiple btn flex gap-2 items-center btn-light-error">
+                                            <i class="ti ti-trash text-lg leading-none"></i>
+                                            Delete All Row
+                                        </a>
+                                    </div>
+                                    <a href="#" id="btn-add-contact"
+                                       class="cursor-pointer rounded-full bg-blue-500 p-3 text-white flex gap-2 items-center ">
+                                        <i class="ti ti-users text-white text-lg leading-none"></i> Add
+                                        Client
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div
+                        class="mt-4 grid grid-cols-12 gap-4 transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
+                >
+
+                    <div
+                         class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 w-full">
+                        <div
+                                class="sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
+                            <div
+                                    class="w-full flex flex-col bg-white dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
+                                <div class="flex min-h-full flex-col justify-center">
+                                    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                                        <img class="mx-auto h-30 w-auto mt-15" src="../../../assets/logo.jpg" alt="Your Company">
+                                        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Compléter les champs pour enrégistrer un client</h2>
+                                    </div>
+
+                                    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                                        <?php
+                                            include_once '../../config/config.php';
+                                            require '../../../vendor/autoload.php';
+
+                                            use Ramsey\Uuid\Uuid;
+
+                                            $conn = getConnexion();
+
+                                            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                                if ($_POST['name'] && isset($_POST['surname']) && isset($_POST['phone']) && isset($_POST['email']) !== null) {
+                                                    $name = $_POST['name'];
+                                                    $surname = $_POST['surname'];
+                                                    $phone = $_POST['phone'];
+                                                    $email = $_POST['email'];
+                                                    $uuid = Uuid::uuid4();
+                                                    $sql = "INSERT INTO clients (id, first_name, last_name, phone, email) VALUES (:id, :first_name, :last_name, :phone, :email)";
+                                                    $stmt = $conn->prepare($sql);
+                                                    $stmt->execute(['id' => $uuid, 'first_name' => $name, 'last_name' => $surname, 'phone' => $phone, 'email' => $email]);
+
+                                                    echo "<div class='alert alert-success'>Client enrégistré avec succès</div>";
+                                                } else {
+                                                    echo "<div class='alert alert-danger'>Veuillez remplir tous les champs</div>";
+                                                }
+                                            }
+
+                                        ?>
+                                        <form class="space-y-6" action="#" method="POST">
+                                            <div>
+                                                <label for="name" class="block text-sm/6 font-medium text-gray-900">Nom du client</label>
+                                                <div class="mt-2">
+                                                    <input type="text" name="name" id="name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="flex items-center justify-between">
+                                                    <label for="surname" class="block text-sm/6 font-medium text-gray-900">Prénom du client</label>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <input type="text" name="surname" id="surname" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="flex items-center justify-between">
+                                                    <label for="phone" class="block text-sm/6 font-medium text-gray-900">Téléphone du client</label>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <input type="text" name="phone" id="phone"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label for="email" class="block text-sm/6 font-medium text-gray-900">email</label>
+                                                <div class="mt-2">
+                                                    <input type="email" name="email" id="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <button type="submit" class="flex mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enrégistrer</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card p-8 lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
+                        <div class="card-body">
+                            <div class="flex flex-col">
+                                <div class="-m-1.5 overflow-x-auto">
+                                    <div class="p-1.5 min-w-full inline-block align-middle">
+                                        <div class="overflow-hidden">
+                                            <table
+                                                    class="table search-table min-w-full divide-y divide-border divide-slate-150">
+                                                <thead>
+                                                <tr>
+                                                    <th class="p-4 ps-0">
+                                                        <div
+                                                                class="n-chk align-self-center text-center">
+                                                            <div class="form-check">
+                                                                <input type="checkbox"
+                                                                       class="form-check-input rounded-sm"
+                                                                       id="contact-check-all" />
+                                                                <label class="form-check-label"
+                                                                       for="contact-check-all"></label>
+                                                                <span
+                                                                        class="new-control-indicator"></span>
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                        Nom du client</th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                        Prénom du client</th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                        Téléphone</th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                        Email</th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                        Action</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody
+                                                        class="divide-y divide-border divide-slate-150">
+                                                <?php
+                                                $sql = "SELECT * FROM clients";
+                                                $stmt = $conn->prepare($sql);
+                                                $stmt->execute();
+                                                $clients = $stmt->fetchAll();
+
+                                                foreach ($clients as $client) {
+                                                    echo '
+        <tr class="search-items">
+            <td class="p-4 ps-0 whitespace-nowrap">
+                <div class="n-chk align-self-center text-center">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $client['id'] . '" />
+                        <label class="form-check-label" for="checkbox' . $client['id'] . '"></label>
+                    </div>
+                </div>
+            </td>
+            <td class="p-4 ps-0 whitespace-nowrap">
+                <div class="flex gap-3 items-center">
+                    <div>
+                        <img src="../../../assets/user-7.jpg" class="rounded-circle h-9 w-9 rounded-full" alt="user" />
+                    </div>
+                    <div>
+                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($client["first_name"]) . '">' . htmlspecialchars($client["first_name"]) . '</h6>
+                    </div>
+                </div>
+            </td>
+            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($client["last_name"]) . '">' . htmlspecialchars($client["last_name"]) . '</td>
+            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($client["phone"]) . '">' . htmlspecialchars($client["phone"]) . '</td>
+            <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($client["email"]) . '">' . htmlspecialchars($client["email"]) . '</td>
+            <td class="text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">
+                <div class="action-btn flex gap-3">
+                    <a href="javascript:void(0)" class="text-info edit">
+                        <i class="ti ti-eye text-lg"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="text-black delete">
+                        <i class="ti ti-trash text-lg text-bodytext dark:text-blacklink"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>';
+                                                }
+                                                ?>
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!---Client Card End--->
+
+            </div>
+        </div>
+        <!-- Main Content End -->
     </main>
 </div>
 

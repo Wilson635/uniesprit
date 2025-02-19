@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['confirm_password'] = $confirm_password;
 
         //Redirect to the home page
-        header("Location: ../main/home.php");
+        header("Location: ../auth/sign-in.php");
         exit();
     }
 }
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <form method="post" action="#" class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <!-- <img class="mx-auto w-80 h-80" src="../../../assets/sv.jpg" alt="Valentine's Day"> -->
+        <img class="mx-auto h-30 w-auto" src="../../../assets/logo.jpg" alt="Your Company">
         <h2 class="mt-10 mb-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 sm:text-3xl/9">
             Sign up
         </h2>
