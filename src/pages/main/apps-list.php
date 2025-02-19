@@ -16,11 +16,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
-    <title>Lineone - Banking v2 Dashboard</title>
+    <title>Analyse</title>
     <link rel="icon" type="image/png" href="images/favicon.png"/>
     <link favicon="icon">
 
-    !-- CSS Assets -->
+    <!-- CSS Assets -->
     <link rel="stylesheet" href="../../components/app.css"/>
 
     <!-- Javascript Assets -->
@@ -90,7 +90,7 @@
                     <!-- Apps -->
                     <a href="apps-list.html"
                        class="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-                       x-tooltip.placement.right="'Applications'">
+                       x-tooltip.placement.right="'Analyse'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                     d="M5 8H19V16C19 17.8856 19 18.8284 18.4142 19.4142C17.8284 20 16.8856 20 15 20H9C7.11438 20 6.17157 20 5.58579 19.4142C5 18.8284 5 17.8856 5 16V8Z"
@@ -107,9 +107,9 @@
                     </a>
 
                     <!-- Pages And Layouts -->
-                    <a href="pages-card-user-1.html"
+                    <a href="reservation.php"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                       x-tooltip.placement.right="'Pages & Layouts'">
+                       x-tooltip.placement.right="'Reservations'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                     d="M9.85714 3H4.14286C3.51167 3 3 3.51167 3 4.14286V9.85714C3 10.4883 3.51167 11 4.14286 11H9.85714C10.4883 11 11 10.4883 11 9.85714V4.14286C11 3.51167 10.4883 3 9.85714 3Z"
@@ -127,9 +127,9 @@
                     </a>
 
                     <!-- Forms -->
-                    <a href="form-input-text.html"
+                    <a href="employee.php"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                       x-tooltip.placement.right="'Forms'">
+                       x-tooltip.placement.right="'Employés'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-opacity="0.25"
                                   d="M21.0001 16.05V18.75C21.0001 20.1 20.1001 21 18.7501 21H6.6001C6.9691 21 7.3471 20.946 7.6981 20.829C7.7971 20.793 7.89609 20.757 7.99509 20.712C8.31009 20.586 8.61611 20.406 8.88611 20.172C8.96711 20.109 9.05711 20.028 9.13811 19.947L9.17409 19.911L15.2941 13.8H18.7501C20.1001 13.8 21.0001 14.7 21.0001 16.05Z"
@@ -144,9 +144,9 @@
                     </a>
 
                     <!-- Components -->
-                    <a href="components-accordion.html"
+                    <a href="clientContacts.php"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                       x-tooltip.placement.right="'Components'">
+                       x-tooltip.placement.right="'Clients'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-opacity="0.5"
                                   d="M14.2498 16C14.2498 17.5487 13.576 18.9487 12.4998 19.9025C11.5723 20.7425 10.3473 21.25 8.99976 21.25C6.10351 21.25 3.74976 18.8962 3.74976 16C3.74976 13.585 5.39476 11.5375 7.61726 10.9337C8.22101 12.4562 9.51601 13.6287 11.1173 14.0662C11.5548 14.1887 12.0185 14.25 12.4998 14.25C12.981 14.25 13.4448 14.1887 13.8823 14.0662C14.1185 14.6612 14.2498 15.3175 14.2498 16Z"
@@ -161,24 +161,25 @@
                     </a>
 
                     <!-- Elements -->
-                    <a href="elements-avatar.html"
-                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                       x-tooltip.placement.right="'Elements'">
-                        <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                    d="M13.3111 14.75H5.03356C3.36523 14.75 2.30189 12.9625 3.10856 11.4958L5.24439 7.60911L7.24273 3.96995C8.07689 2.45745 10.2586 2.45745 11.0927 3.96995L13.1002 7.60911L14.0627 9.35995L15.2361 11.4958C16.0427 12.9625 14.9794 14.75 13.3111 14.75Z"
-                                    fill="currentColor"/>
-                            <path fill-opacity="0.3"
-                                  d="M21.1667 15.2083C21.1667 18.4992 18.4992 21.1667 15.2083 21.1667C11.9175 21.1667 9.25 18.4992 9.25 15.2083C9.25 15.0525 9.25917 14.9058 9.26833 14.75H13.3108C14.9792 14.75 16.0425 12.9625 15.2358 11.4958L14.0625 9.36C14.4292 9.28666 14.8142 9.25 15.2083 9.25C18.4992 9.25 21.1667 11.9175 21.1667 15.2083Z"
-                                  fill="currentColor"/>
-                        </svg>
-                    </a>
+<!--                    <a href="elements-avatar.html"-->
+<!--                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"-->
+<!--                       x-tooltip.placement.right="'Elements'">-->
+<!--                        <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path-->
+<!--                                    d="M13.3111 14.75H5.03356C3.36523 14.75 2.30189 12.9625 3.10856 11.4958L5.24439 7.60911L7.24273 3.96995C8.07689 2.45745 10.2586 2.45745 11.0927 3.96995L13.1002 7.60911L14.0627 9.35995L15.2361 11.4958C16.0427 12.9625 14.9794 14.75 13.3111 14.75Z"-->
+<!--                                    fill="currentColor"/>-->
+<!--                            <path fill-opacity="0.3"-->
+<!--                                  d="M21.1667 15.2083C21.1667 18.4992 18.4992 21.1667 15.2083 21.1667C11.9175 21.1667 9.25 18.4992 9.25 15.2083C9.25 15.0525 9.25917 14.9058 9.26833 14.75H13.3108C14.9792 14.75 16.0425 12.9625 15.2358 11.4958L14.0625 9.36C14.4292 9.28666 14.8142 9.25 15.2083 9.25C18.4992 9.25 21.1667 11.9175 21.1667 15.2083Z"-->
+<!--                                  fill="currentColor"/>-->
+<!--                        </svg>-->
+<!--                    </a>-->
                 </div>
 
                 <!-- Bottom Links -->
                 <div class="flex flex-col items-center space-y-3 py-3">
                     <!-- Settings -->
-                    <a href="form-layout-5.html"
+                    <a href="settings.php"
+                       x-tooltip.placement.right="'Paramètres'"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-opacity="0.3" fill="currentColor"
@@ -207,17 +208,17 @@
                                         <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar"/>
                                     </div>
                                     <div>
-                                        <a href="#"
-                                           class="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light">
+                                        <p
+                                           class="text-base font-medium text-slate-700 focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light">
                                             <?php echo $_SESSION['username']; ?>
-                                        </a>
+                                        </p>
                                         <p class="text-xs text-slate-400 dark:text-navy-300">
                                             <?php echo $_SESSION['email']; ?>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="flex flex-col pt-2 pb-5">
-                                    <a href="#"
+                                    <a href="userProfile.php"
                                        class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-hidden transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                         <div
                                                 class="flex size-8 items-center justify-center rounded-lg bg-warning text-white">
@@ -238,70 +239,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <!-- <a href="#"
-                                        class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-hidden transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
-                                        <div
-                                            class="flex size-8 items-center justify-center rounded-lg bg-info text-white">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                            </svg>
-                                        </div>
-
-                                        <div>
-                                            <h2
-                                                class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
-                                                Messages
-                                            </h2>
-                                            <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
-                                                Your messages and tasks
-                                            </div>
-                                        </div>
-                                    </a> -->
-                                    <!-- <a href="#"
-                                        class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-hidden transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
-                                        <div
-                                            class="flex size-8 items-center justify-center rounded-lg bg-secondary text-white">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                            </svg>
-                                        </div>
-
-                                        <div>
-                                            <h2
-                                                class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
-                                                Team
-                                            </h2>
-                                            <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
-                                                Your team activity
-                                            </div>
-                                        </div>
-                                    </a> -->
-                                    <!-- <a href="#"
-                                        class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-hidden transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
-                                        <div
-                                            class="flex size-8 items-center justify-center rounded-lg bg-error text-white">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                            </svg>
-                                        </div>
-
-                                        <div>
-                                            <h2
-                                                class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
-                                                Activity
-                                            </h2>
-                                            <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
-                                                Your activity and events
-                                            </div>
-                                        </div>
-                                    </a> -->
-                                    <a href="#"
+                                    <a href="settings.php"
                                        class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-hidden transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                         <div
                                                 class="flex size-8 items-center justify-center rounded-lg bg-success text-white">
@@ -325,8 +263,7 @@
                                         </div>
                                     </a>
                                     <div class="mt-3 px-4">
-                                        <button class="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
-                                                @click="getLogout()">
+                                        <button class="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
                                                  viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -362,24 +299,13 @@
                                 <div class="flex gap-3 items-center mb-7">
                                     <div class="rounded-full overflow-hidden">
                                         <img src="../../../assets/logo.jpg"
-                                             class="h-10 w-10" alt="">
+                                             class="h-20 w-20" alt="">
                                     </div>
-                                    <h5 class="text-lg">
-                                        Welcome back <strong><?php echo $_SESSION['username']; ?></strong>
-                                    </h5>
-                                </div>
-                                <div class="flex gap-6 items-center">
-                                    <div
-                                            class="pe-6 rtl:pe-auto rtl:ps-6">
-                                        <h3
-                                                class="flex items-start mb-0 text-3xl">
-                                            2340 FCFA
-                                            <i
-                                                    class="fa fa-arrow-up text-base  text-success "></i>
-                                        </h3>
-                                        <p class="text-sm mt-1">Today’s
-                                            Sales
-                                        </p>
+                                    <div class="flex flex-col justify-start items-center">
+                                        <h5 class="text-lg">
+                                            Welcome back <strong><?php echo $_SESSION['username']; ?></strong>
+                                        </h5>
+                                        <p class="mt-5 px-3">Êtes - vous prêt à démarrer la journée ?</p>
                                     </div>
 
                                 </div>
@@ -422,12 +348,13 @@
             </div>
             <!---Date Cards End--->
 
+            <!---Graph--->
             <div class="col-span-12 lg:col-span-8">
                 <div class="flex items-center justify-between space-x-2">
                     <h2
                             class="text-base font-medium tracking-wide text-slate-800 line-clamp-1 dark:text-navy-100"
                     >
-                        Sales Overview
+                        Revenue
                     </h2>
                     <div
                             x-data="{activeTab:'tabRecent'}"
@@ -480,7 +407,7 @@
                                 <p
                                         class="text-2xl font-semibold text-slate-700 dark:text-navy-100"
                                 >
-                                    $6,556.55
+                                    0 Fcfa
                                 </p>
                                 <button
                                         class="btn size-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
@@ -559,6 +486,9 @@
                     </div>
                 </div>
             </div>
+            <!---Graph End--->
+
+            <!---Count data database--->
             <div class="col-span-12 lg:col-span-4">
                 <div
                         class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-2"
@@ -568,7 +498,7 @@
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                $67.6k
+                                0
                             </p>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -585,14 +515,14 @@
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Income</p>
+                        <p class="mt-1 text-xs-plus">Revenue (en FCFA)</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                12.6K
+                                0
                             </p>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -609,14 +539,14 @@
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Completed</p>
+                        <p class="mt-1 text-xs-plus">Acceptée (reserv)</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                143
+                                0
                             </p>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -633,41 +563,14 @@
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Pending</p>
-                    </div>
-                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
-                        <div class="flex justify-between">
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                651
-                            </p>
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5 text-info"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
-                                />
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
-                                />
-                            </svg>
-                        </div>
-                        <p class="mt-1 text-xs-plus">Dispatch</p>
+                        <p class="mt-1 text-xs-plus">En attente (reserv)</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between space-x-1">
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                46k
+                                0
                             </p>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -684,14 +587,14 @@
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Products</p>
+                        <p class="mt-1 text-xs-plus">Services</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                8.8k
+                                0
                             </p>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -708,10 +611,11 @@
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Customers</p>
+                        <p class="mt-1 text-xs-plus">Clients</p>
                     </div>
                 </div>
             </div>
+            <!---Count data database End--->
             <div class="card col-span-12 lg:col-span-8">
                 <div class="flex items-center justify-between py-3 px-4">
                     <h2
