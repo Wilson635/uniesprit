@@ -539,7 +539,7 @@
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Acceptée (reserv)</p>
+                        <p class="mt-1 text-xs-plus">Reservations</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
@@ -563,7 +563,7 @@
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">En attente (reserv)</p>
+                        <p class="mt-1 text-xs-plus">Employés</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between space-x-1">
@@ -594,7 +594,19 @@
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                0
+                                <?php
+                                    include_once  '../../config/config.php';
+                                    function countClient()
+                                    {
+                                        $conn = getConnexion();
+                                        $query = "SELECT COUNT(*) as total FROM clients";
+                                        $result = $conn->query($query);
+                                        $data = $result->fetch();
+                                        return $data['total'];
+                                    }
+
+                                    echo "<strong>".countClient()."</strong>";
+                                ?>
                             </p>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -612,6 +624,29 @@
                             </svg>
                         </div>
                         <p class="mt-1 text-xs-plus">Clients</p>
+                    </div>
+                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
+                        <div class="flex justify-between">
+                            <p
+                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+                            >
+                                <?php
+                                    include_once  '../../config/config.php';
+                                    function countUsers()
+                                    {
+                                        $conn = getConnexion();
+                                        $query = "SELECT COUNT(*) as total FROM users";
+                                        $result = $conn->query($query);
+                                        $data = $result->fetch();
+                                        return $data['total'];
+                                    }
+
+                                    echo "<strong>".countUsers()."</strong>";
+                                ?>
+                            </p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#b27811" d="M15.5 7.5a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0"/><path fill="#b27811" d="M19.5 7.5a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0m-15 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 0 0-5 0" opacity="0.4"/><path fill="#b27811" d="M18 16.5c0 1.933-2.686 3.5-6 3.5s-6-1.567-6-3.5S8.686 13 12 13s6 1.567 6 3.5"/><path fill="#b27811" d="M22 16.5c0 1.38-1.79 2.5-4 2.5s-4-1.12-4-2.5s1.79-2.5 4-2.5s4 1.12 4 2.5m-20 0C2 17.88 3.79 19 6 19s4-1.12 4-2.5S8.21 14 6 14s-4 1.12-4 2.5" opacity="0.4"/></svg>
+                        </div>
+                        <p class="mt-1 text-xs-plus">Users</p>
                     </div>
                 </div>
             </div>

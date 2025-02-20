@@ -460,9 +460,9 @@
                                                     <th scope="col"
                                                         class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
                                                         Email</th>
-                                                    <th scope="col"
+                                                    <!--<th scope="col"
                                                         class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                        Action</th>
+                                                        Action</th>-->
 
                                                 </tr>
                                                 </thead>
@@ -474,41 +474,51 @@
                                                 $stmt->execute();
                                                 $clients = $stmt->fetchAll();
 
+                                                function getInitials($name) {
+                                                    $words = explode(" ", $name);
+                                                    $initials = "";
+                                                    foreach ($words as $w) {
+                                                        $initials .= $w[0];
+                                                    }
+                                                    return $initials;
+                                                }
+
                                                 foreach ($clients as $client) {
                                                     echo '
-        <tr class="search-items">
-            <td class="p-4 ps-0 whitespace-nowrap">
-                <div class="n-chk align-self-center text-center">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $client['id'] . '" />
-                        <label class="form-check-label" for="checkbox' . $client['id'] . '"></label>
-                    </div>
-                </div>
-            </td>
-            <td class="p-4 ps-0 whitespace-nowrap">
-                <div class="flex gap-3 items-center">
-                    <div>
-                        <img src="../../../assets/user-7.jpg" class="rounded-circle h-9 w-9 rounded-full" alt="user" />
-                    </div>
-                    <div>
-                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($client["first_name"]) . '">' . htmlspecialchars($client["first_name"]) . '</h6>
-                    </div>
-                </div>
-            </td>
-            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($client["last_name"]) . '">' . htmlspecialchars($client["last_name"]) . '</td>
-            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($client["phone"]) . '">' . htmlspecialchars($client["phone"]) . '</td>
-            <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($client["email"]) . '">' . htmlspecialchars($client["email"]) . '</td>
-            <td class="text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">
-                <div class="action-btn flex gap-3">
-                    <a href="javascript:void(0)" class="text-info edit">
-                        <i class="ti ti-eye text-lg"></i>
-                    </a>
-                    <a href="javascript:void(0)" class="text-black delete">
-                        <i class="ti ti-trash text-lg text-bodytext dark:text-blacklink"></i>
-                    </a>
-                </div>
-            </td>
-        </tr>';
+                                                        <tr class="search-items">
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="n-chk align-self-center text-center">
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $client['id'] . '" />
+                                                                        <label class="form-check-label" for="checkbox' . $client['id'] . '"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="flex gap-3 items-center">
+                                                                    <div>
+                                                                        <p class="rounded-circle bg-indigo-200 items-center justify-center leading-9 text-center font-bold h-9 w-9 rounded-full"> ' . htmlspecialchars($initials = getInitials($client['first_name'])) . ' </p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($client["first_name"]) . '">' . htmlspecialchars($client["first_name"]) . '</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($client["last_name"]) . '">' . htmlspecialchars($client["last_name"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($client["phone"]) . '">' . htmlspecialchars($client["phone"]) . '</td>
+                                                            <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($client["email"]) . '">' . htmlspecialchars($client["email"]) . '</td>
+                                                            <!--<td class="text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">
+                                                                <div class="action-btn flex gap-3">
+                                                                    <a href="javascript:void(0)" class="text-info edit">
+                                                                        <i class="ti ti-eye text-lg"></i>
+                                                                    </a>
+                                                                    <a href="javascript:void(0)"  class="text-black delete">
+                                                                        <i class="ti ti-trash text-lg text-bodytext dark:text-blacklink"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </td>-->
+                                                        </tr>
+                                                    ';
                                                 }
                                                 ?>
 

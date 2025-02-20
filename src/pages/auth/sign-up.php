@@ -19,6 +19,63 @@
 <body class="p-4" style="font-family: 'Poppins';">
 
 <?php
+//include_once "../../config/config.php";
+//require "../../../vendor/autoload.php";
+//
+//use Ramsey\Uuid\Uuid;
+//
+//$conn = getConnexion();
+//
+//if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//    if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['confirm_password'])) {
+//        $username = $_POST['username'];
+//        $email = $_POST['email'];
+//        $password = $_POST['password'];
+//        $confirm_password = $_POST['confirm_password'];
+//
+//        if ($password != $confirm_password) {
+//            echo "<script>alert('Passwords do not match')</script>";
+//        } else {
+//            $password = password_hash($password, PASSWORD_DEFAULT);
+//            $uuid = Uuid::uuid4()->toString();
+//            $sql = $conn->prepare("INSERT INTO users (id, username, email, password) VALUES (:id, :username, :email, :password)");
+//            $result = $sql->execute(['id' => $uuid, 'username' => $username, 'email' => $email, 'password' => $password]);
+//
+//            //Verify if email is already in use
+//            if ($result === false) {
+//                $error = $sql->errorInfo();
+//                if ($error[1] === 1062) {
+//                    echo "<script>alert('Email already in use')</script>";
+//                }
+//            }
+//
+//            //Check if the account was created successfully
+//            if ($result) {
+//                echo "<script>alert('Account created successfully')</script>";
+//            } else {
+//                echo "<script>alert('Failed to create account')</script>";
+//            }
+//
+//        }
+//
+//        //Save session data
+//        session_start();
+//        $_SESSION['username'] = $username;
+//        $_SESSION['email'] = $email;
+//        $_SESSION['password'] = $password;
+//        $_SESSION['confirm_password'] = $confirm_password;
+//
+//        //Redirect to the home page
+//        header("Location: ../auth/sign-in.php");
+//        exit();
+//    }
+//}
+//
+//
+//?>
+<?php
+session_start(); // Démarrer la session dès le début
+
 include_once "../../config/config.php";
 require "../../../vendor/autoload.php";
 
@@ -27,51 +84,46 @@ use Ramsey\Uuid\Uuid;
 $conn = getConnexion();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['confirm_password'])) {
-        $username = $_POST['username'];
-        $email = $_POST['email'];
+    if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirm_password'])) {
+        $username = trim($_POST['username']);
+        $email = trim($_POST['email']);
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm_password'];
 
-        if ($password != $confirm_password) {
-            echo "<script>alert('Passwords do not match')</script>";
+        if ($password !== $confirm_password) {
+            echo "<script>alert('Passwords do not match');</script>";
         } else {
-            $password = password_hash($password, PASSWORD_DEFAULT);
-            $uuid = Uuid::uuid4()->toString();
-            $sql = $conn->prepare("INSERT INTO users (id, username, email, password) VALUES (:id, :username, :email, :password)");
-            $result = $sql->execute(['id' => $uuid, 'username' => $username, 'email' => $email, 'password' => $password]);
+            // Vérifier si l'email est déjà utilisé
+            $checkEmail = $conn->prepare("SELECT id FROM users WHERE email = :email");
+            $checkEmail->execute(['email' => $email]);
+            if ($checkEmail->rowCount() > 0) {
+                echo "<script>alert('Email already in use');</script>";
+            } else {
+                // Hash du mot de passe
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                $uuid = Uuid::uuid4()->toString();
 
-            //Verify if email is already in use
-            if ($result === false) {
-                $error = $sql->errorInfo();
-                if ($error[1] === 1062) {
-                    echo "<script>alert('Email already in use')</script>";
+                $sql = $conn->prepare("INSERT INTO users (id, username, email, password) VALUES (:id, :username, :email, :password)");
+                $result = $sql->execute([
+                    'id' => $uuid,
+                    'username' => $username,
+                    'email' => $email,
+                    'password' => $hashedPassword
+                ]);
+
+                if ($result) {
+                    $_SESSION['username'] = $username;
+                    $_SESSION['email'] = $email;
+
+                    echo "<script>alert('Account created successfully'); window.location.href = '../auth/sign-in.php';</script>";
+                    exit();
+                } else {
+                    echo "<script>alert('Failed to create account');</script>";
                 }
             }
-
-            //Check if the account was created successfully
-            if ($result) {
-                echo "<script>alert('Account created successfully')</script>";
-            } else {
-                echo "<script>alert('Failed to create account')</script>";
-            }
-
         }
-
-        //Save session data
-        session_start();
-        $_SESSION['username'] = $username;
-        $_SESSION['email'] = $email;
-        $_SESSION['password'] = $password;
-        $_SESSION['confirm_password'] = $confirm_password;
-
-        //Redirect to the home page
-        header("Location: ../auth/sign-in.php");
-        exit();
     }
 }
-
-
 ?>
 <form method="post" action="#" class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
