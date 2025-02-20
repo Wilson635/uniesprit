@@ -392,9 +392,6 @@ if (!$_SESSION['email']) {
 
                                     <?php
                                     include '../../config/config.php';
-                                    require '../../../vendor/autoload.php';
-
-                                    use Ramsey\Uuid\Uuid;
 
                                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         $nom = trim($_POST["name"]);
@@ -402,13 +399,13 @@ if (!$_SESSION['email']) {
                                         $telephone = trim($_POST["phone"]);
                                         $service_id = trim($_POST["services"]);
                                         $date = trim($_POST["date"]);
-                                        $uuid = Uuid::uuid4();
+                                        $status = 'pending';
 
                                         try {
                                             $conn = getConnexion();
 
                                             // Vérifier si le client existe déjà
-                                            $sql = "SELECT id FROM clients WHERE phone = :phone";
+                                            $sql = "SELECT id, first_name, last_name FROM clients WHERE phone = :phone LIMIT 1";
                                             $stmt = $conn->prepare($sql);
                                             $stmt->bindParam(":phone", $telephone);
                                             $stmt->execute();
@@ -418,9 +415,8 @@ if (!$_SESSION['email']) {
                                                 $client_id = $client["id"];
                                             } else {
                                                 // Insérer un nouveau client
-                                                $sql = "INSERT INTO clients (id, first_name, last_name, phone) VALUES (:id, :first_name, :last_name, :phone)";
+                                                $sql = "INSERT INTO clients (id, first_name, last_name, phone) VALUES (UUID(), :first_name, :last_name, :phone)";
                                                 $stmt = $conn->prepare($sql);
-                                                $stmt->bindParam(":id", $uuid);
                                                 $stmt->bindParam(":first_name", $nom);
                                                 $stmt->bindParam(":last_name", $surname);
                                                 $stmt->bindParam(":phone", $telephone);
@@ -431,12 +427,12 @@ if (!$_SESSION['email']) {
                                             }
 
                                             // Enregistrer la réservation
-                                            $sql = "INSERT INTO reservations (id, client_id, service_id, date_reservation) VALUES (:id, :client_id, :service_id, :date_reservation)";
+                                            $sql = "INSERT INTO reservations (id, client_id, service_id, date_reservation, statut) VALUES (UUID(), :client_id, :service_id, :date_reservation, :statut)";
                                             $stmt = $conn->prepare($sql);
-                                            $stmt->bindParam(":id", $uuid);
                                             $stmt->bindParam(":client_id", $client_id);
                                             $stmt->bindParam(":service_id", $service_id);
                                             $stmt->bindParam(":date_reservation", $date);
+                                            $stmt->bindParam(":statut", $status);
                                             $stmt->execute();
 
                                             echo "<script>console.log('Réservation enregistrée avec succès.')</script>";

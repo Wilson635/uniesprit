@@ -120,10 +120,9 @@ if (!$_SESSION['email']) {
                         </svg>
                     </a>
 
-                    <!-- Forms -->
+                    <!-- Employees -->
                     <a href="employee.php"
                        class="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                        x-tooltip.placement.right="'Employés'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-opacity="0.25"
@@ -138,7 +137,7 @@ if (!$_SESSION['email']) {
                         </svg>
                     </a>
 
-                    <!-- Components -->
+                    <!-- Clients -->
                     <a href="clientContacts.php"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                        x-tooltip.placement.right="'Clients'">
@@ -268,7 +267,258 @@ if (!$_SESSION['email']) {
 
     <!-- Main Content Wrapper -->
     <main class="main-content w-full pb-8">
-        Employees Page
+        <!-- Main Content -->
+        <div class="pt-6 lg:px-8">
+            <div class="container full-container py-5">
+                <!----Breadcrumb Start---->
+                <div class="card bg-blue-500/5 dark:bg-navy-500 shadow-none dark:shadow-none position-relative overflow-hidden mb-6">
+                    <div class="card-body md:py-3 py-5">
+                        <div class=" items-center grid grid-cols-12 gap-6">
+                            <div class="col-span-9 p-5">
+                                <h4 class="font-semibold text-xl text-black mb-3">Employés</h4>
+                                <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
+                                    <li class="flex items-center">
+                                        <a class="opacity-80 text-sm leading-none"
+                                           href="../main/home.php">
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="p-0.5 rounded-full bg-black mx-2.5 flex items-center"></div>
+                                    </li>
+                                    <li class="flex items-center text-sm text-link dark:text-blacklink leading-none" aria-current="page">
+                                        Employés
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="col-span-3 -mb-10">
+                                <div class="flex justify-center">
+                                    <img src="../../../assets/ChatBc.png" alt="" class="md:-mb-7 -mb-4 h-40 w-40" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!----Breadcrumb End---->
+
+                <!---Client search Card--->
+
+
+                <div
+                        class="mt-4 grid grid-cols-12 gap-4 transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
+                >
+
+                    <div
+                            class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 w-full">
+                        <div
+                                class="sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
+                            <div
+                                    class="w-full flex flex-col p-5 bg-white dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
+                                <div class="flex min-h-full flex-col justify-center">
+                                    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                                        <img class="mx-auto h-30 w-auto mt-15" src="../../../assets/logo.jpg" alt="Your Company">
+                                        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Compléter les champs pour enrégistrer un employé</h2>
+                                    </div>
+
+                                    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                                        <?php
+                                        include_once '../../config/config.php';
+                                        require '../../../vendor/autoload.php';
+
+                                        use Ramsey\Uuid\Uuid;
+
+                                        $conn = getConnexion();
+
+                                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                            if ($_POST['name'] && isset($_POST['surname']) && isset($_POST['phone']) !== null) {
+                                                $name = $_POST['name'];
+                                                $surname = $_POST['surname'];
+                                                $phone = $_POST['phone'];
+                                                $email = $_POST['email'];
+                                                $occupation = $_POST['occupation'];
+                                                $uuid = Uuid::uuid4();
+                                                $sql = "INSERT INTO employees (id, first_name, last_name, phone, email, occupation) VALUES (:id, :first_name, :last_name, :phone, :email, :occupation)";
+                                                $stmt = $conn->prepare($sql);
+                                                $stmt->execute(['id' => $uuid, 'first_name' => $name, 'last_name' => $surname, 'phone' => $phone, 'email' => $email, 'occupation' => $occupation]);
+
+                                                echo "<script>console.log('Client enrégistré avec succès')</script>";
+                                            } else {
+                                                echo "<script>console.log('Veuillez remplir tous les champs')</script>";
+                                            }
+                                        }
+
+                                        ?>
+                                        <form class="space-y-6" action="#" method="POST">
+                                            <div class="grid grid-cols-2 gap-2">
+                                                <div>
+                                                    <label for="name" class="block text-sm/6 font-medium text-gray-900">Nom</label>
+                                                    <div class="mt-2">
+                                                        <input type="text" name="name" id="name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div class="flex items-center justify-between">
+                                                        <label for="surname" class="block text-sm/6 font-medium text-gray-900">Prénom</label>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <input type="text" name="surname" id="surname" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="flex items-center justify-between">
+                                                    <label for="phone" class="block text-sm/6 font-medium text-gray-900">Téléphone</label>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <input type="text" name="phone" id="phone"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label for="email" class="block text-sm/6 font-medium text-gray-900">email</label>
+                                                <div class="mt-2">
+                                                    <input type="email" name="email" id="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label for="occupation" class="block text-sm/6 font-medium text-gray-900">occupation</label>
+                                                <div class="mt-2">
+                                                    <input type="text" name="occupation" id="occupation" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <button type="submit" class="flex mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enrégistrer</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card p-8 lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
+                        <div class="card-body">
+                            <div class="flex flex-col">
+                                <div class="-m-1.5 overflow-x-auto">
+                                    <div class="p-1.5 min-w-full inline-block align-middle">
+                                        <div class="overflow-hidden">
+                                            <table
+                                                    class="table search-table min-w-full divide-y divide-border divide-slate-150">
+                                                <thead>
+                                                <tr>
+                                                    <th class="p-4 ps-0">
+                                                        <div
+                                                                class="n-chk align-self-center text-center">
+                                                            <div class="form-check">
+                                                                <input type="checkbox"
+                                                                       class="form-check-input rounded-sm"
+                                                                       id="contact-check-all" />
+                                                                <label class="form-check-label"
+                                                                       for="contact-check-all"></label>
+                                                                <span
+                                                                        class="new-control-indicator"></span>
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                        Nom </th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                        Prénom</th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                        Téléphone</th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                        Email</th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                        Occupation</th>
+                                                    <!--<th scope="col"
+                                                        class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                        Action</th>-->
+
+                                                </tr>
+                                                </thead>
+                                                <tbody
+                                                        class="divide-y divide-border divide-slate-150">
+                                                <?php
+                                                $sql = "SELECT * FROM employees";
+                                                $query = $conn->prepare($sql);
+                                                $query->execute();
+                                                $employees = $query->fetchAll();
+
+                                                function getInitials($name) {
+                                                    $words = explode(" ", $name);
+                                                    $initials = "";
+                                                    foreach ($words as $w) {
+                                                        $initials .= $w[0];
+                                                    }
+                                                    return $initials;
+                                                }
+
+                                                foreach ($employees as $employee) {
+                                                    echo '
+                                                        <tr class="search-items">
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="n-chk align-self-center text-center">
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $employee['id'] . '" />
+                                                                        <label class="form-check-label" for="checkbox' . $employee['id'] . '"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="flex gap-3 items-center">
+                                                                    <div>
+                                                                        <p class="rounded-circle bg-indigo-200 items-center justify-center leading-9 text-center font-bold h-9 w-9 rounded-full"> ' . htmlspecialchars($initials = getInitials($employee['first_name'])) . htmlspecialchars($initials = getInitials($employee['last_name'])) . ' </p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($employee["first_name"]) . '">' . htmlspecialchars($employee["first_name"]) . '</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($employee["last_name"]) . '">' . htmlspecialchars($employee["last_name"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($employee["phone"]) . '">' . htmlspecialchars($employee["phone"]) . '</td>
+                                                            <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($employee["email"]) . '">' . htmlspecialchars($employee["email"]) . '</td>
+                                                            <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($employee["occupation"]) . '">' . htmlspecialchars($employee["occupation"]) . '</td>
+                                                            <!--<td class="text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">
+                                                                <div class="action-btn flex gap-3">
+                                                                    <a href="javascript:void(0)" class="text-info edit">
+                                                                        <i class="ti ti-eye text-lg"></i>
+                                                                    </a>
+                                                                    <a href="javascript:void(0)"  class="text-black delete">
+                                                                        <i class="ti ti-trash text-lg text-bodytext dark:text-blacklink"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </td>-->
+                                                        </tr>
+                                                    ';
+                                                }
+                                                ?>
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!---Client Card End--->
+
+            </div>
+        </div>
+        <!-- Main Content End -->
     </main>
 </div>
 
