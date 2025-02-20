@@ -357,13 +357,30 @@ if (!$_SESSION['email']) {
                         <div class="card-body p-8">
                             <div
                                     class="flex justify-between items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="#118bb2" d="M11.943 1.25c-2.309 0-4.118 0-5.53.19c-1.444.194-2.584.6-3.479 1.494c-.895.895-1.3 2.035-1.494 3.48c-.19 1.411-.19 3.22-.19 5.529v.114c0 2.309 0 4.118.19 5.53c.194 1.444.6 2.584 1.494 3.479c.895.895 2.035 1.3 3.48 1.494c1.411.19 3.22.19 5.529.19h.114c2.309 0 4.118 0 5.53-.19c1.444-.194 2.584-.6 3.479-1.494c.895-.895 1.3-2.035 1.494-3.48c.19-1.411.19-3.22.19-5.529V10.5a.75.75 0 0 0-1.5 0V12c0 2.378-.002 4.086-.176 5.386c-.172 1.279-.5 2.05-1.069 2.62c-.57.569-1.34.896-2.619 1.068c-1.3.174-3.008.176-5.386.176s-4.086-.002-5.386-.176c-1.279-.172-2.05-.5-2.62-1.069c-.569-.57-.896-1.34-1.068-2.619c-.174-1.3-.176-3.008-.176-5.386s.002-4.086.176-5.386c.172-1.279.5-2.05 1.069-2.62c.57-.569 1.34-.896 2.619-1.068c1.3-.174 3.008-.176 5.386-.176h1.5a.75.75 0 0 0 0-1.5z"/><path fill="#118bb2" fill-rule="evenodd" d="M19 1.25a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5M16.75 5a2.25 2.25 0 1 1 4.5 0a2.25 2.25 0 0 1-4.5 0" clip-rule="evenodd"/><path fill="#118bb2" d="M6.25 14a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 0 1.5H7a.75.75 0 0 1-.75-.75M7 16.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#118bb2" d="M10 18a2 2 0 1 0 0-4a2 2 0 0 0 0 4m6 0a2 2 0 1 0 0-4a2 2 0 0 0 0 4m8-2a2 2 0 1 1-4 0a2 2 0 0 1 4 0m6 0c0 7.732-6.268 14-14 14S2 23.732 2 16S8.268 2 16 2s14 6.268 14 14m-2 0c0-6.627-5.373-12-12-12S4 9.373 4 16s5.373 12 12 12s12-5.373 12-12"/></svg>                                <div
+                                        class="ms-auto sm:text-start text-end">
+                                    <h5
+                                            class="font-medium text-2xl ">0</h5>
+                                    <p
+                                            class="text-[#118bb2] font-medium">En attente</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                        class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
+                    <div class="card shadow-none border-s border-[#2111b2]">
+                        <div class="card-body p-8">
+                            <div
+                                    class="flex justify-between items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="#2111b2" d="M11.943 1.25c-2.309 0-4.118 0-5.53.19c-1.444.194-2.584.6-3.479 1.494c-.895.895-1.3 2.035-1.494 3.48c-.19 1.411-.19 3.22-.19 5.529v.114c0 2.309 0 4.118.19 5.53c.194 1.444.6 2.584 1.494 3.479c.895.895 2.035 1.3 3.48 1.494c1.411.19 3.22.19 5.529.19h.114c2.309 0 4.118 0 5.53-.19c1.444-.194 2.584-.6 3.479-1.494c.895-.895 1.3-2.035 1.494-3.48c.19-1.411.19-3.22.19-5.529V10.5a.75.75 0 0 0-1.5 0V12c0 2.378-.002 4.086-.176 5.386c-.172 1.279-.5 2.05-1.069 2.62c-.57.569-1.34.896-2.619 1.068c-1.3.174-3.008.176-5.386.176s-4.086-.002-5.386-.176c-1.279-.172-2.05-.5-2.62-1.069c-.569-.57-.896-1.34-1.068-2.619c-.174-1.3-.176-3.008-.176-5.386s.002-4.086.176-5.386c.172-1.279.5-2.05 1.069-2.62c.57-.569 1.34-.896 2.619-1.068c1.3-.174 3.008-.176 5.386-.176h1.5a.75.75 0 0 0 0-1.5z"/><path fill="#2111b2" fill-rule="evenodd" d="M19 1.25a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5M16.75 5a2.25 2.25 0 1 1 4.5 0a2.25 2.25 0 0 1-4.5 0" clip-rule="evenodd"/><path fill="#2111b2" d="M6.25 14a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 0 1.5H7a.75.75 0 0 1-.75-.75M7 16.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg>
                                 <div
                                         class="ms-auto sm:text-start text-end">
                                     <h5
                                             class="font-medium text-2xl ">0</h5>
                                     <p
-                                            class="text-[#118bb2] font-medium">Total</p>
+                                            class="text-[#2111b2] font-medium">Total</p>
                                 </div>
                             </div>
                         </div>
@@ -389,11 +406,14 @@ if (!$_SESSION['email']) {
                                 </div>
 
                                 <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-
                                     <?php
-                                    include '../../config/config.php';
 
-                                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                    include '../../config/config.php';
+                                    require '../../../vendor/autoload.php';
+
+                                    use Ramsey\Uuid\Uuid;
+
+                                    if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         $nom = trim($_POST["name"]);
                                         $surname = trim($_POST["surname"]);
                                         $telephone = trim($_POST["phone"]);
@@ -401,46 +421,37 @@ if (!$_SESSION['email']) {
                                         $date = trim($_POST["date"]);
                                         $status = 'pending';
 
-                                        try {
-                                            $conn = getConnexion();
+                                        if (!empty($nom) && !empty($surname) && !empty($telephone) && !empty($service_id) && !empty($date)) {
+                                            try {
+                                                $conn = getConnexion();
+                                                if (!$conn) {
+                                                    throw new Exception("Erreur de connexion à la base de données.");
+                                                }
 
-                                            // Vérifier si le client existe déjà
-                                            $sql = "SELECT id, first_name, last_name FROM clients WHERE phone = :phone LIMIT 1";
-                                            $stmt = $conn->prepare($sql);
-                                            $stmt->bindParam(":phone", $telephone);
-                                            $stmt->execute();
-                                            $client = $stmt->fetch(PDO::FETCH_ASSOC);
+                                                $reservation_id = Uuid::uuid4()->toString();
 
-                                            if ($client) {
-                                                $client_id = $client["id"];
-                                            } else {
-                                                // Insérer un nouveau client
-                                                $sql = "INSERT INTO clients (id, first_name, last_name, phone) VALUES (UUID(), :first_name, :last_name, :phone)";
+                                                $sql = "INSERT INTO reservations (id, first_name, last_name, phone, service, date_reservation, statut) VALUES (:id, :first_name, :last_name, :phone, :service, :date_reservation, :statut)";
                                                 $stmt = $conn->prepare($sql);
-                                                $stmt->bindParam(":first_name", $nom);
-                                                $stmt->bindParam(":last_name", $surname);
-                                                $stmt->bindParam(":phone", $telephone);
-                                                $stmt->execute();
+                                                $stmt->execute([
+                                                    ":id" => $reservation_id,
+                                                    ":first_name" => $nom,
+                                                    ":last_name" => $surname,
+                                                    ":phone" => $telephone,
+                                                    ":service" => $service_id,
+                                                    ":date_reservation" => $date,
+                                                    ":statut" => $status
+                                                ]);
 
-                                                // Récupérer l'ID du client nouvellement inséré
-                                                $client_id = $conn->lastInsertId();
+                                                echo "<script>console.log('Réservation enregistrée avec succès.')</script>";
+                                            } catch (Exception $e) {
+                                                echo "Erreur : " . $e->getMessage();
                                             }
-
-                                            // Enregistrer la réservation
-                                            $sql = "INSERT INTO reservations (id, client_id, service_id, date_reservation, statut) VALUES (UUID(), :client_id, :service_id, :date_reservation, :statut)";
-                                            $stmt = $conn->prepare($sql);
-                                            $stmt->bindParam(":client_id", $client_id);
-                                            $stmt->bindParam(":service_id", $service_id);
-                                            $stmt->bindParam(":date_reservation", $date);
-                                            $stmt->bindParam(":statut", $status);
-                                            $stmt->execute();
-
-                                            echo "<script>console.log('Réservation enregistrée avec succès.')</script>";
-                                        } catch (PDOException $e) {
-                                            echo "Erreur : " . $e->getMessage();
+                                        } else {
+                                            echo "Veuillez remplir tous les champs.";
                                         }
                                     }
                                     ?>
+
 
                                     <form class="space-y-6" action="#" method="POST">
                                         <div class="grid lg:grid-cols-2 justify-between gap-3 items-center">
@@ -480,7 +491,7 @@ if (!$_SESSION['email']) {
                                         <div>
                                             <label for="services" class="block text-sm/6 font-medium text-gray-900">Type de service</label>
                                             <div class="mt-2">
-                                                <select id="services" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                <select id="services" name="services" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                     <option disabled selected>Choisir un service</option>
                                                     <?php
                                                     include '../../config/config.php';
@@ -492,7 +503,7 @@ if (!$_SESSION['email']) {
                                                     $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                                     foreach ($services as $service) {
-                                                        echo "<option value='" . htmlspecialchars($service['id']) . "'>" . htmlspecialchars($service['name']) . "</option>";
+                                                        echo "<option value='" . htmlspecialchars($service['name']) . "'>" . htmlspecialchars($service['name']) . "</option>";
                                                     }
                                                     ?>
                                                 </select>
