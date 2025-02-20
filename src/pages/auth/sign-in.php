@@ -19,42 +19,6 @@
 <body class="p-4" style="font-family: 'Poppins';">
 
 <?php
-//session_start();
-//include_once "../../config/config.php";
-//
-//if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//    if (isset($_POST['username']) && isset($_POST['password'])) {
-//        $username = trim($_POST['username']);
-//        $password = trim($_POST['password']);
-//
-//        try {
-//            $query = "SELECT * FROM users WHERE username = :username";
-//            $stmt = getConnexion()->prepare($query);
-//            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-//            $stmt->execute();
-//
-//            if ($stmt->rowCount() > 0) {
-//                $user = $stmt->fetch(PDO::FETCH_ASSOC);
-//                if (password_verify($password, $user['password'])) {
-//                    $_SESSION['username'] = $username;
-//                    $_SESSION['user_id'] = $user['id'];
-//                    $_SESSION['email'] = $user['email'];
-//
-//                    echo "<script>alert('Connexion réussie');</script>";
-//                    header('Location: ../main/home.php');
-//                    exit();
-//                }
-//            }
-//            echo "<script>alert('Identifiants invalides');</script>";
-//        } catch (PDOException $e) {
-//            die("Erreur SQL : " . $e->getMessage());
-//        }
-//    } else {
-//        echo "<script>alert('Veuillez remplir tous les champs');</script>";
-//    }
-//}
-//?>
-<?php
 session_start();
 include_once "../../config/config.php";
 
@@ -79,12 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit();
             }
 
-            echo "<script>alert('Identifiants invalides');</script>";
+            echo "<script>console.log('Identifiants invalides');</script>";
         } catch (PDOException $e) {
             die("Erreur SQL : " . $e->getMessage());
         }
     } else {
-        echo "<script>alert('Veuillez remplir tous les champs');</script>";
+        echo "<script>console.log('Veuillez remplir tous les champs');</script>";
     }
 }
 ?>

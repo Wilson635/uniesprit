@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['email'])) {
+    if (!$_SESSION['email']) {
         header('location:../auth/sign-in.php');
     }
 ?>
@@ -349,7 +349,7 @@
             <!---Date Cards End--->
 
             <!---Graph--->
-            <div class="col-span-12 lg:col-span-8">
+            <!--<div class="col-span-12 lg:col-span-8">
                 <div class="flex items-center justify-between space-x-2">
                     <h2
                             class="text-base font-medium tracking-wide text-slate-800 line-clamp-1 dark:text-navy-100"
@@ -434,6 +434,17 @@
                         </div>
                         <div class="mt-3 flex items-center space-x-2">
                             <div class="ax-transparent-gridline w-28">
+                                <div id="salesChart"></div>
+                            </div>
+                            <div class="flex items-center space-x-0.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/>
+                                </svg>
+                                <p class="text-sm-plus text-slate-800 dark:text-navy-100" id="growthRate">0%</p>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex items-center space-x-2">
+                            <div class="ax-transparent-gridline w-28">
                                 <div
                                         x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.analyticsSalesThisMonth); $el._x_chart.render() });"
                                 ></div>
@@ -485,13 +496,13 @@
                         ></div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!---Graph End--->
 
             <!---Count data database--->
-            <div class="col-span-12 lg:col-span-4">
+            <div class="col-span-12">
                 <div
-                        class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-2"
+                        class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3"
                 >
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between space-x-1">
@@ -548,21 +559,7 @@
                             >
                                 0
                             </p>
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5 text-warning"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                            </svg>
-                        </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#b2b211" d="M10 12.25a.75.75 0 1 0 0 1.5h4a.75.75 0 0 0 0-1.5z"/><path fill="#b2b211" fill-rule="evenodd" d="M7.32 4.275A3.75 3.75 0 0 1 11 1.25h2a3.75 3.75 0 0 1 3.68 3.025a6.75 6.75 0 0 1 5.07 6.445v5.655a5.27 5.27 0 0 1-4.126 5.143a25.9 25.9 0 0 1-11.248 0a5.27 5.27 0 0 1-4.126-5.143V10.72a6.75 6.75 0 0 1 5.07-6.445m1.695-.335A2.25 2.25 0 0 1 11 2.75h2c.86 0 1.607.482 1.986 1.19a19.8 19.8 0 0 0-5.971 0m11.235 6.971v2.596a21.4 21.4 0 0 1-16.5 0V10.74a5.25 5.25 0 0 1 4.207-5.074c.084-.02.124-.028.164-.037a18.25 18.25 0 0 1 7.759 0l.163.037l.167.037a5.25 5.25 0 0 1 4.04 5.207m-16.5 5.464v-1.252a22.9 22.9 0 0 0 13 1.04V17a.75.75 0 0 0 1.5 0v-1.209a23 23 0 0 0 2-.668v1.252a3.77 3.77 0 0 1-2.951 3.68c-3.49.775-7.108.775-10.598 0a3.77 3.77 0 0 1-2.95-3.68" clip-rule="evenodd"/></svg>                        </div>
                         <p class="mt-1 text-xs-plus">Employés</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
@@ -570,7 +567,19 @@
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                0
+                                <?php
+                                    include_once  '../../config/config.php';
+                                    function countServices()
+                                    {
+                                    $conn = getConnexion();
+                                    $query = "SELECT COUNT(*) as total FROM services";
+                                    $result = $conn->query($query);
+                                    $data = $result->fetch();
+                                    return $data['total'];
+                                    }
+
+                                    echo "<strong>".countServices()."</strong>";
+                                ?>
                             </p>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -644,9 +653,8 @@
                                     echo "<strong>".countUsers()."</strong>";
                                 ?>
                             </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#b27811" d="M15.5 7.5a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0"/><path fill="#b27811" d="M19.5 7.5a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0m-15 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 0 0-5 0" opacity="0.4"/><path fill="#b27811" d="M18 16.5c0 1.933-2.686 3.5-6 3.5s-6-1.567-6-3.5S8.686 13 12 13s6 1.567 6 3.5"/><path fill="#b27811" d="M22 16.5c0 1.38-1.79 2.5-4 2.5s-4-1.12-4-2.5s1.79-2.5 4-2.5s4 1.12 4 2.5m-20 0C2 17.88 3.79 19 6 19s4-1.12 4-2.5S8.21 14 6 14s-4 1.12-4 2.5" opacity="0.4"/></svg>
-                        </div>
-                        <p class="mt-1 text-xs-plus">Users</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#b27811" stroke-width="1.5"><circle cx="12" cy="6" r="4"/><path stroke-linecap="round" d="M18 9c1.657 0 3-1.12 3-2.5S19.657 4 18 4M6 9C4.343 9 3 7.88 3 6.5S4.343 4 6 4"/><ellipse cx="12" cy="17" rx="6" ry="4"/><path stroke-linecap="round" d="M20 19c1.754-.385 3-1.359 3-2.5s-1.246-2.115-3-2.5M4 19c-1.754-.385-3-1.359-3-2.5s1.246-2.115 3-2.5"/></g></svg>                        </div>
+                        <p class="mt-1 text-xs-plus">Utilisateurs</p>
                     </div>
                 </div>
             </div>
@@ -2148,6 +2156,32 @@
 <div id="x-teleport-target"></div>
 <script>
     window.addEventListener("DOMContentLoaded", () => Alpine.start());
+
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("../../config/user-config-chart.php")
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error(data.error);
+                    return;
+                }
+
+                let sales = data.sales.map(s => s.sales);
+                let dates = data.sales.map(s => s.date);
+
+                document.getElementById("growthRate").textContent = data.growthRate + "%";
+
+                let options = {
+                    chart: { type: "line", height: 50 },
+                    series: [{ name: "Ventes", data: sales }],
+                    xaxis: { categories: dates }
+                };
+
+                let chart = new ApexCharts(document.querySelector("#salesChart"), options);
+                chart.render();
+            })
+            .catch(error => console.error("Erreur lors de la récupération des données :", error));
+    });
 </script>
 </body>
 
