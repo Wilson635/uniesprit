@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!$_SESSION['email']) {
+    header('location:../auth/sign-in.php');
+}
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -265,7 +273,7 @@
     <!-- Main Content Wrapper -->
     <main class="main-content w-full pb-8">
         <!-- Main Content -->
-        <div class="pt-6 lg:px-32">
+        <div class="pt-6 lg:px-8">
             <div class="container full-container py-5">
                 <!----Breadcrumb Start---->
                 <div class="card bg-blue-500/5 dark:bg-navy-500 shadow-none dark:shadow-none position-relative overflow-hidden mb-6">
@@ -325,11 +333,6 @@
                                             Delete All Row
                                         </a>
                                     </div>
-                                    <a href="#" id="btn-add-contact"
-                                       class="cursor-pointer rounded-full bg-blue-500 p-3 text-white flex gap-2 items-center ">
-                                        <i class="ti ti-users text-white text-lg leading-none"></i> Add
-                                        Client
-                                    </a>
                                 </div>
 
                             </div>
@@ -347,7 +350,7 @@
                         <div
                                 class="sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
                             <div
-                                    class="w-full flex flex-col bg-white dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
+                                    class="w-full flex flex-col p-5 bg-white dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
                                 <div class="flex min-h-full flex-col justify-center">
                                     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                                         <img class="mx-auto h-30 w-auto mt-15" src="../../../assets/logo.jpg" alt="Your Company">

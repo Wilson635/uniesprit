@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!$_SESSION['email']) {
+    header('location:../auth/sign-in.php');
+}
+?>
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,6 +34,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
           integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
 
     <script>
         /**
@@ -34,7 +45,7 @@
         document.documentElement.classList.add("dark");
     </script>
 </head>
-<body x-data class="is-header-blur" x-bind="$store.global.documentBody">
+<body x-data class="is-header-blur" x-bind="$store.global.documentBody" style="font-family: 'Poppins', Serif";>
     <!-- App preloader -->
     <div class="app-preloader fixed z-50 grid h-full w-full place-content-center bg-slate-50 dark:bg-navy-900">
         <div class="app-preloader-inner relative inline-block size-48"></div>
@@ -259,8 +270,310 @@
         <?php include "../../components/navbar.php" ?>
 
         <!-- Main Content Wrapper -->
-        <main class="main-content w-full pb-8">
-            Reservations Page
+        <main class="main-content w-full p-8">
+            <!----Breadcrumb Start---->
+            <div class="card bg-blue-500/5 dark:bg-navy-500 shadow-none dark:shadow-none position-relative overflow-hidden mb-6">
+                <div class="card-body md:py-3 py-5">
+                    <div class=" items-center grid grid-cols-12 gap-6">
+                        <div class="col-span-9 p-5">
+                            <h4 class="font-semibold text-xl text-black mb-3">Reservations</h4>
+                            <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
+                                <li class="flex items-center">
+                                    <a class="opacity-80 text-sm leading-none"
+                                       href="../main/home.php">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="p-0.5 rounded-full bg-black mx-2.5 flex items-center"></div>
+                                </li>
+                                <li class="flex items-center text-sm text-link dark:text-blacklink leading-none" aria-current="page">
+                                    Reservations
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="col-span-3 -mb-10">
+                            <div class="flex justify-center">
+                                <img src="../../../assets/ChatBc.png" alt="" class="md:-mb-7 -mb-4 h-40 w-40" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!----Breadcrumb End---->
+            <div class="grid grid-cols-12 gap-6 mt-6">
+
+                <div
+                        class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
+                    <div class="card shadow-none border-s border-error">
+                        <div class="card-body p-8">
+                            <div
+                                    class="flex justify-between items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-red-500 font-bold" width="40" height="40" viewBox="0 0 512 512">
+                                    <g fill="none" stroke="#FF5724" stroke-linecap="round" stroke-width="2em">
+                                        <path stroke-linejoin="round" d="m8.5 12.5l2 2l5-5"/>
+                                        <path
+                                              d="m283.735 52.918l31.295 26.614a42.7 42.7 0 0 0 24.213 10.03l40.947 3.309c20.86 1.686 37.42 18.246 39.106 39.106l3.31 40.947a42.7 42.7 0 0 0 10.029 24.213l26.614 31.294c13.557 15.942 13.557 39.362 0 55.304l-26.614 31.295a42.7 42.7 0 0 0-10.03 24.213l-3.31 40.947c-1.685 20.86-18.246 37.42-39.105 39.106l-40.947 3.31a42.7 42.7 0 0 0-24.213 10.029l-31.295 26.614c-15.942 13.557-39.362 13.557-55.304 0l-31.294-26.614a42.7 42.7 0 0 0-24.213-10.03l-40.947-3.31c-20.86-1.685-37.42-18.246-39.106-39.105l-3.31-40.947a42.7 42.7 0 0 0-10.03-24.213l-26.613-31.295c-13.557-15.942-13.557-39.362 0-55.304l26.614-31.294a42.7 42.7 0 0 0 10.03-24.213l3.309-40.947c1.686-20.86 18.246-37.42 39.106-39.106l40.947-3.31a42.7 42.7 0 0 0 24.213-10.03l31.294-26.613c15.942-13.557 39.362-13.557 55.304 0m21.182 124L256 225.833l-48.918-48.917l-30.165 30.165L225.834 256l-48.917 48.917l30.165 30.165L256 286.165l48.917 48.917l30.165-30.165L286.165 256l48.917-48.918z"
+                                        />
+                                    </g>
+                                </svg>
+                                <div
+                                        class="ms-auto sm:text-start text-end">
+                                    <h5
+                                            class="font-medium text-2xl ">0</h5>
+                                    <p
+                                            class="text-error font-medium">Refusées</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                        class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
+                    <div class="card shadow-none border-s border-success">
+                        <div class="card-body p-8">
+                            <div
+                                    class="flex justify-between items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+                                    <g fill="none" stroke="#11b25d" stroke-linecap="round" stroke-width="1.5">
+                                        <path stroke-linejoin="round" d="m8.5 12.5l2 2l5-5"/>
+                                        <path d="M3.03 13.078a2.5 2.5 0 0 1 0-2.157c.14-.294.38-.576.86-1.14c.192-.225.288-.337.368-.457a2.5 2.5 0 0 0 .376-.907c.028-.142.04-.289.063-.583c.059-.738.088-1.107.197-1.416A2.5 2.5 0 0 1 6.42 4.894c.308-.109.677-.139 1.416-.197c.294-.024.44-.036.582-.064a2.5 2.5 0 0 0 .908-.376c.12-.08.232-.175.456-.367c.564-.48.846-.72 1.14-.861a2.5 2.5 0 0 1 2.157 0c.295.14.577.38 1.14.861c.225.192.337.287.457.367a2.5 2.5 0 0 0 .908.376c.141.028.288.04.582.064c.739.058 1.108.088 1.416.197a2.5 2.5 0 0 1 1.525 1.524M4.894 17.581a2.5 2.5 0 0 0 1.525 1.524c.308.11.677.139 1.416.197c.294.024.44.036.582.064a2.5 2.5 0 0 1 .908.376c.12.08.232.175.456.367c.564.48.846.72 1.14.861a2.5 2.5 0 0 0 2.157 0c.295-.14.577-.38 1.14-.861a5 5 0 0 1 .457-.367a2.5 2.5 0 0 1 .908-.376c.141-.028.288-.04.582-.064c.739-.058 1.108-.088 1.416-.197a2.5 2.5 0 0 0 1.525-1.524c.109-.308.138-.678.197-1.416c.023-.294.035-.441.063-.583c.064-.324.192-.633.376-.907c.08-.12.176-.232.367-.457c.48-.564.721-.846.862-1.14a2.5 2.5 0 0 0 0-2.157"/>
+                                    </g>
+                                </svg>
+                                <div
+                                        class="ms-auto sm:text-start text-end">
+                                    <h5
+                                            class="font-medium text-2xl ">0</h5>
+                                    <p
+                                            class="text-success font-medium">Acceptées</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                        class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
+                    <div class="card shadow-none border-s border-[#118bb2]">
+                        <div class="card-body p-8">
+                            <div
+                                    class="flex justify-between items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="#118bb2" d="M11.943 1.25c-2.309 0-4.118 0-5.53.19c-1.444.194-2.584.6-3.479 1.494c-.895.895-1.3 2.035-1.494 3.48c-.19 1.411-.19 3.22-.19 5.529v.114c0 2.309 0 4.118.19 5.53c.194 1.444.6 2.584 1.494 3.479c.895.895 2.035 1.3 3.48 1.494c1.411.19 3.22.19 5.529.19h.114c2.309 0 4.118 0 5.53-.19c1.444-.194 2.584-.6 3.479-1.494c.895-.895 1.3-2.035 1.494-3.48c.19-1.411.19-3.22.19-5.529V10.5a.75.75 0 0 0-1.5 0V12c0 2.378-.002 4.086-.176 5.386c-.172 1.279-.5 2.05-1.069 2.62c-.57.569-1.34.896-2.619 1.068c-1.3.174-3.008.176-5.386.176s-4.086-.002-5.386-.176c-1.279-.172-2.05-.5-2.62-1.069c-.569-.57-.896-1.34-1.068-2.619c-.174-1.3-.176-3.008-.176-5.386s.002-4.086.176-5.386c.172-1.279.5-2.05 1.069-2.62c.57-.569 1.34-.896 2.619-1.068c1.3-.174 3.008-.176 5.386-.176h1.5a.75.75 0 0 0 0-1.5z"/><path fill="#118bb2" fill-rule="evenodd" d="M19 1.25a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5M16.75 5a2.25 2.25 0 1 1 4.5 0a2.25 2.25 0 0 1-4.5 0" clip-rule="evenodd"/><path fill="#118bb2" d="M6.25 14a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 0 1.5H7a.75.75 0 0 1-.75-.75M7 16.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg>
+                                <div
+                                        class="ms-auto sm:text-start text-end">
+                                    <h5
+                                            class="font-medium text-2xl ">0</h5>
+                                    <p
+                                            class="text-[#118bb2] font-medium">Total</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table reservations -->
+            <div
+                    class="mt-4 grid grid-cols-12 gap-4 transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
+            >
+
+                <div
+                        class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 w-full">
+                    <div
+                            class="sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
+                        <div
+                                class="w-full flex flex-col bg-white p-8 dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
+                            <div class="flex min-h-full flex-col justify-center">
+                                <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                                    <img class="mx-auto h-30 w-auto mt-8" src="../../../assets/logo.jpg" alt="Your Company">
+                                    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Compléter les champs pour faire une réservation</h2>
+                                </div>
+
+                                <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+
+                                    <?php
+                                    include '../../config/config.php';
+                                    require '../../../vendor/autoload.php';
+
+                                    use Ramsey\Uuid\Uuid;
+
+                                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                        $nom = trim($_POST["name"]);
+                                        $surname = trim($_POST["surname"]);
+                                        $telephone = trim($_POST["phone"]);
+                                        $service_id = trim($_POST["services"]);
+                                        $date = trim($_POST["date"]);
+                                        $uuid = Uuid::uuid4();
+
+                                        try {
+                                            $conn = getConnexion();
+
+                                            // Vérifier si le client existe déjà
+                                            $sql = "SELECT id FROM clients WHERE phone = :phone";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->bindParam(":phone", $telephone);
+                                            $stmt->execute();
+                                            $client = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                            if ($client) {
+                                                $client_id = $client["id"];
+                                            } else {
+                                                // Insérer un nouveau client
+                                                $sql = "INSERT INTO clients (id, first_name, last_name, phone) VALUES (:id, :first_name, :last_name, :phone)";
+                                                $stmt = $conn->prepare($sql);
+                                                $stmt->bindParam(":id", $uuid);
+                                                $stmt->bindParam(":first_name", $nom);
+                                                $stmt->bindParam(":last_name", $surname);
+                                                $stmt->bindParam(":phone", $telephone);
+                                                $stmt->execute();
+
+                                                // Récupérer l'ID du client nouvellement inséré
+                                                $client_id = $conn->lastInsertId();
+                                            }
+
+                                            // Enregistrer la réservation
+                                            $sql = "INSERT INTO reservations (id, client_id, service_id, date_reservation) VALUES (:id, :client_id, :service_id, :date_reservation)";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->bindParam(":id", $uuid);
+                                            $stmt->bindParam(":client_id", $client_id);
+                                            $stmt->bindParam(":service_id", $service_id);
+                                            $stmt->bindParam(":date_reservation", $date);
+                                            $stmt->execute();
+
+                                            echo "<script>console.log('Réservation enregistrée avec succès.')</script>";
+                                        } catch (PDOException $e) {
+                                            echo "Erreur : " . $e->getMessage();
+                                        }
+                                    }
+                                    ?>
+
+                                    <form class="space-y-6" action="#" method="POST">
+                                        <div class="grid lg:grid-cols-2 justify-between gap-3 items-center">
+                                            <div>
+                                                <label for="name" class="block text-sm/6 font-medium text-gray-900">Nom du client</label>
+                                                <div class="mt-2">
+                                                    <input type="text" name="name" id="name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="flex items-center justify-between">
+                                                    <label for="surname" class="block text-sm/6 font-medium text-gray-900">Prénom du client</label>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <input type="text" name="surname" id="surname" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="flex items-center justify-between">
+                                                <label for="phone" class="block text-sm/6 font-medium text-gray-900">Téléphone du client</label>
+                                            </div>
+                                            <div class="mt-2">
+                                                <input type="text" name="phone" id="phone"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="date" class="block text-sm/6 font-medium text-gray-900">Journée du</label>
+                                            <div class="mt-2">
+                                                <input type="datetime-local" name="date" id="date" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="services" class="block text-sm/6 font-medium text-gray-900">Type de service</label>
+                                            <div class="mt-2">
+                                                <select id="services" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                    <option disabled selected>Choisir un service</option>
+                                                    <?php
+                                                    include '../../config/config.php';
+
+                                                    $conn = getConnexion();
+                                                    $sql = "SELECT id, name FROM services";
+                                                    $stmt = $conn->prepare($sql);
+                                                    $stmt->execute();
+                                                    $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                                    foreach ($services as $service) {
+                                                        echo "<option value='" . htmlspecialchars($service['id']) . "'>" . htmlspecialchars($service['name']) . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div>
+                                            <button type="submit" class="flex mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enrégistrer</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-8 lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
+                    <div class="card-body">
+                        <div class="flex flex-col">
+                            <div class="-m-1.5 overflow-x-auto">
+                                <div class="p-1.5 min-w-full inline-block align-middle">
+                                    <div class="overflow-hidden">
+                                        <table
+                                                class="table search-table min-w-full divide-y divide-border divide-slate-150">
+                                            <thead>
+                                            <tr>
+                                                <th class="p-4 ps-0">
+                                                    <div
+                                                            class="n-chk align-self-center text-center">
+                                                        <div class="form-check">
+                                                            <input type="checkbox"
+                                                                   class="form-check-input rounded-sm"
+                                                                   id="contact-check-all" />
+                                                            <label class="form-check-label"
+                                                                   for="contact-check-all"></label>
+                                                            <span
+                                                                    class="new-control-indicator"></span>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th scope="col"
+                                                    class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                    Nom</th>
+                                                <th scope="col"
+                                                    class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                    Prénom</th>
+                                                <th scope="col"
+                                                    class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                    Téléphone</th>
+                                                <th scope="col"
+                                                    class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                    Date de reservation</th>
+                                                <th scope="col"
+                                                    class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                    Services demandés</th>
+                                                <!--<th scope="col"
+                                                    class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                    Action</th>-->
+
+                                            </tr>
+                                            </thead>
+                                            <tbody
+                                                    class="divide-y divide-border divide-slate-150">
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Table reservations End -->
         </main>
     </div>
 

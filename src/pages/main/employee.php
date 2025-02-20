@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!$_SESSION['email']) {
+    header('location:../auth/sign-in.php');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
