@@ -16,15 +16,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
-    <title>Analyse</title>
-    <link rel="icon" type="image/png" href="images/favicon.png"/>
-    <link favicon="icon">
+    <title>Tickets</title>
+
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg" />
 
     <!-- CSS Assets -->
     <link rel="stylesheet" href="../../components/app.css"/>
 
     <!-- Javascript Assets -->
-    <script src="../../../scipt.js"></script>
+    <script src="../../../script.js"></script>
     <script src="../../../tailwind.js"></script>
 
     <!-- Fonts -->
@@ -88,9 +89,9 @@
                     </a>
 
                     <!-- Apps -->
-                    <a href="apps-list.html"
+                    <a href="apps-list.php"
                        class="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-                       x-tooltip.placement.right="'Analyse'">
+                       x-tooltip.placement.right="'Tickets'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                     d="M5 8H19V16C19 17.8856 19 18.8284 18.4142 19.4142C17.8284 20 16.8856 20 15 20H9C7.11438 20 6.17157 20 5.58579 19.4142C5 18.8284 5 17.8856 5 16V8Z"
@@ -189,12 +190,19 @@
                         </svg>
                     </a>
 
+                    <!-- Logout -->
+                    <a href="../auth/logout.php"
+                       x-tooltip.placement.right="'Logout'"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                        <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M12 20a8 8 0 1 1 0-16" opacity="0.5"/><path stroke-linejoin="round" d="M10 12h10m0 0l-3-3m3 3l-3 3"/></g></svg>
+                    </a>
+
                     <!-- Profile -->
                     <div x-data="usePopper({placement:'right-end',offset:12})"
                          @click.outside="isShowPopper && (isShowPopper = false)" class="flex">
                         <button @click="isShowPopper = !isShowPopper" x-ref="popperRef"
                                 class="avatar size-12 cursor-pointer">
-                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar"/>
+                            <img class="rounded-full" src="../../../assets/user-7.jpg" alt="avatar"/>
                             <span
                                     class="absolute right-0 size-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
                         </button>
@@ -205,7 +213,7 @@
                                 <div
                                         class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
                                     <div class="avatar size-14">
-                                        <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar"/>
+                                        <img class="rounded-full" src="../../../assets/user-7.jpg" alt="avatar"/>
                                     </div>
                                     <div>
                                         <p
@@ -286,887 +294,42 @@
     <?php include "../../components/navbar.php" ?>
 
     <!-- Main Content Wrapper -->
-    <main class="main-content w-full pb-8">
-        <div
-                class="mt-4 grid grid-cols-12 gap-4 px-[var(--margin-x)] transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
-        >
-            <!---Welcome back Card--->
-            <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
-                <div class="card bg-slate-150 dark:bg-navy-700 mb-0 overflow-hidden">
-                    <div class="card-body pb-10">
-                        <div class="grid grid-cols-12">
-                            <div class="lg:col-span-7 p-8 md:col-span-7 sm:col-span-12 col-span-12">
-                                <div class="flex gap-3 items-center mb-7">
-                                    <div class="rounded-full overflow-hidden">
-                                        <img src="../../../assets/logo.jpg"
-                                             class="h-20 w-20" alt="">
-                                    </div>
-                                    <div class="flex flex-col justify-start items-center">
-                                        <h5 class="text-lg">
-                                            Welcome back <strong><?php echo $_SESSION['username']; ?></strong>
-                                        </h5>
-                                        <p class="mt-5 px-3">Êtes - vous prêt à démarrer la journée ?</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="lg:col-span-5 md:col-span-5 sm:col-span-12 col-span-12">
-                                <div class="sm:absolute relative right-0 rtl:right-auto rtl:left-0 -bottom-8">
-                                    <img src="../../../assets/welcome-bg.svg" alt=""
-                                         class="img-fluid">
-                                </div>
+    <main class="main-content w-full">
+        <div class="p-12">
+            <!----Breadcrumb Start---->
+            <div class="card bg-blue-500/5 dark:bg-navy-500 shadow-none dark:shadow-none position-relative overflow-hidden mb-6">
+                <div class="card-body md:py-3 py-5">
+                    <div class=" items-center grid grid-cols-12 gap-6">
+                        <div class="col-span-9 p-5">
+                            <h4 class="font-semibold text-xl text-black mb-3">Tickets</h4>
+                            <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
+                                <li class="flex items-center">
+                                    <a class="opacity-80 text-sm leading-none"
+                                       href="../main/home.php">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="p-0.5 rounded-full bg-black mx-2.5 flex items-center"></div>
+                                </li>
+                                <li class="flex items-center text-sm text-link dark:text-blacklink leading-none" aria-current="page">
+                                    Tickets
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="col-span-3 -mb-10">
+                            <div class="flex justify-center">
+                                <img src="../../../assets/ChatBc.png" alt="" class="md:-mb-7 -mb-4 h-40 w-40" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!---Welcome back Card End--->
-
-            <!---Date Cards--->
-            <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12">
-                <div class="card bg-indigo-500 p-8 overflow-hidden">
-                    <div class="card-body pb-0">
-                        <h5 class="card-title text-xl text-white"><?php echo date('D, d M Y') ?></h5>
-                        <div class="flex justify-center mt-3">
-                            <img src="../../../assets/piggy.png"
-                                 class="w-50"
-                                 alt/>
-                        </div>
-                    </div>
-                    <div class="px-2 pb-2">
-                        <div>
-                            <div class="bg-white/8 backdrop-blur rounded-lg">
-                                <div class="text-5xl text-white p-5 font-bold justify-center text-center items-center">
-                                    <?php echo date('H:i:s') ?>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!---Date Cards End--->
-
-            <!---Graph--->
-            <!--<div class="col-span-12 lg:col-span-8">
-                <div class="flex items-center justify-between space-x-2">
-                    <h2
-                            class="text-base font-medium tracking-wide text-slate-800 line-clamp-1 dark:text-navy-100"
-                    >
-                        Revenue
-                    </h2>
-                    <div
-                            x-data="{activeTab:'tabRecent'}"
-                            class="is-scrollbar-hidden overflow-x-auto rounded-lg bg-slate-200 text-slate-600 dark:bg-navy-800 dark:text-navy-200"
-                    >
-                        <div class="tabs-list flex p-1">
-                            <button
-                                    @click="activeTab = 'tabRecent'"
-                                    :class="activeTab === 'tabRecent' ? 'bg-white shadow-sm dark:bg-navy-500 dark:text-navy-100' : 'hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
-                                    class="btn shrink-0 px-3 py-1 text-xs-plus font-medium"
-                            >
-                                Last month
-                            </button>
-                            <button
-                                    @click="activeTab = 'tabAll'"
-                                    :class="activeTab === 'tabAll' ? 'bg-white shadow-sm dark:bg-navy-500 dark:text-navy-100' : 'hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
-                                    class="btn shrink-0 px-3 py-1 text-xs-plus font-medium"
-                            >
-                                Last year
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col sm:flex-row sm:space-x-7">
-                    <div
-                            class="mt-4 flex shrink-0 flex-col items-center sm:items-start"
-                    >
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="size-8 text-info"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                        >
-                            <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
-                            />
-                            <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
-                            />
-                        </svg>
-                        <div class="mt-4">
-                            <div class="flex items-center space-x-1">
-                                <p
-                                        class="text-2xl font-semibold text-slate-700 dark:text-navy-100"
-                                >
-                                    0 Fcfa
-                                </p>
-                                <button
-                                        class="btn size-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            stroke-width="1.5"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-                            <p class="text-xs text-slate-400 dark:text-navy-300">
-                                this month
-                            </p>
-                        </div>
-                        <div class="mt-3 flex items-center space-x-2">
-                            <div class="ax-transparent-gridline w-28">
-                                <div id="salesChart"></div>
-                            </div>
-                            <div class="flex items-center space-x-0.5">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/>
-                                </svg>
-                                <p class="text-sm-plus text-slate-800 dark:text-navy-100" id="growthRate">0%</p>
-                            </div>
-                        </div>
-                        <div class="mt-3 flex items-center space-x-2">
-                            <div class="ax-transparent-gridline w-28">
-                                <div
-                                        x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.analyticsSalesThisMonth); $el._x_chart.render() });"
-                                ></div>
-                            </div>
-                            <div class="flex items-center space-x-0.5">
-                                <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="size-4 text-success"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                >
-                                    <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M7 11l5-5m0 0l5 5m-5-5v12"
-                                    />
-                                </svg>
-                                <p class="text-sm-plus text-slate-800 dark:text-navy-100">
-                                    3.2%
-                                </p>
-                            </div>
-                        </div>
-                        <button
-                                class="btn mt-8 space-x-2 rounded-full border border-slate-300 px-3 text-xs-plus font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
-                        >
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-4.5 text-slate-400 dark:text-navy-300"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z"
-                                />
-                            </svg>
-                            <span> Download Report</span>
-                        </button>
-                    </div>
-
-                    <div class="ax-transparent-gridline grid w-full grid-cols-1">
-                        <div
-                                x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.analyticsSalesOverview); $el._x_chart.render() });"
-                        ></div>
-                    </div>
-                </div>
-            </div>-->
-            <!---Graph End--->
-
-            <!---Count data database--->
-            <div class="col-span-12">
-                <div
-                        class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3"
-                >
-                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
-                        <div class="flex justify-between space-x-1">
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                0
-                            </p>
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5 text-primary dark:text-accent"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                            </svg>
-                        </div>
-                        <p class="mt-1 text-xs-plus">Revenue (en FCFA)</p>
-                    </div>
-                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
-                        <div class="flex justify-between">
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                0
-                            </p>
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5 text-success"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                                />
-                            </svg>
-                        </div>
-                        <p class="mt-1 text-xs-plus">Reservations</p>
-                    </div>
-                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
-                        <div class="flex justify-between">
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                <?php
-                                include_once  '../../config/config.php';
-                                function countEmployees()
-                                {
-                                    $conn = getConnexion();
-                                    $query = "SELECT COUNT(*) as total FROM employees";
-                                    $result = $conn->query($query);
-                                    $data = $result->fetch();
-                                    return $data['total'];
-                                }
-
-                                echo "<strong>".countEmployees()."</strong>";
-                                ?>
-                            </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#b2b211" d="M10 12.25a.75.75 0 1 0 0 1.5h4a.75.75 0 0 0 0-1.5z"/><path fill="#b2b211" fill-rule="evenodd" d="M7.32 4.275A3.75 3.75 0 0 1 11 1.25h2a3.75 3.75 0 0 1 3.68 3.025a6.75 6.75 0 0 1 5.07 6.445v5.655a5.27 5.27 0 0 1-4.126 5.143a25.9 25.9 0 0 1-11.248 0a5.27 5.27 0 0 1-4.126-5.143V10.72a6.75 6.75 0 0 1 5.07-6.445m1.695-.335A2.25 2.25 0 0 1 11 2.75h2c.86 0 1.607.482 1.986 1.19a19.8 19.8 0 0 0-5.971 0m11.235 6.971v2.596a21.4 21.4 0 0 1-16.5 0V10.74a5.25 5.25 0 0 1 4.207-5.074c.084-.02.124-.028.164-.037a18.25 18.25 0 0 1 7.759 0l.163.037l.167.037a5.25 5.25 0 0 1 4.04 5.207m-16.5 5.464v-1.252a22.9 22.9 0 0 0 13 1.04V17a.75.75 0 0 0 1.5 0v-1.209a23 23 0 0 0 2-.668v1.252a3.77 3.77 0 0 1-2.951 3.68c-3.49.775-7.108.775-10.598 0a3.77 3.77 0 0 1-2.95-3.68" clip-rule="evenodd"/></svg>                        </div>
-                        <p class="mt-1 text-xs-plus">Employés</p>
-                    </div>
-                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
-                        <div class="flex justify-between space-x-1">
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                <?php
-                                    include_once  '../../config/config.php';
-                                    function countServices()
-                                    {
-                                    $conn = getConnexion();
-                                    $query = "SELECT COUNT(*) as total FROM services";
-                                    $result = $conn->query($query);
-                                    $data = $result->fetch();
-                                    return $data['total'];
-                                    }
-
-                                    echo "<strong>".countServices()."</strong>";
-                                ?>
-                            </p>
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5 text-secondary"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                                />
-                            </svg>
-                        </div>
-                        <p class="mt-1 text-xs-plus">Services</p>
-                    </div>
-                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
-                        <div class="flex justify-between">
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                <?php
-                                    include_once  '../../config/config.php';
-                                    function countClient()
-                                    {
-                                        $conn = getConnexion();
-                                        $query = "SELECT COUNT(*) as total FROM clients";
-                                        $result = $conn->query($query);
-                                        $data = $result->fetch();
-                                        return $data['total'];
-                                    }
-
-                                    echo "<strong>".countClient()."</strong>";
-                                ?>
-                            </p>
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5 text-error"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                                />
-                            </svg>
-                        </div>
-                        <p class="mt-1 text-xs-plus">Clients</p>
-                    </div>
-                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
-                        <div class="flex justify-between">
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                <?php
-                                    include_once  '../../config/config.php';
-                                    function countUsers()
-                                    {
-                                        $conn = getConnexion();
-                                        $query = "SELECT COUNT(*) as total FROM users";
-                                        $result = $conn->query($query);
-                                        $data = $result->fetch();
-                                        return $data['total'];
-                                    }
-
-                                    echo "<strong>".countUsers()."</strong>";
-                                ?>
-                            </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#b27811" stroke-width="1.5"><circle cx="12" cy="6" r="4"/><path stroke-linecap="round" d="M18 9c1.657 0 3-1.12 3-2.5S19.657 4 18 4M6 9C4.343 9 3 7.88 3 6.5S4.343 4 6 4"/><ellipse cx="12" cy="17" rx="6" ry="4"/><path stroke-linecap="round" d="M20 19c1.754-.385 3-1.359 3-2.5s-1.246-2.115-3-2.5M4 19c-1.754-.385-3-1.359-3-2.5s1.246-2.115 3-2.5"/></g></svg>                        </div>
-                        <p class="mt-1 text-xs-plus">Utilisateurs</p>
-                    </div>
-                </div>
-            </div>
-            <!---Count data database End--->
-            <div class="card col-span-12 lg:col-span-8">
-                <div class="flex items-center justify-between py-3 px-4">
-                    <h2
-                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                    >
-                        Projects Status
-                    </h2>
-                    <div
-                            x-data="usePopper({placement:'bottom-end',offset:4})"
-                            @click.outside="isShowPopper && (isShowPopper = false)"
-                            class="inline-flex"
-                    >
-                        <button
-                                x-ref="popperRef"
-                                @click="isShowPopper = !isShowPopper"
-                                class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                        >
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 gap-y-4 pb-3 sm:grid-cols-3">
-                    <div
-                            class="flex flex-col justify-between border-4 border-transparent border-l-info px-4"
-                    >
-                        <div>
-                            <p
-                                    class="text-base font-medium text-slate-600 dark:text-navy-100"
-                            >
-                                Web Design
-                            </p>
-                            <p class="text-xs text-slate-400 dark:text-navy-300">
-                                Design Learn Management System
-                            </p>
-                            <div class="badge mt-2 bg-info/10 text-info dark:bg-info/15">
-                                UI/UX Design
-                            </div>
-                        </div>
-                        <div>
-                            <div class="mt-8">
-                                <p class="font-inter">
-                  <span
-                          class="text-2xl font-medium text-slate-600 dark:text-navy-100"
-                  >%55.</span
-                  ><span class="text-xs">23</span>
-                                </p>
-                                <p class="mt-1 text-xs">June 08, 2021</p>
-                            </div>
-                            <div class="mt-8 flex items-center justify-between space-x-2">
-                                <div class="flex -space-x-3">
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
-                                    <div class="avatar size-8 hover:z-10">
-                                        <div
-                                                class="is-initial rounded-full bg-info text-xs-plus uppercase text-white ring-2 ring-white dark:ring-navy-700"
-                                        >
-                                            jd
-                                        </div>
-                                    </div>
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
-                                </div>
-                                <button
-                                        class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            stroke-width="1.5"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                                        />
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                            class="flex flex-col justify-between border-4 border-transparent border-l-secondary px-4"
-                    >
-                        <div>
-                            <p
-                                    class="text-base font-medium text-slate-600 dark:text-navy-100"
-                            >
-                                Mobile App
-                            </p>
-                            <p class="text-xs text-slate-400 dark:text-navy-300">
-                                Ecommerce Application
-                            </p>
-                            <div
-                                    class="badge mt-2 bg-secondary/10 text-secondary dark:bg-secondary-light/15 dark:text-secondary-light"
-                            >
-                                Ecommerce
-                            </div>
-                        </div>
-                        <div>
-                            <div class="mt-8">
-                                <p class="font-inter">
-                  <span
-                          class="text-2xl font-medium text-slate-600 dark:text-navy-100"
-                  >%14.</span
-                  ><span class="text-xs">84</span>
-                                </p>
-                                <p class="mt-1 text-xs">May 01, 2021</p>
-                            </div>
-                            <div class="mt-8 flex items-center justify-between space-x-2">
-                                <div class="flex -space-x-3">
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
-                                    <div class="avatar size-8 hover:z-10">
-                                        <div
-                                                class="is-initial rounded-full bg-success text-xs-plus uppercase text-white ring-2 ring-white dark:ring-navy-700"
-                                        >
-                                            uh
-                                        </div>
-                                    </div>
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
-                                </div>
-                                <button
-                                        class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            stroke-width="1.5"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                                        />
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                            class="flex flex-col justify-between border-4 border-transparent border-l-warning px-4"
-                    >
-                        <div>
-                            <p
-                                    class="text-base font-medium text-slate-600 dark:text-navy-100"
-                            >
-                                Design System
-                            </p>
-                            <p class="text-xs text-slate-400 dark:text-navy-300">
-                                Create LMS design system on figma
-                            </p>
-                            <div class="mt-2 flex space-x-1.5">
-                                <div
-                                        class="badge bg-warning/10 text-warning dark:bg-warning/15"
-                                >
-                                    LMS
-                                </div>
-                                <div
-                                        class="badge bg-warning/10 text-warning dark:bg-warning/15"
-                                >
-                                    Figma
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="mt-8">
-                                <p class="font-inter">
-                  <span
-                          class="text-2xl font-medium text-slate-600 dark:text-navy-100"
-                  >%87.</span
-                  ><span class="text-xs">40</span>
-                                </p>
-                                <p class="mt-1 text-xs">September 16, 2021</p>
-                            </div>
-                            <div class="mt-8 flex items-center justify-between space-x-2">
-                                <div class="flex -space-x-3">
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
-                                    <div class="avatar size-8 hover:z-10">
-                                        <div
-                                                class="is-initial rounded-full bg-error text-xs-plus uppercase text-white ring-2 ring-white dark:ring-navy-700"
-                                        >
-                                            pm
-                                        </div>
-                                    </div>
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
-                                </div>
-                                <button
-                                        class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            stroke-width="1.5"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                                        />
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-span-12 lg:col-span-4">
-                <div class="flex items-center justify-between">
-                    <h2
-                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                    >
-                        Customer Satisfaction
-                    </h2>
-                    <div
-                            x-data="usePopper({placement:'bottom-end',offset:4})"
-                            @click.outside="isShowPopper && (isShowPopper = false)"
-                            class="inline-flex"
-                    >
-                        <button
-                                x-ref="popperRef"
-                                @click="isShowPopper = !isShowPopper"
-                                class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                        >
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                />
-                            </svg>
-                        </button>
-
-                        <div
-                                x-ref="popperRoot"
-                                class="popper-root"
-                                :class="isShowPopper && 'show'"
-                        >
-                            <div
-                                    class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700"
-                            >
-                                <ul>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Action</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Another Action</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Something else</a
-                                        >
-                                    </li>
-                                </ul>
-                                <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
-                                <ul>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Separated Link</a
-                                        >
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <p>
-            <span class="text-3xl text-slate-700 dark:text-navy-100"
-            >9.7</span
-            >
-                        <span class="text-xs text-success">+2.1%</span>
-                    </p>
-                    <p class="text-xs-plus">Performance score</p>
-                </div>
-                <div class="mt-4 flex h-2 space-x-1">
-                    <div
-                            class="w-5/12 rounded-full bg-primary dark:bg-accent"
-                            x-tooltip.primary="'Exellent'"
-                    ></div>
-                    <div
-                            class="w-2/12 rounded-full bg-success"
-                            x-tooltip.success="'Very Good'"
-                    ></div>
-                    <div
-                            class="w-2/12 rounded-full bg-info"
-                            x-tooltip.info="'Good'"
-                    ></div>
-
-                    <div
-                            class="w-2/12 rounded-full bg-warning"
-                            x-tooltip.warning="'Poor'"
-                    ></div>
-                    <div
-                            class="w-1/12 rounded-full bg-error"
-                            x-tooltip.error="'Very Poor'"
-                    ></div>
-                </div>
-
-                <div class="is-scrollbar-hidden mt-4 min-w-full overflow-x-auto">
-                    <table class="w-full font-inter">
-                        <tbody>
-                        <tr>
-                            <td class="whitespace-nowrap py-2">
-                                <div class="flex items-center space-x-2">
-                                    <div
-                                            class="size-3.5 rounded-full border-2 border-primary dark:border-accent"
-                                    ></div>
-                                    <p
-                                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                                    >
-                                        Exellent
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">
-                                <p class="font-medium text-slate-700 dark:text-navy-100">
-                                    1 029
-                                </p>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">42%</td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap py-2">
-                                <div class="flex items-center space-x-2">
-                                    <div
-                                            class="size-3.5 rounded-full border-2 border-success"
-                                    ></div>
-                                    <p
-                                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                                    >
-                                        Very Good
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">
-                                <p class="font-medium text-slate-700 dark:text-navy-100">
-                                    426
-                                </p>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">18%</td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap py-2">
-                                <div class="flex items-center space-x-2">
-                                    <div
-                                            class="size-3.5 rounded-full border-2 border-info"
-                                    ></div>
-                                    <p
-                                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                                    >
-                                        Good
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">
-                                <p class="font-medium text-slate-700 dark:text-navy-100">
-                                    326
-                                </p>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">14%</td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap py-2">
-                                <div class="flex items-center space-x-2">
-                                    <div
-                                            class="size-3.5 rounded-full border-2 border-warning"
-                                    ></div>
-                                    <p
-                                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                                    >
-                                        Poor
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">
-                                <p class="font-medium text-slate-700 dark:text-navy-100">
-                                    395
-                                </p>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">17%</td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap py-2">
-                                <div class="flex items-center space-x-2">
-                                    <div
-                                            class="size-3.5 rounded-full border-2 border-error"
-                                    ></div>
-                                    <p
-                                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                                    >
-                                        Very Poor
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">
-                                <p class="font-medium text-slate-700 dark:text-navy-100">
-                                    129
-                                </p>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">9%</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <!----Breadcrumb End---->
         </div>
-        <div
+
+        <!-- Top tickets -->
+        <!--<div
                 class="mt-4 grid grid-cols-12 gap-4 bg-slate-150 py-5 dark:bg-navy-800 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
         >
             <div
@@ -1175,7 +338,7 @@
                 <h2
                         class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100 lg:text-xl"
                 >
-                    Top Sellers
+                    Top tickets
                 </h2>
 
                 <p class="mt-3 grow">
@@ -2158,7 +1321,281 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+        <!-- Top tickets End -->
+
+        <!-- Table Tickets -->
+        <div
+                class="grid grid-cols-12 p-8 gap-4 transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
+        >
+
+            <div
+                    class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 w-full">
+                <div
+                        class="sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
+                    <div
+                            class="w-full flex flex-col bg-white p-8 dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
+                        <div class="flex min-h-full flex-col justify-center">
+                            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                                <img class="mx-auto rounded-full h-30 w-auto mt-8" src="../../../assets/logo.jpg" alt="Your Company">
+                                <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Compléter les champs pour enrégistrer un ticket</h2>
+                            </div>
+
+                            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                                <?php
+
+                                include_once '../../config/config.php';
+                                require_once '../../../vendor/autoload.php';
+
+                                use Ramsey\Uuid\Uuid;
+
+                                if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                                    $nom = trim($_POST["name"]);
+                                    $surname = trim($_POST["surname"]);
+                                    $telephone = trim($_POST["phone"]);
+                                    $service_id = trim($_POST["services"]);
+                                    $price = trim($_POST["price"]);
+                                    $employee = trim($_POST["employee"]);
+                                    $satisfaction = trim($_POST["satisfaction"]);
+
+                                    if (!empty($nom) && !empty($surname) && !empty($telephone) && !empty($service_id) && !empty($price) && !empty($employee) && !empty($satisfaction)) {
+                                        try {
+                                            $conn = getConnexion();
+
+                                            // Vérifier si le client existe déjà
+                                            $sql = "SELECT id FROM clients WHERE phone = :phone";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->bindParam(":phone", $telephone);
+                                            $stmt->execute();
+                                            $client = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                            if ($client) {
+                                                $client_id = $client["id"];
+                                            } else {
+                                                // Générer un ID unique
+                                                $client_id = Uuid::uuid4()->toString();
+
+                                                // Insérer un nouveau client
+                                                $sql = "INSERT INTO clients (id, first_name, last_name, phone) VALUES (:id, :first_name, :last_name, :phone)";
+                                                $stmt = $conn->prepare($sql);
+                                                $stmt->bindParam(":id", $client_id);
+                                                $stmt->bindParam(":first_name", $nom);
+                                                $stmt->bindParam(":last_name", $surname);
+                                                $stmt->bindParam(":phone", $telephone);
+                                                $stmt->execute();
+                                            }
+
+                                            $ticket_id = Uuid::uuid4()->toString();
+
+                                            $sql = "INSERT INTO tickets (id, client_id, employee_id, service_id, price, appreciation) VALUES (:id, :client_id, :employee_id, :service_id, :price, :appreciation)";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->execute([
+                                                ":id" => $ticket_id,
+                                                ":client_id" => $client_id,
+                                                ":employee_id" => $employee,
+                                                ":service_id" => $service_id,
+                                                ":price" => $price,
+                                                ":appreciation" => $satisfaction
+                                            ]);
+
+                                            echo "<div class='bg-green-400 text-black p-3 text-center rounded-md'>Ticket enregistré avec succès.</div>";
+                                        } catch (PDOException $e) {
+                                            echo "Erreur : " . $e->getMessage();
+                                        }
+                                    } else {
+                                        echo "Veuillez remplir tous les champs.";
+                                    }
+                                }
+                                ?>
+
+
+                                <form class="space-y-3" action="#" method="POST">
+                                    <div class="grid lg:grid-cols-2 grid-cols-1 justify-between gap-3 items-center">
+                                        <div>
+                                            <label for="name" class="block text-sm/6 font-medium text-gray-900">Nom du client</label>
+                                            <div class="mt-2">
+                                                <input type="text" name="name" id="name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="flex items-center justify-between">
+                                                <label for="surname" class="block text-sm/6 font-medium text-gray-900">Prénom du client</label>
+                                            </div>
+                                            <div class="mt-2">
+                                                <input type="text" name="surname" id="surname" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex items-center justify-between">
+                                            <label for="phone" class="block text-sm/6 font-medium text-gray-900">Téléphone du client</label>
+                                        </div>
+                                        <div class="mt-2">
+                                            <input type="text" name="phone" id="phone"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-12 gap-4 transition-all duration-[.25s] justify-between items-center">
+                                        <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
+                                            <label for="services" class="block text-sm/6 font-medium text-gray-900">Type de service</label>
+                                            <div class="mt-2">
+                                                <select id="services" name="services" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                    <option disabled selected>Choisir un service</option>
+                                                    <?php
+                                                    include_once '../../config/config.php';
+
+                                                    $conn = getConnexion();
+                                                    $sql = "SELECT id, name FROM services";
+                                                    $stmt = $conn->prepare($sql);
+                                                    $stmt->execute();
+                                                    $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                                    foreach ($services as $service) {
+                                                        echo "<option value='" . htmlspecialchars($service['id']) . "'>" . htmlspecialchars($service['name']) . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12">
+                                            <label for="price" class="block text-sm/6 font-medium text-gray-900">Price</label>
+                                            <div class="mt-2">
+                                                <input type="text" name="price" id="price" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label for="employee" class="block text-sm/6 font-medium text-gray-900">Fait(e) par</label>
+                                        <div class="mt-2">
+                                            <select id="employee" name="employee" class="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                <option disabled selected>Choisir un employé</option>
+                                                <?php
+                                                include_once '../../config/config.php';
+
+                                                $conn = getConnexion();
+                                                $sql = "SELECT id, first_name, last_name FROM employees";
+                                                $stmt = $conn->prepare($sql);
+                                                $stmt->execute();
+                                                $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                                foreach ($employees as $employ) {
+                                                    echo "<option value='" . htmlspecialchars($employ['id']) ."'>" . htmlspecialchars($employ['first_name']) . htmlspecialchars($employ['last_name']) . "</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex items-center justify-between">
+                                            <label for="satisfaction" class="block text-sm/6 font-medium text-gray-900">Appréciation</label>
+                                        </div>
+                                        <div class="mt-2">
+                                            <input type="text" name="satisfaction" id="satisfaction"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <button type="submit" class="mt-5 flex mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enrégistrer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-8 lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
+                <div class="card-body">
+                    <div class="flex flex-col">
+                        <div class="-m-1.5 overflow-x-auto">
+                            <div class="p-1.5 min-w-full inline-block align-middle">
+                                <div class="overflow-hidden">
+                                    <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
+                                        <thead>
+                                        <tr>
+                                            <th class="p-4 ps-0">
+                                                <div class="n-chk align-self-center text-center">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input rounded-sm" id="contact-check-all" />
+                                                        <label class="form-check-label" for="contact-check-all"></label>
+                                                        <span class="new-control-indicator"></span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Nom</th>
+                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Prénom</th>
+                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Téléphone</th>
+                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Date du ticket</th>
+                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Services effectués</th>
+                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Prix</th>
+                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Appréciation</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-border divide-slate-150">
+                                        <?php
+                                        $sql = "
+                                            SELECT t.id AS ticket_id, t.service_date, t.appreciation, t.price AS ticket_price, 
+                                                   c.first_name AS client_first_name, c.last_name AS client_last_name, c.phone AS client_phone,
+                                                   s.name AS service_name
+                                            FROM tickets t
+                                            JOIN clients c ON t.client_id = c.id
+                                            JOIN services s ON t.service_id = s.id
+                                            WHERE t.service_date >= CURRENT_DATE
+                                            ORDER BY t.service_date DESC
+                                        ";
+                                        $stmt = $conn->prepare($sql);
+                                        $stmt->execute();
+                                        $tickets = $stmt->fetchAll();
+
+                                        // Affichage des tickets
+                                        foreach ($tickets as $ticket) {
+                                            $initials = strtoupper(substr($ticket['client_first_name'], 0, 1) . substr($ticket['client_last_name'], 0, 1));
+                                            echo '
+                                                <tr class="search-items">
+                                                    <td class="p-4 ps-0 whitespace-nowrap">
+                                                        <div class="n-chk align-self-center text-center">
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $ticket['ticket_id'] . '" />
+                                                                <label class="form-check-label" for="checkbox' . $ticket['ticket_id'] . '"></label>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-4 ps-0 whitespace-nowrap">
+                                                        <div class="flex gap-3 items-center">
+                                                            <div>
+                                                                <p class="rounded-circle bg-indigo-200 items-center justify-center leading-9 text-center font-bold h-9 w-9 rounded-full">' . $initials . '</p>
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="user-name mb-1" data-name="' . $ticket['client_first_name'] . '">' . htmlspecialchars($ticket['client_first_name']) . '</h6>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($ticket['client_last_name']) . '</td>
+                                                    <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($ticket['client_phone']) . '</td>
+                                                    <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($ticket['service_date']) . '</td>
+                                                    <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($ticket['service_name']) . '</td>
+                                                    <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($ticket['ticket_price']) . '</td>
+                                                    <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($ticket['appreciation']) . '</td>
+                                                </tr>
+                                            ';
+                                        }
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- Table Tickets End -->
     </main>
 </div>
 <!--

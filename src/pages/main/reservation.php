@@ -16,11 +16,14 @@ if (!$_SESSION['email']) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reservation</title>
 
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg" />
+
     <!-- CSS Assets -->
     <link rel="stylesheet" href="../../components/app.css"/>
 
     <!-- Javascript Assets -->
-    <script src="../../../scipt.js"></script>
+    <script src="../../../script.js"></script>
     <script src="../../../tailwind.js"></script>
 
     <!-- Fonts -->
@@ -34,7 +37,6 @@ if (!$_SESSION['email']) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
           integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 
 
     <script>
@@ -85,10 +87,10 @@ if (!$_SESSION['email']) {
                             </svg>
                         </a>
 
-                        <!-- Analyse -->
+                        <!-- Tickets -->
                         <a href="apps-list.php"
                            class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                           x-tooltip.placement.right="'Analyse'">
+                           x-tooltip.placement.right="'Tickets'">
                             <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                         d="M5 8H19V16C19 17.8856 19 18.8284 18.4142 19.4142C17.8284 20 16.8856 20 15 20H9C7.11438 20 6.17157 20 5.58579 19.4142C5 18.8284 5 17.8856 5 16V8Z"
@@ -124,7 +126,7 @@ if (!$_SESSION['email']) {
                             </svg>
                         </a>
 
-                        <!-- Forms -->
+                        <!-- Employees -->
                         <a href="employee.php"
                            class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                            x-tooltip.placement.right="'Employés'">
@@ -141,7 +143,7 @@ if (!$_SESSION['email']) {
                             </svg>
                         </a>
 
-                        <!-- Components -->
+                        <!-- Clients -->
                         <a href="clientContacts.php"
                            class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                            x-tooltip.placement.right="'Clients'">
@@ -173,12 +175,19 @@ if (!$_SESSION['email']) {
                             </svg>
                         </a>
 
+                        <!-- Logout -->
+                        <a href="../auth/logout.php"
+                           x-tooltip.placement.right="'Logout'"
+                           class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M12 20a8 8 0 1 1 0-16" opacity="0.5"/><path stroke-linejoin="round" d="M10 12h10m0 0l-3-3m3 3l-3 3"/></g></svg>
+                        </a>
+
                         <!-- Profile -->
                         <div x-data="usePopper({placement:'right-end',offset:12})"
                              @click.outside="isShowPopper && (isShowPopper = false)" class="flex">
                             <button @click="isShowPopper = !isShowPopper" x-ref="popperRef"
                                     class="avatar size-12 cursor-pointer">
-                                <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar"/>
+                                <img class="rounded-full" src="../../../assets/user-7.jpg" alt="avatar"/>
                                 <span
                                         class="absolute right-0 size-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
                             </button>
@@ -189,7 +198,7 @@ if (!$_SESSION['email']) {
                                     <div
                                             class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
                                         <div class="avatar size-14">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar"/>
+                                            <img class="rounded-full" src="../../../assets/user-7.jpg" alt="avatar"/>
                                         </div>
                                         <div>
                                             <p
@@ -320,7 +329,21 @@ if (!$_SESSION['email']) {
                                 <div
                                         class="ms-auto sm:text-start text-end">
                                     <h5
-                                            class="font-medium text-2xl ">0</h5>
+                                            class="font-medium text-2xl ">
+                                        <?php
+                                        include_once  '../../config/config.php';
+                                        function countReservationsCanceled()
+                                        {
+                                            $conn = getConnexion();
+                                            $query = "SELECT COUNT(*) as total FROM reservations WHERE statut= 'canceled'";
+                                            $result = $conn->query($query);
+                                            $data = $result->fetch();
+                                            return $data['total'];
+                                        }
+
+                                        echo "<strong>".countReservationsCanceled()."</strong>";
+                                        ?>
+                                    </h5>
                                     <p
                                             class="text-error font-medium">Refusées</p>
                                 </div>
@@ -343,7 +366,21 @@ if (!$_SESSION['email']) {
                                 <div
                                         class="ms-auto sm:text-start text-end">
                                     <h5
-                                            class="font-medium text-2xl ">0</h5>
+                                            class="font-medium text-2xl ">
+                                        <?php
+                                        include_once  '../../config/config.php';
+                                        function countReservationsAccepted()
+                                        {
+                                            $conn = getConnexion();
+                                            $query = "SELECT COUNT(*) as total FROM reservations WHERE statut= 'accepted'";
+                                            $result = $conn->query($query);
+                                            $data = $result->fetch();
+                                            return $data['total'];
+                                        }
+
+                                        echo "<strong>".countReservationsAccepted()."</strong>";
+                                        ?>
+                                    </h5>
                                     <p
                                             class="text-success font-medium">Acceptées</p>
                                 </div>
@@ -360,7 +397,21 @@ if (!$_SESSION['email']) {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#118bb2" d="M10 18a2 2 0 1 0 0-4a2 2 0 0 0 0 4m6 0a2 2 0 1 0 0-4a2 2 0 0 0 0 4m8-2a2 2 0 1 1-4 0a2 2 0 0 1 4 0m6 0c0 7.732-6.268 14-14 14S2 23.732 2 16S8.268 2 16 2s14 6.268 14 14m-2 0c0-6.627-5.373-12-12-12S4 9.373 4 16s5.373 12 12 12s12-5.373 12-12"/></svg>                                <div
                                         class="ms-auto sm:text-start text-end">
                                     <h5
-                                            class="font-medium text-2xl ">0</h5>
+                                            class="font-medium text-2xl ">
+                                        <?php
+                                        include_once  '../../config/config.php';
+                                        function countReservationsPending()
+                                        {
+                                            $conn = getConnexion();
+                                            $query = "SELECT COUNT(*) as total FROM reservations WHERE statut= 'pending'";
+                                            $result = $conn->query($query);
+                                            $data = $result->fetch();
+                                            return $data['total'];
+                                        }
+
+                                        echo "<strong>".countReservationsPending()."</strong>";
+                                        ?>
+                                    </h5>
                                     <p
                                             class="text-[#118bb2] font-medium">En attente</p>
                                 </div>
@@ -378,7 +429,21 @@ if (!$_SESSION['email']) {
                                 <div
                                         class="ms-auto sm:text-start text-end">
                                     <h5
-                                            class="font-medium text-2xl ">0</h5>
+                                            class="font-medium text-2xl ">
+                                        <?php
+                                        include_once  '../../config/config.php';
+                                        function countAllReservations()
+                                        {
+                                            $conn = getConnexion();
+                                            $query = "SELECT COUNT(*) as total FROM reservations";
+                                            $result = $conn->query($query);
+                                            $data = $result->fetch();
+                                            return $data['total'];
+                                        }
+
+                                        echo "<strong>".countAllReservations()."</strong>";
+                                        ?>
+                                    </h5>
                                     <p
                                             class="text-[#2111b2] font-medium">Total</p>
                                 </div>
@@ -401,15 +466,15 @@ if (!$_SESSION['email']) {
                                 class="w-full flex flex-col bg-white p-8 dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
                             <div class="flex min-h-full flex-col justify-center">
                                 <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                                    <img class="mx-auto h-30 w-auto mt-8" src="../../../assets/logo.jpg" alt="Your Company">
+                                    <img class="mx-auto rounded-full h-30 w-auto mt-8" src="../../../assets/logo.jpg" alt="Your Company">
                                     <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Compléter les champs pour faire une réservation</h2>
                                 </div>
 
                                 <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                                     <?php
 
-                                    include '../../config/config.php';
-                                    require '../../../vendor/autoload.php';
+                                    include_once '../../config/config.php';
+                                    require_once '../../../vendor/autoload.php';
 
                                     use Ramsey\Uuid\Uuid;
 
@@ -424,8 +489,28 @@ if (!$_SESSION['email']) {
                                         if (!empty($nom) && !empty($surname) && !empty($telephone) && !empty($service_id) && !empty($date)) {
                                             try {
                                                 $conn = getConnexion();
-                                                if (!$conn) {
-                                                    throw new Exception("Erreur de connexion à la base de données.");
+
+                                                // Vérifier si le client existe déjà
+                                                $sql = "SELECT id FROM clients WHERE phone = :phone";
+                                                $stmt = $conn->prepare($sql);
+                                                $stmt->bindParam(":phone", $telephone);
+                                                $stmt->execute();
+                                                $client = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                                if ($client) {
+                                                    $client_id = $client["id"];
+                                                } else {
+                                                    // Générer un ID unique
+                                                    $client_id = Uuid::uuid4()->toString();
+
+                                                    // Insérer un nouveau client
+                                                    $sql = "INSERT INTO clients (id, first_name, last_name, phone) VALUES (:id, :first_name, :last_name, :phone)";
+                                                    $stmt = $conn->prepare($sql);
+                                                    $stmt->bindParam(":id", $client_id);
+                                                    $stmt->bindParam(":first_name", $nom);
+                                                    $stmt->bindParam(":last_name", $surname);
+                                                    $stmt->bindParam(":phone", $telephone);
+                                                    $stmt->execute();
                                                 }
 
                                                 $reservation_id = Uuid::uuid4()->toString();
@@ -443,7 +528,7 @@ if (!$_SESSION['email']) {
                                                 ]);
 
                                                 echo "<script>console.log('Réservation enregistrée avec succès.')</script>";
-                                            } catch (Exception $e) {
+                                            } catch (PDOException $e) {
                                                 echo "Erreur : " . $e->getMessage();
                                             }
                                         } else {
@@ -494,7 +579,7 @@ if (!$_SESSION['email']) {
                                                 <select id="services" name="services" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                     <option disabled selected>Choisir un service</option>
                                                     <?php
-                                                    include '../../config/config.php';
+                                                    include_once '../../config/config.php';
 
                                                     $conn = getConnexion();
                                                     $sql = "SELECT id, name FROM services";
@@ -560,16 +645,85 @@ if (!$_SESSION['email']) {
                                                 <th scope="col"
                                                     class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
                                                     Services demandés</th>
-                                                <!--<th scope="col"
+                                                <th scope="col"
                                                     class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                    Action</th>-->
+                                                    Status</th>
+                                                <<th scope="col"
+                                                    class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                    Action</th>
 
                                             </tr>
                                             </thead>
                                             <tbody
                                                     class="divide-y divide-border divide-slate-150">
 
+                                            <?php
+                                            $sql = "SELECT * FROM reservations";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->execute();
+                                            $reservations = $stmt->fetchAll();
 
+                                            function getInitials($name) {
+                                                $words = explode(" ", $name);
+                                                $initials = "";
+                                                foreach ($words as $w) {
+                                                    $initials .= $w[0];
+                                                }
+                                                return $initials;
+                                            }
+
+                                            foreach ($reservations as $result) {
+                                                echo '
+                                                        <tr class="search-items">
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="n-chk align-self-center text-center">
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $result['id'] . '" />
+                                                                        <label class="form-check-label" for="checkbox' . $result['id'] . '"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="flex gap-3 items-center">
+                                                                    <div>
+                                                                        <p class="rounded-circle bg-indigo-200 items-center justify-center leading-9 text-center font-bold h-9 w-9 rounded-full"> ' . htmlspecialchars($initials = getInitials($result['first_name'])) . htmlspecialchars($initials = getInitials($result['last_name'])) . ' </p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($result["first_name"]) . '">' . htmlspecialchars($result["first_name"]) . '</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($result["last_name"]) . '">' . htmlspecialchars($result["last_name"]) . '</td>
+                                                            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($result["phone"]) . '">' . htmlspecialchars($result["phone"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($result["date_reservation"]) . '">' . htmlspecialchars($result["date_reservation"]) . '</td>
+                                                            <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($result["service"]) . '">' . htmlspecialchars($result["service"]) . '</td>
+                                                            <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($result["statut"]) . '">' . htmlspecialchars($result["statut"]) . '</td>
+                                                            <td class="text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">
+                                                                <div class="action-btn flex gap-3">
+                                                                    <a href="javascript:void(0)" class="text-info flex justify-center items-center bg-gray-900/5 p-2 rounded-full edit cursor-pointer">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                                                            <g fill="none" stroke="#11b25d" stroke-linecap="round" stroke-width="1.5">
+                                                                                <path stroke-linejoin="round" d="m8.5 12.5l2 2l5-5"/>
+                                                                                <path d="M3.03 13.078a2.5 2.5 0 0 1 0-2.157c.14-.294.38-.576.86-1.14c.192-.225.288-.337.368-.457a2.5 2.5 0 0 0 .376-.907c.028-.142.04-.289.063-.583c.059-.738.088-1.107.197-1.416A2.5 2.5 0 0 1 6.42 4.894c.308-.109.677-.139 1.416-.197c.294-.024.44-.036.582-.064a2.5 2.5 0 0 0 .908-.376c.12-.08.232-.175.456-.367c.564-.48.846-.72 1.14-.861a2.5 2.5 0 0 1 2.157 0c.295.14.577.38 1.14.861c.225.192.337.287.457.367a2.5 2.5 0 0 0 .908.376c.141.028.288.04.582.064c.739.058 1.108.088 1.416.197a2.5 2.5 0 0 1 1.525 1.524M4.894 17.581a2.5 2.5 0 0 0 1.525 1.524c.308.11.677.139 1.416.197c.294.024.44.036.582.064a2.5 2.5 0 0 1 .908.376c.12.08.232.175.456.367c.564.48.846.72 1.14.861a2.5 2.5 0 0 0 2.157 0c.295-.14.577-.38 1.14-.861a5 5 0 0 1 .457-.367a2.5 2.5 0 0 1 .908-.376c.141-.028.288-.04.582-.064c.739-.058 1.108-.088 1.416-.197a2.5 2.5 0 0 0 1.525-1.524c.109-.308.138-.678.197-1.416c.023-.294.035-.441.063-.583c.064-.324.192-.633.376-.907c.08-.12.176-.232.367-.457c.48-.564.721-.846.862-1.14a2.5 2.5 0 0 0 0-2.157"/>
+                                                                            </g>
+                                                                        </svg>
+                                                                    </a>
+                                                                    <a href="javascript:void(0)"  class="text-black delete bg-gray-900/5 p-2 rounded-full cursor-pointer">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-red-500 font-bold" width="20" height="20" viewBox="0 0 512 512">
+                                                                            <g fill="none" stroke="#FF5724" stroke-linecap="round" stroke-width="2em">
+                                                                                <path stroke-linejoin="round" d="m8.5 12.5l2 2l5-5"/>
+                                                                                <path
+                                                                                      d="m283.735 52.918l31.295 26.614a42.7 42.7 0 0 0 24.213 10.03l40.947 3.309c20.86 1.686 37.42 18.246 39.106 39.106l3.31 40.947a42.7 42.7 0 0 0 10.029 24.213l26.614 31.294c13.557 15.942 13.557 39.362 0 55.304l-26.614 31.295a42.7 42.7 0 0 0-10.03 24.213l-3.31 40.947c-1.685 20.86-18.246 37.42-39.105 39.106l-40.947 3.31a42.7 42.7 0 0 0-24.213 10.029l-31.295 26.614c-15.942 13.557-39.362 13.557-55.304 0l-31.294-26.614a42.7 42.7 0 0 0-24.213-10.03l-40.947-3.31c-20.86-1.685-37.42-18.246-39.106-39.105l-3.31-40.947a42.7 42.7 0 0 0-10.03-24.213l-26.613-31.295c-13.557-15.942-13.557-39.362 0-55.304l26.614-31.294a42.7 42.7 0 0 0 10.03-24.213l3.309-40.947c1.686-20.86 18.246-37.42 39.106-39.106l40.947-3.31a42.7 42.7 0 0 0 24.213-10.03l31.294-26.613c15.942-13.557 39.362-13.557 55.304 0m21.182 124L256 225.833l-48.918-48.917l-30.165 30.165L225.834 256l-48.917 48.917l30.165 30.165L256 286.165l48.917 48.917l30.165-30.165L286.165 256l48.917-48.918z"
+                                                                                />
+                                                                            </g>
+                                                                        </svg>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    ';
+                                            }
+                                            ?>
 
                                             </tbody>
                                         </table>

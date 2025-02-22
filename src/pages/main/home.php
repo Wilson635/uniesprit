@@ -17,13 +17,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 
     <title>Home</title>
-    <link rel="icon" type="image/png" href="images/favicon.png" />
+
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg" />
 
     <!-- CSS Assets -->
     <link rel="stylesheet" href="../../components/app.css" />
 
     <!-- Javascript Assets -->
-    <script src="../../../scipt.js"></script>
+    <script src="../../../script.js"></script>
     <script src="../../../tailwind.js"></script>
 
     <!-- Fonts -->
@@ -91,7 +93,7 @@
                     <!-- Apps -->
                     <a href="apps-list.php"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                       x-tooltip.placement.right="'Analyse'">
+                       x-tooltip.placement.right="'Tickets'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                     d="M5 8H19V16C19 17.8856 19 18.8284 18.4142 19.4142C17.8284 20 16.8856 20 15 20H9C7.11438 20 6.17157 20 5.58579 19.4142C5 18.8284 5 17.8856 5 16V8Z"
@@ -190,12 +192,19 @@
                         </svg>
                     </a>
 
+                    <!-- Logout -->
+                    <a href="../auth/logout.php"
+                       x-tooltip.placement.right="'Logout'"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                        <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M12 20a8 8 0 1 1 0-16" opacity="0.5"/><path stroke-linejoin="round" d="M10 12h10m0 0l-3-3m3 3l-3 3"/></g></svg>
+                    </a>
+
                     <!-- Profile -->
                     <div x-data="usePopper({placement:'right-end',offset:12})"
                          @click.outside="isShowPopper && (isShowPopper = false)" class="flex">
                         <button @click="isShowPopper = !isShowPopper" x-ref="popperRef"
                                 class="avatar size-12 cursor-pointer">
-                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar"/>
+                            <img class="rounded-full" src="../../../assets/user-7.jpg" alt="avatar"/>
                             <span
                                     class="absolute right-0 size-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
                         </button>
@@ -206,7 +215,7 @@
                                 <div
                                         class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
                                     <div class="avatar size-14">
-                                        <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar"/>
+                                        <img class="rounded-full" src="../../../assets/user-7.jpg" alt="avatar"/>
                                     </div>
                                     <div>
                                         <p
@@ -288,284 +297,98 @@
 
     <!-- Main Content Wrapper -->
     <main class="main-content w-full pb-8">
-        <div class="w-full px-[var(--margin-x)] pb-8">
-            <div class="mt-4 grid grid-cols-12 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
-                <div
-                        class="col-span-12 grid grid-cols-12 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 py-5 sm:py-6">
-                    <div class="col-span-12 sm:col-span-6 lg:col-span-4">
-                        <div class="px-4 text-white sm:px-5">
-                            <div class="-mt-1 flex items-center space-x-2">
-                                <h2 class="text-base font-medium tracking-wide">Balance</h2>
-                            </div>
-
-                            <div class="mt-3">
-                                <p class="text-2xl font-semibold">6 556 XAF</p>
-                            </div>
-
-                            <div class="mt-4 flex space-x-7">
-                                <div>
-                                    <p class="text-indigo-100">Income</p>
-                                    <div class="mt-1 flex items-center space-x-2">
-                                        <div class="flex size-7 items-center justify-center rounded-full bg-black/20">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none"
-                                                 viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M7 11l5-5m0 0l5 5m-5-5v12" />
-                                            </svg>
-                                        </div>
-                                        <p class="text-base font-medium">2 225 XAF</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p class="text-indigo-100">Clients</p>
-                                    <div class="mt-1 flex items-center space-x-2">
-                                        <div class="flex size-7 items-center justify-center rounded-full bg-black/20">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4"
-                                                 viewBox="0 0 24 24">
-                                                <circle cx="12" cy="6" r="4" fill="currentColor" />
-                                                <path fill="currentColor"
-                                                      d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
-                                                      opacity="0.5" />
-                                            </svg>
-                                        </div>
-                                        <p class="text-base font-medium">22</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-span-12 mt-5 sm:col-span-6 sm:mt-0 lg:col-span-8">
-                        <div class="swiper px-5 sm:pl-0"
-                             x-init="$nextTick(()=>new Swiper($el,{  slidesPerView: 'auto', spaceBetween: 16}))">
-                            <div class="swiper-wrapper">
-                                <div
-                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
-                                    <div
-                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
-                                    </div>
-                                </div>
-                                <div
-                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
-                                    <div
-                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg1.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
-                                    </div>
-                                </div>
-                                <div
-                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
-                                    <div
-                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
-                                    </div>
-                                </div>
-                                <div
-                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
-                                    <div
-                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card group col-span-12 pb-5 lg:col-span-8">
-                    <div class="my-3 flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:px-5">
-                        <div class="flex flex-1 items-center justify-between space-x-2 sm:flex-initial">
-                            <h2 class="text-sm-plus font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                                History
-                            </h2>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="flex cursor-pointer items-center space-x-2">
-                                <div class="size-3 rounded-full bg-accent"></div>
-                                <p>Sales</p>
-                            </div>
-                            <div class="flex cursor-pointer items-center space-x-2">
-                                <div class="size-3 rounded-full bg-info"></div>
-                                <p>Profit</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-12 gap-4 px-4 sm:gap-5 sm:px-5 lg:gap-6 lg:px-5">
-                        <div class="col-span-12 sm:order-last sm:col-span-6 sm:mt-2 xl:col-span-7">
-                            <div class="ax-transparent-gridline">
-                                <div
-                                        x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.historyTransactionsLine); $el._x_chart.render() });">
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                                class="col-span-12 rounded-lg bg-slate-50 p-3 dark:bg-navy-600 sm:col-span-6 xl:col-span-5">
-                            <div class="space-y-4">
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Konnor Guzman
-                                            </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 21, 2021 - 08:05
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">660 XAF</p>
-                                </div>
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Henry Curtis
-                                            </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 19, 2021 - 11:55
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">333 XAF</p>
-                                </div>
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Derrick Simmons
-                                            </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 16, 2021 - 14:45
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">674 XAF</p>
-                                </div>
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Kartina West
-                                            </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 13, 2021 - 11:30
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">547 XAF</p>
-                                </div>
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Samantha Shelton
-                                            </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 10, 2021 - 09:41
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">736 XAF</p>
-                                </div>
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Joe Perkins
-                                            </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 06, 2021 - 11:41
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">558 XAF</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card col-span-12 px-4 pb-5 sm:px-5 lg:col-span-4">
-                    <div class="flex items-center justify-between py-3">
-                        <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                            Calculator
-                        </h2>
-                        <divclass="inline-flex">
-                        <button
-                                class="btn -mr-1 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path fill="#4086d4"
-                                      d="M12 22c-4.243 0-6.364 0-7.682-1.465C3 19.072 3 16.714 3 12s0-7.071 1.318-8.536S7.758 2 12 2s6.364 0 7.682 1.464C21 4.93 21 7.286 21 12s0 7.071-1.318 8.535S16.242 22 12 22"
-                                      opacity="0.5" />
-                                <path fill="#4086d4"
-                                      d="M15 6H9c-.465 0-.697 0-.888.051a1.5 1.5 0 0 0-1.06 1.06C7 7.304 7 7.536 7 8s0 .697.051.888a1.5 1.5 0 0 0 1.06 1.06C8.304 10 8.536 10 9 10h6c.465 0 .697 0 .888-.051a1.5 1.5 0 0 0 1.06-1.06C17 8.696 17 8.464 17 8s0-.697-.051-.888a1.5 1.5 0 0 0-1.06-1.06C15.697 6 15.464 6 15 6m-7 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m4-4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m4-4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2" />
-                            </svg>
-                        </button>
-                        </divclass=>
-                    </div>
-                    <div class="mt-2 space-y-4">
-                        <label class="block">
-                            <span class="text-xs-plus">Pay to</span>
-                            <div class="mt-1.5 flex h-9 -space-x-px">
-                                <input
-                                        class="form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder="Price" type="text" />
-                                <select
-                                        class="form-select rounded-r-lg border border-slate-300 bg-white px-3 py-2 pr-9 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                                    <option>XAF</option>
-                                </select>
-                            </div>
-                        </label>
-                        <div>
-                            <span class="text-xs-plus">Amount</span>
-
-                            <div class="mt-1.5 flex h-9 -space-x-px">
-                                <input
-                                        class="form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder="Price" type="text" />
-                                <select
-                                        class="form-select rounded-r-lg border border-slate-300 bg-white px-3 py-2 pr-9 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                                    <option>XAF</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col bottom-0 justify-end">
-                        <div class="mt-2 flex justify-between">
-                            <p>Total:</p>
-                            <p class="font-medium text-slate-700 dark:text-navy-100">3 XAF</p>
-                        </div>
-                        <button
-                                class="btn mt-5 h-10 w-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                            Calculate
-                    </div>
-                    </button>
-                </div>
-            </div>
-        </div>
         <div
                 class="mt-4 grid grid-cols-12 gap-4 px-[var(--margin-x)] transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
         >
-            <div class="col-span-12 lg:col-span-8">
+            <!---Welcome back Card--->
+            <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
+                <div class="card bg-slate-150 dark:bg-navy-700 mb-0 overflow-hidden">
+                    <div class="card-body pb-10">
+                        <div class="grid grid-cols-12">
+                            <div class="lg:col-span-7 p-8 md:col-span-7 sm:col-span-12 col-span-12">
+                                <div class="flex gap-3 items-center mb-7">
+                                    <div class="rounded-full overflow-hidden">
+                                        <img src="../../../assets/user-7.jpg"
+                                             class="h-20 w-20" alt="">
+                                    </div>
+                                    <div class="flex flex-col text-left justify-start">
+                                        <h5 class="text-lg">
+                                            Welcome back <strong><?php echo $_SESSION['username']; ?></strong>
+                                        </h5>
+                                        <p class="mt-5 ">Êtes - vous prêt à démarrer la journée ?</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="lg:col-span-5 md:col-span-5 sm:col-span-12 col-span-12">
+                                <div class="sm:absolute relative right-0 rtl:right-auto rtl:left-0 -bottom-8">
+                                    <img src="../../../assets/welcome-bg.svg" alt=""
+                                         class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
+                    <div class="flex justify-between space-x-1">
+                        <p
+                                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+                        >
+
+                        </p>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="size-5 text-primary dark:text-accent"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                stroke-width="2"
+                        >
+                            <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                        </svg>
+                    </div>
+                    <p class="mt-1 text-xs-plus">Revenue Journalier (en FCFA)</p>
+                </div>
+            </div>
+            <!---Welcome back Card End--->
+
+            <!---Date Cards--->
+            <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12">
+                <div class="card bg-indigo-500 p-8 overflow-hidden">
+                    <div class="card-body pb-0">
+                        <h5 class="card-title text-xl text-white"><?php echo date('D, d M Y') ?></h5>
+                        <div class="flex justify-center mt-3">
+                            <img src="../../../assets/piggy.png"
+                                 class="w-50"
+                                 alt/>
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2">
+                        <div>
+                            <div class="bg-white/8 backdrop-blur rounded-lg">
+                                <div class="text-5xl text-white p-5 font-bold justify-center text-center items-center">
+                                    <?php echo date('H:i:s') ?>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!---Date Cards End--->
+
+            <!---Graph--->
+            <!--<div class="col-span-12 lg:col-span-8">
                 <div class="flex items-center justify-between space-x-2">
                     <h2
                             class="text-base font-medium tracking-wide text-slate-800 line-clamp-1 dark:text-navy-100"
                     >
-                        Sales Overview
+                        Revenue
                     </h2>
                     <div
                             x-data="{activeTab:'tabRecent'}"
@@ -618,7 +441,7 @@
                                 <p
                                         class="text-2xl font-semibold text-slate-700 dark:text-navy-100"
                                 >
-                                    $6,556.55
+                                    0 Fcfa
                                 </p>
                                 <button
                                         class="btn size-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
@@ -642,6 +465,17 @@
                             <p class="text-xs text-slate-400 dark:text-navy-300">
                                 this month
                             </p>
+                        </div>
+                        <div class="mt-3 flex items-center space-x-2">
+                            <div class="ax-transparent-gridline w-28">
+                                <div id="salesChart"></div>
+                            </div>
+                            <div class="flex items-center space-x-0.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/>
+                                </svg>
+                                <p class="text-sm-plus text-slate-800 dark:text-navy-100" id="growthRate">0%</p>
+                            </div>
                         </div>
                         <div class="mt-3 flex items-center space-x-2">
                             <div class="ax-transparent-gridline w-28">
@@ -696,17 +530,41 @@
                         ></div>
                     </div>
                 </div>
-            </div>
-            <div class="col-span-12 lg:col-span-4">
+            </div>-->
+            <!---Graph End--->
+
+            <!---Count data database--->
+            <div class="col-span-12"
+            >
                 <div
-                        class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-2"
+                        class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3"
                 >
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between space-x-1">
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                $67.6k
+                                <?php
+                                include_once '../../config/config.php';
+
+                                function sumTickets()
+                                {
+                                    $conn = getConnexion();
+
+                                    $query = "SELECT SUM(price) AS total FROM tickets WHERE DATE(service_date) = current_date()";
+                                    $result = $conn->query($query);
+
+                                    if ($result) {
+                                        $row = $result->fetch(PDO::FETCH_ASSOC);
+                                        return $row['total'];
+                                    }
+
+                                    return 0;
+                                }
+
+                                echo "<strong>" . sumTickets() . "</strong>";
+                                ?>
+
                             </p>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -723,14 +581,26 @@
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Income</p>
+                        <p class="mt-1 text-xs-plus">Revenue Journalier (en FCFA)</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                12.6K
+                                <?php
+                                include_once  '../../config/config.php';
+                                function countReservations()
+                                {
+                                    $conn = getConnexion();
+                                    $query = "SELECT COUNT(*) as total FROM reservations";
+                                    $result = $conn->query($query);
+                                    $data = $result->fetch();
+                                    return $data['total'];
+                                }
+
+                                echo "<strong>".countReservations()."</strong>";
+                                ?>
                             </p>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -747,65 +617,48 @@
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Completed</p>
+                        <p class="mt-1 text-xs-plus">Reservations</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                143
+                                <?php
+                                include_once  '../../config/config.php';
+                                function countEmployees()
+                                {
+                                    $conn = getConnexion();
+                                    $query = "SELECT COUNT(*) as total FROM employees";
+                                    $result = $conn->query($query);
+                                    $data = $result->fetch();
+                                    return $data['total'];
+                                }
+
+                                echo "<strong>".countEmployees()."</strong>";
+                                ?>
                             </p>
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5 text-warning"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                            </svg>
-                        </div>
-                        <p class="mt-1 text-xs-plus">Pending</p>
-                    </div>
-                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
-                        <div class="flex justify-between">
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                651
-                            </p>
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5 text-info"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
-                                />
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
-                                />
-                            </svg>
-                        </div>
-                        <p class="mt-1 text-xs-plus">Dispatch</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#b2b211" d="M10 12.25a.75.75 0 1 0 0 1.5h4a.75.75 0 0 0 0-1.5z"/><path fill="#b2b211" fill-rule="evenodd" d="M7.32 4.275A3.75 3.75 0 0 1 11 1.25h2a3.75 3.75 0 0 1 3.68 3.025a6.75 6.75 0 0 1 5.07 6.445v5.655a5.27 5.27 0 0 1-4.126 5.143a25.9 25.9 0 0 1-11.248 0a5.27 5.27 0 0 1-4.126-5.143V10.72a6.75 6.75 0 0 1 5.07-6.445m1.695-.335A2.25 2.25 0 0 1 11 2.75h2c.86 0 1.607.482 1.986 1.19a19.8 19.8 0 0 0-5.971 0m11.235 6.971v2.596a21.4 21.4 0 0 1-16.5 0V10.74a5.25 5.25 0 0 1 4.207-5.074c.084-.02.124-.028.164-.037a18.25 18.25 0 0 1 7.759 0l.163.037l.167.037a5.25 5.25 0 0 1 4.04 5.207m-16.5 5.464v-1.252a22.9 22.9 0 0 0 13 1.04V17a.75.75 0 0 0 1.5 0v-1.209a23 23 0 0 0 2-.668v1.252a3.77 3.77 0 0 1-2.951 3.68c-3.49.775-7.108.775-10.598 0a3.77 3.77 0 0 1-2.95-3.68" clip-rule="evenodd"/></svg>                        </div>
+                        <p class="mt-1 text-xs-plus">Employés</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between space-x-1">
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                46k
+                                <?php
+                                include_once  '../../config/config.php';
+                                function countServices()
+                                {
+                                    $conn = getConnexion();
+                                    $query = "SELECT COUNT(*) as total FROM services";
+                                    $result = $conn->query($query);
+                                    $data = $result->fetch();
+                                    return $data['total'];
+                                }
+
+                                echo "<strong>".countServices()."</strong>";
+                                ?>
                             </p>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -822,14 +675,26 @@
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Products</p>
+                        <p class="mt-1 text-xs-plus">Services</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
                             <p
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
-                                8.8k
+                                <?php
+                                include_once  '../../config/config.php';
+                                function countClient()
+                                {
+                                    $conn = getConnexion();
+                                    $query = "SELECT COUNT(*) as total FROM clients";
+                                    $result = $conn->query($query);
+                                    $data = $result->fetch();
+                                    return $data['total'];
+                                }
+
+                                echo "<strong>".countClient()."</strong>";
+                                ?>
                             </p>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -846,10 +711,33 @@
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Customers</p>
+                        <p class="mt-1 text-xs-plus">Clients</p>
+                    </div>
+                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
+                        <div class="flex justify-between">
+                            <p
+                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+                            >
+                                <?php
+                                include_once  '../../config/config.php';
+                                function countUsers()
+                                {
+                                    $conn = getConnexion();
+                                    $query = "SELECT COUNT(*) as total FROM users";
+                                    $result = $conn->query($query);
+                                    $data = $result->fetch();
+                                    return $data['total'];
+                                }
+
+                                echo "<strong>".countUsers()."</strong>";
+                                ?>
+                            </p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#b27811" stroke-width="1.5"><circle cx="12" cy="6" r="4"/><path stroke-linecap="round" d="M18 9c1.657 0 3-1.12 3-2.5S19.657 4 18 4M6 9C4.343 9 3 7.88 3 6.5S4.343 4 6 4"/><ellipse cx="12" cy="17" rx="6" ry="4"/><path stroke-linecap="round" d="M20 19c1.754-.385 3-1.359 3-2.5s-1.246-2.115-3-2.5M4 19c-1.754-.385-3-1.359-3-2.5s1.246-2.115 3-2.5"/></g></svg>                        </div>
+                        <p class="mt-1 text-xs-plus">Utilisateurs</p>
                     </div>
                 </div>
             </div>
+            <!---Count data database End--->
             <div class="card col-span-12 lg:col-span-8">
                 <div class="flex items-center justify-between py-3 px-4">
                     <h2
@@ -882,50 +770,6 @@
                                 />
                             </svg>
                         </button>
-
-                        <div
-                                x-ref="popperRoot"
-                                class="popper-root"
-                                :class="isShowPopper && 'show'"
-                        >
-                            <div
-                                    class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700"
-                            >
-                                <ul>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Action</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Another Action</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Something else</a
-                                        >
-                                    </li>
-                                </ul>
-                                <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
-                                <ul>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Separated Link</a
-                                        >
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 gap-y-4 pb-3 sm:grid-cols-3">
@@ -960,7 +804,7 @@
                                     <div class="avatar size-8 hover:z-10">
                                         <img
                                                 class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="images/avatar/avatar-16.jpg"
+                                                src="../../../assets/logo.jpg"
                                                 alt="avatar"
                                         />
                                     </div>
@@ -974,7 +818,7 @@
                                     <div class="avatar size-8 hover:z-10">
                                         <img
                                                 class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="images/avatar/avatar-20.jpg"
+                                                src="../../../assets/logo.jpg"
                                                 alt="avatar"
                                         />
                                     </div>
@@ -1038,7 +882,7 @@
                                     <div class="avatar size-8 hover:z-10">
                                         <img
                                                 class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="images/avatar/avatar-16.jpg"
+                                                src="../../../assets/logo.jpg"
                                                 alt="avatar"
                                         />
                                     </div>
@@ -1052,7 +896,7 @@
                                     <div class="avatar size-8 hover:z-10">
                                         <img
                                                 class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="images/avatar/avatar-14.jpg"
+                                                src="../../../assets/logo.jpg"
                                                 alt="avatar"
                                         />
                                     </div>
@@ -1123,7 +967,7 @@
                                     <div class="avatar size-8 hover:z-10">
                                         <img
                                                 class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="images/avatar/avatar-11.jpg"
+                                                src="../../../assets/logo.jpg"
                                                 alt="avatar"
                                         />
                                     </div>
@@ -1137,7 +981,7 @@
                                     <div class="avatar size-8 hover:z-10">
                                         <img
                                                 class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="images/avatar/avatar-10.jpg"
+                                                src="../../../assets/logo.jpg"
                                                 alt="avatar"
                                         />
                                     </div>
@@ -1389,7 +1233,8 @@
                 </div>
             </div>
         </div>
-        <div
+        <!-- Top tickets -->
+        <!--<div
                 class="mt-4 grid grid-cols-12 gap-4 bg-slate-150 py-5 dark:bg-navy-800 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
         >
             <div
@@ -1398,7 +1243,7 @@
                 <h2
                         class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100 lg:text-xl"
                 >
-                    Top Sellers
+                    Top tickets
                 </h2>
 
                 <p class="mt-3 grow">
@@ -2380,6 +2225,318 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div> -->
+        <!-- Top tickets End -->
+        <div class="w-full px-[var(--margin-x)] pb-8">
+            <div class="mt-4 grid grid-cols-12 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
+                <!--<div
+                        class="col-span-12 grid grid-cols-12 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 py-5 sm:py-6">
+                    <div class="col-span-12 sm:col-span-6 lg:col-span-4">
+                        <div class="px-4 text-white sm:px-5">
+                            <div class="-mt-1 flex items-center space-x-2">
+                                <h2 class="text-base font-medium tracking-wide">Balance</h2>
+                            </div>
+
+                            <div class="mt-3">
+                                <p class="text-2xl font-semibold">6 556 XAF</p>
+                            </div>
+
+                            <div class="mt-4 flex space-x-7">
+                                <div>
+                                    <p class="text-indigo-100">Income</p>
+                                    <div class="mt-1 flex items-center space-x-2">
+                                        <div class="flex size-7 items-center justify-center rounded-full bg-black/20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none"
+                                                 viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                                            </svg>
+                                        </div>
+                                        <p class="text-base font-medium">2 225 XAF</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-indigo-100">Clients</p>
+                                    <div class="mt-1 flex items-center space-x-2">
+                                        <div class="flex size-7 items-center justify-center rounded-full bg-black/20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4"
+                                                 viewBox="0 0 24 24">
+                                                <circle cx="12" cy="6" r="4" fill="currentColor" />
+                                                <path fill="currentColor"
+                                                      d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
+                                                      opacity="0.5" />
+                                            </svg>
+                                        </div>
+                                        <p class="text-base font-medium">22</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12 mt-5 sm:col-span-6 sm:mt-0 lg:col-span-8">
+                        <div class="swiper px-5 sm:pl-0"
+                             x-init="$nextTick(()=>new Swiper($el,{  slidesPerView: 'auto', spaceBetween: 16}))">
+                            <div class="swiper-wrapper">
+                                <div
+                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
+                                    <div
+                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
+                                    </div>
+                                </div>
+                                <div
+                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
+                                    <div
+                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg1.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
+                                    </div>
+                                </div>
+                                <div
+                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
+                                    <div
+                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
+                                    </div>
+                                </div>
+                                <div
+                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
+                                    <div
+                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+                <div class="card group col-span-12 pb-5 lg:col-span-8">
+                    <div class="my-3 flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:px-5">
+                        <div class="flex flex-1 items-center justify-between space-x-2 sm:flex-initial">
+                            <h2 class="text-sm-plus font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                                History
+                            </h2>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="flex cursor-pointer items-center space-x-2">
+                                <div class="size-3 rounded-full bg-accent"></div>
+                                <p>Sales</p>
+                            </div>
+                            <div class="flex cursor-pointer items-center space-x-2">
+                                <div class="size-3 rounded-full bg-info"></div>
+                                <p>Profit</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4 px-4 sm:gap-5 sm:px-5 lg:gap-6 lg:px-5">
+                        <div class="col-span-12 sm:order-last sm:col-span-6 sm:mt-2 xl:col-span-7">
+                            <div class="ax-transparent-gridline">
+                                <div
+                                        x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.historyTransactionsLine); $el._x_chart.render() });">
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                                class="col-span-12 rounded-lg bg-slate-50 p-3 dark:bg-navy-600 sm:col-span-6 xl:col-span-5">
+                            <div class="space-y-4">
+                                <div class="flex cursor-pointer items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="avatar">
+                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
+                                                Konnor Guzman
+                                            </p>
+                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
+                                                Dec 21, 2021 - 08:05
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class="font-medium text-success">660 XAF</p>
+                                </div>
+                                <div class="flex cursor-pointer items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="avatar">
+                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
+                                                Henry Curtis
+                                            </p>
+                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
+                                                Dec 19, 2021 - 11:55
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class="font-medium text-success">333 XAF</p>
+                                </div>
+                                <div class="flex cursor-pointer items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="avatar">
+                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
+                                                Derrick Simmons
+                                            </p>
+                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
+                                                Dec 16, 2021 - 14:45
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class="font-medium text-success">674 XAF</p>
+                                </div>
+                                <div class="flex cursor-pointer items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="avatar">
+                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
+                                                Kartina West
+                                            </p>
+                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
+                                                Dec 13, 2021 - 11:30
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class="font-medium text-success">547 XAF</p>
+                                </div>
+                                <div class="flex cursor-pointer items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="avatar">
+                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
+                                                Samantha Shelton
+                                            </p>
+                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
+                                                Dec 10, 2021 - 09:41
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class="font-medium text-success">736 XAF</p>
+                                </div>
+                                <div class="flex cursor-pointer items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="avatar">
+                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
+                                                Joe Perkins
+                                            </p>
+                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
+                                                Dec 06, 2021 - 11:41
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class="font-medium text-success">558 XAF</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card group col-span-12 pb-5 lg:col-span-4">
+                    <div class="my-3 flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:px-5">
+                        <div class="flex flex-1 items-center justify-between space-x-2 sm:flex-initial">
+                            <h2 class="text-sm-plus font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                                Nos services
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4 px-4 sm:gap-5 sm:px-5 lg:gap-6 lg:px-5">
+                        <div
+                                class="col-span-12 rounded-lg bg-slate-50 p-3 dark:bg-navy-600" >
+                            <div class="space-y-4">
+                                <?php
+                                include_once '../../config/config.php';
+
+                                $conn = getConnexion();
+                                $sql = "SELECT * FROM services";
+                                $result = $conn->query($sql);
+
+                                foreach ($result as $row) {
+                                    echo '<div class="flex cursor-pointer items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="avatar">
+                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
+                                                ' . htmlspecialchars($row['name']) . '
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class="font-medium text-success">' . htmlspecialchars($row['price']) . ' XAF</p>
+                                    
+                                </div>';
+                                }
+                                ?>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="card col-span-12 px-4 pb-5 sm:px-5 lg:col-span-4">
+                    <div class="flex items-center justify-between py-3">
+                        <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                            Calculator
+                        </h2>
+                        <divclass="inline-flex">
+                        <button
+                                class="btn -mr-1 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="#4086d4"
+                                      d="M12 22c-4.243 0-6.364 0-7.682-1.465C3 19.072 3 16.714 3 12s0-7.071 1.318-8.536S7.758 2 12 2s6.364 0 7.682 1.464C21 4.93 21 7.286 21 12s0 7.071-1.318 8.535S16.242 22 12 22"
+                                      opacity="0.5" />
+                                <path fill="#4086d4"
+                                      d="M15 6H9c-.465 0-.697 0-.888.051a1.5 1.5 0 0 0-1.06 1.06C7 7.304 7 7.536 7 8s0 .697.051.888a1.5 1.5 0 0 0 1.06 1.06C8.304 10 8.536 10 9 10h6c.465 0 .697 0 .888-.051a1.5 1.5 0 0 0 1.06-1.06C17 8.696 17 8.464 17 8s0-.697-.051-.888a1.5 1.5 0 0 0-1.06-1.06C15.697 6 15.464 6 15 6m-7 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m4-4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m4-4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2" />
+                            </svg>
+                        </button>
+                        </divclass=>
+                    </div>
+                    <div class="mt-2 space-y-4">
+                        <label class="block">
+                            <span class="text-xs-plus">Pay to</span>
+                            <div class="mt-1.5 flex h-9 -space-x-px">
+                                <input
+                                        class="form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                        placeholder="Price" type="text" />
+                                <select
+                                        class="form-select rounded-r-lg border border-slate-300 bg-white px-3 py-2 pr-9 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                                    <option>XAF</option>
+                                </select>
+                            </div>
+                        </label>
+                        <div>
+                            <span class="text-xs-plus">Amount</span>
+
+                            <div class="mt-1.5 flex h-9 -space-x-px">
+                                <input
+                                        class="form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                        placeholder="Price" type="text" />
+                                <select
+                                        class="form-select rounded-r-lg border border-slate-300 bg-white px-3 py-2 pr-9 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                                    <option>XAF</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col bottom-0 justify-end">
+                        <div class="mt-2 flex justify-between">
+                            <p>Total:</p>
+                            <p class="font-medium text-slate-700 dark:text-navy-100">3 XAF</p>
+                        </div>
+                        <button
+                                class="btn mt-5 h-10 w-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                            Calculate
+                    </div>
+                    </button>
+                </div>-->
             </div>
         </div>
     </main>

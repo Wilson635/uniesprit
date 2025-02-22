@@ -14,11 +14,14 @@ if (!$_SESSION['email']) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Employees</title>
 
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg" />
+
     <!-- CSS Assets -->
     <link rel="stylesheet" href="../../components/app.css"/>
 
     <!-- Javascript Assets -->
-    <script src="../../../scipt.js"></script>
+    <script src="../../../script.js"></script>
     <script src="../../../tailwind.js"></script>
 
     <!-- Fonts -->
@@ -81,10 +84,10 @@ if (!$_SESSION['email']) {
                         </svg>
                     </a>
 
-                    <!-- Analyse -->
+                    <!-- Tickets -->
                     <a href="apps-list.php"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                       x-tooltip.placement.right="'Analyse'">
+                       x-tooltip.placement.right="'Tickets'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                     d="M5 8H19V16C19 17.8856 19 18.8284 18.4142 19.4142C17.8284 20 16.8856 20 15 20H9C7.11438 20 6.17157 20 5.58579 19.4142C5 18.8284 5 17.8856 5 16V8Z"
@@ -169,12 +172,19 @@ if (!$_SESSION['email']) {
                         </svg>
                     </a>
 
+                    <!-- Logout -->
+                    <a href="../auth/logout.php"
+                       x-tooltip.placement.right="'Logout'"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                        <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M12 20a8 8 0 1 1 0-16" opacity="0.5"/><path stroke-linejoin="round" d="M10 12h10m0 0l-3-3m3 3l-3 3"/></g></svg>
+                    </a>
+
                     <!-- Profile -->
                     <div x-data="usePopper({placement:'right-end',offset:12})"
                          @click.outside="isShowPopper && (isShowPopper = false)" class="flex">
                         <button @click="isShowPopper = !isShowPopper" x-ref="popperRef"
                                 class="avatar size-12 cursor-pointer">
-                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar"/>
+                            <img class="rounded-full" src="../../../assets/user-7.jpg" alt="avatar"/>
                             <span
                                     class="absolute right-0 size-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
                         </button>
@@ -185,7 +195,7 @@ if (!$_SESSION['email']) {
                                 <div
                                         class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
                                     <div class="avatar size-14">
-                                        <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar"/>
+                                        <img class="rounded-full" src="../../../assets/user-7.jpg" alt="avatar"/>
                                     </div>
                                     <div>
                                         <p
@@ -316,7 +326,7 @@ if (!$_SESSION['email']) {
                                     class="w-full flex flex-col p-5 bg-white dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
                                 <div class="flex min-h-full flex-col justify-center">
                                     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                                        <img class="mx-auto h-30 w-auto mt-15" src="../../../assets/logo.jpg" alt="Your Company">
+                                        <img class="mx-auto rounded-full h-30 w-auto mt-15" src="../../../assets/logo.jpg" alt="Your Company">
                                         <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Compléter les champs pour enrégistrer un employé</h2>
                                     </div>
 
