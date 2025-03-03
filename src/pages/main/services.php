@@ -1,4 +1,7 @@
 <?php
+
+use Ramsey\Uuid\Uuid;
+
 session_start();
 if (!$_SESSION['email']) {
     header('location:../auth/sign-in.php');
@@ -13,7 +16,7 @@ if (!$_SESSION['email']) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Clients</title>
+    <title>Nos services</title>
 
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg"/>
@@ -125,7 +128,7 @@ if (!$_SESSION['email']) {
                         </svg>
                     </a>
 
-                    <!-- Forms -->
+                    <!-- Employés -->
                     <a href="employee.php"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                        x-tooltip.placement.right="'Employés'">
@@ -144,7 +147,7 @@ if (!$_SESSION['email']) {
 
                     <!-- Client -->
                     <a href="clientContacts.php"
-                       class="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                        x-tooltip.placement.right="'Clients'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-opacity="0.5"
@@ -175,7 +178,7 @@ if (!$_SESSION['email']) {
 
                     <!-- Services Page -->
                     <a href="services.php"
-                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       class="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                        x-tooltip.placement.right="'Nos services'">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path fill="currentColor"
@@ -341,7 +344,7 @@ if (!$_SESSION['email']) {
                     <div class="card-body md:py-3 py-5">
                         <div class=" items-center grid grid-cols-12 gap-6">
                             <div class="col-span-9 p-5">
-                                <h4 class="font-semibold text-xl text-black mb-3">Clients</h4>
+                                <h4 class="font-semibold text-xl text-black mb-3">Services</h4>
                                 <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
                                     <li class="flex items-center">
                                         <a class="opacity-80 text-sm leading-none"
@@ -354,7 +357,7 @@ if (!$_SESSION['email']) {
                                     </li>
                                     <li class="flex items-center text-sm text-link dark:text-blacklink leading-none"
                                         aria-current="page">
-                                        Client
+                                        Services
                                     </li>
                                 </ol>
                             </div>
@@ -419,7 +422,7 @@ if (!$_SESSION['email']) {
                                         <img class="mx-auto rounded-full h-30 w-auto mt-15"
                                              src="../../../assets/logo.jpg" alt="Your Company">
                                         <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                                            Compléter les champs pour enrégistrer un client</h2>
+                                            Compléter les champs pour enrégistrer un service</h2>
                                     </div>
 
                                     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -427,21 +430,19 @@ if (!$_SESSION['email']) {
                                         include_once '../../config/config.php';
                                         require '../../../vendor/autoload.php';
 
-                                        use Ramsey\Uuid\Uuid;
-
                                         $conn = getConnexion();
 
                                         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                                            if ($_POST['name'] && isset($_POST['surname']) && isset($_POST['phone']) !== null) {
-                                                $name = $_POST['name'];
-                                                $surname = $_POST['surname'];
-                                                $phone = $_POST['phone'];
+                                            if ($_POST['service_name'] && isset($_POST['description']) && isset($_POST['price']) !== null) {
+                                                $service_name = $_POST['service_name'];
+                                                $description = $_POST['description'];
+                                                $price = $_POST['price'];
                                                 $uuid = Uuid::uuid4();
-                                                $sql = "INSERT INTO clients (id, first_name, last_name, phone) VALUES (:id, :first_name, :last_name, :phone)";
+                                                $sql = "INSERT INTO services (id, name, description, price) VALUES (:id, :name, :description, :price)";
                                                 $stmt = $conn->prepare($sql);
-                                                $stmt->execute(['id' => $uuid, 'first_name' => $name, 'last_name' => $surname, 'phone' => $phone]);
+                                                $stmt->execute(['id' => $uuid, 'name' => $service_name, 'description' => $description, 'price' => $price]);
 
-                                                echo "<div class='alert alert-success'>Client enrégistré avec succès</div>";
+                                                echo "<div class='text-black bg-green-400 p-3'>service enrégistré avec succès</div>";
                                             } else {
                                                 echo "<div class='alert alert-danger'>Veuillez remplir tous les champs</div>";
                                             }
@@ -450,34 +451,33 @@ if (!$_SESSION['email']) {
                                         ?>
                                         <form class="space-y-6" action="#" method="POST">
                                             <div>
-                                                <label for="name" class="block text-sm/6 font-medium text-gray-900">Nom
-                                                    du client</label>
+                                                <label for="service_name"
+                                                       class="block text-sm/6 font-medium text-gray-900">Nom du
+                                                    service</label>
                                                 <div class="mt-2">
-                                                    <input type="text" name="name" id="name"
+                                                    <input type="text" name="service_name" id="service_name"
                                                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                 </div>
                                             </div>
 
                                             <div>
                                                 <div class="flex items-center justify-between">
-                                                    <label for="surname"
-                                                           class="block text-sm/6 font-medium text-gray-900">Prénom du
-                                                        client</label>
+                                                    <label for="description"
+                                                           class="block text-sm/6 font-medium text-gray-900">Description</label>
                                                 </div>
                                                 <div class="mt-2">
-                                                    <input type="text" name="surname" id="surname"
+                                                    <input type="text" name="description" id="description"
                                                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                 </div>
                                             </div>
 
                                             <div>
                                                 <div class="flex items-center justify-between">
-                                                    <label for="phone"
-                                                           class="block text-sm/6 font-medium text-gray-900">Téléphone
-                                                        du client</label>
+                                                    <label for="price"
+                                                           class="block text-sm/6 font-medium text-gray-900">Prix</label>
                                                 </div>
                                                 <div class="mt-2">
-                                                    <input type="text" name="phone" id="phone"
+                                                    <input type="text" name="price" id="price"
                                                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                 </div>
                                             </div>
@@ -501,135 +501,144 @@ if (!$_SESSION['email']) {
                                 <div class="-m-1.5 overflow-x-auto">
                                     <div class="p-1.5 min-w-full inline-block align-middle">
                                         <div class="overflow-hidden">
+                                            <?php
+                                            // Nombre d'éléments par page
+                                            $limit = 10;
+
+                                            // Récupérer la page actuelle
+                                            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                                            $offset = ($page - 1) * $limit;
+
+                                            // Récupérer les services pour cette page
+                                            $sql = "SELECT * FROM services LIMIT :limit OFFSET :offset";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+                                            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+                                            $stmt->execute();
+                                            $services = $stmt->fetchAll();
+
+                                            // Total des services pour calculer le nombre de pages
+                                            $totalSql = "SELECT COUNT(*) FROM services";
+                                            $totalStmt = $conn->prepare($totalSql);
+                                            $totalStmt->execute();
+                                            $totalServices = $totalStmt->fetchColumn();
+                                            $totalPages = ceil($totalServices / $limit);
+
+                                            function getInitials($name)
+                                            {
+                                                $words = explode(" ", $name);
+                                                $initials = "";
+                                                foreach ($words as $w) {
+                                                    $initials .= $w[0];
+                                                }
+                                                return $initials;
+                                            }
+
+                                            ?>
+
                                             <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
                                                 <thead>
                                                 <tr>
                                                     <th class="p-4 ps-0">
                                                         <div class="n-chk align-self-center text-center">
                                                             <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input rounded-sm" id="contact-check-all"/>
-                                                                <label class="form-check-label" for="contact-check-all"></label>
+                                                                <input type="checkbox"
+                                                                       class="form-check-input rounded-sm"
+                                                                       id="contact-check-all"/>
+                                                                <label class="form-check-label"
+                                                                       for="contact-check-all"></label>
                                                                 <span class="new-control-indicator"></span>
                                                             </div>
                                                         </div>
                                                     </th>
-                                                    <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Nom du client</th>
-                                                    <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Prénom du client</th>
-                                                    <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Téléphone</th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                        Type de service
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                        Description
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                        Prix
+                                                    </th>
                                                 </tr>
                                                 </thead>
                                                 <tbody class="divide-y divide-border divide-slate-150">
                                                 <?php
-                                                include_once '../../config/config.php';
-                                                $conn = getConnexion();
-
-                                                // Nombre d'éléments par page
-                                                $limit = 10;
-
-                                                // Récupérer la page actuelle
-                                                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-                                                $offset = ($page - 1) * $limit;
-
-                                                // Requête SQL avec LIMIT et OFFSET pour la pagination
-                                                $sql = "SELECT * FROM clients LIMIT :limit OFFSET :offset";
-                                                $stmt = $conn->prepare($sql);
-                                                $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-                                                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-                                                $stmt->execute();
-                                                $clients = $stmt->fetchAll();
-
-                                                // Calculer le nombre total de clients
-                                                $totalSql = "SELECT COUNT(*) FROM clients";
-                                                $totalStmt = $conn->prepare($totalSql);
-                                                $totalStmt->execute();
-                                                $totalClients = $totalStmt->fetchColumn();
-                                                $totalPages = ceil($totalClients / $limit);
-
-                                                function getInitials($name)
-                                                {
-                                                    $words = explode(" ", $name);
-                                                    $initials = "";
-                                                    foreach ($words as $w) {
-                                                        $initials .= $w[0];
-                                                    }
-                                                    return $initials;
-                                                }
-
-                                                // Affichage des clients
-                                                foreach ($clients as $client) {
+                                                foreach ($services as $service) {
                                                     echo '
-            <tr class="search-items">
-                <td class="p-4 ps-0 whitespace-nowrap">
-                    <div class="n-chk align-self-center text-center">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $client['id'] . '" />
-                            <label class="form-check-label" for="checkbox' . $client['id'] . '"></label>
-                        </div>
-                    </div>
-                </td>
-                <td class="p-4 ps-0 whitespace-nowrap">
-                    <div class="flex gap-3 items-center">
-                        <div>
-                            <p class="rounded-circle bg-indigo-200 items-center justify-center leading-9 text-center font-bold h-9 w-9 rounded-full"> ' . htmlspecialchars($initials = getInitials($client['first_name'])) . ' </p>
-                        </div>
-                        <div>
-                            <h6 class="user-name mb-1" data-name="' . htmlspecialchars($client["first_name"]) . '">' . htmlspecialchars($client["first_name"]) . '</h6>
-                        </div>
-                    </div>
-                </td>
-                <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($client["last_name"]) . '">' . htmlspecialchars($client["last_name"]) . '</td>
-                <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($client["phone"]) . '">' . htmlspecialchars($client["phone"]) . '</td>
-            </tr>';
+                                                        <tr class="search-items">
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="n-chk align-self-center text-center">
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $service['id'] . '" />
+                                                                        <label class="form-check-label" for="checkbox' . $service['id'] . '"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="flex gap-3 items-center">
+                                                                    <div>
+                                                                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($service["name"]) . '">' . htmlspecialchars($service["name"]) . '</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($service["description"]) . '">' . htmlspecialchars($service["description"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($service["price"]) . '">' . htmlspecialchars($service["price"]) . '</td>
+                                                        </tr>
+                                                    ';
                                                 }
                                                 ?>
                                                 </tbody>
                                             </table>
 
-                                            <!-- Pagination -->
-                                            <div class="pagination mt-4 mx-auto justify-center items-center">
-                                                <ul class="flex list-none gap-2">
-                                                    <?php if ($page > 1): ?>
-                                                        <li><a href="?page=<?php echo $page - 1; ?>"
-                                                               x-tooltip.placement.top="'Précédent'"
-                                                               class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                                     viewBox="0 0 24 24">
-                                                                    <path fill="currentColor" fill-rule="evenodd"
-                                                                          d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
-                                                                          clip-rule="evenodd" opacity="0.5"/>
-                                                                    <path fill="currentColor"
-                                                                          d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
-                                                                </svg>
-                                                            </a></li>
-                                                    <?php endif; ?>
-
-                                                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                                                        <li><a href="?page=<?php echo $i; ?>"
-                                                               class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
-                                                        </li>
-                                                    <?php endfor; ?>
-
-                                                    <?php if ($page < $totalPages): ?>
-                                                        <li>
-                                                            <a href="?page=<?php echo $page + 1; ?>"
-                                                               x-tooltip.placement.top="'Suivant'"
-                                                               class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                                     viewBox="0 0 24 24">
-                                                                    <path fill="currentColor" fill-rule="evenodd"
-                                                                          d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
-                                                                          clip-rule="evenodd" opacity="0.5"/>
-                                                                    <path fill="currentColor"
-                                                                          d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-
-                                                    <?php endif; ?>
-                                                </ul>
-                                            </div>
 
                                         </div>
+                                    </div>
+                                    <!-- Pagination -->
+                                    <div class="pagination mx-auto justify-center items-center">
+                                        <ul class="flex list-none gap-2">
+                                            <?php if ($page > 1): ?>
+                                                <li><a href="?page=<?php echo $page - 1; ?>"
+                                                       x-tooltip.placement.top="'Précédent'"
+                                                       class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                             viewBox="0 0 24 24">
+                                                            <path fill="currentColor" fill-rule="evenodd"
+                                                                  d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
+                                                                  clip-rule="evenodd" opacity="0.5"/>
+                                                            <path fill="currentColor"
+                                                                  d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
+                                                        </svg>
+                                                    </a></li>
+                                            <?php endif; ?>
+
+                                            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                                <li><a href="?page=<?php echo $i; ?>"
+                                                       class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                                </li>
+                                            <?php endfor; ?>
+
+                                            <?php if ($page < $totalPages): ?>
+                                                <li>
+                                                    <a href="?page=<?php echo $page + 1; ?>"
+                                                       x-tooltip.placement.top="'Suivant'"
+                                                       class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                             viewBox="0 0 24 24">
+                                                            <path fill="currentColor" fill-rule="evenodd"
+                                                                  d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
+                                                                  clip-rule="evenodd" opacity="0.5"/>
+                                                            <path fill="currentColor"
+                                                                  d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
+                                                        </svg>
+                                                    </a>
+                                                </li>
+
+                                            <?php endif; ?>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

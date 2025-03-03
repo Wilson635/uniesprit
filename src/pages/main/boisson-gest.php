@@ -13,7 +13,7 @@ if (!$_SESSION['email']) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Reservation</title>
+    <title>Gestion des boissons</title>
 
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg"/>
@@ -46,7 +46,7 @@ if (!$_SESSION['email']) {
         document.documentElement.classList.add("dark");
     </script>
 </head>
-<body x-data class="is-header-blur" x-bind="$store.global.documentBody" style="font-family: 'Poppins', Serif" ;>
+<body x-data class="is-header-blur" x-bind="$store.global.documentBody" style="font-family: 'Poppins', serif" ;>
 <!-- App preloader -->
 <div class="app-preloader fixed z-50 grid h-full w-full place-content-center bg-slate-50 dark:bg-navy-900">
     <div class="app-preloader-inner relative inline-block size-48"></div>
@@ -107,7 +107,7 @@ if (!$_SESSION['email']) {
 
                     <!-- Reservation -->
                     <a href="reservation.php"
-                       class="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                        x-tooltip.placement.right="'Reservations'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -161,7 +161,7 @@ if (!$_SESSION['email']) {
 
                     <!-- Boissons Page -->
                     <a href="boisson-gest.php"
-                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       class="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                        x-tooltip.placement.right="'Gestion des boissons'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -338,7 +338,7 @@ if (!$_SESSION['email']) {
             <div class="card-body md:py-3 py-5">
                 <div class=" items-center grid grid-cols-12 gap-6">
                     <div class="col-span-9 p-5">
-                        <h4 class="font-semibold text-xl text-black mb-3">Reservations</h4>
+                        <h4 class="font-semibold text-xl text-black mb-3">Gestions des boissons</h4>
                         <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
                             <li class="flex items-center">
                                 <a class="opacity-80 text-sm leading-none"
@@ -351,7 +351,7 @@ if (!$_SESSION['email']) {
                             </li>
                             <li class="flex items-center text-sm text-link dark:text-blacklink leading-none"
                                 aria-current="page">
-                                Reservations
+                                Boissons
                             </li>
                         </ol>
                     </div>
@@ -368,18 +368,24 @@ if (!$_SESSION['email']) {
 
             <div
                     class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
-                <div class="card shadow-none border-s border-error">
+                <div class="card shadow-none border-s border-[#a523cc]">
                     <div class="card-body p-8">
                         <div
                                 class="flex justify-between items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="text-red-500 font-bold" width="40"
-                                 height="40" viewBox="0 0 512 512">
-                                <g fill="none" stroke="#FF5724" stroke-linecap="round" stroke-width="2em">
-                                    <path stroke-linejoin="round" d="m8.5 12.5l2 2l5-5"/>
-                                    <path
-                                            d="m283.735 52.918l31.295 26.614a42.7 42.7 0 0 0 24.213 10.03l40.947 3.309c20.86 1.686 37.42 18.246 39.106 39.106l3.31 40.947a42.7 42.7 0 0 0 10.029 24.213l26.614 31.294c13.557 15.942 13.557 39.362 0 55.304l-26.614 31.295a42.7 42.7 0 0 0-10.03 24.213l-3.31 40.947c-1.685 20.86-18.246 37.42-39.105 39.106l-40.947 3.31a42.7 42.7 0 0 0-24.213 10.029l-31.295 26.614c-15.942 13.557-39.362 13.557-55.304 0l-31.294-26.614a42.7 42.7 0 0 0-24.213-10.03l-40.947-3.31c-20.86-1.685-37.42-18.246-39.106-39.105l-3.31-40.947a42.7 42.7 0 0 0-10.03-24.213l-26.613-31.295c-13.557-15.942-13.557-39.362 0-55.304l26.614-31.294a42.7 42.7 0 0 0 10.03-24.213l3.309-40.947c1.686-20.86 18.246-37.42 39.106-39.106l40.947-3.31a42.7 42.7 0 0 0 24.213-10.03l31.294-26.613c15.942-13.557 39.362-13.557 55.304 0m21.182 124L256 225.833l-48.918-48.917l-30.165 30.165L225.834 256l-48.917 48.917l30.165 30.165L256 286.165l48.917 48.917l30.165-30.165L286.165 256l48.917-48.918z"
-                                    />
-                                </g>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                                <defs>
+                                    <mask id="ipTJuice0">
+                                        <g fill="none" stroke="#fff" stroke-width="4">
+                                            <path fill="#555555" stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15 24h18l-1.8 20H16.8z"/>
+                                            <rect width="26" height="6" x="11" y="18" rx="3"/>
+                                            <path fill="#555555"
+                                                  d="M24 8c-5.523 0-10 4.477-10 10h20c0-5.523-4.477-10-10-10Z"/>
+                                            <path stroke-linecap="round" d="m28 4l-2 4"/>
+                                        </g>
+                                    </mask>
+                                </defs>
+                                <path fill="#a523cc" d="M0 0h48v48H0z" mask="url(#ipTJuice0)"/>
                             </svg>
                             <div
                                     class="ms-auto sm:text-start text-end">
@@ -387,20 +393,24 @@ if (!$_SESSION['email']) {
                                         class="font-medium text-2xl ">
                                     <?php
                                     include_once '../../config/config.php';
-                                    function countReservationsCanceled()
+                                    function countBoissonsJus()
                                     {
                                         $conn = getConnexion();
-                                        $query = "SELECT COUNT(*) as total FROM reservations WHERE statut= 'canceled'";
+                                        $query = "SELECT SUM(quantite) as total FROM boissons b 
+                                        JOIN categories c ON b.categorie_id = c.id
+                                        WHERE c.nom = 'Jus'";
+
                                         $result = $conn->query($query);
                                         $data = $result->fetch();
-                                        return $data['total'];
+
+                                        return isset($data['total']) ? $data['total'] : 0;
                                     }
 
-                                    echo "<strong>" . countReservationsCanceled() . "</strong>";
+                                    echo "<strong>" . countBoissonsJus() . "</strong>";
                                     ?>
                                 </h5>
                                 <p
-                                        class="text-error font-medium">Refusées</p>
+                                        class="text-[#a523cc] font-medium">Boisson de jus</p>
                             </div>
                         </div>
                     </div>
@@ -408,15 +418,23 @@ if (!$_SESSION['email']) {
             </div>
             <div
                     class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
-                <div class="card shadow-none border-s border-success">
+                <div class="card shadow-none border-s border-[#cc6f23]">
                     <div class="card-body p-8">
                         <div
                                 class="flex justify-between items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
-                                <g fill="none" stroke="#11b25d" stroke-linecap="round" stroke-width="1.5">
-                                    <path stroke-linejoin="round" d="m8.5 12.5l2 2l5-5"/>
-                                    <path d="M3.03 13.078a2.5 2.5 0 0 1 0-2.157c.14-.294.38-.576.86-1.14c.192-.225.288-.337.368-.457a2.5 2.5 0 0 0 .376-.907c.028-.142.04-.289.063-.583c.059-.738.088-1.107.197-1.416A2.5 2.5 0 0 1 6.42 4.894c.308-.109.677-.139 1.416-.197c.294-.024.44-.036.582-.064a2.5 2.5 0 0 0 .908-.376c.12-.08.232-.175.456-.367c.564-.48.846-.72 1.14-.861a2.5 2.5 0 0 1 2.157 0c.295.14.577.38 1.14.861c.225.192.337.287.457.367a2.5 2.5 0 0 0 .908.376c.141.028.288.04.582.064c.739.058 1.108.088 1.416.197a2.5 2.5 0 0 1 1.525 1.524M4.894 17.581a2.5 2.5 0 0 0 1.525 1.524c.308.11.677.139 1.416.197c.294.024.44.036.582.064a2.5 2.5 0 0 1 .908.376c.12.08.232.175.456.367c.564.48.846.72 1.14.861a2.5 2.5 0 0 0 2.157 0c.295-.14.577-.38 1.14-.861a5 5 0 0 1 .457-.367a2.5 2.5 0 0 1 .908-.376c.141-.028.288-.04.582-.064c.739-.058 1.108-.088 1.416-.197a2.5 2.5 0 0 0 1.525-1.524c.109-.308.138-.678.197-1.416c.023-.294.035-.441.063-.583c.064-.324.192-.633.376-.907c.08-.12.176-.232.367-.457c.48-.564.721-.846.862-1.14a2.5 2.5 0 0 0 0-2.157"/>
-                                </g>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                                <defs>
+                                    <mask id="ipTBeer0">
+                                        <g fill="none" stroke="#fff" stroke-linecap="round" stroke-width="4">
+                                            <path stroke-linejoin="round"
+                                                  d="M25.5 19H33a2 2 0 0 1 2 2v23H13V21a2 2 0 0 1 2-2h2.5"/>
+                                            <path fill="#555555" stroke-linejoin="round"
+                                                  d="M17 8h-2.5a5.5 5.5 0 1 0 0 11H19v10.5a2.5 2.5 0 0 0 5 0V19h9.5a5.5 5.5 0 1 0 0-11H29s-1-4-6-4s-6 4-6 4"/>
+                                            <path d="M35 21h5a2 2 0 0 1 2 2v5a4 4 0 0 1-4 4h-3"/>
+                                        </g>
+                                    </mask>
+                                </defs>
+                                <path fill="#cc6f23" d="M0 0h48v48H0z" mask="url(#ipTBeer0)"/>
                             </svg>
                             <div
                                     class="ms-auto sm:text-start text-end">
@@ -424,20 +442,24 @@ if (!$_SESSION['email']) {
                                         class="font-medium text-2xl ">
                                     <?php
                                     include_once '../../config/config.php';
-                                    function countReservationsAccepted()
+                                    function countBoissonsBiere()
                                     {
                                         $conn = getConnexion();
-                                        $query = "SELECT COUNT(*) as total FROM reservations WHERE statut= 'accepted'";
+                                        $query = "SELECT SUM(quantite) as total FROM boissons b 
+                                        JOIN categories c ON b.categorie_id = c.id
+                                        WHERE c.nom = 'Bière'";
+
                                         $result = $conn->query($query);
                                         $data = $result->fetch();
-                                        return $data['total'];
+
+                                        return isset($data['total']) ? $data['total'] : 0;
                                     }
 
-                                    echo "<strong>" . countReservationsAccepted() . "</strong>";
+                                    echo "<strong>" . countBoissonsBiere() . "</strong>";
                                     ?>
                                 </h5>
                                 <p
-                                        class="text-success font-medium">Acceptées</p>
+                                        class="text-[#cc6f23] font-medium">Bières</p>
                             </div>
                         </div>
                     </div>
@@ -445,13 +467,23 @@ if (!$_SESSION['email']) {
             </div>
             <div
                     class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
-                <div class="card shadow-none border-s border-[#118bb2]">
+                <div class="card shadow-none border-s border-[#23a2cc]">
                     <div class="card-body p-8">
                         <div
                                 class="flex justify-between items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32">
-                                <path fill="#118bb2"
-                                      d="M10 18a2 2 0 1 0 0-4a2 2 0 0 0 0 4m6 0a2 2 0 1 0 0-4a2 2 0 0 0 0 4m8-2a2 2 0 1 1-4 0a2 2 0 0 1 4 0m6 0c0 7.732-6.268 14-14 14S2 23.732 2 16S8.268 2 16 2s14 6.268 14 14m-2 0c0-6.627-5.373-12-12-12S4 9.373 4 16s5.373 12 12 12s12-5.373 12-12"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                                <defs>
+                                    <mask id="ipTWaterLevel0">
+                                        <g fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="4">
+                                            <path stroke-linecap="round"
+                                                  d="M24 44c8.284 0 15-6.716 15-15C39 15 24 4 24 4S9 15 9 29c0 8.284 6.716 15 15 15"
+                                                  clip-rule="evenodd"/>
+                                            <path fill="#555555"
+                                                  d="M9 29c0 8.284 6.716 15 15 15s15-6.716 15-15c0 0-9 3-15 0S9 29 9 29Z"/>
+                                        </g>
+                                    </mask>
+                                </defs>
+                                <path fill="#23a2cc" d="M0 0h48v48H0z" mask="url(#ipTWaterLevel0)"/>
                             </svg>
                             <div
                                     class="ms-auto sm:text-start text-end">
@@ -459,20 +491,26 @@ if (!$_SESSION['email']) {
                                         class="font-medium text-2xl ">
                                     <?php
                                     include_once '../../config/config.php';
-                                    function countReservationsPending()
+
+                                    function countBoissonsEau()
                                     {
                                         $conn = getConnexion();
-                                        $query = "SELECT COUNT(*) as total FROM reservations WHERE statut= 'pending'";
+                                        $query = "SELECT SUM(quantite) as total FROM boissons b 
+                                        JOIN categories c ON b.categorie_id = c.id
+                                        WHERE c.nom = 'Eau Minérale'";
+
                                         $result = $conn->query($query);
                                         $data = $result->fetch();
-                                        return $data['total'];
+
+                                        return isset($data['total']) ? $data['total'] : 0;
                                     }
 
-                                    echo "<strong>" . countReservationsPending() . "</strong>";
+                                    echo "<strong>" . countBoissonsEau() . "</strong>";
                                     ?>
+
                                 </h5>
                                 <p
-                                        class="text-[#118bb2] font-medium">En attente</p>
+                                        class="text-[#23a2cc] font-medium">Eau Minérale</p>
                             </div>
                         </div>
                     </div>
@@ -499,22 +537,54 @@ if (!$_SESSION['email']) {
                                         class="font-medium text-2xl ">
                                     <?php
                                     include_once '../../config/config.php';
-                                    function countAllReservations()
+                                    function countAllBoissons()
                                     {
                                         $conn = getConnexion();
-                                        $query = "SELECT COUNT(*) as total FROM reservations";
+                                        $query = "SELECT SUM(quantite) as total FROM boissons";
                                         $result = $conn->query($query);
                                         $data = $result->fetch();
-                                        return $data['total'];
+                                        return isset($data['total']) ? $data['total'] : 0;
                                     }
 
-                                    echo "<strong>" . countAllReservations() . "</strong>";
+                                    echo "<strong>" . countAllBoissons() . "</strong>";
                                     ?>
                                 </h5>
                                 <p
-                                        class="text-[#2111b2] font-medium">Total</p>
+                                        class="text-[#2111b2] font-medium">Total en stock</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-6 mt-6">
+            <div class="card-body">
+                <div class="grid grid-cols-12 gap-6 items-center justify-between">
+                    <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 p-8">
+                        <form class="max-w-[90rem] px-3 flex flex-1 items-center border rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="size-4.5 transition-colors duration-200" fill="currentColor"
+                                 viewBox="0 0 24 24">
+                                <path
+                                        d="M3.316 13.781l.73-.171-.73.171zm0-5.457l.73.171-.73-.171zm15.473 0l.73-.171-.73.171zm0 5.457l.73.171-.73-.171zm-5.008 5.008l-.171-.73.171.73zm-5.457 0l-.171.73.171-.73zm0-15.473l-.171-.73.171.73zm5.457 0l.171-.73-.171.73zM20.47 21.53a.75.75 0 101.06-1.06l-1.06 1.06zM4.046 13.61a11.198 11.198 0 010-5.115l-1.46-.342a12.698 12.698 0 000 5.8l1.46-.343zm14.013-5.115a11.196 11.196 0 010 5.115l1.46.342a12.698 12.698 0 000-5.8l-1.46.343zm-4.45 9.564a11.196 11.196 0 01-5.114 0l-.342 1.46c1.907.448 3.892.448 5.8 0l-.343-1.46zM8.496 4.046a11.198 11.198 0 015.115 0l.342-1.46a12.698 12.698 0 00-5.8 0l.343 1.46zm0 14.013a5.97 5.97 0 01-4.45-4.45l-1.46.343a7.47 7.47 0 005.568 5.568l.342-1.46zm5.457 1.46a7.47 7.47 0 005.568-5.567l-1.46-.342a5.97 5.97 0 01-4.45 4.45l.342 1.46zM13.61 4.046a5.97 5.97 0 014.45 4.45l1.46-.343a7.47 7.47 0 00-5.568-5.567l-.342 1.46zm-5.457-1.46a7.47 7.47 0 00-5.567 5.567l1.46.342a5.97 5.97 0 014.45-4.45l-.343-1.46zm8.652 15.28l3.665 3.664 1.06-1.06-3.665-3.665-1.06 1.06z"/>
+                            </svg>
+                            <input type="text"
+                                   class="w-full border-none p-3 focus:border-none focus:ring-0 focus:outline-none"
+                                   id="input-search" placeholder="Rechercher les boissons..."/>
+                        </form>
+                    </div>
+                    <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12 p-8">
+                        <div class="flex justify-end items-center gap-3">
+                            <div class="action-btn bg-gray-900/5 show-btn">
+                                <a href="javascript:void(0)"
+                                   class="delete-multiple btn flex gap-2 items-center btn-light-error">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28"><path fill="#c5bc1e" d="M13.28 2.218a.75.75 0 0 0-1.06 1.06l1.708 1.709c-5.773.038-10.442 4.73-10.442 10.512c0 5.806 4.707 10.513 10.513 10.513c5.716 0 10.366-4.562 10.509-10.244a.75.75 0 0 0-1.5-.038a9.013 9.013 0 1 1-9.056-9.243L12.22 8.219a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06zm5 10.001a.75.75 0 0 1 0 1.06l-5.25 5.25a.75.75 0 0 1-1.06 0l-2.252-2.25a.75.75 0 0 1 1.06-1.061l1.722 1.72l4.72-4.72a.75.75 0 0 1 1.06.001"/></svg>
+                                    Réapprovisionner
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -536,7 +606,7 @@ if (!$_SESSION['email']) {
                                 <img class="mx-auto rounded-full h-30 w-auto mt-8" src="../../../assets/logo.jpg"
                                      alt="Your Company">
                                 <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                                    Compléter les champs pour faire une réservation</h2>
+                                    Compléter les champs pour enrégistrer une boisson</h2>
                             </div>
 
                             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -548,83 +618,60 @@ if (!$_SESSION['email']) {
                                 use Ramsey\Uuid\Uuid;
 
                                 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-                                    $nom = trim($_POST["name"]);
-                                    $surname = trim($_POST["surname"]);
-                                    $telephone = trim($_POST["phone"]);
-                                    $service_id = trim($_POST["services"]);
-                                    $date = trim($_POST["date"]);
-                                    $status = 'pending';
+                                    $nom = trim($_POST["nom"]);
+                                    $quantite = trim($_POST["quantite"]);
+                                    $prix_unitaire = trim($_POST["prix_unitaire"]);
+                                    $prix_gros = trim($_POST["prix_gros"]);
+                                    $categorie_id = trim($_POST["categorie"]);
 
-                                    if (!empty($nom) && !empty($surname) && !empty($telephone) && !empty($service_id) && !empty($date)) {
+                                    if (!empty($nom) && !empty($quantite) && !empty($prix_unitaire) && !empty($prix_gros) && !empty($categorie_id)) {
                                         try {
                                             $conn = getConnexion();
 
-                                            // Vérifier si le client existe déjà
-                                            $sql = "SELECT id FROM clients WHERE phone = :phone";
+                                            $boisson_id = Uuid::uuid4()->toString();
+
+                                            $sql = "INSERT INTO boissons (id, nom, quantite, prix_unitaire, prix_gros, categorie_id)
+                                            VALUES (:id, :nom, :quantite, :prix_unitaire, :prix_gros, :categorie_id)";
+
                                             $stmt = $conn->prepare($sql);
-                                            $stmt->bindParam(":phone", $telephone);
-                                            $stmt->execute();
-                                            $client = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                                            if ($client) {
-                                                $client_id = $client["id"];
-                                            } else {
-                                                // Générer un ID unique
-                                                $client_id = Uuid::uuid4()->toString();
-
-                                                // Insérer un nouveau client
-                                                $sql = "INSERT INTO clients (id, first_name, last_name, phone) VALUES (:id, :first_name, :last_name, :phone)";
-                                                $stmt = $conn->prepare($sql);
-                                                $stmt->bindParam(":id", $client_id);
-                                                $stmt->bindParam(":first_name", $nom);
-                                                $stmt->bindParam(":last_name", $surname);
-                                                $stmt->bindParam(":phone", $telephone);
-                                                $stmt->execute();
-                                            }
-
-                                            $reservation_id = Uuid::uuid4()->toString();
-
-                                            $sql = "INSERT INTO reservations (id, first_name, last_name, phone, service, date_reservation, statut) VALUES (:id, :first_name, :last_name, :phone, :service, :date_reservation, :statut)";
-                                            $stmt = $conn->prepare($sql);
                                             $stmt->execute([
-                                                ":id" => $reservation_id,
-                                                ":first_name" => $nom,
-                                                ":last_name" => $surname,
-                                                ":phone" => $telephone,
-                                                ":service" => $service_id,
-                                                ":date_reservation" => $date,
-                                                ":statut" => $status
+                                                ':id' => $boisson_id,
+                                                ':nom' => $nom,
+                                                ':quantite' => $quantite,
+                                                ':prix_unitaire' => $prix_unitaire,
+                                                ':prix_gros' => $prix_gros,
+                                                ':categorie_id' => $categorie_id
                                             ]);
 
-                                            echo "<script>console.log('Réservation enregistrée avec succès.')</script>";
+                                            echo "<div class='p-3 bg-green-400 text-center text-black '>Boisson enregistrée avec succès.</div>";
                                         } catch (PDOException $e) {
-                                            echo "Erreur : " . $e->getMessage();
+                                            echo "<script>console.log('Erreur lors de l\'enrégistrement de la boisson.')</script>";
                                         }
                                     } else {
-                                        echo "Veuillez remplir tous les champs.";
+                                        echo "<div class='p-3 bg-red-400 text-center text-black '>Veuillez remplir tous les champs.</div>";
                                     }
                                 }
+
                                 ?>
 
-
-                                <form class="space-y-6" action="#" method="POST">
+                                <form class="space-y-6" method="POST">
                                     <div class="grid lg:grid-cols-2 justify-between gap-3 items-center">
                                         <div>
-                                            <label for="name" class="block text-sm/6 font-medium text-gray-900">Nom du
-                                                client</label>
+                                            <label for="nom"
+                                                   class="block text-sm/6 font-medium text-gray-900">Nom</label>
                                             <div class="mt-2">
-                                                <input type="text" name="name" id="name"
+                                                <input type="text" name="nom" id="nom"
                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                             </div>
                                         </div>
 
                                         <div>
                                             <div class="flex items-center justify-between">
-                                                <label for="surname" class="block text-sm/6 font-medium text-gray-900">Prénom
-                                                    du client</label>
+                                                <label for="quantite" class="block text-sm/6 font-medium text-gray-900">Quantité</label>
                                             </div>
                                             <div class="mt-2">
-                                                <input type="text" name="surname" id="surname"
+                                                <input type="number" name="quantite" id="quantite"
                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                             </div>
                                         </div>
@@ -632,42 +679,42 @@ if (!$_SESSION['email']) {
 
                                     <div>
                                         <div class="flex items-center justify-between">
-                                            <label for="phone" class="block text-sm/6 font-medium text-gray-900">Téléphone
-                                                du client</label>
+                                            <label for="prix_unitaire"
+                                                   class="block text-sm/6 font-medium text-gray-900">Prix
+                                                Unitaire</label>
                                         </div>
                                         <div class="mt-2">
-                                            <input type="text" name="phone" id="phone"
+                                            <input type="number" name="prix_unitaire" id="prix_unitaire"
                                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label for="date" class="block text-sm/6 font-medium text-gray-900">Journée
-                                            du</label>
+                                        <label for="prix_gros" class="block text-sm/6 font-medium text-gray-900">Prix de
+                                            gros</label>
                                         <div class="mt-2">
-                                            <input type="datetime-local" name="date" id="date"
+                                            <input type="number" name="prix_gros" id="prix_gros"
                                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label for="services" class="block text-sm/6 font-medium text-gray-900">Type de
-                                            service</label>
+                                        <label for="categorie" class="block text-sm/6 font-medium text-gray-900">Categorie</label>
                                         <div class="mt-2">
-                                            <select id="services" name="services"
+                                            <select id="categorie" name="categorie"
                                                     class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                                                <option disabled selected>Choisir un service</option>
+                                                <option disabled selected>Choisir une categorie</option>
                                                 <?php
                                                 include_once '../../config/config.php';
 
                                                 $conn = getConnexion();
-                                                $sql = "SELECT id, name FROM services";
+                                                $sql = "SELECT * FROM categories";
                                                 $stmt = $conn->prepare($sql);
                                                 $stmt->execute();
-                                                $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                                $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                                                foreach ($services as $service) {
-                                                    echo "<option value='" . htmlspecialchars($service['name']) . "'>" . htmlspecialchars($service['name']) . "</option>";
+                                                foreach ($categories as $categorie) {
+                                                    echo "<option value='" . htmlspecialchars($categorie['id']) . "'>" . htmlspecialchars($categorie['nom']) . "</option>";
                                                 }
                                                 ?>
                                             </select>
@@ -702,30 +749,26 @@ if (!$_SESSION['email']) {
                                     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
                                     $start_from = ($page - 1) * $items_per_page;
 
-                                    // Récupérer le total des réservations pour calculer le nombre de pages
-                                    $sql_total = "SELECT COUNT(*) FROM reservations";
+                                    // Connexion à la base de données
+                                    include_once '../../config/config.php';
+                                    $conn = getConnexion();
+
+                                    // Requête pour récupérer le total des boissons pour calculer le nombre de pages
+                                    $sql_total = "SELECT COUNT(*) FROM boissons";
                                     $stmt_total = $conn->prepare($sql_total);
                                     $stmt_total->execute();
-                                    $total_reservations = $stmt_total->fetchColumn();
-                                    $total_pages = ceil($total_reservations / $items_per_page);
+                                    $total_boissons = $stmt_total->fetchColumn();
+                                    $total_pages = ceil($total_boissons / $items_per_page);
 
-                                    // Requête pour récupérer les réservations de la page actuelle
-                                    $sql = "SELECT * FROM reservations LIMIT :start_from, :items_per_page";
-                                    $stmt = $conn->prepare($sql);
+                                    // Requête pour récupérer les boissons de la page actuelle
+                                    $query = "SELECT b.id as boisson_id, b.nom as boisson_nom, b.quantite as boisson_qty, b.prix_unitaire as boisson_pu, b.prix_gros as boisson_pg, c.nom as categorie FROM boissons b 
+                                    JOIN categories c ON b.categorie_id = c.id 
+                                    LIMIT :start_from, :items_per_page";
+                                    $stmt = $conn->prepare($query);
                                     $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
                                     $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
                                     $stmt->execute();
-                                    $reservations = $stmt->fetchAll();
-
-                                    function getInitials($name)
-                                    {
-                                        $words = explode(" ", $name);
-                                        $initials = "";
-                                        foreach ($words as $w) {
-                                            $initials .= $w[0];
-                                        }
-                                        return $initials;
-                                    }
+                                    $boissons = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     ?>
 
                                     <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
@@ -734,68 +777,86 @@ if (!$_SESSION['email']) {
                                             <th class="p-4 ps-0">
                                                 <div class="n-chk align-self-center text-center">
                                                     <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input rounded-sm" id="contact-check-all"/>
+                                                        <input type="checkbox" class="form-check-input rounded-sm"
+                                                               id="contact-check-all"/>
                                                         <label class="form-check-label" for="contact-check-all"></label>
                                                         <span class="new-control-indicator"></span>
                                                     </div>
                                                 </div>
                                             </th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Nom</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Prénom</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Téléphone</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Date de reservation</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Services demandés</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Status</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Action</th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                Nom
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                Quantité
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">P.
+                                                Unitaire
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">P.
+                                                Gros
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                Categories
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                Action
+                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-border divide-slate-150">
                                         <?php
-                                        foreach ($reservations as $result) {
+                                        foreach ($boissons as $boisson) {
                                             echo '
                                                 <tr class="search-items">
                                                     <td class="p-4 ps-0 whitespace-nowrap">
                                                         <div class="n-chk align-self-center text-center">
                                                             <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $result['id'] . '" />
-                                                                <label class="form-check-label" for="checkbox' . $result['id'] . '"></label>
+                                                                <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $boisson['boisson_id'] . '" />
+                                                                <label class="form-check-label" for="checkbox' . $boisson['boisson_id'] . '"></label>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td class="p-4 ps-0 whitespace-nowrap">
                                                         <div class="flex gap-3 items-center">
                                                             <div>
-                                                                <p class="rounded-circle bg-indigo-200 items-center justify-center leading-9 text-center font-bold h-9 w-9 rounded-full"> ' . htmlspecialchars($initials = getInitials($result['first_name'])) . htmlspecialchars($initials = getInitials($result['last_name'])) . ' </p>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="user-name mb-1" data-name="' . htmlspecialchars($result["first_name"]) . '">' . htmlspecialchars($result["first_name"]) . '</h6>
+                                                                <h6 class="user-name mb-1" data-name="' . $boisson['boisson_nom'] . '">' . htmlspecialchars($boisson['boisson_nom']) . '</h6>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($result["last_name"]) . '">' . htmlspecialchars($result["last_name"]) . '</td>
-                                                    <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($result["phone"]) . '">' . htmlspecialchars($result["phone"]) . '</td>
-                                                    <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($result["date_reservation"]) . '">' . htmlspecialchars($result["date_reservation"]) . '</td>
-                                                    <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($result["service"]) . '">' . htmlspecialchars($result["service"]) . '</td>
-                                                    <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($result["statut"]) . '">' . htmlspecialchars($result["statut"]) . '</td>
+                                                    <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_qty']) . '</td>
+                                                    <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_pu']) . '</td>
+                                                    <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_pg']) . '</td>
+                                                    <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['categorie']) . '</td>
                                                     <td class="text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">
-                                                        <div class="action-btn flex gap-3">
-                                                            <a href="javascript:void(0)" class="text-info flex justify-center items-center bg-gray-900/5 p-2 rounded-full edit cursor-pointer">
-                                                                <!-- SVG icon for edit -->
-                                                            </a>
-                                                            <a href="javascript:void(0)"  class="text-black delete bg-gray-900/5 p-2 rounded-full cursor-pointer">
-                                                                <!-- SVG icon for delete -->
+                                                        <div class="action-btn flex gap-3">';
+
+                                            if ($_SESSION['email'] === 'ngahemeniw@gmail.com') {
+                                                echo '
+                                                                    <a href="javascript:void(0)" x-tooltip.placement.top="\'Supprimer\'" class="text-black delete bg-gray-900/5 p-2 rounded-full cursor-pointer">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#c54c1e" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 5.5l-.62 10.025c-.158 2.561-.237 3.842-.88 4.763a4 4 0 0 1-1.2 1.128c-.957.584-2.24.584-4.806.584c-2.57 0-3.855 0-4.814-.585a4 4 0 0 1-1.2-1.13c-.642-.922-.72-2.205-.874-4.77L4.5 5.5M9 11.735h6m-4.5 3.919h3M3 5.5h18m-4.945 0l-.682-1.408c-.454-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.034 2c-1.065 0-1.598 0-2.039.234a2 2 0 0 0-.278.18c-.396.303-.617.788-1.059 1.757L8.053 5.5" color="#c54c1e"/></svg>
+                                                                    </a>';
+                                            }
+                                            echo '
+                                                            <a href="javascript:void(0)" x-tooltip.placement.top="\'Editer\'" class="text-info flex justify-center items-center bg-gray-900/5 p-2 rounded-full edit cursor-pointer">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#1e80c5" fill-rule="evenodd" d="M21.455 5.416a.75.75 0 0 1-.096.943l-9.193 9.192a.75.75 0 0 1-.34.195l-3.829 1a.75.75 0 0 1-.915-.915l1-3.828a.8.8 0 0 1 .161-.312L17.47 2.47a.75.75 0 0 1 1.06 0l2.829 2.828a1 1 0 0 1 .096.118m-1.687.412L18 4.061l-8.518 8.518l-.625 2.393l2.393-.625z" clip-rule="evenodd"/><path fill="#1e80c5" d="M19.641 17.16a44.4 44.4 0 0 0 .261-7.04a.4.4 0 0 1 .117-.3l.984-.984a.198.198 0 0 1 .338.127a46 46 0 0 1-.21 8.372c-.236 2.022-1.86 3.607-3.873 3.832a47.8 47.8 0 0 1-10.516 0c-2.012-.225-3.637-1.81-3.873-3.832a46 46 0 0 1 0-10.67c.236-2.022 1.86-3.607 3.873-3.832a48 48 0 0 1 7.989-.213a.2.2 0 0 1 .128.34l-.993.992a.4.4 0 0 1-.297.117a46 46 0 0 0-6.66.255a2.89 2.89 0 0 0-2.55 2.516a44.4 44.4 0 0 0 0 10.32a2.89 2.89 0 0 0 2.55 2.516c3.355.375 6.827.375 10.183 0a2.89 2.89 0 0 0 2.55-2.516"/></svg>
                                                             </a>
                                                         </div>
                                                     </td>
-                                                </tr>'
-                                            ;
+                                                </tr>';
                                         }
                                         ?>
                                         </tbody>
                                     </table>
 
                                     <!-- Pagination -->
-                                    <div class="pagination mx-auto justify-center items-center">
+                                    <div class="pagination mx-auto justify-center items-center bottom-0">
                                         <ul class="flex list-none gap-2">
                                             <?php if ($page > 1): ?>
                                                 <li><a href="?page=<?php echo $page - 1; ?>"
@@ -812,13 +873,13 @@ if (!$_SESSION['email']) {
                                                     </a></li>
                                             <?php endif; ?>
 
-                                            <?php for($i = 1; $i <= $total_pages; $i++): ?>
+                                            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                                                 <li><a href="?page=<?php echo $i; ?>"
                                                        class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
                                                 </li>
                                             <?php endfor; ?>
 
-                                            <?php if($page < $total_pages): ?>
+                                            <?php if ($page < $total_pages): ?>
                                                 <li>
                                                     <a href="?page=<?php echo $page + 1; ?>"
                                                        x-tooltip.placement.top="'Suivant'"
@@ -848,6 +909,7 @@ if (!$_SESSION['email']) {
         <!-- Table reservations End -->
     </main>
 </div>
+
 
 <div id="x-teleport-target"></div>
 <script>

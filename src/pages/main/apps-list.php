@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    if (!$_SESSION['email']) {
-        header('location:../auth/sign-in.php');
-    }
+session_start();
+if (!$_SESSION['email']) {
+    header('location:../auth/sign-in.php');
+}
 ?>
 
 
@@ -19,7 +19,7 @@
     <title>Tickets</title>
 
     <!-- Favicon icon-->
-    <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg" />
+    <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg"/>
 
     <!-- CSS Assets -->
     <link rel="stylesheet" href="../../components/app.css"/>
@@ -161,19 +161,54 @@
                         </svg>
                     </a>
 
-                    <!-- Elements -->
-<!--                    <a href="elements-avatar.html"-->
-<!--                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"-->
-<!--                       x-tooltip.placement.right="'Elements'">-->
-<!--                        <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                            <path-->
-<!--                                    d="M13.3111 14.75H5.03356C3.36523 14.75 2.30189 12.9625 3.10856 11.4958L5.24439 7.60911L7.24273 3.96995C8.07689 2.45745 10.2586 2.45745 11.0927 3.96995L13.1002 7.60911L14.0627 9.35995L15.2361 11.4958C16.0427 12.9625 14.9794 14.75 13.3111 14.75Z"-->
-<!--                                    fill="currentColor"/>-->
-<!--                            <path fill-opacity="0.3"-->
-<!--                                  d="M21.1667 15.2083C21.1667 18.4992 18.4992 21.1667 15.2083 21.1667C11.9175 21.1667 9.25 18.4992 9.25 15.2083C9.25 15.0525 9.25917 14.9058 9.26833 14.75H13.3108C14.9792 14.75 16.0425 12.9625 15.2358 11.4958L14.0625 9.36C14.4292 9.28666 14.8142 9.25 15.2083 9.25C18.4992 9.25 21.1667 11.9175 21.1667 15.2083Z"-->
-<!--                                  fill="currentColor"/>-->
-<!--                        </svg>-->
-<!--                    </a>-->
+                    <!-- Boissons Page -->
+                    <a href="boisson-gest.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Gestion des boissons'">
+                        <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                    d="M13.3111 14.75H5.03356C3.36523 14.75 2.30189 12.9625 3.10856 11.4958L5.24439 7.60911L7.24273 3.96995C8.07689 2.45745 10.2586 2.45745 11.0927 3.96995L13.1002 7.60911L14.0627 9.35995L15.2361 11.4958C16.0427 12.9625 14.9794 14.75 13.3111 14.75Z"
+                                    fill="currentColor"/>
+                            <path fill-opacity="0.3"
+                                  d="M21.1667 15.2083C21.1667 18.4992 18.4992 21.1667 15.2083 21.1667C11.9175 21.1667 9.25 18.4992 9.25 15.2083C9.25 15.0525 9.25917 14.9058 9.26833 14.75H13.3108C14.9792 14.75 16.0425 12.9625 15.2358 11.4958L14.0625 9.36C14.4292 9.28666 14.8142 9.25 15.2083 9.25C18.4992 9.25 21.1667 11.9175 21.1667 15.2083Z"
+                                  fill="currentColor"/>
+                        </svg>
+                    </a>
+
+                    <!-- Services Page -->
+                    <a href="services.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Nos services'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M4.979 9.685C2.993 8.891 2 8.494 2 8s.993-.89 2.979-1.685l2.808-1.123C9.773 4.397 10.767 4 12 4s2.227.397 4.213 1.192l2.808 1.123C21.007 7.109 22 7.506 22 8s-.993.89-2.979 1.685l-2.808 1.124C14.227 11.603 13.233 12 12 12s-2.227-.397-4.213-1.191z"/>
+                            <path fill="currentColor" fill-rule="evenodd"
+                                  d="M2 8c0 .494.993.89 2.979 1.685l2.808 1.124C9.773 11.603 10.767 12 12 12s2.227-.397 4.213-1.191l2.808-1.124C21.007 8.891 22 8.494 22 8s-.993-.89-2.979-1.685l-2.808-1.123C14.227 4.397 13.233 4 12 4s-2.227.397-4.213 1.192L4.98 6.315C2.993 7.109 2 7.506 2 8"
+                                  clip-rule="evenodd"/>
+                            <path fill="currentColor"
+                                  d="m5.766 10l-.787.315C2.993 11.109 2 11.507 2 12s.993.89 2.979 1.685l2.808 1.124C9.773 15.603 10.767 16 12 16s2.227-.397 4.213-1.191l2.808-1.124C21.007 12.891 22 12.493 22 12s-.993-.89-2.979-1.685L18.234 10l-2.021.809C14.227 11.603 13.233 12 12 12s-2.227-.397-4.213-1.191z"
+                                  opacity="0.7"/>
+                            <path fill="currentColor"
+                                  d="m5.766 14l-.787.315C2.993 15.109 2 15.507 2 16s.993.89 2.979 1.685l2.808 1.124C9.773 19.603 10.767 20 12 20s2.227-.397 4.213-1.192l2.808-1.123C21.007 16.891 22 16.494 22 16c0-.493-.993-.89-2.979-1.685L18.234 14l-2.021.809C14.227 15.603 13.233 16 12 16s-2.227-.397-4.213-1.191z"
+                                  opacity="0.4"/>
+                        </svg>
+                    </a>
+
+                    <!-- Ventes Page -->
+                    <a href="sales.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Nos Ventes'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M3.045 11.75c.126.714.303 1.541.51 2.507l.428 2c.487 2.273.731 3.409 1.556 4.076S7.526 21 9.85 21h4.3c2.324 0 3.486 0 4.31-.667c.826-.667 1.07-1.803 1.556-4.076l.429-2c.207-.966.384-1.793.51-2.507z"
+                                  opacity="0.5"/>
+                            <path fill="currentColor" fill-rule="evenodd"
+                                  d="M9.25 14a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75"
+                                  clip-rule="evenodd"/>
+                            <path fill="currentColor"
+                                  d="M8.33 2.665a.75.75 0 0 1 1.341.67l-1.835 3.67Q8.56 7 9.422 7h5.156q.863-.001 1.586.005l-1.835-3.67a.75.75 0 0 1 1.342-.67l2.201 4.402c1.353.104 2.202.37 2.75 1.047c.436.539.576 1.209.525 2.136H21q.075 0 .146.014a13 13 0 0 1-.19 1.486H3.045a13 13 0 0 1-.192-1.486A1 1 0 0 1 3 10.25h-.147c-.051-.927.09-1.597.525-2.136c.548-.678 1.397-.943 2.75-1.047z"/>
+                        </svg>
+                    </a>
                 </div>
 
                 <!-- Bottom Links -->
@@ -192,9 +227,14 @@
 
                     <!-- Logout -->
                     <a href="../auth/logout.php"
-                       x-tooltip.placement.right="'Logout'"
+                       x-tooltip.placement.right="'Déconnexion'"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                        <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M12 20a8 8 0 1 1 0-16" opacity="0.5"/><path stroke-linejoin="round" d="M10 12h10m0 0l-3-3m3 3l-3 3"/></g></svg>
+                        <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                                <path d="M12 20a8 8 0 1 1 0-16" opacity="0.5"/>
+                                <path stroke-linejoin="round" d="M10 12h10m0 0l-3-3m3 3l-3 3"/>
+                            </g>
+                        </svg>
                     </a>
 
                     <!-- Profile -->
@@ -217,7 +257,7 @@
                                     </div>
                                     <div>
                                         <p
-                                           class="text-base font-medium text-slate-700 focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light">
+                                                class="text-base font-medium text-slate-700 focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light">
                                             <?php echo $_SESSION['username']; ?>
                                         </p>
                                         <p class="text-xs text-slate-400 dark:text-navy-300">
@@ -312,14 +352,15 @@
                                 <li>
                                     <div class="p-0.5 rounded-full bg-black mx-2.5 flex items-center"></div>
                                 </li>
-                                <li class="flex items-center text-sm text-link dark:text-blacklink leading-none" aria-current="page">
+                                <li class="flex items-center text-sm text-link dark:text-blacklink leading-none"
+                                    aria-current="page">
                                     Tickets
                                 </li>
                             </ol>
                         </div>
                         <div class="col-span-3 -mb-10">
                             <div class="flex justify-center">
-                                <img src="../../../assets/ChatBc.png" alt="" class="md:-mb-7 -mb-4 h-40 w-40" />
+                                <img src="../../../assets/ChatBc.png" alt="" class="md:-mb-7 -mb-4 h-40 w-40"/>
                             </div>
                         </div>
                     </div>
@@ -1337,8 +1378,10 @@
                             class="w-full flex flex-col bg-white p-8 dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
                         <div class="flex min-h-full flex-col justify-center">
                             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                                <img class="mx-auto rounded-full h-30 w-auto mt-8" src="../../../assets/logo.jpg" alt="Your Company">
-                                <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Compléter les champs pour enrégistrer un ticket</h2>
+                                <img class="mx-auto rounded-full h-30 w-auto mt-8" src="../../../assets/logo.jpg"
+                                     alt="Your Company">
+                                <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
+                                    Compléter les champs pour enrégistrer un ticket</h2>
                             </div>
 
                             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -1412,36 +1455,44 @@
                                 <form class="space-y-3" action="#" method="POST">
                                     <div class="grid lg:grid-cols-2 grid-cols-1 justify-between gap-3 items-center">
                                         <div>
-                                            <label for="name" class="block text-sm/6 font-medium text-gray-900">Nom du client</label>
+                                            <label for="name" class="block text-sm/6 font-medium text-gray-900">Nom du
+                                                client</label>
                                             <div class="mt-2">
-                                                <input type="text" name="name" id="name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                <input type="text" name="name" id="name"
+                                                       class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                             </div>
                                         </div>
 
                                         <div>
                                             <div class="flex items-center justify-between">
-                                                <label for="surname" class="block text-sm/6 font-medium text-gray-900">Prénom du client</label>
+                                                <label for="surname" class="block text-sm/6 font-medium text-gray-900">Prénom
+                                                    du client</label>
                                             </div>
                                             <div class="mt-2">
-                                                <input type="text" name="surname" id="surname" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                <input type="text" name="surname" id="surname"
+                                                       class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div>
                                         <div class="flex items-center justify-between">
-                                            <label for="phone" class="block text-sm/6 font-medium text-gray-900">Téléphone du client</label>
+                                            <label for="phone" class="block text-sm/6 font-medium text-gray-900">Téléphone
+                                                du client</label>
                                         </div>
                                         <div class="mt-2">
-                                            <input type="text" name="phone" id="phone"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                            <input type="text" name="phone" id="phone"
+                                                   class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                         </div>
                                     </div>
 
                                     <div class="grid grid-cols-12 gap-4 transition-all duration-[.25s] justify-between items-center">
                                         <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
-                                            <label for="services" class="block text-sm/6 font-medium text-gray-900">Type de service</label>
+                                            <label for="services" class="block text-sm/6 font-medium text-gray-900">Type
+                                                de service</label>
                                             <div class="mt-2">
-                                                <select id="services" name="services" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                <select id="services" name="services"
+                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                     <option disabled selected>Choisir un service</option>
                                                     <?php
                                                     include_once '../../config/config.php';
@@ -1461,17 +1512,21 @@
                                         </div>
 
                                         <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12">
-                                            <label for="price" class="block text-sm/6 font-medium text-gray-900">Price</label>
+                                            <label for="price"
+                                                   class="block text-sm/6 font-medium text-gray-900">Price</label>
                                             <div class="mt-2">
-                                                <input type="text" name="price" id="price" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                <input type="text" name="price" id="price"
+                                                       class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label for="employee" class="block text-sm/6 font-medium text-gray-900">Fait(e) par</label>
+                                        <label for="employee" class="block text-sm/6 font-medium text-gray-900">Fait(e)
+                                            par</label>
                                         <div class="mt-2">
-                                            <select id="employee" name="employee" class="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                            <select id="employee" name="employee"
+                                                    class="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                 <option disabled selected>Choisir un employé</option>
                                                 <?php
                                                 include_once '../../config/config.php';
@@ -1483,7 +1538,7 @@
                                                 $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                                 foreach ($employees as $employ) {
-                                                    echo "<option value='" . htmlspecialchars($employ['id']) ."'>" . htmlspecialchars($employ['first_name']) . htmlspecialchars($employ['last_name']) . "</option>";
+                                                    echo "<option value='" . htmlspecialchars($employ['id']) . "'>" . htmlspecialchars($employ['first_name']) . ' ' . htmlspecialchars($employ['last_name']) . "</option>";
                                                 }
                                                 ?>
                                             </select>
@@ -1495,13 +1550,22 @@
                                             <label for="satisfaction" class="block text-sm/6 font-medium text-gray-900">Appréciation</label>
                                         </div>
                                         <div class="mt-2">
-                                            <input type="text" name="satisfaction" id="satisfaction"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                            <!--<input type="text" name="satisfaction" id="satisfaction"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">-->
+                                            <select id="satisfaction" name="satisfaction"
+                                                    class="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                <option disabled selected>Choisir une appréciation</option>
+                                                <option value="Satisfaite">Satisfaite</option>
+                                                <option value="Pas Satisfaite">Pas Satisfaite</option>
+                                            </select>
                                         </div>
                                     </div>
 
 
                                     <div>
-                                        <button type="submit" class="mt-5 flex mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enrégistrer</button>
+                                        <button type="submit"
+                                                class="mt-5 flex mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                            Enrégistrer
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -1522,19 +1586,41 @@
                                             <th class="p-4 ps-0">
                                                 <div class="n-chk align-self-center text-center">
                                                     <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input rounded-sm" id="contact-check-all" />
+                                                        <input type="checkbox" class="form-check-input rounded-sm"
+                                                               id="contact-check-all"/>
                                                         <label class="form-check-label" for="contact-check-all"></label>
                                                         <span class="new-control-indicator"></span>
                                                     </div>
                                                 </div>
                                             </th>
-                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Nom</th>
-                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Prénom</th>
-                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Téléphone</th>
-                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Date du ticket</th>
-                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Services effectués</th>
-                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Prix</th>
-                                            <th scope="col" class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">Appréciation</th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                Nom
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                Prénom
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                Téléphone
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                Date du ticket
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                Services effectués
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                Prix
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
+                                                Appréciation
+                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-border divide-slate-150">
@@ -1546,7 +1632,6 @@
                                             FROM tickets t
                                             JOIN clients c ON t.client_id = c.id
                                             JOIN services s ON t.service_id = s.id
-                                            WHERE t.service_date >= CURRENT_DATE
                                             ORDER BY t.service_date DESC
                                         ";
                                         $stmt = $conn->prepare($sql);
@@ -1606,7 +1691,7 @@
 <script>
     window.addEventListener("DOMContentLoaded", () => Alpine.start());
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         fetch("../../config/user-config-chart.php")
             .then(response => response.json())
             .then(data => {
@@ -1621,9 +1706,9 @@
                 document.getElementById("growthRate").textContent = data.growthRate + "%";
 
                 let options = {
-                    chart: { type: "line", height: 50 },
-                    series: [{ name: "Ventes", data: sales }],
-                    xaxis: { categories: dates }
+                    chart: {type: "line", height: 50},
+                    series: [{name: "Ventes", data: sales}],
+                    xaxis: {categories: dates}
                 };
 
                 let chart = new ApexCharts(document.querySelector("#salesChart"), options);

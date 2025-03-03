@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Log In </title>
+    <title> Connexion </title>
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg" />
     <script src="../../../tailwind.js"></script>
@@ -61,15 +61,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <img class="mx-auto rounded-full h-30 w-auto" src="../../../assets/logo.jpg" alt="Your Company">
             <h2 class="mt-10 mb-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 sm:text-3xl/9">
-                Sign in
+                Connexion
             </h2>
-            <p class="text-center paragraph"> Please enter your information and access to your account. </p>
+            <p class="text-center paragraph"> Veuillez entre vos informations de connexion. </p>
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <div class="space-y-6" id="form">
                 <div>
-                    <label for="email" class="block text-sm/6 font-medium text-gray-900">Username</label>
+                    <label for="username" class="block text-sm/6 font-medium text-gray-900">Nom d'utilisateur</label>
                     <div class="mt-2">
                         <input type="text" name="username" id="username" 
                             class="block w-full rounded-md bg-gray-900/8 px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500  sm:text-sm/6">
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div>
-                    <label for="email" class="block text-sm/6 font-medium text-gray-900">Password</label>
+                    <label for="password" class="block text-sm/6 font-medium text-gray-900">Mot de passe</label>
                     <div class="mt-2 flex justify-between items-center gap-5 w-full rounded-md bg-gray-900/8 px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500  sm:text-sm/6">
                         <input type="password" name="password" id="password" 
                             class="block w-full outline-none bg-transparent text-gray-900 placeholder-gray-500 sm:text-sm/6">
@@ -89,11 +89,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div>
                     <button type="submit"
                         class="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm/6 font-semibold text-white cursor-pointer shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                        ☬ Submit ☬
+                        ☬ Envoyer ☬
                     </button>
                 </div>
             </div>
-            <p class="mt-10 text-center"> Not a member? Please <span> <a class="text-red-500 hover:text-red-400 font-bold" href="./sign-up.php">join us</a> </span> </p>
+            <p class="mt-10 text-center"> Vous n'êtes pas membre? <span> <a class="text-red-500 hover:text-red-400 font-bold" href="./sign-up.php">Créer votre compte</a> </span> </p>
         </div>
     </form>
 

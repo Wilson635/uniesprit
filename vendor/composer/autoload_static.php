@@ -37,6 +37,16 @@ class ComposerStaticInit7422faf8f33d1f1cdfca8767e0ffc0f4
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'PHPExcel' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -46,6 +56,7 @@ class ComposerStaticInit7422faf8f33d1f1cdfca8767e0ffc0f4
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit7422faf8f33d1f1cdfca8767e0ffc0f4::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit7422faf8f33d1f1cdfca8767e0ffc0f4::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit7422faf8f33d1f1cdfca8767e0ffc0f4::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit7422faf8f33d1f1cdfca8767e0ffc0f4::$classMap;
 
         }, null, ClassLoader::class);

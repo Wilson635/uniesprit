@@ -15,7 +15,7 @@ if (!$_SESSION['email']) {
     <title>Employees</title>
 
     <!-- Favicon icon-->
-    <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg" />
+    <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg"/>
 
     <!-- CSS Assets -->
     <link rel="stylesheet" href="../../components/app.css"/>
@@ -44,7 +44,7 @@ if (!$_SESSION['email']) {
         document.documentElement.classList.add("dark");
     </script>
 </head>
-<body x-data class="is-header-blur" x-bind="$store.global.documentBody" style="font-family: 'Poppins', Serif";>
+<body x-data class="is-header-blur" x-bind="$store.global.documentBody" style="font-family: 'Poppins', Serif" ;>
 <!-- App preloader -->
 <div class="app-preloader fixed z-50 grid h-full w-full place-content-center bg-slate-50 dark:bg-navy-900">
     <div class="app-preloader-inner relative inline-block size-48"></div>
@@ -156,6 +156,55 @@ if (!$_SESSION['email']) {
                                   fill="currentColor"/>
                         </svg>
                     </a>
+
+                    <!-- Boissons Page -->
+                    <a href="boisson-gest.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Gestion des boissons'">
+                        <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                    d="M13.3111 14.75H5.03356C3.36523 14.75 2.30189 12.9625 3.10856 11.4958L5.24439 7.60911L7.24273 3.96995C8.07689 2.45745 10.2586 2.45745 11.0927 3.96995L13.1002 7.60911L14.0627 9.35995L15.2361 11.4958C16.0427 12.9625 14.9794 14.75 13.3111 14.75Z"
+                                    fill="currentColor"/>
+                            <path fill-opacity="0.3"
+                                  d="M21.1667 15.2083C21.1667 18.4992 18.4992 21.1667 15.2083 21.1667C11.9175 21.1667 9.25 18.4992 9.25 15.2083C9.25 15.0525 9.25917 14.9058 9.26833 14.75H13.3108C14.9792 14.75 16.0425 12.9625 15.2358 11.4958L14.0625 9.36C14.4292 9.28666 14.8142 9.25 15.2083 9.25C18.4992 9.25 21.1667 11.9175 21.1667 15.2083Z"
+                                  fill="currentColor"/>
+                        </svg>
+                    </a>
+
+                    <!-- Services Page -->
+                    <a href="services.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Nos services'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M4.979 9.685C2.993 8.891 2 8.494 2 8s.993-.89 2.979-1.685l2.808-1.123C9.773 4.397 10.767 4 12 4s2.227.397 4.213 1.192l2.808 1.123C21.007 7.109 22 7.506 22 8s-.993.89-2.979 1.685l-2.808 1.124C14.227 11.603 13.233 12 12 12s-2.227-.397-4.213-1.191z"/>
+                            <path fill="currentColor" fill-rule="evenodd"
+                                  d="M2 8c0 .494.993.89 2.979 1.685l2.808 1.124C9.773 11.603 10.767 12 12 12s2.227-.397 4.213-1.191l2.808-1.124C21.007 8.891 22 8.494 22 8s-.993-.89-2.979-1.685l-2.808-1.123C14.227 4.397 13.233 4 12 4s-2.227.397-4.213 1.192L4.98 6.315C2.993 7.109 2 7.506 2 8"
+                                  clip-rule="evenodd"/>
+                            <path fill="currentColor"
+                                  d="m5.766 10l-.787.315C2.993 11.109 2 11.507 2 12s.993.89 2.979 1.685l2.808 1.124C9.773 15.603 10.767 16 12 16s2.227-.397 4.213-1.191l2.808-1.124C21.007 12.891 22 12.493 22 12s-.993-.89-2.979-1.685L18.234 10l-2.021.809C14.227 11.603 13.233 12 12 12s-2.227-.397-4.213-1.191z"
+                                  opacity="0.7"/>
+                            <path fill="currentColor"
+                                  d="m5.766 14l-.787.315C2.993 15.109 2 15.507 2 16s.993.89 2.979 1.685l2.808 1.124C9.773 19.603 10.767 20 12 20s2.227-.397 4.213-1.192l2.808-1.123C21.007 16.891 22 16.494 22 16c0-.493-.993-.89-2.979-1.685L18.234 14l-2.021.809C14.227 15.603 13.233 16 12 16s-2.227-.397-4.213-1.191z"
+                                  opacity="0.4"/>
+                        </svg>
+                    </a>
+
+                    <!-- Ventes Page -->
+                    <a href="sales.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Nos Ventes'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M3.045 11.75c.126.714.303 1.541.51 2.507l.428 2c.487 2.273.731 3.409 1.556 4.076S7.526 21 9.85 21h4.3c2.324 0 3.486 0 4.31-.667c.826-.667 1.07-1.803 1.556-4.076l.429-2c.207-.966.384-1.793.51-2.507z"
+                                  opacity="0.5"/>
+                            <path fill="currentColor" fill-rule="evenodd"
+                                  d="M9.25 14a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75"
+                                  clip-rule="evenodd"/>
+                            <path fill="currentColor"
+                                  d="M8.33 2.665a.75.75 0 0 1 1.341.67l-1.835 3.67Q8.56 7 9.422 7h5.156q.863-.001 1.586.005l-1.835-3.67a.75.75 0 0 1 1.342-.67l2.201 4.402c1.353.104 2.202.37 2.75 1.047c.436.539.576 1.209.525 2.136H21q.075 0 .146.014a13 13 0 0 1-.19 1.486H3.045a13 13 0 0 1-.192-1.486A1 1 0 0 1 3 10.25h-.147c-.051-.927.09-1.597.525-2.136c.548-.678 1.397-.943 2.75-1.047z"/>
+                        </svg>
+                    </a>
                 </div>
 
                 <!-- Bottom Links -->
@@ -174,9 +223,14 @@ if (!$_SESSION['email']) {
 
                     <!-- Logout -->
                     <a href="../auth/logout.php"
-                       x-tooltip.placement.right="'Logout'"
+                       x-tooltip.placement.right="'Déconnexion'"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                        <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M12 20a8 8 0 1 1 0-16" opacity="0.5"/><path stroke-linejoin="round" d="M10 12h10m0 0l-3-3m3 3l-3 3"/></g></svg>
+                        <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                                <path d="M12 20a8 8 0 1 1 0-16" opacity="0.5"/>
+                                <path stroke-linejoin="round" d="M10 12h10m0 0l-3-3m3 3l-3 3"/>
+                            </g>
+                        </svg>
                     </a>
 
                     <!-- Profile -->
@@ -296,14 +350,15 @@ if (!$_SESSION['email']) {
                                     <li>
                                         <div class="p-0.5 rounded-full bg-black mx-2.5 flex items-center"></div>
                                     </li>
-                                    <li class="flex items-center text-sm text-link dark:text-blacklink leading-none" aria-current="page">
+                                    <li class="flex items-center text-sm text-link dark:text-blacklink leading-none"
+                                        aria-current="page">
                                         Employés
                                     </li>
                                 </ol>
                             </div>
                             <div class="col-span-3 -mb-10">
                                 <div class="flex justify-center">
-                                    <img src="../../../assets/ChatBc.png" alt="" class="md:-mb-7 -mb-4 h-40 w-40" />
+                                    <img src="../../../assets/ChatBc.png" alt="" class="md:-mb-7 -mb-4 h-40 w-40"/>
                                 </div>
                             </div>
                         </div>
@@ -326,8 +381,10 @@ if (!$_SESSION['email']) {
                                     class="w-full flex flex-col p-5 bg-white dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
                                 <div class="flex min-h-full flex-col justify-center">
                                     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                                        <img class="mx-auto rounded-full h-30 w-auto mt-15" src="../../../assets/logo.jpg" alt="Your Company">
-                                        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Compléter les champs pour enrégistrer un employé</h2>
+                                        <img class="mx-auto rounded-full h-30 w-auto mt-15"
+                                             src="../../../assets/logo.jpg" alt="Your Company">
+                                        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
+                                            Compléter les champs pour enrégistrer un employé</h2>
                                     </div>
 
                                     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -363,45 +420,56 @@ if (!$_SESSION['email']) {
                                                 <div>
                                                     <label for="name" class="block text-sm/6 font-medium text-gray-900">Nom</label>
                                                     <div class="mt-2">
-                                                        <input type="text" name="name" id="name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                        <input type="text" name="name" id="name"
+                                                               class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                     </div>
                                                 </div>
 
                                                 <div>
                                                     <div class="flex items-center justify-between">
-                                                        <label for="surname" class="block text-sm/6 font-medium text-gray-900">Prénom</label>
+                                                        <label for="surname"
+                                                               class="block text-sm/6 font-medium text-gray-900">Prénom</label>
                                                     </div>
                                                     <div class="mt-2">
-                                                        <input type="text" name="surname" id="surname" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                        <input type="text" name="surname" id="surname"
+                                                               class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div>
                                                 <div class="flex items-center justify-between">
-                                                    <label for="phone" class="block text-sm/6 font-medium text-gray-900">Téléphone</label>
+                                                    <label for="phone"
+                                                           class="block text-sm/6 font-medium text-gray-900">Téléphone</label>
                                                 </div>
                                                 <div class="mt-2">
-                                                    <input type="text" name="phone" id="phone"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                    <input type="text" name="phone" id="phone"
+                                                           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                 </div>
                                             </div>
 
                                             <div>
                                                 <label for="email" class="block text-sm/6 font-medium text-gray-900">email</label>
                                                 <div class="mt-2">
-                                                    <input type="email" name="email" id="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                    <input type="email" name="email" id="email"
+                                                           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                 </div>
                                             </div>
 
                                             <div>
-                                                <label for="occupation" class="block text-sm/6 font-medium text-gray-900">occupation</label>
+                                                <label for="occupation"
+                                                       class="block text-sm/6 font-medium text-gray-900">occupation</label>
                                                 <div class="mt-2">
-                                                    <input type="text" name="occupation" id="occupation" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                    <input type="text" name="occupation" id="occupation"
+                                                           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                                 </div>
                                             </div>
 
                                             <div>
-                                                <button type="submit" class="flex mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enrégistrer</button>
+                                                <button type="submit"
+                                                        class="flex mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                    Enrégistrer
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -426,7 +494,7 @@ if (!$_SESSION['email']) {
                                                             <div class="form-check">
                                                                 <input type="checkbox"
                                                                        class="form-check-input rounded-sm"
-                                                                       id="contact-check-all" />
+                                                                       id="contact-check-all"/>
                                                                 <label class="form-check-label"
                                                                        for="contact-check-all"></label>
                                                                 <span
@@ -436,19 +504,24 @@ if (!$_SESSION['email']) {
                                                     </th>
                                                     <th scope="col"
                                                         class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                        Nom </th>
+                                                        Nom
+                                                    </th>
                                                     <th scope="col"
                                                         class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                        Prénom</th>
+                                                        Prénom
+                                                    </th>
                                                     <th scope="col"
                                                         class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                        Téléphone</th>
+                                                        Téléphone
+                                                    </th>
                                                     <th scope="col"
                                                         class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                        Email</th>
+                                                        Email
+                                                    </th>
                                                     <th scope="col"
                                                         class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                        Occupation</th>
+                                                        Occupation
+                                                    </th>
                                                     <!--<th scope="col"
                                                         class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
                                                         Action</th>-->
@@ -463,7 +536,8 @@ if (!$_SESSION['email']) {
                                                 $query->execute();
                                                 $employees = $query->fetchAll();
 
-                                                function getInitials($name) {
+                                                function getInitials($name)
+                                                {
                                                     $words = explode(" ", $name);
                                                     $initials = "";
                                                     foreach ($words as $w) {
@@ -486,7 +560,7 @@ if (!$_SESSION['email']) {
                                                             <td class="p-4 ps-0 whitespace-nowrap">
                                                                 <div class="flex gap-3 items-center">
                                                                     <div>
-                                                                        <p class="rounded-circle bg-indigo-200 items-center justify-center leading-9 text-center font-bold h-9 w-9 rounded-full"> ' . htmlspecialchars($initials = getInitials($employee['first_name'])) . htmlspecialchars($initials = getInitials($employee['last_name'])) . ' </p>
+                                                                        <p class="rounded-circle bg-indigo-200 items-center justify-center leading-9 text-center font-bold h-9 w-9 rounded-full"> ' . htmlspecialchars($initials = getInitials($employee['first_name'])) . ' </p>
                                                                     </div>
                                                                     <div>
                                                                         <h6 class="user-name mb-1" data-name="' . htmlspecialchars($employee["first_name"]) . '">' . htmlspecialchars($employee["first_name"]) . '</h6>
@@ -511,9 +585,6 @@ if (!$_SESSION['email']) {
                                                     ';
                                                 }
                                                 ?>
-
-
-
                                                 </tbody>
                                             </table>
                                         </div>

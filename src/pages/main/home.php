@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['email'])){
-        header('location:../auth/sign-in.php');
-    }
+session_start();
+if (!isset($_SESSION['email'])) {
+    header('location:../auth/sign-in.php');
+}
 ?>
 
 
@@ -11,34 +11,34 @@
 
 <head>
     <!-- Meta tags  -->
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
     <title>Home</title>
 
     <!-- Favicon icon-->
-    <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg" />
+    <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg"/>
 
     <!-- CSS Assets -->
-    <link rel="stylesheet" href="../../components/app.css" />
+    <link rel="stylesheet" href="../../components/app.css"/>
 
     <!-- Javascript Assets -->
     <script src="../../../script.js"></script>
     <script src="../../../tailwind.js"></script>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-            rel="stylesheet" />
+            rel="stylesheet"/>
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
           integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- Dark mode -->
     <script>
@@ -163,19 +163,54 @@
                         </svg>
                     </a>
 
-                    <!-- Elements -->
-                    <!--                    <a href="elements-avatar.html"-->
-                    <!--                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"-->
-                    <!--                       x-tooltip.placement.right="'Elements'">-->
-                    <!--                        <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-                    <!--                            <path-->
-                    <!--                                    d="M13.3111 14.75H5.03356C3.36523 14.75 2.30189 12.9625 3.10856 11.4958L5.24439 7.60911L7.24273 3.96995C8.07689 2.45745 10.2586 2.45745 11.0927 3.96995L13.1002 7.60911L14.0627 9.35995L15.2361 11.4958C16.0427 12.9625 14.9794 14.75 13.3111 14.75Z"-->
-                    <!--                                    fill="currentColor"/>-->
-                    <!--                            <path fill-opacity="0.3"-->
-                    <!--                                  d="M21.1667 15.2083C21.1667 18.4992 18.4992 21.1667 15.2083 21.1667C11.9175 21.1667 9.25 18.4992 9.25 15.2083C9.25 15.0525 9.25917 14.9058 9.26833 14.75H13.3108C14.9792 14.75 16.0425 12.9625 15.2358 11.4958L14.0625 9.36C14.4292 9.28666 14.8142 9.25 15.2083 9.25C18.4992 9.25 21.1667 11.9175 21.1667 15.2083Z"-->
-                    <!--                                  fill="currentColor"/>-->
-                    <!--                        </svg>-->
-                    <!--                    </a>-->
+                    <!-- Boissons Page -->
+                    <a href="boisson-gest.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Gestion des boissons'">
+                        <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                    d="M13.3111 14.75H5.03356C3.36523 14.75 2.30189 12.9625 3.10856 11.4958L5.24439 7.60911L7.24273 3.96995C8.07689 2.45745 10.2586 2.45745 11.0927 3.96995L13.1002 7.60911L14.0627 9.35995L15.2361 11.4958C16.0427 12.9625 14.9794 14.75 13.3111 14.75Z"
+                                    fill="currentColor"/>
+                            <path fill-opacity="0.3"
+                                  d="M21.1667 15.2083C21.1667 18.4992 18.4992 21.1667 15.2083 21.1667C11.9175 21.1667 9.25 18.4992 9.25 15.2083C9.25 15.0525 9.25917 14.9058 9.26833 14.75H13.3108C14.9792 14.75 16.0425 12.9625 15.2358 11.4958L14.0625 9.36C14.4292 9.28666 14.8142 9.25 15.2083 9.25C18.4992 9.25 21.1667 11.9175 21.1667 15.2083Z"
+                                  fill="currentColor"/>
+                        </svg>
+                    </a>
+
+                    <!-- Services Page -->
+                    <a href="services.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Nos services'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M4.979 9.685C2.993 8.891 2 8.494 2 8s.993-.89 2.979-1.685l2.808-1.123C9.773 4.397 10.767 4 12 4s2.227.397 4.213 1.192l2.808 1.123C21.007 7.109 22 7.506 22 8s-.993.89-2.979 1.685l-2.808 1.124C14.227 11.603 13.233 12 12 12s-2.227-.397-4.213-1.191z"/>
+                            <path fill="currentColor" fill-rule="evenodd"
+                                  d="M2 8c0 .494.993.89 2.979 1.685l2.808 1.124C9.773 11.603 10.767 12 12 12s2.227-.397 4.213-1.191l2.808-1.124C21.007 8.891 22 8.494 22 8s-.993-.89-2.979-1.685l-2.808-1.123C14.227 4.397 13.233 4 12 4s-2.227.397-4.213 1.192L4.98 6.315C2.993 7.109 2 7.506 2 8"
+                                  clip-rule="evenodd"/>
+                            <path fill="currentColor"
+                                  d="m5.766 10l-.787.315C2.993 11.109 2 11.507 2 12s.993.89 2.979 1.685l2.808 1.124C9.773 15.603 10.767 16 12 16s2.227-.397 4.213-1.191l2.808-1.124C21.007 12.891 22 12.493 22 12s-.993-.89-2.979-1.685L18.234 10l-2.021.809C14.227 11.603 13.233 12 12 12s-2.227-.397-4.213-1.191z"
+                                  opacity="0.7"/>
+                            <path fill="currentColor"
+                                  d="m5.766 14l-.787.315C2.993 15.109 2 15.507 2 16s.993.89 2.979 1.685l2.808 1.124C9.773 19.603 10.767 20 12 20s2.227-.397 4.213-1.192l2.808-1.123C21.007 16.891 22 16.494 22 16c0-.493-.993-.89-2.979-1.685L18.234 14l-2.021.809C14.227 15.603 13.233 16 12 16s-2.227-.397-4.213-1.191z"
+                                  opacity="0.4"/>
+                        </svg>
+                    </a>
+
+                    <!-- Ventes Page -->
+                    <a href="sales.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Nos Ventes'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M3.045 11.75c.126.714.303 1.541.51 2.507l.428 2c.487 2.273.731 3.409 1.556 4.076S7.526 21 9.85 21h4.3c2.324 0 3.486 0 4.31-.667c.826-.667 1.07-1.803 1.556-4.076l.429-2c.207-.966.384-1.793.51-2.507z"
+                                  opacity="0.5"/>
+                            <path fill="currentColor" fill-rule="evenodd"
+                                  d="M9.25 14a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75"
+                                  clip-rule="evenodd"/>
+                            <path fill="currentColor"
+                                  d="M8.33 2.665a.75.75 0 0 1 1.341.67l-1.835 3.67Q8.56 7 9.422 7h5.156q.863-.001 1.586.005l-1.835-3.67a.75.75 0 0 1 1.342-.67l2.201 4.402c1.353.104 2.202.37 2.75 1.047c.436.539.576 1.209.525 2.136H21q.075 0 .146.014a13 13 0 0 1-.19 1.486H3.045a13 13 0 0 1-.192-1.486A1 1 0 0 1 3 10.25h-.147c-.051-.927.09-1.597.525-2.136c.548-.678 1.397-.943 2.75-1.047z"/>
+                        </svg>
+                    </a>
                 </div>
 
                 <!-- Bottom Links -->
@@ -194,9 +229,14 @@
 
                     <!-- Logout -->
                     <a href="../auth/logout.php"
-                       x-tooltip.placement.right="'Logout'"
+                       x-tooltip.placement.right="'Déconnexion'"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                        <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M12 20a8 8 0 1 1 0-16" opacity="0.5"/><path stroke-linejoin="round" d="M10 12h10m0 0l-3-3m3 3l-3 3"/></g></svg>
+                        <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                                <path d="M12 20a8 8 0 1 1 0-16" opacity="0.5"/>
+                                <path stroke-linejoin="round" d="M10 12h10m0 0l-3-3m3 3l-3 3"/>
+                            </g>
+                        </svg>
                     </a>
 
                     <!-- Profile -->
@@ -329,30 +369,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
-                    <div class="flex justify-between space-x-1">
-                        <p
-                                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                        >
-
-                        </p>
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="size-5 text-primary dark:text-accent"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                stroke-width="2"
-                        >
-                            <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                            />
-                        </svg>
-                    </div>
-                    <p class="mt-1 text-xs-plus">Revenue Journalier (en FCFA)</p>
-                </div>
             </div>
             <!---Welcome back Card End--->
 
@@ -382,157 +398,6 @@
             </div>
             <!---Date Cards End--->
 
-            <!---Graph--->
-            <!--<div class="col-span-12 lg:col-span-8">
-                <div class="flex items-center justify-between space-x-2">
-                    <h2
-                            class="text-base font-medium tracking-wide text-slate-800 line-clamp-1 dark:text-navy-100"
-                    >
-                        Revenue
-                    </h2>
-                    <div
-                            x-data="{activeTab:'tabRecent'}"
-                            class="is-scrollbar-hidden overflow-x-auto rounded-lg bg-slate-200 text-slate-600 dark:bg-navy-800 dark:text-navy-200"
-                    >
-                        <div class="tabs-list flex p-1">
-                            <button
-                                    @click="activeTab = 'tabRecent'"
-                                    :class="activeTab === 'tabRecent' ? 'bg-white shadow-sm dark:bg-navy-500 dark:text-navy-100' : 'hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
-                                    class="btn shrink-0 px-3 py-1 text-xs-plus font-medium"
-                            >
-                                Last month
-                            </button>
-                            <button
-                                    @click="activeTab = 'tabAll'"
-                                    :class="activeTab === 'tabAll' ? 'bg-white shadow-sm dark:bg-navy-500 dark:text-navy-100' : 'hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
-                                    class="btn shrink-0 px-3 py-1 text-xs-plus font-medium"
-                            >
-                                Last year
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col sm:flex-row sm:space-x-7">
-                    <div
-                            class="mt-4 flex shrink-0 flex-col items-center sm:items-start"
-                    >
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="size-8 text-info"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                        >
-                            <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
-                            />
-                            <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
-                            />
-                        </svg>
-                        <div class="mt-4">
-                            <div class="flex items-center space-x-1">
-                                <p
-                                        class="text-2xl font-semibold text-slate-700 dark:text-navy-100"
-                                >
-                                    0 Fcfa
-                                </p>
-                                <button
-                                        class="btn size-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            stroke-width="1.5"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-                            <p class="text-xs text-slate-400 dark:text-navy-300">
-                                this month
-                            </p>
-                        </div>
-                        <div class="mt-3 flex items-center space-x-2">
-                            <div class="ax-transparent-gridline w-28">
-                                <div id="salesChart"></div>
-                            </div>
-                            <div class="flex items-center space-x-0.5">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/>
-                                </svg>
-                                <p class="text-sm-plus text-slate-800 dark:text-navy-100" id="growthRate">0%</p>
-                            </div>
-                        </div>
-                        <div class="mt-3 flex items-center space-x-2">
-                            <div class="ax-transparent-gridline w-28">
-                                <div
-                                        x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.analyticsSalesThisMonth); $el._x_chart.render() });"
-                                ></div>
-                            </div>
-                            <div class="flex items-center space-x-0.5">
-                                <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="size-4 text-success"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                >
-                                    <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M7 11l5-5m0 0l5 5m-5-5v12"
-                                    />
-                                </svg>
-                                <p class="text-sm-plus text-slate-800 dark:text-navy-100">
-                                    3.2%
-                                </p>
-                            </div>
-                        </div>
-                        <button
-                                class="btn mt-8 space-x-2 rounded-full border border-slate-300 px-3 text-xs-plus font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
-                        >
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-4.5 text-slate-400 dark:text-navy-300"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z"
-                                />
-                            </svg>
-                            <span> Download Report</span>
-                        </button>
-                    </div>
-
-                    <div class="ax-transparent-gridline grid w-full grid-cols-1">
-                        <div
-                                x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.analyticsSalesOverview); $el._x_chart.render() });"
-                        ></div>
-                    </div>
-                </div>
-            </div>-->
-            <!---Graph End--->
-
             <!---Count data database--->
             <div class="col-span-12"
             >
@@ -556,7 +421,7 @@
 
                                     if ($result) {
                                         $row = $result->fetch(PDO::FETCH_ASSOC);
-                                        return $row['total'];
+                                        return isset($row['total']) ? $row['total'] : 0;
                                     }
 
                                     return 0;
@@ -589,7 +454,7 @@
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
                                 <?php
-                                include_once  '../../config/config.php';
+                                include_once '../../config/config.php';
                                 function countReservations()
                                 {
                                     $conn = getConnexion();
@@ -599,7 +464,7 @@
                                     return $data['total'];
                                 }
 
-                                echo "<strong>".countReservations()."</strong>";
+                                echo "<strong>" . countReservations() . "</strong>";
                                 ?>
                             </p>
                             <svg
@@ -625,7 +490,7 @@
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
                                 <?php
-                                include_once  '../../config/config.php';
+                                include_once '../../config/config.php';
                                 function countEmployees()
                                 {
                                     $conn = getConnexion();
@@ -635,10 +500,16 @@
                                     return $data['total'];
                                 }
 
-                                echo "<strong>".countEmployees()."</strong>";
+                                echo "<strong>" . countEmployees() . "</strong>";
                                 ?>
                             </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#b2b211" d="M10 12.25a.75.75 0 1 0 0 1.5h4a.75.75 0 0 0 0-1.5z"/><path fill="#b2b211" fill-rule="evenodd" d="M7.32 4.275A3.75 3.75 0 0 1 11 1.25h2a3.75 3.75 0 0 1 3.68 3.025a6.75 6.75 0 0 1 5.07 6.445v5.655a5.27 5.27 0 0 1-4.126 5.143a25.9 25.9 0 0 1-11.248 0a5.27 5.27 0 0 1-4.126-5.143V10.72a6.75 6.75 0 0 1 5.07-6.445m1.695-.335A2.25 2.25 0 0 1 11 2.75h2c.86 0 1.607.482 1.986 1.19a19.8 19.8 0 0 0-5.971 0m11.235 6.971v2.596a21.4 21.4 0 0 1-16.5 0V10.74a5.25 5.25 0 0 1 4.207-5.074c.084-.02.124-.028.164-.037a18.25 18.25 0 0 1 7.759 0l.163.037l.167.037a5.25 5.25 0 0 1 4.04 5.207m-16.5 5.464v-1.252a22.9 22.9 0 0 0 13 1.04V17a.75.75 0 0 0 1.5 0v-1.209a23 23 0 0 0 2-.668v1.252a3.77 3.77 0 0 1-2.951 3.68c-3.49.775-7.108.775-10.598 0a3.77 3.77 0 0 1-2.95-3.68" clip-rule="evenodd"/></svg>                        </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="#b2b211" d="M10 12.25a.75.75 0 1 0 0 1.5h4a.75.75 0 0 0 0-1.5z"/>
+                                <path fill="#b2b211" fill-rule="evenodd"
+                                      d="M7.32 4.275A3.75 3.75 0 0 1 11 1.25h2a3.75 3.75 0 0 1 3.68 3.025a6.75 6.75 0 0 1 5.07 6.445v5.655a5.27 5.27 0 0 1-4.126 5.143a25.9 25.9 0 0 1-11.248 0a5.27 5.27 0 0 1-4.126-5.143V10.72a6.75 6.75 0 0 1 5.07-6.445m1.695-.335A2.25 2.25 0 0 1 11 2.75h2c.86 0 1.607.482 1.986 1.19a19.8 19.8 0 0 0-5.971 0m11.235 6.971v2.596a21.4 21.4 0 0 1-16.5 0V10.74a5.25 5.25 0 0 1 4.207-5.074c.084-.02.124-.028.164-.037a18.25 18.25 0 0 1 7.759 0l.163.037l.167.037a5.25 5.25 0 0 1 4.04 5.207m-16.5 5.464v-1.252a22.9 22.9 0 0 0 13 1.04V17a.75.75 0 0 0 1.5 0v-1.209a23 23 0 0 0 2-.668v1.252a3.77 3.77 0 0 1-2.951 3.68c-3.49.775-7.108.775-10.598 0a3.77 3.77 0 0 1-2.95-3.68"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                        </div>
                         <p class="mt-1 text-xs-plus">Employés</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
@@ -647,7 +518,7 @@
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
                                 <?php
-                                include_once  '../../config/config.php';
+                                include_once '../../config/config.php';
                                 function countServices()
                                 {
                                     $conn = getConnexion();
@@ -657,7 +528,7 @@
                                     return $data['total'];
                                 }
 
-                                echo "<strong>".countServices()."</strong>";
+                                echo "<strong>" . countServices() . "</strong>";
                                 ?>
                             </p>
                             <svg
@@ -683,7 +554,7 @@
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
                                 <?php
-                                include_once  '../../config/config.php';
+                                include_once '../../config/config.php';
                                 function countClient()
                                 {
                                     $conn = getConnexion();
@@ -693,7 +564,7 @@
                                     return $data['total'];
                                 }
 
-                                echo "<strong>".countClient()."</strong>";
+                                echo "<strong>" . countClient() . "</strong>";
                                 ?>
                             </p>
                             <svg
@@ -719,7 +590,7 @@
                                     class="text-xl font-semibold text-slate-700 dark:text-navy-100"
                             >
                                 <?php
-                                include_once  '../../config/config.php';
+                                include_once '../../config/config.php';
                                 function countUsers()
                                 {
                                     $conn = getConnexion();
@@ -729,10 +600,20 @@
                                     return $data['total'];
                                 }
 
-                                echo "<strong>".countUsers()."</strong>";
+                                echo "<strong>" . countUsers() . "</strong>";
                                 ?>
                             </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#b27811" stroke-width="1.5"><circle cx="12" cy="6" r="4"/><path stroke-linecap="round" d="M18 9c1.657 0 3-1.12 3-2.5S19.657 4 18 4M6 9C4.343 9 3 7.88 3 6.5S4.343 4 6 4"/><ellipse cx="12" cy="17" rx="6" ry="4"/><path stroke-linecap="round" d="M20 19c1.754-.385 3-1.359 3-2.5s-1.246-2.115-3-2.5M4 19c-1.754-.385-3-1.359-3-2.5s1.246-2.115 3-2.5"/></g></svg>                        </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <g fill="none" stroke="#b27811" stroke-width="1.5">
+                                    <circle cx="12" cy="6" r="4"/>
+                                    <path stroke-linecap="round"
+                                          d="M18 9c1.657 0 3-1.12 3-2.5S19.657 4 18 4M6 9C4.343 9 3 7.88 3 6.5S4.343 4 6 4"/>
+                                    <ellipse cx="12" cy="17" rx="6" ry="4"/>
+                                    <path stroke-linecap="round"
+                                          d="M20 19c1.754-.385 3-1.359 3-2.5s-1.246-2.115-3-2.5M4 19c-1.754-.385-3-1.359-3-2.5s1.246-2.115 3-2.5"/>
+                                </g>
+                            </svg>
+                        </div>
                         <p class="mt-1 text-xs-plus">Utilisateurs</p>
                     </div>
                 </div>
@@ -1233,1206 +1114,173 @@
                 </div>
             </div>
         </div>
-        <!-- Top tickets -->
-        <!--<div
-                class="mt-4 grid grid-cols-12 gap-4 bg-slate-150 py-5 dark:bg-navy-800 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
-        >
-            <div
-                    class="col-span-12 flex flex-col px-[var(--margin-x)] transition-all duration-[.25s] lg:col-span-3 lg:pr-0"
-            >
-                <h2
-                        class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100 lg:text-xl"
-                >
-                    Top tickets
-                </h2>
-
-                <p class="mt-3 grow">
-                    The top sellers is calculated based on the sales of a product and
-                    undergoes hourly updations.
-                </p>
-
-                <div class="mt-4">
-                    <p>Sales Growth</p>
-                    <div class="mt-1.5 flex items-center space-x-2">
-                        <div
-                                class="flex size-7 items-center justify-center rounded-full bg-success/15 text-success"
-                        >
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-4"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M7 11l5-5m0 0l5 5m-5-5v12"
-                                />
-                            </svg>
-                        </div>
-                        <p
-                                class="text-base font-medium text-slate-700 dark:text-navy-100"
-                        >
-                            $2,225.22
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div
-                    class="is-scrollbar-hidden col-span-12 flex space-x-4 overflow-x-auto px-[var(--margin-x)] transition-all duration-[.25s] lg:col-span-9 lg:pl-0"
-            >
-                <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
-                    <div class="flex items-center justify-between space-x-2">
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <img
-                                        class="mask is-squircle"
-                                        src="../../../assets/logo.jpg"
-                                        alt="image"
-                                />
-                            </div>
-                            <div>
-                                <p
-                                        class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
-                                >
-                                    Travis Fuller
-                                </p>
-                                <p class="text-xs text-slate-400 dark:text-navy-300">
-                                    Employee
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-2">
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    2
-                                </div>
-                            </div>
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    4
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-between space-x-2">
-                        <div>
-                            <p class="text-xs-plus">Sells</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                2 348
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Target</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                3 000
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Clients</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                78
-                            </p>
-                        </div>
-                    </div>
-                    <div class="grow">
-                        <div class="flex w-full space-x-1">
-                            <div
-                                    x-tooltip="'Phone Calls'"
-                                    class="h-2 w-4/12 rounded-full bg-primary dark:bg-accent"
-                            ></div>
-                            <div
-                                    x-tooltip="'Chats Messages'"
-                                    class="h-2 w-3/12 rounded-full bg-success"
-                            ></div>
-                            <div
-                                    x-tooltip="'Emails'"
-                                    class="h-2 w-5/12 rounded-full bg-info"
-                            ></div>
-                        </div>
-                        <div class="mt-2 flex flex-wrap">
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div
-                                        class="size-2 rounded-full bg-primary dark:bg-accent"
-                                ></div>
-                                <div class="flex space-x-1 text-xs leading-6">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Calls</span
-                  >
-                                    <span>33%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-success"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Chat Messages</span
-                  >
-                                    <span>17%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-info"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Emails</span
-                  >
-                                    <span>50%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
-                    <div class="flex items-center justify-between space-x-2">
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <img
-                                        class="mask is-squircle"
-                                        src="../../../assets/logo.jpg"
-                                        alt="image"
-                                />
-                            </div>
-                            <div>
-                                <p
-                                        class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
-                                >
-                                    Travis Fuller
-                                </p>
-                                <p class="text-xs text-slate-400 dark:text-navy-300">
-                                    Employee
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-2">
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    2
-                                </div>
-                            </div>
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    4
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-between space-x-2">
-                        <div>
-                            <p class="text-xs-plus">Sells</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                2 348
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Target</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                3 000
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Clients</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                78
-                            </p>
-                        </div>
-                    </div>
-                    <div class="grow">
-                        <div class="flex w-full space-x-1">
-                            <div
-                                    x-tooltip="'Phone Calls'"
-                                    class="h-2 w-4/12 rounded-full bg-primary dark:bg-accent"
-                            ></div>
-                            <div
-                                    x-tooltip="'Chats Messages'"
-                                    class="h-2 w-3/12 rounded-full bg-success"
-                            ></div>
-                            <div
-                                    x-tooltip="'Emails'"
-                                    class="h-2 w-5/12 rounded-full bg-info"
-                            ></div>
-                        </div>
-                        <div class="mt-2 flex flex-wrap">
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div
-                                        class="size-2 rounded-full bg-primary dark:bg-accent"
-                                ></div>
-                                <div class="flex space-x-1 text-xs leading-6">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Calls</span
-                  >
-                                    <span>33%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-success"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Chat Messages</span
-                  >
-                                    <span>17%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-info"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Emails</span
-                  >
-                                    <span>50%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
-                    <div class="flex items-center justify-between space-x-2">
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <img
-                                        class="mask is-squircle"
-                                        src="../../../assets/logo.jpg"
-                                        alt="image"
-                                />
-                            </div>
-                            <div>
-                                <p
-                                        class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
-                                >
-                                    Travis Fuller
-                                </p>
-                                <p class="text-xs text-slate-400 dark:text-navy-300">
-                                    Employee
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-2">
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    2
-                                </div>
-                            </div>
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    4
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-between space-x-2">
-                        <div>
-                            <p class="text-xs-plus">Sells</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                2 348
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Target</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                3 000
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Clients</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                78
-                            </p>
-                        </div>
-                    </div>
-                    <div class="grow">
-                        <div class="flex w-full space-x-1">
-                            <div
-                                    x-tooltip="'Phone Calls'"
-                                    class="h-2 w-4/12 rounded-full bg-primary dark:bg-accent"
-                            ></div>
-                            <div
-                                    x-tooltip="'Chats Messages'"
-                                    class="h-2 w-3/12 rounded-full bg-success"
-                            ></div>
-                            <div
-                                    x-tooltip="'Emails'"
-                                    class="h-2 w-5/12 rounded-full bg-info"
-                            ></div>
-                        </div>
-                        <div class="mt-2 flex flex-wrap">
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div
-                                        class="size-2 rounded-full bg-primary dark:bg-accent"
-                                ></div>
-                                <div class="flex space-x-1 text-xs leading-6">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Calls</span
-                  >
-                                    <span>33%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-success"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Chat Messages</span
-                  >
-                                    <span>17%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-info"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Emails</span
-                  >
-                                    <span>50%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
-                    <div class="flex items-center justify-between space-x-2">
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <img
-                                        class="mask is-squircle"
-                                        src="../../../assets/logo.jpg"
-                                        alt="image"
-                                />
-                            </div>
-                            <div>
-                                <p
-                                        class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
-                                >
-                                    Travis Fuller
-                                </p>
-                                <p class="text-xs text-slate-400 dark:text-navy-300">
-                                    Employee
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-2">
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    2
-                                </div>
-                            </div>
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    4
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-between space-x-2">
-                        <div>
-                            <p class="text-xs-plus">Sells</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                2 348
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Target</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                3 000
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Clients</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                78
-                            </p>
-                        </div>
-                    </div>
-                    <div class="grow">
-                        <div class="flex w-full space-x-1">
-                            <div
-                                    x-tooltip="'Phone Calls'"
-                                    class="h-2 w-4/12 rounded-full bg-primary dark:bg-accent"
-                            ></div>
-                            <div
-                                    x-tooltip="'Chats Messages'"
-                                    class="h-2 w-3/12 rounded-full bg-success"
-                            ></div>
-                            <div
-                                    x-tooltip="'Emails'"
-                                    class="h-2 w-5/12 rounded-full bg-info"
-                            ></div>
-                        </div>
-                        <div class="mt-2 flex flex-wrap">
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div
-                                        class="size-2 rounded-full bg-primary dark:bg-accent"
-                                ></div>
-                                <div class="flex space-x-1 text-xs leading-6">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Calls</span
-                  >
-                                    <span>33%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-success"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Chat Messages</span
-                  >
-                                    <span>17%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-info"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Emails</span
-                  >
-                                    <span>50%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
-                    <div class="flex items-center justify-between space-x-2">
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <img
-                                        class="mask is-squircle"
-                                        src="../../../assets/logo.jpg"
-                                        alt="image"
-                                />
-                            </div>
-                            <div>
-                                <p
-                                        class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
-                                >
-                                    Travis Fuller
-                                </p>
-                                <p class="text-xs text-slate-400 dark:text-navy-300">
-                                    Employee
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-2">
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    2
-                                </div>
-                            </div>
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    4
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-between space-x-2">
-                        <div>
-                            <p class="text-xs-plus">Sells</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                2 348
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Target</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                3 000
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Clients</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                78
-                            </p>
-                        </div>
-                    </div>
-                    <div class="grow">
-                        <div class="flex w-full space-x-1">
-                            <div
-                                    x-tooltip="'Phone Calls'"
-                                    class="h-2 w-4/12 rounded-full bg-primary dark:bg-accent"
-                            ></div>
-                            <div
-                                    x-tooltip="'Chats Messages'"
-                                    class="h-2 w-3/12 rounded-full bg-success"
-                            ></div>
-                            <div
-                                    x-tooltip="'Emails'"
-                                    class="h-2 w-5/12 rounded-full bg-info"
-                            ></div>
-                        </div>
-                        <div class="mt-2 flex flex-wrap">
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div
-                                        class="size-2 rounded-full bg-primary dark:bg-accent"
-                                ></div>
-                                <div class="flex space-x-1 text-xs leading-6">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Calls</span
-                  >
-                                    <span>33%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-success"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Chat Messages</span
-                  >
-                                    <span>17%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-info"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Emails</span
-                  >
-                                    <span>50%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
-                    <div class="flex items-center justify-between space-x-2">
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <img
-                                        class="mask is-squircle"
-                                        src="../../../assets/logo.jpg"
-                                        alt="image"
-                                />
-                            </div>
-                            <div>
-                                <p
-                                        class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
-                                >
-                                    Travis Fuller
-                                </p>
-                                <p class="text-xs text-slate-400 dark:text-navy-300">
-                                    Employee
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-2">
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    2
-                                </div>
-                            </div>
-                            <div class="relative cursor-pointer">
-                                <button
-                                        class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-4.5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                        />
-                                    </svg>
-                                </button>
-                                <div
-                                        class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
-                                >
-                                    4
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-between space-x-2">
-                        <div>
-                            <p class="text-xs-plus">Sells</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                2 348
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Target</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                3 000
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-xs-plus">Clients</p>
-                            <p
-                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
-                            >
-                                78
-                            </p>
-                        </div>
-                    </div>
-                    <div class="grow">
-                        <div class="flex w-full space-x-1">
-                            <div
-                                    x-tooltip="'Phone Calls'"
-                                    class="h-2 w-4/12 rounded-full bg-primary dark:bg-accent"
-                            ></div>
-                            <div
-                                    x-tooltip="'Chats Messages'"
-                                    class="h-2 w-3/12 rounded-full bg-success"
-                            ></div>
-                            <div
-                                    x-tooltip="'Emails'"
-                                    class="h-2 w-5/12 rounded-full bg-info"
-                            ></div>
-                        </div>
-                        <div class="mt-2 flex flex-wrap">
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div
-                                        class="size-2 rounded-full bg-primary dark:bg-accent"
-                                ></div>
-                                <div class="flex space-x-1 text-xs leading-6">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Calls</span
-                  >
-                                    <span>33%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-success"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Chat Messages</span
-                  >
-                                    <span>17%</span>
-                                </div>
-                            </div>
-                            <div
-                                    class="mb-1 inline-flex items-center space-x-2 font-inter"
-                            >
-                                <div class="size-2 rounded-full bg-info"></div>
-                                <div class="flex space-x-1 text-xs">
-                  <span
-                          class="font-medium text-slate-700 dark:text-navy-100"
-                  >Emails</span
-                  >
-                                    <span>50%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- Top tickets End -->
         <div class="w-full px-[var(--margin-x)] pb-8">
             <div class="mt-4 grid grid-cols-12 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
-                <!--<div
-                        class="col-span-12 grid grid-cols-12 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 py-5 sm:py-6">
-                    <div class="col-span-12 sm:col-span-6 lg:col-span-4">
-                        <div class="px-4 text-white sm:px-5">
-                            <div class="-mt-1 flex items-center space-x-2">
-                                <h2 class="text-base font-medium tracking-wide">Balance</h2>
-                            </div>
-
-                            <div class="mt-3">
-                                <p class="text-2xl font-semibold">6 556 XAF</p>
-                            </div>
-
-                            <div class="mt-4 flex space-x-7">
-                                <div>
-                                    <p class="text-indigo-100">Income</p>
-                                    <div class="mt-1 flex items-center space-x-2">
-                                        <div class="flex size-7 items-center justify-center rounded-full bg-black/20">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none"
-                                                 viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M7 11l5-5m0 0l5 5m-5-5v12" />
-                                            </svg>
-                                        </div>
-                                        <p class="text-base font-medium">2 225 XAF</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p class="text-indigo-100">Clients</p>
-                                    <div class="mt-1 flex items-center space-x-2">
-                                        <div class="flex size-7 items-center justify-center rounded-full bg-black/20">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4"
-                                                 viewBox="0 0 24 24">
-                                                <circle cx="12" cy="6" r="4" fill="currentColor" />
-                                                <path fill="currentColor"
-                                                      d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
-                                                      opacity="0.5" />
-                                            </svg>
-                                        </div>
-                                        <p class="text-base font-medium">22</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-span-12 mt-5 sm:col-span-6 sm:mt-0 lg:col-span-8">
-                        <div class="swiper px-5 sm:pl-0"
-                             x-init="$nextTick(()=>new Swiper($el,{  slidesPerView: 'auto', spaceBetween: 16}))">
-                            <div class="swiper-wrapper">
-                                <div
-                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
-                                    <div
-                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
-                                    </div>
-                                </div>
-                                <div
-                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
-                                    <div
-                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg1.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
-                                    </div>
-                                </div>
-                                <div
-                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
-                                    <div
-                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
-                                    </div>
-                                </div>
-                                <div
-                                        class="swiper-slide relative h-40 w-64 shrink-0 rounded">
-                                    <div
-                                            class="absolute inset-0 flex flex-col bg-[url('../../../assets/bg.jpg')] bg-cover bg-no-repeat justify-between rounded-lg border border-white/10 p-5">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
 
                 <div class="card group col-span-12 pb-5 lg:col-span-8">
                     <div class="my-3 flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:px-5">
                         <div class="flex flex-1 items-center justify-between space-x-2 sm:flex-initial">
                             <h2 class="text-sm-plus font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                                History
+                                Historique Journalier
                             </h2>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="flex cursor-pointer items-center space-x-2">
-                                <div class="size-3 rounded-full bg-accent"></div>
-                                <p>Sales</p>
-                            </div>
-                            <div class="flex cursor-pointer items-center space-x-2">
-                                <div class="size-3 rounded-full bg-info"></div>
-                                <p>Profit</p>
-                            </div>
+
+                            <a href="../../config/export-excel.php" >
+                                <div class="flex cursor-pointer items-center bg-gray-900/5 px-5 py-1.5 rounded-lg space-x-2">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                             viewBox="0 0 32 32">
+                                            <defs>
+                                                <linearGradient id="vscodeIconsFileTypeExcel0" x1="4.494" x2="13.832"
+                                                                y1="-2092.086" y2="-2075.914"
+                                                                gradientTransform="translate(0 2100)"
+                                                                gradientUnits="userSpaceOnUse">
+                                                    <stop offset="0" stop-color="#18884f"/>
+                                                    <stop offset=".5" stop-color="#117e43"/>
+                                                    <stop offset="1" stop-color="#0b6631"/>
+                                                </linearGradient>
+                                            </defs>
+                                            <path fill="#185c37"
+                                                  d="M19.581 15.35L8.512 13.4v14.409A1.19 1.19 0 0 0 9.705 29h19.1A1.19 1.19 0 0 0 30 27.809V22.5Z"/>
+                                            <path fill="#21a366"
+                                                  d="M19.581 3H9.705a1.19 1.19 0 0 0-1.193 1.191V9.5L19.581 16l5.861 1.95L30 16V9.5Z"/>
+                                            <path fill="#107c41" d="M8.512 9.5h11.069V16H8.512Z"/>
+                                            <path d="M16.434 8.2H8.512v16.25h7.922a1.2 1.2 0 0 0 1.194-1.191V9.391A1.2 1.2 0 0 0 16.434 8.2"
+                                                  opacity="0.1"/>
+                                            <path d="M15.783 8.85H8.512V25.1h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
+                                                  opacity="0.2"/>
+                                            <path d="M15.783 8.85H8.512V23.8h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
+                                                  opacity="0.2"/>
+                                            <path d="M15.132 8.85h-6.62V23.8h6.62a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
+                                                  opacity="0.2"/>
+                                            <path fill="url(#vscodeIconsFileTypeExcel0)"
+                                                  d="M3.194 8.85h11.938a1.193 1.193 0 0 1 1.194 1.191v11.918a1.193 1.193 0 0 1-1.194 1.191H3.194A1.19 1.19 0 0 1 2 21.959V10.041A1.19 1.19 0 0 1 3.194 8.85"/>
+                                            <path fill="#fff"
+                                                  d="m5.7 19.873l2.511-3.884l-2.3-3.862h1.847L9.013 14.6c.116.234.2.408.238.524h.017q.123-.281.26-.546l1.342-2.447h1.7l-2.359 3.84l2.419 3.905h-1.809l-1.45-2.711A2.4 2.4 0 0 1 9.2 16.8h-.024a1.7 1.7 0 0 1-.168.351l-1.493 2.722Z"/>
+                                            <path fill="#33c481"
+                                                  d="M28.806 3h-9.225v6.5H30V4.191A1.19 1.19 0 0 0 28.806 3"/>
+                                            <path fill="#107c41" d="M19.581 16H30v6.5H19.581Z"/>
+                                        </svg>
+                                    </div>
+                                    <p>Excel</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-12 gap-4 px-4 sm:gap-5 sm:px-5 lg:gap-6 lg:px-5">
-                        <div class="col-span-12 sm:order-last sm:col-span-6 sm:mt-2 xl:col-span-7">
-                            <div class="ax-transparent-gridline">
-                                <div
-                                        x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.historyTransactionsLine); $el._x_chart.render() });">
-                                </div>
-                            </div>
-                        </div>
                         <div
-                                class="col-span-12 rounded-lg bg-slate-50 p-3 dark:bg-navy-600 sm:col-span-6 xl:col-span-5">
+                                class="col-span-12 rounded-lg bg-slate-50 p-3 dark:bg-navy-600">
                             <div class="space-y-4">
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
+                                <?php
+                                include_once '../../config/config.php';
+                                $conn = getConnexion();
+
+                                // Nombre d'éléments par page
+                                $limit = 10;
+
+                                // Récupérer la page actuelle
+                                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                                $offset = ($page - 1) * $limit;
+
+                                // Requête SQL avec LIMIT et OFFSET pour la pagination
+                                $sql = "
+                                    SELECT t.id AS ticket_id, t.service_date, t.appreciation, t.price AS ticket_price, 
+                                           c.first_name AS client_first_name, c.last_name AS client_last_name, c.phone AS client_phone,
+                                           s.name AS service_name, e.first_name AS employee_first_name, e.last_name AS employee_last_name
+                                    FROM tickets t
+                                    JOIN clients c ON t.client_id = c.id
+                                    JOIN services s ON t.service_id = s.id
+                                    JOIN employees e ON t.employee_id = e.id
+                                    WHERE t.service_date >= CURRENT_DATE
+                                    ORDER BY t.service_date DESC
+                                    LIMIT :limit OFFSET :offset
+                                ";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+                                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+                                $stmt->execute();
+                                $tickets = $stmt->fetchAll();
+
+                                // Calculer le nombre total de tickets
+                                $totalSql = "SELECT COUNT(*) FROM tickets WHERE service_date >= CURRENT_DATE";
+                                $totalStmt = $conn->prepare($totalSql);
+                                $totalStmt->execute();
+                                $totalTickets = $totalStmt->fetchColumn();
+                                $totalPages = ceil($totalTickets / $limit);
+
+                                foreach ($tickets as $ticket) {
+                                    echo '
+                                        <div class="flex cursor-pointer items-center text-left justify-between">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="avatar">
+                                                    <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar"/>
+                                                </div>
+                                                <div>
+                                                    <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
+                                                        ' . htmlspecialchars($ticket['client_first_name']) . ' ' . htmlspecialchars($ticket['client_last_name']) . '
+                                                    </p>
+                                                    <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
+                                                        ' . htmlspecialchars($ticket['service_date']) . '
+                                                    </p>
+                                                </div>
+                                            </div>
                                             <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Konnor Guzman
+                                                ' . htmlspecialchars($ticket['service_name']) . '
                                             </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 21, 2021 - 08:05
-                                            </p>
+                                            <div>
+                                                <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
+                                                    Effectué(e) par
+                                                </p>
+                                                <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
+                                                    ' . htmlspecialchars($ticket['employee_first_name']) . ' ' . htmlspecialchars($ticket['employee_last_name']) . '
+                                                </p>
+                                            </div>
+                                            <p class="font-medium text-success">' . htmlspecialchars($ticket['ticket_price']) . ' Fcfa</p>
                                         </div>
-                                    </div>
-                                    <p class="font-medium text-success">660 XAF</p>
-                                </div>
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Henry Curtis
-                                            </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 19, 2021 - 11:55
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">333 XAF</p>
-                                </div>
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Derrick Simmons
-                                            </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 16, 2021 - 14:45
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">674 XAF</p>
-                                </div>
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Kartina West
-                                            </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 13, 2021 - 11:30
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">547 XAF</p>
-                                </div>
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Samantha Shelton
-                                            </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 10, 2021 - 09:41
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">736 XAF</p>
-                                </div>
-                                <div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                Joe Perkins
-                                            </p>
-                                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                                Dec 06, 2021 - 11:41
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">558 XAF</p>
+                                    ';
+                                }
+                                ?>
+
+                                <!-- Pagination -->
+                                <div class="pagination">
+                                    <ul class="flex list-none gap-2">
+                                        <!-- Lien vers la page précédente -->
+                                        <?php if ($page > 1): ?>
+                                            <li><a href="?page=<?php echo $page - 1; ?>" class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                         height="24" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                              d="M17.75 19a.75.75 0 0 1-1.32.488l-6-7a.75.75 0 0 1 0-.976l6-7A.75.75 0 0 1 17.75 5z"
+                                                              opacity="0.5"/>
+                                                        <path fill="currentColor" fill-rule="evenodd"
+                                                              d="M13.488 19.57a.75.75 0 0 0 .081-1.058L7.988 12l5.581-6.512a.75.75 0 1 0-1.138-.976l-6 7a.75.75 0 0 0 0 .976l6 7a.75.75 0 0 0 1.057.082"
+                                                              clip-rule="evenodd"/>
+                                                    </svg>
+                                                </a></li>
+                                        <?php endif; ?>
+
+                                        <!-- Lien vers chaque page -->
+                                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                            <li><a href="?page=<?php echo $i; ?>" class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a></li>
+                                        <?php endfor; ?>
+
+                                        <!-- Lien vers la page suivante -->
+                                        <?php if ($page < $totalPages): ?>
+                                            <li><a href="?page=<?php echo $page + 1; ?>" class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                         height="24" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                              d="M6.25 19a.75.75 0 0 0 1.32.488l6-7a.75.75 0 0 0 0-.976l-6-7A.75.75 0 0 0 6.25 5z"
+                                                              opacity="0.5"/>
+                                                        <path fill="currentColor" fill-rule="evenodd"
+                                                              d="M10.512 19.57a.75.75 0 0 1-.081-1.058L16.012 12l-5.581-6.512a.75.75 0 1 1 1.139-.976l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.058.082"
+                                                              clip-rule="evenodd"/>
+                                                    </svg>
+                                                </a></li>
+                                        <?php endif; ?>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -2449,94 +1297,98 @@
 
                     <div class="grid grid-cols-12 gap-4 px-4 sm:gap-5 sm:px-5 lg:gap-6 lg:px-5">
                         <div
-                                class="col-span-12 rounded-lg bg-slate-50 p-3 dark:bg-navy-600" >
+                                class="col-span-12 rounded-lg bg-slate-50 p-3 dark:bg-navy-600">
                             <div class="space-y-4">
                                 <?php
                                 include_once '../../config/config.php';
 
                                 $conn = getConnexion();
-                                $sql = "SELECT * FROM services";
-                                $result = $conn->query($sql);
 
+                                // Nombre d'éléments par page
+                                $limit = 10;
+
+                                // Récupérer la page actuelle
+                                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                                $offset = ($page - 1) * $limit;
+
+                                // Requête SQL avec LIMIT et OFFSET pour la pagination
+                                $sql = "SELECT * FROM services LIMIT :limit OFFSET :offset";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+                                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+                                $stmt->execute();
+                                $result = $stmt->fetchAll();
+
+                                // Calculer le nombre total de services
+                                $totalSql = "SELECT COUNT(*) FROM services";
+                                $totalStmt = $conn->prepare($totalSql);
+                                $totalStmt->execute();
+                                $totalServices = $totalStmt->fetchColumn();
+                                $totalPages = ceil($totalServices / $limit);
+
+                                // Affichage des services
                                 foreach ($result as $row) {
-                                    echo '<div class="flex cursor-pointer items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="avatar">
-                                            <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
-                                                ' . htmlspecialchars($row['name']) . '
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p class="font-medium text-success">' . htmlspecialchars($row['price']) . ' XAF</p>
-                                    
-                                </div>';
+                                    echo '
+                                        <div class="flex cursor-pointer items-center justify-between">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="avatar">
+                                                    <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
+                                                </div>
+                                                <div>
+                                                    <p class="text-slate-700 line-clamp-1 dark:text-navy-100">
+                                                        ' . htmlspecialchars($row['name']) . '
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p class="font-medium text-success">' . htmlspecialchars($row['price']) . ' Fcfa</p>
+                                        </div>'
+                                    ;
                                 }
                                 ?>
 
                             </div>
                         </div>
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <ul class="flex list-none gap-2">
+                                <!-- Lien vers la page précédente -->
+                                <?php if ($page > 1): ?>
+                                    <li><a href="?page=<?php echo $page - 1; ?>" class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                 height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M17.75 19a.75.75 0 0 1-1.32.488l-6-7a.75.75 0 0 1 0-.976l6-7A.75.75 0 0 1 17.75 5z"
+                                                      opacity="0.5"/>
+                                                <path fill="currentColor" fill-rule="evenodd"
+                                                      d="M13.488 19.57a.75.75 0 0 0 .081-1.058L7.988 12l5.581-6.512a.75.75 0 1 0-1.138-.976l-6 7a.75.75 0 0 0 0 .976l6 7a.75.75 0 0 0 1.057.082"
+                                                      clip-rule="evenodd"/>
+                                            </svg>
+                                        </a></li>
+                                <?php endif; ?>
+
+                                <!-- Lien vers chaque page -->
+                                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                    <li><a href="?page=<?php echo $i; ?>" class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a></li>
+                                <?php endfor; ?>
+
+                                <!-- Lien vers la page suivante -->
+                                <?php if ($page < $totalPages): ?>
+                                    <li><a href="?page=<?php echo $page + 1; ?>" class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                 height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M6.25 19a.75.75 0 0 0 1.32.488l6-7a.75.75 0 0 0 0-.976l-6-7A.75.75 0 0 0 6.25 5z"
+                                                      opacity="0.5"/>
+                                                <path fill="currentColor" fill-rule="evenodd"
+                                                      d="M10.512 19.57a.75.75 0 0 1-.081-1.058L16.012 12l-5.581-6.512a.75.75 0 1 1 1.139-.976l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.058.082"
+                                                      clip-rule="evenodd"/>
+                                            </svg>
+                                        </a></li>
+                                <?php endif; ?>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-
-                <!--<div class="card col-span-12 px-4 pb-5 sm:px-5 lg:col-span-4">
-                    <div class="flex items-center justify-between py-3">
-                        <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                            Calculator
-                        </h2>
-                        <divclass="inline-flex">
-                        <button
-                                class="btn -mr-1 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path fill="#4086d4"
-                                      d="M12 22c-4.243 0-6.364 0-7.682-1.465C3 19.072 3 16.714 3 12s0-7.071 1.318-8.536S7.758 2 12 2s6.364 0 7.682 1.464C21 4.93 21 7.286 21 12s0 7.071-1.318 8.535S16.242 22 12 22"
-                                      opacity="0.5" />
-                                <path fill="#4086d4"
-                                      d="M15 6H9c-.465 0-.697 0-.888.051a1.5 1.5 0 0 0-1.06 1.06C7 7.304 7 7.536 7 8s0 .697.051.888a1.5 1.5 0 0 0 1.06 1.06C8.304 10 8.536 10 9 10h6c.465 0 .697 0 .888-.051a1.5 1.5 0 0 0 1.06-1.06C17 8.696 17 8.464 17 8s0-.697-.051-.888a1.5 1.5 0 0 0-1.06-1.06C15.697 6 15.464 6 15 6m-7 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m4-4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m4-4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2" />
-                            </svg>
-                        </button>
-                        </divclass=>
-                    </div>
-                    <div class="mt-2 space-y-4">
-                        <label class="block">
-                            <span class="text-xs-plus">Pay to</span>
-                            <div class="mt-1.5 flex h-9 -space-x-px">
-                                <input
-                                        class="form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder="Price" type="text" />
-                                <select
-                                        class="form-select rounded-r-lg border border-slate-300 bg-white px-3 py-2 pr-9 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                                    <option>XAF</option>
-                                </select>
-                            </div>
-                        </label>
-                        <div>
-                            <span class="text-xs-plus">Amount</span>
-
-                            <div class="mt-1.5 flex h-9 -space-x-px">
-                                <input
-                                        class="form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder="Price" type="text" />
-                                <select
-                                        class="form-select rounded-r-lg border border-slate-300 bg-white px-3 py-2 pr-9 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                                    <option>XAF</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col bottom-0 justify-end">
-                        <div class="mt-2 flex justify-between">
-                            <p>Total:</p>
-                            <p class="font-medium text-slate-700 dark:text-navy-100">3 XAF</p>
-                        </div>
-                        <button
-                                class="btn mt-5 h-10 w-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                            Calculate
-                    </div>
-                    </button>
-                </div>-->
             </div>
         </div>
     </main>

@@ -1,4 +1,7 @@
 <?php
+
+use Ramsey\Uuid\Uuid;
+
 session_start();
 if (!$_SESSION['email']) {
     header('location:../auth/sign-in.php');
@@ -13,7 +16,7 @@ if (!$_SESSION['email']) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Clients</title>
+    <title>Nos Ventes</title>
 
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg"/>
@@ -125,7 +128,7 @@ if (!$_SESSION['email']) {
                         </svg>
                     </a>
 
-                    <!-- Forms -->
+                    <!-- Employés -->
                     <a href="employee.php"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                        x-tooltip.placement.right="'Employés'">
@@ -144,7 +147,7 @@ if (!$_SESSION['email']) {
 
                     <!-- Client -->
                     <a href="clientContacts.php"
-                       class="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                        x-tooltip.placement.right="'Clients'">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-opacity="0.5"
@@ -194,7 +197,7 @@ if (!$_SESSION['email']) {
 
                     <!-- Ventes Page -->
                     <a href="sales.php"
-                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       class="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                        x-tooltip.placement.right="'Nos Ventes'">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path fill="currentColor"
@@ -225,7 +228,7 @@ if (!$_SESSION['email']) {
 
                     <!-- Logout -->
                     <a href="../auth/logout.php"
-                       x-tooltip.placement.right="'Déconnexion'"
+                       x-tooltip.placement.right="Déconnexion'"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                         <svg class="size-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
@@ -341,7 +344,7 @@ if (!$_SESSION['email']) {
                     <div class="card-body md:py-3 py-5">
                         <div class=" items-center grid grid-cols-12 gap-6">
                             <div class="col-span-9 p-5">
-                                <h4 class="font-semibold text-xl text-black mb-3">Clients</h4>
+                                <h4 class="font-semibold text-xl text-black mb-3">Ventes</h4>
                                 <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
                                     <li class="flex items-center">
                                         <a class="opacity-80 text-sm leading-none"
@@ -354,7 +357,7 @@ if (!$_SESSION['email']) {
                                     </li>
                                     <li class="flex items-center text-sm text-link dark:text-blacklink leading-none"
                                         aria-current="page">
-                                        Client
+                                        Ventes
                                     </li>
                                 </ol>
                             </div>
@@ -368,9 +371,86 @@ if (!$_SESSION['email']) {
                 </div>
                 <!----Breadcrumb End---->
 
+                <div class="grid grid-cols-12 gap-6 mt-6">
+
+                    <div
+                            class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
+                        <div class="card shadow-none border-s border-[#cc2384]">
+                            <div class="card-body p-8">
+                                <div
+                                        class="flex justify-between items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
+                                        <g fill="none" stroke="#cc2384" stroke-linecap="round" stroke-linejoin="round"
+                                           stroke-width="1.5" color="#cc2384">
+                                            <path d="M12 2a7 7 0 1 0 0 14a7 7 0 0 0 0-14m3 16c-2 0-3 1.5-3 1.5s1 1.5 3 1.5s3-1.5 3-1.5s-1-1.5-3-1.5m-6 0c-2 0-3 1.5-3 1.5S7 21 9 21s3-1.5 3-1.5S11 18 9 18m3 4v-6"/>
+                                            <path d="M10.438 11.667V6.333m1.562 0V5m0 8v-1.333M10.438 9h3.124m0 0c.518 0 .938.448.938 1v.667c0 .552-.42 1-.937 1H9.5M13.563 9c.517 0 .937-.448.937-1v-.667c0-.552-.42-1-.937-1H9.5"/>
+                                        </g>
+                                    </svg>
+                                    <div
+                                            class="ms-auto sm:text-start text-end">
+                                        <h5
+                                                class="font-medium text-2xl ">
+                                            <?php
+                                            include_once '../../config/config.php';
+
+                                            $conn = getConnexion();
+                                            $sql_profit_total = "SELECT SUM(v.prix_total - (b.prix_unitaire * v.quantite_vendue)) AS profit_total 
+                                                FROM ventes v
+                                                JOIN boissons b ON v.boisson_id = b.id";
+
+                                            $stmt_profit = $conn->prepare($sql_profit_total);
+                                            $stmt_profit->execute();
+                                            $profit_total = $stmt_profit->fetchColumn();
+
+                                            echo "<strong>" . $profit_total . " FCFA</strong>";
+                                            ?>
+                                        </h5>
+                                        <p
+                                                class="text-[#cc2384] font-medium text-right">Profit</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                            class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
+                        <div class="card shadow-none border-s border-[#ccc423]">
+                            <div class="card-body p-8">
+                                <div
+                                        class="flex justify-between items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
+                                        <path fill="#ccc423"
+                                              d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8 8a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828zM7 9a2 2 0 1 1 .001-4.001A2 2 0 0 1 7 9"/>
+                                    </svg>
+                                    <div
+                                            class="ms-auto sm:text-start text-end">
+                                        <h5
+                                                class="font-medium text-2xl ">
+                                            <?php
+                                            include_once '../../config/config.php';
+
+                                            $conn = getConnexion();
+                                            $sql_ventes_total = "SELECT SUM(prix_total) AS ventes_total FROM ventes";
+
+                                            $stmt_ventes = $conn->prepare($sql_ventes_total);
+                                            $stmt_ventes->execute();
+                                            $ventes_total = $stmt_ventes->fetchColumn();
+                                            echo "<strong>" . number_format($ventes_total, 2) . " FCFA</strong>";
+                                            ?>
+
+                                        </h5>
+                                        <p
+                                                class="text-[#ccc423] font-medium text-right">Ventes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!---Client search Card--->
 
-                <div class="card mb-6 ">
+                <div class="card mb-6 mt-6">
                     <div class="card-body">
                         <div class="grid grid-cols-12 gap-6 items-center justify-between">
                             <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 p-8">
@@ -383,8 +463,7 @@ if (!$_SESSION['email']) {
                                     </svg>
                                     <input type="text"
                                            class="w-full border-none p-3 focus:border-none focus:ring-0 focus:outline-none"
-                                           id="input-search" placeholder="Search Clients..."/>
-
+                                           id="input-search" placeholder="Rechercher les ventes..."/>
                                 </form>
                             </div>
                             <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12 p-8">
@@ -419,77 +498,167 @@ if (!$_SESSION['email']) {
                                         <img class="mx-auto rounded-full h-30 w-auto mt-15"
                                              src="../../../assets/logo.jpg" alt="Your Company">
                                         <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                                            Compléter les champs pour enrégistrer un client</h2>
+                                            Compléter les champs pour enrégistrer une vente</h2>
                                     </div>
 
-                                    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                                        <?php
-                                        include_once '../../config/config.php';
-                                        require '../../../vendor/autoload.php';
+                                    <?php
+                                    include_once '../../config/config.php';
+                                    require '../../../vendor/autoload.php';
 
-                                        use Ramsey\Uuid\Uuid;
+                                    $conn = getConnexion();
 
-                                        $conn = getConnexion();
+                                    // Initialisation des variables
+                                    $boisson_id = $quantite_disponible = $prix_unitaire = $quantite_vendue = "";
+                                    $message = "";
 
-                                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                                            if ($_POST['name'] && isset($_POST['surname']) && isset($_POST['phone']) !== null) {
-                                                $name = $_POST['name'];
-                                                $surname = $_POST['surname'];
-                                                $phone = $_POST['phone'];
-                                                $uuid = Uuid::uuid4();
-                                                $sql = "INSERT INTO clients (id, first_name, last_name, phone) VALUES (:id, :first_name, :last_name, :phone)";
-                                                $stmt = $conn->prepare($sql);
-                                                $stmt->execute(['id' => $uuid, 'first_name' => $name, 'last_name' => $surname, 'phone' => $phone]);
+                                    // Si une boisson est sélectionnée, récupérer ses infos
+                                    if (isset($_POST['boisson']) && !empty($_POST['boisson'])) {
+                                        $boisson_id = $_POST['boisson'];
 
-                                                echo "<div class='alert alert-success'>Client enrégistré avec succès</div>";
-                                            } else {
-                                                echo "<div class='alert alert-danger'>Veuillez remplir tous les champs</div>";
+                                        $query = "SELECT id, quantite, prix_unitaire FROM boissons WHERE id = :id";
+                                        $stmt = $conn->prepare($query);
+                                        $stmt->execute(['id' => $boisson_id]);
+                                        $boisson = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                        if ($boisson) {
+                                            $quantite_disponible = $boisson['quantite'];
+                                            $prix_unitaire = $boisson['prix_unitaire'];
+
+                                            if ($quantite_disponible < 1) {
+                                                $message = "<div class='text-white bg-red-500 p-3'>Stock indisponible</div>";
                                             }
                                         }
+                                    }
 
-                                        ?>
-                                        <form class="space-y-6" action="#" method="POST">
+                                    // Traitement du formulaire pour enregistrer la vente
+                                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantite_vendue']) && isset($_POST['boisson'])) {
+                                        $quantite_vendue = intval($_POST['quantite_vendue']);
+                                        $boisson_id = $_POST['boisson'];
+
+                                        // Vérifier si la quantité vendue est valide
+                                        if ($quantite_vendue < 1) {
+                                            $message = "<div class='text-white bg-red-500 p-3'>La quantité vendue doit être supérieure à 1</div>";
+                                        } else {
+                                            // Vérifier si la boisson est bien sélectionnée
+                                            if (!empty($boisson_id)) {
+                                                $query = "SELECT quantite, prix_unitaire FROM boissons WHERE id = :id";
+                                                $stmt = $conn->prepare($query);
+                                                $stmt->execute(['id' => $boisson_id]);
+                                                $boisson = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                                if ($boisson) {
+                                                    $quantite_disponible = $boisson['quantite'];
+                                                    $prix_unitaire = $boisson['prix_unitaire'];
+
+                                                    if ($quantite_disponible < 1) {
+                                                        $message = "<div class='text-white bg-red-500 p-3'>Stock indisponible</div>";
+                                                    } elseif ($quantite_disponible >= $quantite_vendue) {
+                                                        $prix_total = $prix_unitaire * $quantite_vendue;
+                                                        $vente_id = \Ramsey\Uuid\Uuid::uuid4()->toString();
+
+                                                        // Insérer la vente
+                                                        $insertSaleQuery = "INSERT INTO ventes (id, boisson_id, quantite_vendue, prix_unitaire, prix_total)
+                                        VALUES (:id, :boisson_id, :quantite_vendue, :prix_unitaire, :prix_total)";
+                                                        $insertStmt = $conn->prepare($insertSaleQuery);
+                                                        $insertStmt->execute([
+                                                            ':id' => $vente_id,
+                                                            ':boisson_id' => $boisson_id,
+                                                            ':quantite_vendue' => $quantite_vendue,
+                                                            ':prix_unitaire' => $prix_unitaire,
+                                                            ':prix_total' => $prix_total
+                                                        ]);
+
+                                                        // Mettre à jour le stock
+                                                        $updateStockQuery = "UPDATE boissons SET quantite = quantite - :quantite_vendue WHERE id = :boisson_id";
+                                                        $updateStmt = $conn->prepare($updateStockQuery);
+                                                        $updateStmt->execute([
+                                                            ':quantite_vendue' => $quantite_vendue,
+                                                            ':boisson_id' => $boisson_id
+                                                        ]);
+
+                                                        $message = "<div class='text-black bg-green-400 p-3'>Vente enregistrée avec succès. Stock mis à jour.</div>";
+                                                    } else {
+                                                        $message = "<div class='text-white bg-red-500 p-3'>Stock insuffisant.</div>";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ?>
+
+                                    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                                        <?= $message ?>
+
+                                        <form class="space-y-6" action="" method="POST">
                                             <div>
-                                                <label for="name" class="block text-sm/6 font-medium text-gray-900">Nom
-                                                    du client</label>
+                                                <label for="boisson" class="block text-sm font-medium text-gray-900">Type
+                                                    de boisson</label>
                                                 <div class="mt-2">
-                                                    <input type="text" name="name" id="name"
-                                                           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                    <select id="boisson" name="boisson"
+                                                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                                            onchange="this.form.submit()">
+                                                        <option disabled selected>Choisir une boisson</option>
+                                                        <?php
+                                                        $sql = "SELECT id, nom FROM boissons";
+                                                        $stmt = $conn->prepare($sql);
+                                                        $stmt->execute();
+                                                        $boissons = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                                        foreach ($boissons as $boisson) {
+                                                            $selected = ($boisson_id == $boisson['id']) ? "selected" : "";
+                                                            echo "<option value='" . htmlspecialchars($boisson['id']) . "' $selected>" . htmlspecialchars($boisson['nom']) . "</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
                                                 </div>
                                             </div>
 
                                             <div>
-                                                <div class="flex items-center justify-between">
-                                                    <label for="surname"
-                                                           class="block text-sm/6 font-medium text-gray-900">Prénom du
-                                                        client</label>
-                                                </div>
+                                                <label for="quantite_disponible"
+                                                       class="block text-sm font-medium text-gray-900">Quantité
+                                                    disponible</label>
                                                 <div class="mt-2">
-                                                    <input type="text" name="surname" id="surname"
-                                                           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                    <input type="text" name="quantite_disponible"
+                                                           id="quantite_disponible"
+                                                           value="<?= htmlspecialchars($quantite_disponible) ?>"
+                                                           disabled
+                                                           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                                           readonly>
                                                 </div>
                                             </div>
 
                                             <div>
-                                                <div class="flex items-center justify-between">
-                                                    <label for="phone"
-                                                           class="block text-sm/6 font-medium text-gray-900">Téléphone
-                                                        du client</label>
-                                                </div>
+                                                <label for="quantite_vendue"
+                                                       class="block text-sm font-medium text-gray-900">Quantité à
+                                                    vendre</label>
                                                 <div class="mt-2">
-                                                    <input type="text" name="phone" id="phone"
-                                                           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                                    <input type="number" name="quantite_vendue" id="quantite_vendue"
+                                                           min="1" max="<?= htmlspecialchars($quantite_disponible) ?>"
+                                                           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" <?= $quantite_disponible < 1 ? 'disabled' : '' ?>
+                                                           required>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label for="price" class="block text-sm font-medium text-gray-900">Prix
+                                                    unitaire</label>
+                                                <div class="mt-2">
+                                                    <input type="text" name="price" id="price"
+                                                           value="<?= htmlspecialchars($prix_unitaire) ?>"
+                                                           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                                           disabled readonly>
                                                 </div>
                                             </div>
 
                                             <div>
                                                 <button type="submit"
-                                                        class="flex mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                                    Enrégistrer
+                                                        class="w-full bg-indigo-600 text-white py-1.5 rounded-md hover:bg-indigo-500" <?= $quantite_disponible < 1 ? 'disabled' : '' ?>>
+                                                    Enregistrer la vente
                                                 </button>
                                             </div>
                                         </form>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -501,135 +670,147 @@ if (!$_SESSION['email']) {
                                 <div class="-m-1.5 overflow-x-auto">
                                     <div class="p-1.5 min-w-full inline-block align-middle">
                                         <div class="overflow-hidden">
+                                            <?php
+                                            // Nombre d'éléments par page
+                                            $items_per_page = 10;
+                                            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                                            $start_from = ($page - 1) * $items_per_page;
+
+                                            // Requête pour obtenir le total des ventes
+                                            $sql_total = "SELECT COUNT(*) FROM ventes";
+                                            $stmt_total = $conn->prepare($sql_total);
+                                            $stmt_total->execute();
+                                            $total_ventes = $stmt_total->fetchColumn();
+                                            $total_pages = ceil($total_ventes / $items_per_page);
+
+                                            // Requête pour récupérer les ventes avec les informations des boissons
+                                            $query = "SELECT v.id, b.nom AS boisson_nom, b.prix_unitaire AS pu, v.quantite_vendue, v.prix_total, v.date_vente 
+                                                FROM ventes v
+                                                JOIN boissons b ON v.boisson_id = b.id
+                                                ORDER BY v.date_vente DESC 
+                                                LIMIT :start_from, :items_per_page";
+
+                                            $stmt = $conn->prepare($query);
+                                            $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
+                                            $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
+                                            $stmt->execute();
+                                            $ventes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                            ?>
+
                                             <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
                                                 <thead>
                                                 <tr>
                                                     <th class="p-4 ps-0">
                                                         <div class="n-chk align-self-center text-center">
                                                             <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input rounded-sm" id="contact-check-all"/>
-                                                                <label class="form-check-label" for="contact-check-all"></label>
+                                                                <input type="checkbox"
+                                                                       class="form-check-input rounded-sm"
+                                                                       id="contact-check-all"/>
+                                                                <label class="form-check-label"
+                                                                       for="contact-check-all"></label>
                                                                 <span class="new-control-indicator"></span>
                                                             </div>
                                                         </div>
                                                     </th>
-                                                    <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Nom du client</th>
-                                                    <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Prénom du client</th>
-                                                    <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Téléphone</th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                        Boisson
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                        Quantité
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                        Prix Unitaire
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                        Prix Total
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                        Date de vente
+                                                    </th>
                                                 </tr>
                                                 </thead>
                                                 <tbody class="divide-y divide-border divide-slate-150">
                                                 <?php
-                                                include_once '../../config/config.php';
-                                                $conn = getConnexion();
-
-                                                // Nombre d'éléments par page
-                                                $limit = 10;
-
-                                                // Récupérer la page actuelle
-                                                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-                                                $offset = ($page - 1) * $limit;
-
-                                                // Requête SQL avec LIMIT et OFFSET pour la pagination
-                                                $sql = "SELECT * FROM clients LIMIT :limit OFFSET :offset";
-                                                $stmt = $conn->prepare($sql);
-                                                $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-                                                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-                                                $stmt->execute();
-                                                $clients = $stmt->fetchAll();
-
-                                                // Calculer le nombre total de clients
-                                                $totalSql = "SELECT COUNT(*) FROM clients";
-                                                $totalStmt = $conn->prepare($totalSql);
-                                                $totalStmt->execute();
-                                                $totalClients = $totalStmt->fetchColumn();
-                                                $totalPages = ceil($totalClients / $limit);
-
-                                                function getInitials($name)
-                                                {
-                                                    $words = explode(" ", $name);
-                                                    $initials = "";
-                                                    foreach ($words as $w) {
-                                                        $initials .= $w[0];
-                                                    }
-                                                    return $initials;
-                                                }
-
-                                                // Affichage des clients
-                                                foreach ($clients as $client) {
+                                                foreach ($ventes as $vente) {
                                                     echo '
-            <tr class="search-items">
-                <td class="p-4 ps-0 whitespace-nowrap">
-                    <div class="n-chk align-self-center text-center">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $client['id'] . '" />
-                            <label class="form-check-label" for="checkbox' . $client['id'] . '"></label>
-                        </div>
-                    </div>
-                </td>
-                <td class="p-4 ps-0 whitespace-nowrap">
-                    <div class="flex gap-3 items-center">
-                        <div>
-                            <p class="rounded-circle bg-indigo-200 items-center justify-center leading-9 text-center font-bold h-9 w-9 rounded-full"> ' . htmlspecialchars($initials = getInitials($client['first_name'])) . ' </p>
-                        </div>
-                        <div>
-                            <h6 class="user-name mb-1" data-name="' . htmlspecialchars($client["first_name"]) . '">' . htmlspecialchars($client["first_name"]) . '</h6>
-                        </div>
-                    </div>
-                </td>
-                <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($client["last_name"]) . '">' . htmlspecialchars($client["last_name"]) . '</td>
-                <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($client["phone"]) . '">' . htmlspecialchars($client["phone"]) . '</td>
-            </tr>';
+                                                        <tr class="search-items">
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="n-chk align-self-center text-center">
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $vente['id'] . '" />
+                                                                        <label class="form-check-label" for="checkbox' . $vente['id'] . '"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="flex gap-3 items-center">
+                                                                    <div>
+                                                                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($vente["boisson_nom"]) . '">' . htmlspecialchars($vente["boisson_nom"]) . '</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($vente["quantite_vendue"]) . '">' . htmlspecialchars($vente["quantite_vendue"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($vente["pu"]) . '">' . htmlspecialchars($vente["pu"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($vente["prix_total"]) . '">' . htmlspecialchars($vente["prix_total"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($vente["date_vente"]) . '">' . htmlspecialchars($vente["date_vente"]) . '</td>
+                                                        </tr>
+                                                    ';
                                                 }
                                                 ?>
                                                 </tbody>
                                             </table>
 
-                                            <!-- Pagination -->
-                                            <div class="pagination mt-4 mx-auto justify-center items-center">
-                                                <ul class="flex list-none gap-2">
-                                                    <?php if ($page > 1): ?>
-                                                        <li><a href="?page=<?php echo $page - 1; ?>"
-                                                               x-tooltip.placement.top="'Précédent'"
-                                                               class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                                     viewBox="0 0 24 24">
-                                                                    <path fill="currentColor" fill-rule="evenodd"
-                                                                          d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
-                                                                          clip-rule="evenodd" opacity="0.5"/>
-                                                                    <path fill="currentColor"
-                                                                          d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
-                                                                </svg>
-                                                            </a></li>
-                                                    <?php endif; ?>
-
-                                                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                                                        <li><a href="?page=<?php echo $i; ?>"
-                                                               class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
-                                                        </li>
-                                                    <?php endfor; ?>
-
-                                                    <?php if ($page < $totalPages): ?>
-                                                        <li>
-                                                            <a href="?page=<?php echo $page + 1; ?>"
-                                                               x-tooltip.placement.top="'Suivant'"
-                                                               class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                                     viewBox="0 0 24 24">
-                                                                    <path fill="currentColor" fill-rule="evenodd"
-                                                                          d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
-                                                                          clip-rule="evenodd" opacity="0.5"/>
-                                                                    <path fill="currentColor"
-                                                                          d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
-                                                                </svg>
-                                                            </a>
-                                                        </li>
-
-                                                    <?php endif; ?>
-                                                </ul>
-                                            </div>
 
                                         </div>
+                                    </div>
+                                    <!-- Pagination -->
+                                    <div class="pagination mx-auto justify-center items-center">
+                                        <ul class="flex list-none gap-2">
+                                            <?php if ($page > 1): ?>
+                                                <li><a href="?page=<?php echo $page - 1; ?>"
+                                                       x-tooltip.placement.top="'Précédent'"
+                                                       class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                             viewBox="0 0 24 24">
+                                                            <path fill="currentColor" fill-rule="evenodd"
+                                                                  d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
+                                                                  clip-rule="evenodd" opacity="0.5"/>
+                                                            <path fill="currentColor"
+                                                                  d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
+                                                        </svg>
+                                                    </a></li>
+                                            <?php endif; ?>
+
+                                            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                                                <li><a href="?page=<?php echo $i; ?>"
+                                                       class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                                </li>
+                                            <?php endfor; ?>
+
+                                            <?php if ($page < $total_pages): ?>
+                                                <li>
+                                                    <a href="?page=<?php echo $page + 1; ?>"
+                                                       x-tooltip.placement.top="'Suivant'"
+                                                       class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                             viewBox="0 0 24 24">
+                                                            <path fill="currentColor" fill-rule="evenodd"
+                                                                  d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
+                                                                  clip-rule="evenodd" opacity="0.5"/>
+                                                            <path fill="currentColor"
+                                                                  d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
+                                                        </svg>
+                                                    </a>
+                                                </li>
+
+                                            <?php endif; ?>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -648,6 +829,25 @@ if (!$_SESSION['email']) {
 <div id="x-teleport-target"></div>
 <script>
     window.addEventListener("DOMContentLoaded", () => Alpine.start());
+
+    document.getElementById('boisson').addEventListener('change', function () {
+        let boissonId = this.value;
+
+        if (boissonId) {
+            fetch(`../../components/get_boisson.php?id=${boissonId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.error) {
+                        document.getElementById('price').value = data.prix_unitaire;
+                        document.getElementById('quantite_disponible').value = data.quantite;
+                    } else {
+                        console.error(data.error);
+                    }
+                })
+                .catch(error => console.error('Erreur lors de la récupération des données:', error));
+        }
+    });
+
 </script>
 </body>
 </html>
