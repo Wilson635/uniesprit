@@ -577,11 +577,12 @@ if (!$_SESSION['email']) {
                     <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12 p-8">
                         <div class="flex justify-end items-center gap-3">
                             <div class="action-btn bg-gray-900/5 show-btn">
-                                <a href="javascript:void(0)"
-                                   class="delete-multiple btn flex gap-2 items-center btn-light-error">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28"><path fill="#c5bc1e" d="M13.28 2.218a.75.75 0 0 0-1.06 1.06l1.708 1.709c-5.773.038-10.442 4.73-10.442 10.512c0 5.806 4.707 10.513 10.513 10.513c5.716 0 10.366-4.562 10.509-10.244a.75.75 0 0 0-1.5-.038a9.013 9.013 0 1 1-9.056-9.243L12.22 8.219a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06zm5 10.001a.75.75 0 0 1 0 1.06l-5.25 5.25a.75.75 0 0 1-1.06 0l-2.252-2.25a.75.75 0 0 1 1.06-1.061l1.722 1.72l4.72-4.72a.75.75 0 0 1 1.06.001"/></svg>
+                                <button onclick="openModal()" class="btn flex gap-2 items-center btn-light-error bg-yellow-500 text-white px-4 py-2 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28">
+                                        <path fill="white" d="M13.28 2.218a.75.75 0 0 0-1.06 1.06l1.708 1.709c-5.773.038-10.442 4.73-10.442 10.512c0 5.806 4.707 10.513 10.513 10.513c5.716 0 10.366-4.562 10.509-10.244a.75.75 0 0 0-1.5-.038a9.013 9.013 0 1 1-9.056-9.243L12.22 8.219a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06zm5 10.001a.75.75 0 0 1 0 1.06l-5.25 5.25a.75.75 0 0 1-1.06 0l-2.252-2.25a.75.75 0 0 1 1.06-1.061l1.722 1.72l4.72-4.72a.75.75 0 0 1 1.06.001"/>
+                                    </svg>
                                     Réapprovisionner
-                                </a>
+                                </button>
                             </div>
                         </div>
 
@@ -589,6 +590,7 @@ if (!$_SESSION['email']) {
                 </div>
             </div>
         </div>
+
 
         <!-- Table reservations -->
         <div
@@ -907,13 +909,91 @@ if (!$_SESSION['email']) {
             </div>
         </div>
         <!-- Table reservations End -->
+
+        <!-- Modal de Réapprovisionnement -->
+        <div id="modal" class="fixed inset-0 backdrop-blur bg-gray-900/5  hidden flex items-center justify-center">
+            <div class="bg-white opacity-100 p-6 rounded-lg shadow-lg w-1/3">
+                <h2 class="text-xl font-semibold mb-4">Réapprovisionner une boisson</h2>
+
+                <?php
+                include_once '../../config/config.php';
+                $conn = getConnexion();
+
+                // Traitement du formulaire de réapprovisionnement
+                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['boisson_id'])) {
+                    $boisson_id = $_POST['boisson_id'];
+                    $quantite_ajoutee = $_POST['quantite_ajoutee'];
+                    $prix_achat = $_POST['prix_achat'];
+
+                    // Mise à jour du stock et enregistrement dans une table historique si nécessaire
+                    $sql_update = "UPDATE boissons SET quantite = boissons.quantite + :quantite WHERE id = :boisson_id";
+                    $stmt = $conn->prepare($sql_update);
+                    $stmt->execute([
+                        ':quantite' => $quantite_ajoutee,
+                        ':boisson_id' => $boisson_id
+                    ]);
+
+                    // Message de succès
+                    $message = "Stock mis à jour avec succès!";
+                }
+
+                // Récupération des boissons
+                $sql_boissons = "SELECT id, nom, quantite FROM boissons";
+                $stmt_boissons = $conn->prepare($sql_boissons);
+                $stmt_boissons->execute();
+                $boissons = $stmt_boissons->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+
+
+
+                <!-- Formulaire de Réapprovisionnement -->
+                <form method="POST">
+                    <label for="boisson_id" class="block mb-2">Choisir une boisson :</label>
+                    <select name="boisson_id" required class="w-full p-2 border rounded mb-3">
+                        <?php foreach ($boissons as $boisson) : ?>
+                            <option value="<?= $boisson['id'] ?>">
+                                <?= $boisson['nom'] ?> (Stock actuel : <?= $boisson['quantite'] ?>)
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <label for="quantite_ajoutee" class="block mb-2">Quantité ajoutée :</label>
+                    <input type="number" name="quantite_ajoutee" required min="1" class="w-full p-2 border rounded mb-3">
+
+                    <label for="prix_achat" class="block mb-2">Prix d'achat (facultatif) :</label>
+                    <input type="number" name="prix_achat" class="w-full p-2 border rounded mb-3">
+
+                    <div class="flex justify-end gap-2">
+                        <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-400 text-white rounded">Annuler</button>
+                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Valider</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 </div>
 
 
 <div id="x-teleport-target"></div>
+<!-- Script pour gérer l'affichage du modal -->
+<script>
+    function openModal() {
+        document.getElementById("modal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+        document.getElementById("modal").classList.add("hidden");
+    }
+</script>
 <script>
     window.addEventListener("DOMContentLoaded", () => Alpine.start());
 </script>
+
+<!-- Affichage du message de confirmation -->
+<?php if (isset($message)) : ?>
+    <script>
+        alert("<?= $message ?>");
+    </script>
+<?php endif; ?>
 </body>
 </html>
