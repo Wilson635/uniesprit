@@ -376,24 +376,25 @@ if (!isset($_SESSION['email'])) {
             <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12">
                 <div class="card bg-indigo-500 p-8 overflow-hidden">
                     <div class="card-body pb-0">
-                        <h5 class="card-title text-xl text-white"><?php echo date('D, d M Y') ?></h5>
+                        <?php
+                        setlocale(LC_TIME, 'fr_FR.UTF-8', 'fra'); // Définir la langue en français
+                        $date_fr = strftime('%A, %d %B %Y'); // Format long : Lundi 04 Mars 2024
+                        ?>
+                        <h5 class="card-title text-xl text-white"><?php echo ucfirst($date_fr); ?></h5>
+
                         <div class="flex justify-center mt-3">
-                            <img src="../../../assets/piggy.png"
-                                 class="w-50"
-                                 alt/>
+                            <img src="../../../assets/piggy.png" class="w-50" alt />
                         </div>
                     </div>
                     <div class="px-2 pb-2">
                         <div>
                             <div class="bg-white/8 backdrop-blur rounded-lg">
-                                <div class="text-5xl text-white p-5 font-bold justify-center text-center items-center">
-                                    <?php echo date('H:i:s') ?>
+                                <div id="live-clock" class="text-5xl text-white p-5 font-bold justify-center text-center items-center">
+                                    <!-- L'heure sera mise à jour ici -->
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <!---Date Cards End--->
@@ -655,7 +656,7 @@ if (!isset($_SESSION['email'])) {
                 </div>
                 <div class="grid grid-cols-1 gap-y-4 pb-3 sm:grid-cols-3">
                     <div
-                            class="flex flex-col justify-between border-4 border-transparent border-l-info px-4"
+                            class="flex flex-col justify-between border-4 border-transparent border-l-indigo-500 px-4"
                     >
                         <div>
                             <p
@@ -731,7 +732,7 @@ if (!isset($_SESSION['email'])) {
                         </div>
                     </div>
                     <div
-                            class="flex flex-col justify-between border-4 border-transparent border-l-secondary px-4"
+                            class="flex flex-col justify-between border-4 border-transparent border-l-green-600 px-4"
                     >
                         <div>
                             <p
@@ -809,7 +810,7 @@ if (!isset($_SESSION['email'])) {
                         </div>
                     </div>
                     <div
-                            class="flex flex-col justify-between border-4 border-transparent border-l-warning px-4"
+                            class="flex flex-col justify-between border-4 border-transparent border-l-red-500 px-4"
                     >
                         <div>
                             <p
@@ -1117,7 +1118,7 @@ if (!isset($_SESSION['email'])) {
         <div class="w-full px-[var(--margin-x)] pb-8">
             <div class="mt-4 grid grid-cols-12 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
 
-                <div class="card group col-span-12 pb-5 lg:col-span-8">
+                <div class="card group col-span-12 pb-5 lg:col-span-7">
                     <div class="my-3 flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:px-5">
                         <div class="flex flex-1 items-center justify-between space-x-2 sm:flex-initial">
                             <h2 class="text-sm-plus font-medium tracking-wide text-slate-700 dark:text-navy-100">
@@ -1286,7 +1287,7 @@ if (!isset($_SESSION['email'])) {
                         </div>
                     </div>
                 </div>
-                <div class="card group col-span-12 pb-5 lg:col-span-4">
+                <div class="card group col-span-12 pb-5 lg:col-span-5">
                     <div class="my-3 flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:px-5">
                         <div class="flex flex-1 items-center justify-between space-x-2 sm:flex-initial">
                             <h2 class="text-sm-plus font-medium tracking-wide text-slate-700 dark:text-navy-100">
@@ -1312,7 +1313,7 @@ if (!isset($_SESSION['email'])) {
                                 $offset = ($page - 1) * $limit;
 
                                 // Requête SQL avec LIMIT et OFFSET pour la pagination
-                                $sql = "SELECT * FROM services LIMIT :limit OFFSET :offset";
+                                $sql = "SELECT * FROM services ORDER BY price ASC LIMIT :limit OFFSET :offset";
                                 $stmt = $conn->prepare($sql);
                                 $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
                                 $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
@@ -1398,6 +1399,17 @@ if (!isset($_SESSION['email'])) {
     @see https://alpinejs.dev/directives/teleport
   -->
 <div id="x-teleport-target"></div>
+<script>
+    function updateClock() {
+        const now = new Date();
+        const formattedTime = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        document.getElementById('live-clock').textContent = formattedTime;
+    }
+
+    // Mettre à jour l'heure immédiatement et toutes les secondes
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
 <script>
     window.addEventListener("DOMContentLoaded", () => Alpine.start());
 </script>
