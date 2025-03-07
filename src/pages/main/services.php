@@ -510,7 +510,7 @@ if (!$_SESSION['email']) {
                                             $offset = ($page - 1) * $limit;
 
                                             // Récupérer les services pour cette page
-                                            $sql = "SELECT * FROM services LIMIT :limit OFFSET :offset";
+                                            $sql = "SELECT * FROM services ORDER BY price ASC  LIMIT :limit OFFSET :offset";
                                             $stmt = $conn->prepare($sql);
                                             $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
                                             $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
@@ -586,7 +586,7 @@ if (!$_SESSION['email']) {
                                                                 </div>
                                                             </td>
                                                             <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($service["description"]) . '">' . htmlspecialchars($service["description"]) . '</td>
-                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($service["price"]) . '">' . htmlspecialchars($service["price"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($service["price"]) . '">' . htmlspecialchars($service["price"]) . ' Fcfa</td>
                                                         </tr>
                                                     ';
                                                 }
