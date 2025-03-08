@@ -623,17 +623,18 @@ if (!$_SESSION['email']) {
                                     $nom = trim($_POST["nom"]);
                                     $quantite = trim($_POST["quantite"]);
                                     $prix_unitaire = trim($_POST["prix_unitaire"]);
+                                    $prix_achat = trim($_POST["prix_achat"]);
                                     $prix_gros = trim($_POST["prix_gros"]);
                                     $categorie_id = trim($_POST["categorie"]);
 
-                                    if (!empty($nom) && !empty($quantite) && !empty($prix_unitaire) && !empty($prix_gros) && !empty($categorie_id)) {
+                                    if (!empty($nom) && !empty($quantite) && !empty($prix_unitaire) && !empty($prix_gros) && !empty($categorie_id) && !empty($prix_achat)) {
                                         try {
                                             $conn = getConnexion();
 
                                             $boisson_id = Uuid::uuid4()->toString();
 
-                                            $sql = "INSERT INTO boissons (id, nom, quantite, prix_unitaire, prix_gros, categorie_id)
-                                            VALUES (:id, :nom, :quantite, :prix_unitaire, :prix_gros, :categorie_id)";
+                                            $sql = "INSERT INTO boissons (id, nom, quantite, prix_unitaire, prix_achat, prix_gros, categorie_id)
+                                            VALUES (:id, :nom, :quantite, :prix_unitaire, :prix_achat, :prix_gros, :categorie_id)";
 
                                             $stmt = $conn->prepare($sql);
 
@@ -642,6 +643,7 @@ if (!$_SESSION['email']) {
                                                 ':nom' => $nom,
                                                 ':quantite' => $quantite,
                                                 ':prix_unitaire' => $prix_unitaire,
+                                                ':prix_achat' => $prix_achat,
                                                 ':prix_gros' => $prix_gros,
                                                 ':categorie_id' => $categorie_id
                                             ]);
@@ -692,6 +694,18 @@ if (!$_SESSION['email']) {
                                     </div>
 
                                     <div>
+                                        <div class="flex items-center justify-between">
+                                            <label for="prix_achat"
+                                                   class="block text-sm/6 font-medium text-gray-900">Prix
+                                                d'achat</label>
+                                        </div>
+                                        <div class="mt-2">
+                                            <input type="number" name="prix_achat" id="prix_achat"
+                                                   class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                        </div>
+                                    </div>
+
+                                    <div>
                                         <label for="prix_gros" class="block text-sm/6 font-medium text-gray-900">Prix de
                                             gros</label>
                                         <div class="mt-2">
@@ -726,7 +740,7 @@ if (!$_SESSION['email']) {
 
                                     <div>
                                         <button type="submit"
-                                                class="flex mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                class="flex mt-4 cursor-pointer mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                             Enrégistrer
                                         </button>
                                     </div>
@@ -763,7 +777,7 @@ if (!$_SESSION['email']) {
                                     $total_pages = ceil($total_boissons / $items_per_page);
 
                                     // Requête pour récupérer les boissons de la page actuelle
-                                    $query = "SELECT b.id as boisson_id, b.nom as boisson_nom, b.quantite as boisson_qty, b.prix_unitaire as boisson_pu, b.prix_gros as boisson_pg, c.nom as categorie FROM boissons b 
+                                    $query = "SELECT b.id as boisson_id, b.nom as boisson_nom, b.quantite as boisson_qty, b.prix_unitaire as boisson_pu, b.prix_achat as boisson_pa,  b.prix_gros as boisson_pg, c.nom as categorie FROM boissons b 
                                     JOIN categories c ON b.categorie_id = c.id 
                                     LIMIT :start_from, :items_per_page";
                                     $stmt = $conn->prepare($query);
@@ -793,6 +807,10 @@ if (!$_SESSION['email']) {
                                             <th scope="col"
                                                 class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
                                                 Quantité
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">P.
+                                                Achat
                                             </th>
                                             <th scope="col"
                                                 class="text-left rtl:text-right p-4 font-semibold text-black text-sm">P.
@@ -833,25 +851,28 @@ if (!$_SESSION['email']) {
                                                         </div>
                                                     </td>
                                                     <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_qty']) . '</td>
+                                                    <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_pa']) . '</td>
                                                     <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_pu']) . '</td>
                                                     <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_pg']) . '</td>
                                                     <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['categorie']) . '</td>
                                                     <td class="text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">
                                                         <div class="action-btn flex gap-3">';
 
-                                            if ($_SESSION['email'] === 'ngahemeniw@gmail.com') {
-                                                echo '
-                                                                    <a href="javascript:void(0)" x-tooltip.placement.top="\'Supprimer\'" class="text-black delete bg-gray-900/5 p-2 rounded-full cursor-pointer">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#c54c1e" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 5.5l-.62 10.025c-.158 2.561-.237 3.842-.88 4.763a4 4 0 0 1-1.2 1.128c-.957.584-2.24.584-4.806.584c-2.57 0-3.855 0-4.814-.585a4 4 0 0 1-1.2-1.13c-.642-.922-.72-2.205-.874-4.77L4.5 5.5M9 11.735h6m-4.5 3.919h3M3 5.5h18m-4.945 0l-.682-1.408c-.454-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.034 2c-1.065 0-1.598 0-2.039.234a2 2 0 0 0-.278.18c-.396.303-.617.788-1.059 1.757L8.053 5.5" color="#c54c1e"/></svg>
-                                                                    </a>';
-                                            }
+
                                             echo '
                                                             <a href="javascript:void(0)" x-tooltip.placement.top="\'Editer\'" class="text-info flex justify-center items-center bg-gray-900/5 p-2 rounded-full edit cursor-pointer">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#1e80c5" fill-rule="evenodd" d="M21.455 5.416a.75.75 0 0 1-.096.943l-9.193 9.192a.75.75 0 0 1-.34.195l-3.829 1a.75.75 0 0 1-.915-.915l1-3.828a.8.8 0 0 1 .161-.312L17.47 2.47a.75.75 0 0 1 1.06 0l2.829 2.828a1 1 0 0 1 .096.118m-1.687.412L18 4.061l-8.518 8.518l-.625 2.393l2.393-.625z" clip-rule="evenodd"/><path fill="#1e80c5" d="M19.641 17.16a44.4 44.4 0 0 0 .261-7.04a.4.4 0 0 1 .117-.3l.984-.984a.198.198 0 0 1 .338.127a46 46 0 0 1-.21 8.372c-.236 2.022-1.86 3.607-3.873 3.832a47.8 47.8 0 0 1-10.516 0c-2.012-.225-3.637-1.81-3.873-3.832a46 46 0 0 1 0-10.67c.236-2.022 1.86-3.607 3.873-3.832a48 48 0 0 1 7.989-.213a.2.2 0 0 1 .128.34l-.993.992a.4.4 0 0 1-.297.117a46 46 0 0 0-6.66.255a2.89 2.89 0 0 0-2.55 2.516a44.4 44.4 0 0 0 0 10.32a2.89 2.89 0 0 0 2.55 2.516c3.355.375 6.827.375 10.183 0a2.89 2.89 0 0 0 2.55-2.516"/></svg>
-                                                            </a>
+                                                            </a>';
+
+                                                            if ($_SESSION['email'] === 'ngahemeniw@gmail.com') {
+                                                echo '
+                                            <a href="javascript:void(0)" x-tooltip.placement.top="\'Supprimer\'" class="text-black delete bg-gray-900/5 p-2 rounded-full cursor-pointer">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#c54c1e" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 5.5l-.62 10.025c-.158 2.561-.237 3.842-.88 4.763a4 4 0 0 1-1.2 1.128c-.957.584-2.24.584-4.806.584c-2.57 0-3.855 0-4.814-.585a4 4 0 0 1-1.2-1.13c-.642-.922-.72-2.205-.874-4.77L4.5 5.5M9 11.735h6m-4.5 3.919h3M3 5.5h18m-4.945 0l-.682-1.408c-.454-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.034 2c-1.065 0-1.598 0-2.039.234a2 2 0 0 0-.278.18c-.396.303-.617.788-1.059 1.757L8.053 5.5" color="#c54c1e"/></svg>
+                                                                    </a>
                                                         </div>
                                                     </td>
                                                 </tr>';
+                                            }
                                         }
                                         ?>
                                         </tbody>

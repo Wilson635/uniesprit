@@ -400,10 +400,189 @@ if (!isset($_SESSION['email'])) {
             <!---Date Cards End--->
 
             <!---Count data database--->
-            <div class="col-span-12"
+            <div class="col-span-12 lg:col-span-8">
+                <div class="flex items-center justify-between space-x-2">
+                    <h2
+                            class="text-base font-medium tracking-wide text-slate-800 line-clamp-1 dark:text-navy-100"
+                    >
+                        Aperçu des revenues
+                    </h2>
+                    <div
+                            x-data="{activeTab:'tabRecent'}"
+                            class="is-scrollbar-hidden overflow-x-auto rounded-lg bg-slate-200 text-slate-600 dark:bg-navy-800 dark:text-navy-200"
+                    >
+                        <div class="tabs-list flex p-1">
+                            <button
+                                    @click="activeTab = 'tabRecent'"
+                                    :class="activeTab === 'tabRecent' ? 'bg-white shadow-sm dark:bg-navy-500 dark:text-navy-100' : 'hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
+                                    class="btn shrink-0 px-3 py-1 text-xs-plus font-medium"
+                            >
+                                Dernier mois
+                            </button>
+                            <button
+                                    @click="activeTab = 'tabAll'"
+                                    :class="activeTab === 'tabAll' ? 'bg-white shadow-sm dark:bg-navy-500 dark:text-navy-100' : 'hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
+                                    class="btn shrink-0 px-3 py-1 text-xs-plus font-medium"
+                            >
+                                Dernière année
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:space-x-7">
+                    <div
+                            class="mt-4 flex shrink-0 flex-col items-center sm:items-start"
+                    >
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="size-8 text-info"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                        >
+                            <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
+                            />
+                            <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
+                            />
+                        </svg>
+                        <div class="mt-4">
+                            <div class="flex items-center space-x-1">
+                                <p
+                                        class="text-2xl font-semibold text-slate-700 dark:text-navy-100"
+                                >
+                                    <?php
+                                    include_once '../../config/config.php';
+
+                                    function sumTicketsMonth()
+                                    {
+                                        $conn = getConnexion();
+
+                                        $query = "SELECT SUM(price) AS total FROM tickets WHERE MONTH(service_date) = MONTH(CURRENT_DATE()) AND YEAR(service_date) = YEAR(CURRENT_DATE())";
+                                        $result = $conn->query($query);
+
+                                        if ($result) {
+                                            $row = $result->fetch(PDO::FETCH_ASSOC);
+                                            return isset($row['total']) ? $row['total'] : 0;
+                                        }
+
+                                        return 0;
+                                    }
+
+                                    echo "<strong>" . sumTicketsMonth() . "</strong>";
+                                    ?>
+                                </p>
+                                <button
+                                        class="btn size-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                                >
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="size-4"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                    >
+                                        <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-400 dark:text-navy-300">
+                                ce mois
+                            </p>
+                        </div>
+                        <div class="mt-4">
+                            <div class="flex items-center space-x-1">
+                                <p
+                                        class="text-2xl font-semibold text-slate-700 dark:text-navy-100"
+                                >
+                                    <?php
+                                    include_once '../../config/config.php';
+
+                                    function sumTicketsTrimester()
+                                    {
+                                        $conn = getConnexion();
+
+                                        $query = "SELECT SUM(price) AS total FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE()) AND YEAR(service_date) = YEAR(CURRENT_DATE())";
+                                        $result = $conn->query($query);
+
+                                        if ($result) {
+                                            $row = $result->fetch(PDO::FETCH_ASSOC);
+                                            return isset($row['total']) ? $row['total'] : 0;
+                                        }
+
+                                        return 0;
+                                    }
+
+                                    echo "<strong>" . sumTicketsTrimester() . "</strong>";
+                                    ?>
+                                </p>
+                                <button
+                                        class="btn size-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                                >
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="size-4"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                    >
+                                        <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-400 dark:text-navy-300">
+                                ce trimestre
+                            </p>
+                        </div>
+                        <button
+                                class="btn mt-8 space-x-2 rounded-full border border-slate-300 px-3 text-xs-plus font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+                        >
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="size-4.5 text-slate-400 dark:text-navy-300"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                            >
+                                <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z"
+                                />
+                            </svg>
+                            <span> Télécharger le rapport</span>
+                        </button>
+                    </div>
+
+                    <div class="ax-transparent-gridline grid w-full grid-cols-1">
+                        <div
+                                x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.analyticsSalesOverview); $el._x_chart.render() });"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-12 lg:col-span-4"
             >
                 <div
-                        class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-3"
+                        class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-2"
                 >
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between space-x-1">
@@ -447,7 +626,7 @@ if (!isset($_SESSION['email'])) {
                                 />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Revenue Journalier (en FCFA)</p>
+                        <p class="mt-1 text-xs-plus">Revenue Journalier</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
@@ -1118,7 +1297,7 @@ if (!isset($_SESSION['email'])) {
         <div class="w-full px-[var(--margin-x)] pb-8">
             <div class="mt-4 grid grid-cols-12 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
 
-                <div class="card group col-span-12 pb-5 lg:col-span-7">
+                <div class="card group col-span-12 pb-5 lg:col-span-8">
                     <div class="my-3 flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:px-5">
                         <div class="flex flex-1 items-center justify-between space-x-2 sm:flex-initial">
                             <h2 class="text-sm-plus font-medium tracking-wide text-slate-700 dark:text-navy-100">
@@ -1287,7 +1466,7 @@ if (!isset($_SESSION['email'])) {
                         </div>
                     </div>
                 </div>
-                <div class="card group col-span-12 pb-5 lg:col-span-5">
+                <div class="card group col-span-12 pb-5 lg:col-span-4">
                     <div class="my-3 flex flex-col justify-between px-4 sm:flex-row sm:items-center sm:px-5">
                         <div class="flex flex-1 items-center justify-between space-x-2 sm:flex-initial">
                             <h2 class="text-sm-plus font-medium tracking-wide text-slate-700 dark:text-navy-100">

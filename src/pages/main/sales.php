@@ -338,7 +338,7 @@ if (!$_SESSION['email']) {
     <main class="main-content w-full pb-8">
         <!-- Main Content -->
         <div class="pt-6 lg:px-8">
-            <div class="container full-container py-5">
+            <div class="py-5">
                 <!----Breadcrumb Start---->
                 <div class="card bg-blue-500/5 dark:bg-navy-500 shadow-none dark:shadow-none position-relative overflow-hidden mb-6">
                     <div class="card-body md:py-3 py-5">
@@ -394,7 +394,7 @@ if (!$_SESSION['email']) {
                                             include_once '../../config/config.php';
 
                                             $conn = getConnexion();
-                                            $sql_profit_total = "SELECT SUM(v.prix_total - (b.prix_unitaire * v.quantite_vendue)) AS profit_total 
+                                            $sql_profit_total = "SELECT SUM(v.prix_total - (b.prix_achat * v.quantite_vendue)) AS profit_total 
                                                 FROM ventes v
                                                 JOIN boissons b ON v.boisson_id = b.id";
 
@@ -484,15 +484,15 @@ if (!$_SESSION['email']) {
 
 
                 <div
-                        class="mt-4 grid grid-cols-12 gap-4 transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
+                        class="mt-4 grid grid-cols-12 transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6"
                 >
 
                     <div
                             class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 w-full">
                         <div
-                                class="sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
+                                class="sm:max-w-lg sm:w-full sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
                             <div
-                                    class="w-full flex flex-col p-5 bg-white dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
+                                    class="w-full flex flex-col p-5 bg-white dark:bg-dark shadow-md dark:shadow-dark-md rounded-md modal-content">
                                 <div class="flex min-h-full flex-col justify-center">
                                     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                                         <img class="mx-auto rounded-full h-30 w-auto mt-15"
@@ -558,7 +558,7 @@ if (!$_SESSION['email']) {
 
                                                         // Insérer la vente
                                                         $insertSaleQuery = "INSERT INTO ventes (id, boisson_id, quantite_vendue, prix_unitaire, prix_total)
-                                        VALUES (:id, :boisson_id, :quantite_vendue, :prix_unitaire, :prix_total)";
+                                                            VALUES (:id, :boisson_id, :quantite_vendue, :prix_unitaire, :prix_total)";
                                                         $insertStmt = $conn->prepare($insertSaleQuery);
                                                         $insertStmt->execute([
                                                             ':id' => $vente_id,
@@ -589,7 +589,7 @@ if (!$_SESSION['email']) {
                                     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                                         <?= $message ?>
 
-                                        <form class="space-y-6" action="" method="POST">
+                                        <form class="space-y-6 py-8" action="" method="POST">
                                             <div>
                                                 <label for="boisson" class="block text-sm font-medium text-gray-900">Type
                                                     de boisson</label>
@@ -651,7 +651,7 @@ if (!$_SESSION['email']) {
 
                                             <div>
                                                 <button type="submit"
-                                                        class="w-full bg-indigo-600 text-white py-1.5 rounded-md hover:bg-indigo-500" <?= $quantite_disponible < 1 ? 'disabled' : '' ?>>
+                                                        class="w-full mt-4 cursor-pointer bg-indigo-600 text-white py-1.5 rounded-md hover:bg-indigo-500" <?= $quantite_disponible < 1 ? 'disabled' : '' ?>>
                                                     Enregistrer la vente
                                                 </button>
                                             </div>
