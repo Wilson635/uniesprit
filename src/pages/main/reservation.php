@@ -71,7 +71,7 @@ if (!$_SESSION['email']) {
                 <!-- Main Sections Links -->
                 <div class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
                     <!-- Dashboards -->
-                    <a href="home.php"
+                    <a href="index.php"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                        x-tooltip.placement.right="'Dashboards'">
                         <svg class="size-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -205,6 +205,23 @@ if (!$_SESSION['email']) {
                                   clip-rule="evenodd"/>
                             <path fill="currentColor"
                                   d="M8.33 2.665a.75.75 0 0 1 1.341.67l-1.835 3.67Q8.56 7 9.422 7h5.156q.863-.001 1.586.005l-1.835-3.67a.75.75 0 0 1 1.342-.67l2.201 4.402c1.353.104 2.202.37 2.75 1.047c.436.539.576 1.209.525 2.136H21q.075 0 .146.014a13 13 0 0 1-.19 1.486H3.045a13 13 0 0 1-.192-1.486A1 1 0 0 1 3 10.25h-.147c-.051-.927.09-1.597.525-2.136c.548-.678 1.397-.943 2.75-1.047z"/>
+                        </svg>
+                    </a>
+
+                    <!-- Charges Page -->
+                    <a href="charges.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Nos Charges'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor" fill-rule="evenodd"
+                                  d="M8.672 7.542h6.656c3.374 0 5.062 0 6.01.987s.724 2.511.278 5.56l-.422 2.892c-.35 2.391-.525 3.587-1.422 4.303s-2.22.716-4.867.716h-5.81c-2.646 0-3.97 0-4.867-.716s-1.072-1.912-1.422-4.303l-.422-2.892c-.447-3.049-.67-4.573.278-5.56s2.636-.987 6.01-.987M8 18c0-.414.373-.75.833-.75h6.334c.46 0 .833.336.833.75s-.373.75-.833.75H8.833c-.46 0-.833-.336-.833-.75"
+                                  clip-rule="evenodd"/>
+                            <path fill="currentColor"
+                                  d="M8.51 2h6.98c.233 0 .41 0 .567.015c1.108.109 2.014.775 2.399 1.672H5.544c.385-.897 1.292-1.563 2.4-1.672C8.099 2 8.278 2 8.51 2"
+                                  opacity="0.4"/>
+                            <path fill="currentColor"
+                                  d="M6.31 4.723c-1.39 0-2.53.84-2.91 1.953l-.024.07a8 8 0 0 1 1.232-.253c1.08-.138 2.446-.138 4.032-.138h6.892c1.586 0 2.952 0 4.032.138c.42.054.834.133 1.232.253l-.023-.07c-.38-1.114-1.52-1.953-2.911-1.953z"
+                                  opacity="0.7"/>
                         </svg>
                     </a>
                 </div>
@@ -342,7 +359,7 @@ if (!$_SESSION['email']) {
                         <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
                             <li class="flex items-center">
                                 <a class="opacity-80 text-sm leading-none"
-                                   href="../main/home.php">
+                                   href="index.php">
                                     Home
                                 </a>
                             </li>
@@ -610,7 +627,7 @@ if (!$_SESSION['email']) {
                                 <form class="space-y-6" action="#" method="POST">
                                     <div class="grid lg:grid-cols-2 justify-between gap-3 items-center">
                                         <div>
-                                            <label for="name" class="block text-sm/6 font-medium text-gray-900">Nom du
+                                            <label for="name" >Nom du
                                                 client</label>
                                             <div class="mt-2">
                                                 <input type="text" name="name" id="name"
@@ -620,7 +637,7 @@ if (!$_SESSION['email']) {
 
                                         <div>
                                             <div class="flex items-center justify-between">
-                                                <label for="surname" class="block text-sm/6 font-medium text-gray-900">Prénom
+                                                <label for="surname" >Prénom
                                                     du client</label>
                                             </div>
                                             <div class="mt-2">
@@ -632,7 +649,7 @@ if (!$_SESSION['email']) {
 
                                     <div>
                                         <div class="flex items-center justify-between">
-                                            <label for="phone" class="block text-sm/6 font-medium text-gray-900">Téléphone
+                                            <label for="phone" >Téléphone
                                                 du client</label>
                                         </div>
                                         <div class="mt-2">
@@ -642,7 +659,7 @@ if (!$_SESSION['email']) {
                                     </div>
 
                                     <div>
-                                        <label for="date" class="block text-sm/6 font-medium text-gray-900">Journée
+                                        <label for="date" >Journée
                                             du</label>
                                         <div class="mt-2">
                                             <input type="datetime-local" name="date" id="date"
@@ -651,7 +668,7 @@ if (!$_SESSION['email']) {
                                     </div>
 
                                     <div>
-                                        <label for="services" class="block text-sm/6 font-medium text-gray-900">Type de
+                                        <label for="services" >Type de
                                             service</label>
                                         <div class="mt-2">
                                             <select id="services" name="services"
@@ -779,7 +796,7 @@ if (!$_SESSION['email']) {
                                                     <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($result["statut"]) . '">' . htmlspecialchars($result["statut"]) . '</td>
                                                     <td class="text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">
                                                         <div class="action-btn flex gap-3">
-                                                            <a href="javascript:void(0)" x-tooltip.placement.top="\'Accepter\'" class="text-info flex justify-center items-center bg-gray-900/5 p-2 rounded-full edit cursor-pointer">
+                                                            <a  href="javascript:void(0)" x-tooltip.placement.top="\'Accepter\'" class="text-info flex justify-center items-center bg-gray-900/5 p-2 rounded-full edit cursor-pointer">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="#42ca7d" d="M225.86 102.82c-3.77-3.94-7.67-8-9.14-11.57c-1.36-3.27-1.44-8.69-1.52-13.94c-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52c-3.56-1.47-7.63-5.37-11.57-9.14C146.28 23.51 138.44 16 128 16s-18.27 7.51-25.18 14.14c-3.94 3.77-8 7.67-11.57 9.14c-3.25 1.36-8.69 1.44-13.94 1.52c-9.76.15-20.82.31-28.51 8s-7.8 18.75-8 28.51c-.08 5.25-.16 10.67-1.52 13.94c-1.47 3.56-5.37 7.63-9.14 11.57C23.51 109.72 16 117.56 16 128s7.51 18.27 14.14 25.18c3.77 3.94 7.67 8 9.14 11.57c1.36 3.27 1.44 8.69 1.52 13.94c.15 9.76.31 20.82 8 28.51s18.75 7.85 28.51 8c5.25.08 10.67.16 13.94 1.52c3.56 1.47 7.63 5.37 11.57 9.14c6.9 6.63 14.74 14.14 25.18 14.14s18.27-7.51 25.18-14.14c3.94-3.77 8-7.67 11.57-9.14c3.27-1.36 8.69-1.44 13.94-1.52c9.76-.15 20.82-.31 28.51-8s7.85-18.75 8-28.51c.08-5.25.16-10.67 1.52-13.94c1.47-3.56 5.37-7.63 9.14-11.57c6.63-6.9 14.14-14.74 14.14-25.18s-7.51-18.27-14.14-25.18m-11.55 39.29c-4.79 5-9.75 10.17-12.38 16.52c-2.52 6.1-2.63 13.07-2.73 19.82c-.1 7-.21 14.33-3.32 17.43s-10.39 3.22-17.43 3.32c-6.75.1-13.72.21-19.82 2.73c-6.35 2.63-11.52 7.59-16.52 12.38S132 224 128 224s-9.15-4.92-14.11-9.69s-10.17-9.75-16.52-12.38c-6.1-2.52-13.07-2.63-19.82-2.73c-7-.1-14.33-.21-17.43-3.32s-3.22-10.39-3.32-17.43c-.1-6.75-.21-13.72-2.73-19.82c-2.63-6.35-7.59-11.52-12.38-16.52S32 132 32 128s4.92-9.15 9.69-14.11s9.75-10.17 12.38-16.52c2.52-6.1 2.63-13.07 2.73-19.82c.1-7 .21-14.33 3.32-17.43s10.39-3.22 17.43-3.32c6.75-.1 13.72-.21 19.82-2.73c6.35-2.63 11.52-7.59 16.52-12.38S124 32 128 32s9.15 4.92 14.11 9.69s10.17 9.75 16.52 12.38c6.1 2.52 13.07 2.63 19.82 2.73c7 .1 14.33.21 17.43 3.32s3.22 10.39 3.32 17.43c.1 6.75.21 13.72 2.73 19.82c2.63 6.35 7.59 11.52 12.38 16.52S224 124 224 128s-4.92 9.15-9.69 14.11m-40.65-43.77a8 8 0 0 1 0 11.32l-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 0"/></svg>
                                                             </a>
                                                             <a href="javascript:void(0)" x-tooltip.placement.top="\'Refuser\'" class="text-black delete bg-gray-900/5 p-2 rounded-full cursor-pointer">

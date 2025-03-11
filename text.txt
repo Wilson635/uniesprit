@@ -1,0 +1,20 @@
+1. Les charges fixes (indépendantes du chiffre d’affaires)
+
+    Loyer ou remboursement d’emprunt si le local est acheté
+    Charges locatives (eau, électricité, chauffage, internet, téléphone)
+    Assurances (local, responsabilité civile professionnelle, matériel)
+    Rémunération du personnel (salaires, charges sociales, mutuelle)
+    Logiciels et abonnements (gestion, prise de rendez-vous en ligne, comptabilité)
+
+2. Les charges variables (liées à l’activité)
+
+    Achat de produits cosmétiques et consommables (cire, crèmes, vernis, cotons, gants)
+    Frais de blanchisserie (serviettes, peignoirs)
+    Entretien du matériel et du local
+    Publicité et communication (réseaux sociaux, flyers, site internet)
+    Commissions sur paiements électroniques (frais bancaires)
+
+3. Les charges exceptionnelles (ponctuelles)
+
+    Achat ou renouvellement du matériel (tables de soins, appareils d’épilation, fauteuils, décoration)
+    Formations et certifications (mise à jour des compétences, nouvelles techniques)
