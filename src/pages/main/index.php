@@ -75,7 +75,7 @@ if (!isset($_SESSION['email'])) {
                 <!-- Main Sections Links -->
                 <div class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
                     <!-- Dashobards -->
-                    <a href="home.php"
+                    <a href="index.php"
                        class="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                        x-tooltip.placement.right="'Dashboards'">
                         <svg class="size-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -209,6 +209,23 @@ if (!isset($_SESSION['email'])) {
                                   clip-rule="evenodd"/>
                             <path fill="currentColor"
                                   d="M8.33 2.665a.75.75 0 0 1 1.341.67l-1.835 3.67Q8.56 7 9.422 7h5.156q.863-.001 1.586.005l-1.835-3.67a.75.75 0 0 1 1.342-.67l2.201 4.402c1.353.104 2.202.37 2.75 1.047c.436.539.576 1.209.525 2.136H21q.075 0 .146.014a13 13 0 0 1-.19 1.486H3.045a13 13 0 0 1-.192-1.486A1 1 0 0 1 3 10.25h-.147c-.051-.927.09-1.597.525-2.136c.548-.678 1.397-.943 2.75-1.047z"/>
+                        </svg>
+                    </a>
+
+                    <!-- Charges Page -->
+                    <a href="charges.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Nos Charges'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor" fill-rule="evenodd"
+                                  d="M8.672 7.542h6.656c3.374 0 5.062 0 6.01.987s.724 2.511.278 5.56l-.422 2.892c-.35 2.391-.525 3.587-1.422 4.303s-2.22.716-4.867.716h-5.81c-2.646 0-3.97 0-4.867-.716s-1.072-1.912-1.422-4.303l-.422-2.892c-.447-3.049-.67-4.573.278-5.56s2.636-.987 6.01-.987M8 18c0-.414.373-.75.833-.75h6.334c.46 0 .833.336.833.75s-.373.75-.833.75H8.833c-.46 0-.833-.336-.833-.75"
+                                  clip-rule="evenodd"/>
+                            <path fill="currentColor"
+                                  d="M8.51 2h6.98c.233 0 .41 0 .567.015c1.108.109 2.014.775 2.399 1.672H5.544c.385-.897 1.292-1.563 2.4-1.672C8.099 2 8.278 2 8.51 2"
+                                  opacity="0.4"/>
+                            <path fill="currentColor"
+                                  d="M6.31 4.723c-1.39 0-2.53.84-2.91 1.953l-.024.07a8 8 0 0 1 1.232-.253c1.08-.138 2.446-.138 4.032-.138h6.892c1.586 0 2.952 0 4.032.138c.42.054.834.133 1.232.253l-.023-.07c-.38-1.114-1.52-1.953-2.911-1.953z"
+                                  opacity="0.7"/>
                         </svg>
                     </a>
                 </div>
@@ -383,13 +400,14 @@ if (!isset($_SESSION['email'])) {
                         <h5 class="card-title text-xl text-white"><?php echo ucfirst($date_fr); ?></h5>
 
                         <div class="flex justify-center mt-3">
-                            <img src="../../../assets/piggy.png" class="w-50" alt />
+                            <img src="../../../assets/piggy.png" class="w-50" alt/>
                         </div>
                     </div>
                     <div class="px-2 pb-2">
                         <div>
                             <div class="bg-white/8 backdrop-blur rounded-lg">
-                                <div id="live-clock" class="text-5xl text-white p-5 font-bold justify-center text-center items-center">
+                                <div id="live-clock"
+                                     class="text-5xl text-white p-5 font-bold justify-center text-center items-center">
                                     <!-- L'heure sera mise à jour ici -->
                                 </div>
                             </div>
@@ -804,7 +822,7 @@ if (!isset($_SESSION['email'])) {
                     <h2
                             class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
                     >
-                        Projects Status
+                        Aperçu des ventes & charges
                     </h2>
                     <div
                             x-data="usePopper({placement:'bottom-end',offset:4})"
@@ -841,72 +859,63 @@ if (!isset($_SESSION['email'])) {
                             <p
                                     class="text-base font-medium text-slate-600 dark:text-navy-100"
                             >
-                                Web Design
+                                Statistiques hebdomadaires
                             </p>
                             <p class="text-xs text-slate-400 dark:text-navy-300">
-                                Design Learn Management System
+                                Ventes moyennes
                             </p>
-                            <div class="badge mt-2 bg-info/10 text-info dark:bg-info/15">
-                                UI/UX Design
-                            </div>
+                            <!--                            <div class="badge mt-2 bg-info/10 text-info dark:bg-info/15">-->
+                            <!--                                UI/UX Design-->
+                            <!--                            </div>-->
                         </div>
                         <div>
                             <div class="mt-8">
                                 <p class="font-inter">
-                  <span
-                          class="text-2xl font-medium text-slate-600 dark:text-navy-100"
-                  >%55.</span
-                  ><span class="text-xs">23</span>
-                                </p>
-                                <p class="mt-1 text-xs">June 08, 2021</p>
-                            </div>
-                            <div class="mt-8 flex items-center justify-between space-x-2">
-                                <div class="flex -space-x-3">
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
-                                    <div class="avatar size-8 hover:z-10">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
                                         <div
-                                                class="is-initial rounded-full bg-info text-xs-plus uppercase text-white ring-2 ring-white dark:ring-navy-700"
-                                        >
-                                            jd
+                                                class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                            <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
+                                                      opacity="0.5"/>
+                                                <path fill="currentColor"
+                                                      d="M10.861 3.363C11.368 2.454 11.621 2 12 2s.632.454 1.139 1.363l.13.235c.145.259.217.388.329.473s.252.117.532.18l.254.058c.984.222 1.476.334 1.593.71s-.218.769-.889 1.553l-.174.203c-.19.223-.285.334-.328.472s-.029.287 0 .584l.026.27c.102 1.047.152 1.57-.154 1.803s-.767.02-1.688-.404l-.239-.11c-.261-.12-.392-.18-.531-.18s-.27.06-.531.18l-.239.11c-.92.425-1.382.637-1.688.404s-.256-.756-.154-1.802l.026-.271c.029-.297.043-.446 0-.584s-.138-.25-.328-.472l-.174-.203c-.67-.784-1.006-1.177-.889-1.553s.609-.488 1.593-.71l.254-.058c.28-.063.42-.095.532-.18s.184-.214.328-.473zm8.569 4.319c.254-.455.38-.682.57-.682s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.796.356s-.109.384-.444.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.383.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.444-.776s.304-.244.796-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237zm-16 0C3.685 7.227 3.81 7 4 7s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.797.356c.058.188-.11.384-.445.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.384.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.445-.776c.059-.189.305-.244.797-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <?php
+                                            include_once "../../config/config.php";
+
+                                            $pdo = getConnexion();
+
+                                            $query = "SELECT b.nom, SUM(v.quantite_vendue) AS total_vendu
+                                                  FROM ventes v
+                                                  JOIN boissons b ON v.boisson_id = b.id
+                                                  WHERE v.date_vente >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+                                                  GROUP BY b.id
+                                                  ORDER BY total_vendu DESC
+                                                  LIMIT 1";
+
+                                            $stmt = $pdo->query($query);
+                                            $meilleure_vente = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                            // Vérifier si un produit a été trouvé
+                                            $nom_produit = $meilleure_vente ? $meilleure_vente['nom'] : 'Aucune vente';
+                                            $total_vendu = $meilleure_vente ? $meilleure_vente['total_vendu'] : 0;
+
+                                            ?>
+                                            <h6 class="text-base">Meilleure Vente</h6>
+                                            <p class=" dark:text-darklink "><?= htmlspecialchars($nom_produit) ?></p>
                                         </div>
                                     </div>
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
+                                    <span
+                                            class="bg-indigo-100 text-indigo-500 p-2 rounded-full">+<?= $total_vendu ?>
+                                    </span>
+
                                 </div>
-                                <button
-                                        class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            stroke-width="1.5"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                                        />
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                        />
-                                    </svg>
-                                </button>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -917,74 +926,89 @@ if (!isset($_SESSION['email'])) {
                             <p
                                     class="text-base font-medium text-slate-600 dark:text-navy-100"
                             >
-                                Mobile App
+                                Aperçu des ventes
                             </p>
                             <p class="text-xs text-slate-400 dark:text-navy-300">
-                                Ecommerce Application
+                                Chaque mois
                             </p>
-                            <div
-                                    class="badge mt-2 bg-secondary/10 text-secondary dark:bg-secondary-light/15 dark:text-secondary-light"
-                            >
-                                Ecommerce
-                            </div>
                         </div>
-                        <div>
+                        <div class="grid grid-cols-1 lg:grid-cols-2">
                             <div class="mt-8">
                                 <p class="font-inter">
-                  <span
-                          class="text-2xl font-medium text-slate-600 dark:text-navy-100"
-                  >%14.</span
-                  ><span class="text-xs">84</span>
-                                </p>
-                                <p class="mt-1 text-xs">May 01, 2021</p>
-                            </div>
-                            <div class="mt-8 flex items-center justify-between space-x-2">
-                                <div class="flex -space-x-3">
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
-                                    <div class="avatar size-8 hover:z-10">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
                                         <div
-                                                class="is-initial rounded-full bg-success text-xs-plus uppercase text-white ring-2 ring-white dark:ring-navy-700"
-                                        >
-                                            uh
+                                                class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                            <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                 height="24"
+                                                 viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                <path fill="currentColor" fill-rule="evenodd"
+                                                      d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                      clip-rule="evenodd"/>
+                                                <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <?php
+                                            include_once "../../config/config.php";
+
+                                            $pdo = getConnexion();
+
+                                            // Récupérer les revenus (chiffre d'affaires) du mois
+                                            $query_revenu = "SELECT SUM(prix_total) AS total_revenu 
+                                                 FROM ventes 
+                                                 WHERE date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                            $stmt = $pdo->query($query_revenu);
+                                            $revenu = $stmt->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+
+                                            // Récupérer les dépenses du mois
+                                            $query_depenses = "SELECT SUM(v.quantite_vendue * b.prix_gros) AS total_depenses
+                                                   FROM ventes v
+                                                   JOIN boissons b ON v.boisson_id = b.id
+                                                   WHERE v.date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                            $stmt = $pdo->query($query_depenses);
+                                            $depenses = $stmt->fetch(PDO::FETCH_ASSOC)['total_depenses'] ?? 0;
+
+                                            // Calcul des bénéfices
+                                            // $benefices = $revenu - $depenses;
+                                            $benefices = max(0, $revenu - $depenses);
+
+                                            ?>
+                                            <h6 class="text-base"><?= number_format($benefices, 2, ',', ' ') ?></h6>
+                                            <p class=" dark:text-darklink ">Bénéfice</p>
                                         </div>
                                     </div>
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
+
                                 </div>
-                                <button
-                                        class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            stroke-width="1.5"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                                        />
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                        />
-                                    </svg>
-                                </button>
+                                </p>
+                            </div>
+                            <div class="mt-8">
+                                <p class="font-inter">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                                class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                            <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                 height="24"
+                                                 viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                <path fill="currentColor" fill-rule="evenodd"
+                                                      d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                      clip-rule="evenodd"/>
+                                                <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h6 class="text-base"><?= number_format($depenses, 2, ',', ' ') ?></h6>
+                                            <p class=" dark:text-darklink ">Dépenses</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -995,82 +1019,19 @@ if (!isset($_SESSION['email'])) {
                             <p
                                     class="text-base font-medium text-slate-600 dark:text-navy-100"
                             >
-                                Design System
+                                Aperçu des charges
                             </p>
                             <p class="text-xs text-slate-400 dark:text-navy-300">
-                                Create LMS design system on figma
+                                Hebdomadaire & mensuel
                             </p>
-                            <div class="mt-2 flex space-x-1.5">
-                                <div
-                                        class="badge bg-warning/10 text-warning dark:bg-warning/15"
-                                >
-                                    LMS
-                                </div>
-                                <div
-                                        class="badge bg-warning/10 text-warning dark:bg-warning/15"
-                                >
-                                    Figma
-                                </div>
-                            </div>
                         </div>
                         <div>
                             <div class="mt-8">
                                 <p class="font-inter">
-                  <span
-                          class="text-2xl font-medium text-slate-600 dark:text-navy-100"
-                  >%87.</span
-                  ><span class="text-xs">40</span>
                                 </p>
                                 <p class="mt-1 text-xs">September 16, 2021</p>
                             </div>
-                            <div class="mt-8 flex items-center justify-between space-x-2">
-                                <div class="flex -space-x-3">
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
-                                    <div class="avatar size-8 hover:z-10">
-                                        <div
-                                                class="is-initial rounded-full bg-error text-xs-plus uppercase text-white ring-2 ring-white dark:ring-navy-700"
-                                        >
-                                            pm
-                                        </div>
-                                    </div>
-                                    <div class="avatar size-8 hover:z-10">
-                                        <img
-                                                class="rounded-full ring-2 ring-white dark:ring-navy-700"
-                                                src="../../../assets/logo.jpg"
-                                                alt="avatar"
-                                        />
-                                    </div>
-                                </div>
-                                <button
-                                        class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                                >
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="size-5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            stroke-width="1.5"
-                                    >
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                                        />
-                                        <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -1306,7 +1267,7 @@ if (!isset($_SESSION['email'])) {
                         </div>
                         <div class="flex items-center space-x-4">
 
-                            <a href="../../config/export-excel.php" >
+                            <a href="../../config/export-excel.php">
                                 <div class="flex cursor-pointer items-center bg-gray-900/5 px-5 py-1.5 rounded-lg space-x-2">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -1428,7 +1389,8 @@ if (!isset($_SESSION['email'])) {
                                     <ul class="flex list-none gap-2">
                                         <!-- Lien vers la page précédente -->
                                         <?php if ($page > 1): ?>
-                                            <li><a href="?page=<?php echo $page - 1; ?>" class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
+                                            <li><a href="?page=<?php echo $page - 1; ?>"
+                                                   class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                          height="24" viewBox="0 0 24 24">
                                                         <path fill="currentColor"
@@ -1443,12 +1405,15 @@ if (!isset($_SESSION['email'])) {
 
                                         <!-- Lien vers chaque page -->
                                         <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                                            <li><a href="?page=<?php echo $i; ?>" class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a></li>
+                                            <li><a href="?page=<?php echo $i; ?>"
+                                                   class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                            </li>
                                         <?php endfor; ?>
 
                                         <!-- Lien vers la page suivante -->
                                         <?php if ($page < $totalPages): ?>
-                                            <li><a href="?page=<?php echo $page + 1; ?>" class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
+                                            <li><a href="?page=<?php echo $page + 1; ?>"
+                                                   class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                          height="24" viewBox="0 0 24 24">
                                                         <path fill="currentColor"
@@ -1521,8 +1486,7 @@ if (!isset($_SESSION['email'])) {
                                                 </div>
                                             </div>
                                             <p class="font-medium text-success">' . htmlspecialchars($row['price']) . ' Fcfa</p>
-                                        </div>'
-                                    ;
+                                        </div>';
                                 }
                                 ?>
 
@@ -1533,7 +1497,8 @@ if (!isset($_SESSION['email'])) {
                             <ul class="flex list-none gap-2">
                                 <!-- Lien vers la page précédente -->
                                 <?php if ($page > 1): ?>
-                                    <li><a href="?page=<?php echo $page - 1; ?>" class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
+                                    <li><a href="?page=<?php echo $page - 1; ?>"
+                                           class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                  height="24" viewBox="0 0 24 24">
                                                 <path fill="currentColor"
@@ -1548,12 +1513,15 @@ if (!isset($_SESSION['email'])) {
 
                                 <!-- Lien vers chaque page -->
                                 <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                                    <li><a href="?page=<?php echo $i; ?>" class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a></li>
+                                    <li><a href="?page=<?php echo $i; ?>"
+                                           class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                    </li>
                                 <?php endfor; ?>
 
                                 <!-- Lien vers la page suivante -->
                                 <?php if ($page < $totalPages): ?>
-                                    <li><a href="?page=<?php echo $page + 1; ?>" class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
+                                    <li><a href="?page=<?php echo $page + 1; ?>"
+                                           class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                  height="24" viewBox="0 0 24 24">
                                                 <path fill="currentColor"
@@ -1581,7 +1549,7 @@ if (!isset($_SESSION['email'])) {
 <script>
     function updateClock() {
         const now = new Date();
-        const formattedTime = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const formattedTime = now.toLocaleTimeString('fr-FR', {hour: '2-digit', minute: '2-digit', second: '2-digit'});
         document.getElementById('live-clock').textContent = formattedTime;
     }
 

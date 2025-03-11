@@ -71,7 +71,7 @@ if (!$_SESSION['email']) {
                 <!-- Main Sections Links -->
                 <div class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
                     <!-- Dashboards -->
-                    <a href="home.php"
+                    <a href="index.php"
                        class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                        x-tooltip.placement.right="'Dashboards'">
                         <svg class="size-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -205,6 +205,23 @@ if (!$_SESSION['email']) {
                                   clip-rule="evenodd"/>
                             <path fill="currentColor"
                                   d="M8.33 2.665a.75.75 0 0 1 1.341.67l-1.835 3.67Q8.56 7 9.422 7h5.156q.863-.001 1.586.005l-1.835-3.67a.75.75 0 0 1 1.342-.67l2.201 4.402c1.353.104 2.202.37 2.75 1.047c.436.539.576 1.209.525 2.136H21q.075 0 .146.014a13 13 0 0 1-.19 1.486H3.045a13 13 0 0 1-.192-1.486A1 1 0 0 1 3 10.25h-.147c-.051-.927.09-1.597.525-2.136c.548-.678 1.397-.943 2.75-1.047z"/>
+                        </svg>
+                    </a>
+
+                    <!-- Charges Page -->
+                    <a href="charges.php"
+                       class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                       x-tooltip.placement.right="'Nos Charges'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor" fill-rule="evenodd"
+                                  d="M8.672 7.542h6.656c3.374 0 5.062 0 6.01.987s.724 2.511.278 5.56l-.422 2.892c-.35 2.391-.525 3.587-1.422 4.303s-2.22.716-4.867.716h-5.81c-2.646 0-3.97 0-4.867-.716s-1.072-1.912-1.422-4.303l-.422-2.892c-.447-3.049-.67-4.573.278-5.56s2.636-.987 6.01-.987M8 18c0-.414.373-.75.833-.75h6.334c.46 0 .833.336.833.75s-.373.75-.833.75H8.833c-.46 0-.833-.336-.833-.75"
+                                  clip-rule="evenodd"/>
+                            <path fill="currentColor"
+                                  d="M8.51 2h6.98c.233 0 .41 0 .567.015c1.108.109 2.014.775 2.399 1.672H5.544c.385-.897 1.292-1.563 2.4-1.672C8.099 2 8.278 2 8.51 2"
+                                  opacity="0.4"/>
+                            <path fill="currentColor"
+                                  d="M6.31 4.723c-1.39 0-2.53.84-2.91 1.953l-.024.07a8 8 0 0 1 1.232-.253c1.08-.138 2.446-.138 4.032-.138h6.892c1.586 0 2.952 0 4.032.138c.42.054.834.133 1.232.253l-.023-.07c-.38-1.114-1.52-1.953-2.911-1.953z"
+                                  opacity="0.7"/>
                         </svg>
                     </a>
                 </div>
@@ -342,7 +359,7 @@ if (!$_SESSION['email']) {
                         <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
                             <li class="flex items-center">
                                 <a class="opacity-80 text-sm leading-none"
-                                   href="../main/home.php">
+                                   href="index.php">
                                     Home
                                 </a>
                             </li>
@@ -663,7 +680,7 @@ if (!$_SESSION['email']) {
                                     <div class="grid lg:grid-cols-2 justify-between gap-3 items-center">
                                         <div>
                                             <label for="nom"
-                                                   class="block text-sm/6 font-medium text-gray-900">Nom</label>
+                                                   >Nom</label>
                                             <div class="mt-2">
                                                 <input type="text" name="nom" id="nom"
                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
@@ -672,7 +689,7 @@ if (!$_SESSION['email']) {
 
                                         <div>
                                             <div class="flex items-center justify-between">
-                                                <label for="quantite" class="block text-sm/6 font-medium text-gray-900">Quantité</label>
+                                                <label for="quantite" >Quantité</label>
                                             </div>
                                             <div class="mt-2">
                                                 <input type="number" name="quantite" id="quantite"
@@ -684,7 +701,7 @@ if (!$_SESSION['email']) {
                                     <div>
                                         <div class="flex items-center justify-between">
                                             <label for="prix_unitaire"
-                                                   class="block text-sm/6 font-medium text-gray-900">Prix
+                                                   >Prix
                                                 Unitaire</label>
                                         </div>
                                         <div class="mt-2">
@@ -696,7 +713,7 @@ if (!$_SESSION['email']) {
                                     <div>
                                         <div class="flex items-center justify-between">
                                             <label for="prix_achat"
-                                                   class="block text-sm/6 font-medium text-gray-900">Prix
+                                                   >Prix
                                                 d'achat</label>
                                         </div>
                                         <div class="mt-2">
@@ -706,7 +723,7 @@ if (!$_SESSION['email']) {
                                     </div>
 
                                     <div>
-                                        <label for="prix_gros" class="block text-sm/6 font-medium text-gray-900">Prix de
+                                        <label for="prix_gros" >Prix de
                                             gros</label>
                                         <div class="mt-2">
                                             <input type="number" name="prix_gros" id="prix_gros"
@@ -715,7 +732,7 @@ if (!$_SESSION['email']) {
                                     </div>
 
                                     <div>
-                                        <label for="categorie" class="block text-sm/6 font-medium text-gray-900">Categorie</label>
+                                        <label for="categorie" >Categorie</label>
                                         <div class="mt-2">
                                             <select id="categorie" name="categorie"
                                                     class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
