@@ -499,6 +499,376 @@ if (!$_SESSION['email']) {
                     </div>
                 </div>
 
+                <div class="card col-span-12">
+                    <div class="flex items-center justify-between py-3 px-4">
+                        <h2
+                                class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
+                        >
+                            Quelques concepts à savoir
+                        </h2>
+                    </div>
+                    <div class="grid grid-cols-1 gap-y-4 pb-3 sm:grid-cols-3">
+                        <div
+                                class="flex flex-col justify-between border-4 border-transparent border-l-indigo-500 px-4"
+                        >
+                            <div>
+                                <p
+                                        class="text-base font-medium text-slate-600 dark:text-navy-100"
+                                >
+                                    Les charges fixes
+                                </p>
+                                <p class="text-xs text-slate-400 dark:text-navy-300">
+                                    (indépendantes du chiffre d’affaires)
+                                </p>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M10.861 3.363C11.368 2.454 11.621 2 12 2s.632.454 1.139 1.363l.13.235c.145.259.217.388.329.473s.252.117.532.18l.254.058c.984.222 1.476.334 1.593.71s-.218.769-.889 1.553l-.174.203c-.19.223-.285.334-.328.472s-.029.287 0 .584l.026.27c.102 1.047.152 1.57-.154 1.803s-.767.02-1.688-.404l-.239-.11c-.261-.12-.392-.18-.531-.18s-.27.06-.531.18l-.239.11c-.92.425-1.382.637-1.688.404s-.256-.756-.154-1.802l.026-.271c.029-.297.043-.446 0-.584s-.138-.25-.328-.472l-.174-.203c-.67-.784-1.006-1.177-.889-1.553s.609-.488 1.593-.71l.254-.058c.28-.063.42-.095.532-.18s.184-.214.328-.473zm8.569 4.319c.254-.455.38-.682.57-.682s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.796.356s-.109.384-.444.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.383.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.444-.776s.304-.244.796-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237zm-16 0C3.685 7.227 3.81 7 4 7s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.797.356c.058.188-.11.384-.445.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.384.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.445-.776c.059-.189.305-.244.797-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Loyer ou remboursement d’emprunt</h6>
+                                                <p>(si le local est acheté)</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M10.861 3.363C11.368 2.454 11.621 2 12 2s.632.454 1.139 1.363l.13.235c.145.259.217.388.329.473s.252.117.532.18l.254.058c.984.222 1.476.334 1.593.71s-.218.769-.889 1.553l-.174.203c-.19.223-.285.334-.328.472s-.029.287 0 .584l.026.27c.102 1.047.152 1.57-.154 1.803s-.767.02-1.688-.404l-.239-.11c-.261-.12-.392-.18-.531-.18s-.27.06-.531.18l-.239.11c-.92.425-1.382.637-1.688.404s-.256-.756-.154-1.802l.026-.271c.029-.297.043-.446 0-.584s-.138-.25-.328-.472l-.174-.203c-.67-.784-1.006-1.177-.889-1.553s.609-.488 1.593-.71l.254-.058c.28-.063.42-.095.532-.18s.184-.214.328-.473zm8.569 4.319c.254-.455.38-.682.57-.682s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.796.356s-.109.384-.444.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.383.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.444-.776s.304-.244.796-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237zm-16 0C3.685 7.227 3.81 7 4 7s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.797.356c.058.188-.11.384-.445.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.384.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.445-.776c.059-.189.305-.244.797-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Charges locatives</h6>
+                                                <p>(eau, électricité, chauffage, internet,
+                                                    téléphone)</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M10.861 3.363C11.368 2.454 11.621 2 12 2s.632.454 1.139 1.363l.13.235c.145.259.217.388.329.473s.252.117.532.18l.254.058c.984.222 1.476.334 1.593.71s-.218.769-.889 1.553l-.174.203c-.19.223-.285.334-.328.472s-.029.287 0 .584l.026.27c.102 1.047.152 1.57-.154 1.803s-.767.02-1.688-.404l-.239-.11c-.261-.12-.392-.18-.531-.18s-.27.06-.531.18l-.239.11c-.92.425-1.382.637-1.688.404s-.256-.756-.154-1.802l.026-.271c.029-.297.043-.446 0-.584s-.138-.25-.328-.472l-.174-.203c-.67-.784-1.006-1.177-.889-1.553s.609-.488 1.593-.71l.254-.058c.28-.063.42-.095.532-.18s.184-.214.328-.473zm8.569 4.319c.254-.455.38-.682.57-.682s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.796.356s-.109.384-.444.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.383.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.444-.776s.304-.244.796-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237zm-16 0C3.685 7.227 3.81 7 4 7s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.797.356c.058.188-.11.384-.445.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.384.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.445-.776c.059-.189.305-.244.797-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Assurances</h6>
+                                                <p>(local, responsabilité civile
+                                                    professionnelle, matériel)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M10.861 3.363C11.368 2.454 11.621 2 12 2s.632.454 1.139 1.363l.13.235c.145.259.217.388.329.473s.252.117.532.18l.254.058c.984.222 1.476.334 1.593.71s-.218.769-.889 1.553l-.174.203c-.19.223-.285.334-.328.472s-.029.287 0 .584l.026.27c.102 1.047.152 1.57-.154 1.803s-.767.02-1.688-.404l-.239-.11c-.261-.12-.392-.18-.531-.18s-.27.06-.531.18l-.239.11c-.92.425-1.382.637-1.688.404s-.256-.756-.154-1.802l.026-.271c.029-.297.043-.446 0-.584s-.138-.25-.328-.472l-.174-.203c-.67-.784-1.006-1.177-.889-1.553s.609-.488 1.593-.71l.254-.058c.28-.063.42-.095.532-.18s.184-.214.328-.473zm8.569 4.319c.254-.455.38-.682.57-.682s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.796.356s-.109.384-.444.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.383.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.444-.776s.304-.244.796-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237zm-16 0C3.685 7.227 3.81 7 4 7s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.797.356c.058.188-.11.384-.445.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.384.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.445-.776c.059-.189.305-.244.797-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Rémunération du personnel</h6>
+                                                <p>(salaires, charges sociales, mutuelle)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M10.861 3.363C11.368 2.454 11.621 2 12 2s.632.454 1.139 1.363l.13.235c.145.259.217.388.329.473s.252.117.532.18l.254.058c.984.222 1.476.334 1.593.71s-.218.769-.889 1.553l-.174.203c-.19.223-.285.334-.328.472s-.029.287 0 .584l.026.27c.102 1.047.152 1.57-.154 1.803s-.767.02-1.688-.404l-.239-.11c-.261-.12-.392-.18-.531-.18s-.27.06-.531.18l-.239.11c-.92.425-1.382.637-1.688.404s-.256-.756-.154-1.802l.026-.271c.029-.297.043-.446 0-.584s-.138-.25-.328-.472l-.174-.203c-.67-.784-1.006-1.177-.889-1.553s.609-.488 1.593-.71l.254-.058c.28-.063.42-.095.532-.18s.184-.214.328-.473zm8.569 4.319c.254-.455.38-.682.57-.682s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.796.356s-.109.384-.444.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.383.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.444-.776s.304-.244.796-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237zm-16 0C3.685 7.227 3.81 7 4 7s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.797.356c.058.188-.11.384-.445.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.384.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.445-.776c.059-.189.305-.244.797-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Logiciels et abonnements</h6>
+                                                <p>(gestion, prise de rendez-vous en ligne, comptabilité)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                                class="flex flex-col justify-between border-4 border-transparent border-l-green-600 px-4"
+                        >
+                            <div>
+                                <p
+                                        class="text-base font-medium text-slate-600 dark:text-navy-100"
+                                >
+                                    Les charges variables
+                                </p>
+                                <p class="text-xs text-slate-400 dark:text-navy-300">
+                                    (liées à l’activité)
+                                </p>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                          clip-rule="evenodd"/>
+                                                    <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Achat de produits cosmétiques et consommables</h6>
+                                                <p>(cire, crèmes, vernis, cotons, gants)</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                          clip-rule="evenodd"/>
+                                                    <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Frais de blanchisserie</h6>
+                                                <p>(serviettes, peignoirs)</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                          clip-rule="evenodd"/>
+                                                    <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Entretien du matériel et du local</h6>
+                                                <!--                                                <p>(si le local est acheté)</p>-->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                          clip-rule="evenodd"/>
+                                                    <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Publicité et communication</h6>
+                                                <p>(réseaux sociaux, flyers, site internet)</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                          clip-rule="evenodd"/>
+                                                    <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Commissions sur paiements électroniques</h6>
+                                                <p>(frais bancaires)</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col h-full border-4 border-transparent border-l-red-500 px-4">
+                            <div class="flex-grow">
+                                <p class="text-base font-medium text-slate-600 dark:text-navy-100">
+                                    Les charges exceptionnelles
+                                </p>
+                                <p class="text-xs text-slate-400 dark:text-navy-300">
+                                    (ponctuelles)
+                                </p>
+                            </div>
+                            <div class="mt-auto">
+                                <div class="mt-8">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div class="bg-red-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M12 1.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0V2a.75.75 0 0 1 .75-.75M1.25 12a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5H2a.75.75 0 0 1-.75-.75m18 0a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1-.75-.75M12 19.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 1 .75-.75"
+                                                          clip-rule="evenodd" opacity="0.8"/>
+                                                    <path fill="currentColor"
+                                                          d="M5.47 5.47a.75.75 0 0 1 1.06 0l.344.343a.75.75 0 0 1-1.061 1.06L5.47 6.53a.75.75 0 0 1 0-1.06m13.06 0a.75.75 0 0 1 0 1.06l-.343.344a.75.75 0 0 1-1.06-1.061l.343-.343a.75.75 0 0 1 1.06 0M6.873 17.127a.75.75 0 0 1 0 1.06l-.343.343a.75.75 0 0 1-1.06-1.06l.343-.343a.75.75 0 0 1 1.06 0m10.254 0a.75.75 0 0 1 1.06 0l.343.343a.75.75 0 1 1-1.06 1.06l-.343-.343a.75.75 0 0 1 0-1.06"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M7 11.06c0 2.542 2.01 3.897 3.48 5.11c.52.427 1.02.83 1.52.83s1-.403 1.52-.83c1.47-1.213 3.48-2.568 3.48-5.11s-2.75-4.346-5-1.902c-2.25-2.444-5-.64-5 1.902"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Achat ou renouvellement du matériel</h6>
+                                                <p>(tables de soins, appareils d’épilation, fauteuils, décoration)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-auto">
+                                <div class="mt-8">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div class="bg-red-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M12 1.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0V2a.75.75 0 0 1 .75-.75M1.25 12a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5H2a.75.75 0 0 1-.75-.75m18 0a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1-.75-.75M12 19.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 1 .75-.75"
+                                                          clip-rule="evenodd" opacity="0.8"/>
+                                                    <path fill="currentColor"
+                                                          d="M5.47 5.47a.75.75 0 0 1 1.06 0l.344.343a.75.75 0 0 1-1.061 1.06L5.47 6.53a.75.75 0 0 1 0-1.06m13.06 0a.75.75 0 0 1 0 1.06l-.343.344a.75.75 0 0 1-1.06-1.061l.343-.343a.75.75 0 0 1 1.06 0M6.873 17.127a.75.75 0 0 1 0 1.06l-.343.343a.75.75 0 0 1-1.06-1.06l.343-.343a.75.75 0 0 1 1.06 0m10.254 0a.75.75 0 0 1 1.06 0l.343.343a.75.75 0 1 1-1.06 1.06l-.343-.343a.75.75 0 0 1 0-1.06"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M7 11.06c0 2.542 2.01 3.897 3.48 5.11c.52.427 1.02.83 1.52.83s1-.403 1.52-.83c1.47-1.213 3.48-2.568 3.48-5.11s-2.75-4.346-5-1.902c-2.25-2.444-5-.64-5 1.902"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Formations et certifications</h6>
+                                                <p>(mise à jour des compétences, nouvelles techniques)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
 
                 <div
                         class="mt-4 grid grid-cols-12 transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6"
@@ -520,7 +890,8 @@ if (!$_SESSION['email']) {
 
                                     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 
-                                        <form class="space-y-3 py-8" action="../../components/add_charge.php" method="POST">
+                                        <form class="space-y-3 py-8" action="../../components/add_charge.php"
+                                              method="POST">
                                             <div>
                                                 <label for="nom">Nom de la charge :</label>
                                                 <input
@@ -543,7 +914,9 @@ if (!$_SESSION['email']) {
                                                 <select
                                                         class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                                         id="categorie" name="categorie" required>
-                                                    <option value="" disabled selected>-- Sélectionner une categorie --</option>
+                                                    <option value="" disabled selected>-- Sélectionner une categorie
+                                                        --
+                                                    </option>
                                                     <option value="Fixe">Fixe</option>
                                                     <option value="Variable">Variable</option>
                                                     <option value="Exceptionnelle">Exceptionnelle</option>
@@ -555,7 +928,9 @@ if (!$_SESSION['email']) {
                                                 <select
                                                         class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                                         id="frequence" name="frequence" required>
-                                                    <option value="" disabled selected>-- Sélectionner une fréquence --</option>
+                                                    <option value="" disabled selected>-- Sélectionner une fréquence
+                                                        --
+                                                    </option>
                                                     <option value="Mensuel">Mensuel</option>
                                                     <option value="Trimestriel">Trimestriel</option>
                                                     <option value="Annuel">Annuel</option>
@@ -580,7 +955,9 @@ if (!$_SESSION['email']) {
                                             </div>
 
                                             <button type="submit"
-                                                    class="w-full mt-4 cursor-pointer bg-indigo-600 text-white py-1.5 rounded-md hover:bg-indigo-500">Enregistrer la charge</button>
+                                                    class="w-full mt-4 cursor-pointer bg-indigo-600 text-white py-1.5 rounded-md hover:bg-indigo-500">
+                                                Enregistrer la charge
+                                            </button>
                                         </form>
 
                                     </div>
