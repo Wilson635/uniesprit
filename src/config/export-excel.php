@@ -1,7 +1,6 @@
 <?php
 include_once 'config.php';
 
-// Connexion à la base de données
 $conn = getConnexion();
 $sql = "
     SELECT t.id AS ticket_id, t.service_date, t.appreciation, t.price AS ticket_price, 
@@ -25,7 +24,8 @@ header('Content-Disposition: attachment; filename="' . $filename . '"');
 
 $output = fopen('php://output', 'w');
 
-fputcsv($output, ['Ticket ID', 'Client', 'Service Date', 'Service Name', 'Employee', 'Ticket Price']);
+// Définir un séparateur ";" pour compatibilité Excel
+fputcsv($output, ['Ticket ID', 'Client', 'Service Date', 'Service Name', 'Employee', 'Ticket Price'], ";");
 
 foreach ($tickets as $ticket) {
     fputcsv($output, [
@@ -35,7 +35,7 @@ foreach ($tickets as $ticket) {
         $ticket['service_name'],
         $ticket['employee_first_name'] . ' ' . $ticket['employee_last_name'],
         $ticket['ticket_price']
-    ]);
+    ], ";");
 }
 
 fclose($output);

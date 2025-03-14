@@ -22,3 +22,4 @@ $stmt->execute([
 ]);
 
 echo "Paiement enregistré avec succès !";
+header('Location: ../../src/pages/main/charges.php');
