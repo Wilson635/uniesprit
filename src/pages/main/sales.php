@@ -419,7 +419,7 @@ if (!$_SESSION['email']) {
                                             $stmt_profit->execute();
                                             $profit_total = $stmt_profit->fetchColumn();
 
-                                            echo "<strong>" . $profit_total . " FCFA</strong>";
+                                            echo "<strong>" . number_format($profit_total, 2) . " FCFA</strong>";
                                             ?>
                                         </h5>
                                         <p
@@ -567,7 +567,7 @@ if (!$_SESSION['email']) {
                                                     $quantite_disponible = $boisson['quantite'];
                                                     $prix_unitaire = $boisson['prix_unitaire'];
 
-                                                    if ($quantite_disponible < 1) {
+                                                    if ($quantite_disponible < 2) {
                                                         $message = "<div class='text-white bg-red-500 p-3'>Stock indisponible</div>";
                                                     } elseif ($quantite_disponible >= $quantite_vendue) {
                                                         $prix_total = $prix_unitaire * $quantite_vendue;

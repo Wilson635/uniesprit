@@ -393,7 +393,7 @@ if (!$_SESSION['email']) {
                     <div
                             class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 w-full">
                         <div
-                                class="sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
+                                class="sm:max-w-lg sm:w-full sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
                             <div
                                     class="w-full flex flex-col p-5 bg-white dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
                                 <div class="flex min-h-full flex-col justify-center">

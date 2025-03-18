@@ -48,6 +48,34 @@ if (!$_SESSION['email']) {
         localStorage.getItem("_x_darkMode_on") === "true" &&
         document.documentElement.classList.add("dark");
     </script>
+
+    <style>
+        .input-field {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #4f46e5;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #4338ca;
+        }
+
+        .active-tab {
+            border-bottom: 2px solid #4f46e5 !important;
+            color: #4f46e5 !important;
+        }
+    </style>
 </head>
 <body x-data class="is-header-blur" x-bind="$store.global.documentBody" style="font-family: 'Poppins';">
 <!-- App preloader -->
@@ -361,7 +389,7 @@ if (!$_SESSION['email']) {
                     <div class="card-body md:py-3 py-5">
                         <div class=" items-center grid grid-cols-12 gap-6">
                             <div class="col-span-9 p-5">
-                                <h4 class="font-semibold text-xl text-black mb-3">Ventes</h4>
+                                <h4 class="font-semibold text-xl text-black mb-3">Charges</h4>
                                 <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
                                     <li class="flex items-center">
                                         <a class="opacity-80 text-sm leading-none"
@@ -374,7 +402,7 @@ if (!$_SESSION['email']) {
                                     </li>
                                     <li class="flex items-center text-sm text-link dark:text-blacklink leading-none"
                                         aria-current="page">
-                                        Ventes
+                                        Charges
                                     </li>
                                 </ol>
                             </div>
@@ -388,162 +416,427 @@ if (!$_SESSION['email']) {
                 </div>
                 <!----Breadcrumb End---->
 
-                <div class="grid grid-cols-12 gap-6 mt-6">
-
-                    <div
-                            class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
-                        <div class="card shadow-none border-s border-[#cc2384]">
-                            <div class="card-body p-8">
-                                <div
-                                        class="flex justify-between items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
-                                        <g fill="none" stroke="#cc2384" stroke-linecap="round" stroke-linejoin="round"
-                                           stroke-width="1.5" color="#cc2384">
-                                            <path d="M12 2a7 7 0 1 0 0 14a7 7 0 0 0 0-14m3 16c-2 0-3 1.5-3 1.5s1 1.5 3 1.5s3-1.5 3-1.5s-1-1.5-3-1.5m-6 0c-2 0-3 1.5-3 1.5S7 21 9 21s3-1.5 3-1.5S11 18 9 18m3 4v-6"/>
-                                            <path d="M10.438 11.667V6.333m1.562 0V5m0 8v-1.333M10.438 9h3.124m0 0c.518 0 .938.448.938 1v.667c0 .552-.42 1-.937 1H9.5M13.563 9c.517 0 .937-.448.937-1v-.667c0-.552-.42-1-.937-1H9.5"/>
-                                        </g>
-                                    </svg>
-                                    <div
-                                            class="ms-auto sm:text-start text-end">
-                                        <h5
-                                                class="font-medium text-2xl ">
-                                            <?php
-                                            include_once '../../config/config.php';
-
-                                            $conn = getConnexion();
-                                            $sql_profit_total = "SELECT SUM(v.prix_total - (b.prix_achat * v.quantite_vendue)) AS profit_total 
-                                                FROM ventes v
-                                                JOIN boissons b ON v.boisson_id = b.id";
-
-                                            $stmt_profit = $conn->prepare($sql_profit_total);
-                                            $stmt_profit->execute();
-                                            $profit_total = $stmt_profit->fetchColumn();
-
-                                            echo "<strong>" . $profit_total . " FCFA</strong>";
-                                            ?>
-                                        </h5>
-                                        <p
-                                                class="text-[#cc2384] font-medium text-right">Profit</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="card col-span-12">
+                    <div class="flex items-center justify-between py-3 px-4">
+                        <h2
+                                class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
+                        >
+                            Quelques concepts à savoir
+                        </h2>
                     </div>
-                    <div
-                            class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
-                        <div class="card shadow-none border-s border-[#ccc423]">
-                            <div class="card-body p-8">
-                                <div
-                                        class="flex justify-between items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
-                                        <path fill="#ccc423"
-                                              d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8 8a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828zM7 9a2 2 0 1 1 .001-4.001A2 2 0 0 1 7 9"/>
-                                    </svg>
-                                    <div
-                                            class="ms-auto sm:text-start text-end">
-                                        <h5
-                                                class="font-medium text-2xl ">
-                                            <?php
-                                            include_once '../../config/config.php';
+                    <div class="grid grid-cols-1 gap-y-4 pb-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+                        <div
+                                class="flex flex-col justify-between border-4 border-transparent border-l-indigo-500 px-4"
+                        >
+                            <div>
+                                <p
+                                        class="text-base font-medium text-slate-600 dark:text-navy-100"
+                                >
+                                    Les charges fixes
+                                </p>
+                                <p class="text-xs text-slate-400 dark:text-navy-300">
+                                    (indépendantes du chiffre d’affaires)
+                                </p>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M10.861 3.363C11.368 2.454 11.621 2 12 2s.632.454 1.139 1.363l.13.235c.145.259.217.388.329.473s.252.117.532.18l.254.058c.984.222 1.476.334 1.593.71s-.218.769-.889 1.553l-.174.203c-.19.223-.285.334-.328.472s-.029.287 0 .584l.026.27c.102 1.047.152 1.57-.154 1.803s-.767.02-1.688-.404l-.239-.11c-.261-.12-.392-.18-.531-.18s-.27.06-.531.18l-.239.11c-.92.425-1.382.637-1.688.404s-.256-.756-.154-1.802l.026-.271c.029-.297.043-.446 0-.584s-.138-.25-.328-.472l-.174-.203c-.67-.784-1.006-1.177-.889-1.553s.609-.488 1.593-.71l.254-.058c.28-.063.42-.095.532-.18s.184-.214.328-.473zm8.569 4.319c.254-.455.38-.682.57-.682s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.796.356s-.109.384-.444.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.383.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.444-.776s.304-.244.796-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237zm-16 0C3.685 7.227 3.81 7 4 7s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.797.356c.058.188-.11.384-.445.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.384.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.445-.776c.059-.189.305-.244.797-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Loyer ou remboursement d’emprunt</h6>
+                                                <p>(si le local est acheté)</p>
+                                            </div>
+                                        </div>
 
-                                            $conn = getConnexion();
-                                            $sql_ventes_total = "SELECT SUM(prix_total) AS ventes_total FROM ventes";
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M10.861 3.363C11.368 2.454 11.621 2 12 2s.632.454 1.139 1.363l.13.235c.145.259.217.388.329.473s.252.117.532.18l.254.058c.984.222 1.476.334 1.593.71s-.218.769-.889 1.553l-.174.203c-.19.223-.285.334-.328.472s-.029.287 0 .584l.026.27c.102 1.047.152 1.57-.154 1.803s-.767.02-1.688-.404l-.239-.11c-.261-.12-.392-.18-.531-.18s-.27.06-.531.18l-.239.11c-.92.425-1.382.637-1.688.404s-.256-.756-.154-1.802l.026-.271c.029-.297.043-.446 0-.584s-.138-.25-.328-.472l-.174-.203c-.67-.784-1.006-1.177-.889-1.553s.609-.488 1.593-.71l.254-.058c.28-.063.42-.095.532-.18s.184-.214.328-.473zm8.569 4.319c.254-.455.38-.682.57-.682s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.796.356s-.109.384-.444.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.383.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.444-.776s.304-.244.796-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237zm-16 0C3.685 7.227 3.81 7 4 7s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.797.356c.058.188-.11.384-.445.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.384.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.445-.776c.059-.189.305-.244.797-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Charges locatives</h6>
+                                                <p>(eau, électricité, chauffage, internet,
+                                                    téléphone)</p>
+                                            </div>
+                                        </div>
 
-                                            $stmt_ventes = $conn->prepare($sql_ventes_total);
-                                            $stmt_ventes->execute();
-                                            $ventes_total = $stmt_ventes->fetchColumn();
-                                            echo "<strong>" . number_format($ventes_total, 2) . " FCFA</strong>";
-                                            ?>
-
-                                        </h5>
-                                        <p
-                                                class="text-[#ccc423] font-medium text-right">Ventes</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M10.861 3.363C11.368 2.454 11.621 2 12 2s.632.454 1.139 1.363l.13.235c.145.259.217.388.329.473s.252.117.532.18l.254.058c.984.222 1.476.334 1.593.71s-.218.769-.889 1.553l-.174.203c-.19.223-.285.334-.328.472s-.029.287 0 .584l.026.27c.102 1.047.152 1.57-.154 1.803s-.767.02-1.688-.404l-.239-.11c-.261-.12-.392-.18-.531-.18s-.27.06-.531.18l-.239.11c-.92.425-1.382.637-1.688.404s-.256-.756-.154-1.802l.026-.271c.029-.297.043-.446 0-.584s-.138-.25-.328-.472l-.174-.203c-.67-.784-1.006-1.177-.889-1.553s.609-.488 1.593-.71l.254-.058c.28-.063.42-.095.532-.18s.184-.214.328-.473zm8.569 4.319c.254-.455.38-.682.57-.682s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.796.356s-.109.384-.444.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.383.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.444-.776s.304-.244.796-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237zm-16 0C3.685 7.227 3.81 7 4 7s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.797.356c.058.188-.11.384-.445.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.384.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.445-.776c.059-.189.305-.244.797-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Assurances</h6>
+                                                <p>(local, responsabilité civile
+                                                    professionnelle, matériel)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M10.861 3.363C11.368 2.454 11.621 2 12 2s.632.454 1.139 1.363l.13.235c.145.259.217.388.329.473s.252.117.532.18l.254.058c.984.222 1.476.334 1.593.71s-.218.769-.889 1.553l-.174.203c-.19.223-.285.334-.328.472s-.029.287 0 .584l.026.27c.102 1.047.152 1.57-.154 1.803s-.767.02-1.688-.404l-.239-.11c-.261-.12-.392-.18-.531-.18s-.27.06-.531.18l-.239.11c-.92.425-1.382.637-1.688.404s-.256-.756-.154-1.802l.026-.271c.029-.297.043-.446 0-.584s-.138-.25-.328-.472l-.174-.203c-.67-.784-1.006-1.177-.889-1.553s.609-.488 1.593-.71l.254-.058c.28-.063.42-.095.532-.18s.184-.214.328-.473zm8.569 4.319c.254-.455.38-.682.57-.682s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.796.356s-.109.384-.444.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.383.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.444-.776s.304-.244.796-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237zm-16 0C3.685 7.227 3.81 7 4 7s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.797.356c.058.188-.11.384-.445.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.384.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.445-.776c.059-.189.305-.244.797-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Rémunération du personnel</h6>
+                                                <p>(salaires, charges sociales, mutuelle)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24" height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M10.861 3.363C11.368 2.454 11.621 2 12 2s.632.454 1.139 1.363l.13.235c.145.259.217.388.329.473s.252.117.532.18l.254.058c.984.222 1.476.334 1.593.71s-.218.769-.889 1.553l-.174.203c-.19.223-.285.334-.328.472s-.029.287 0 .584l.026.27c.102 1.047.152 1.57-.154 1.803s-.767.02-1.688-.404l-.239-.11c-.261-.12-.392-.18-.531-.18s-.27.06-.531.18l-.239.11c-.92.425-1.382.637-1.688.404s-.256-.756-.154-1.802l.026-.271c.029-.297.043-.446 0-.584s-.138-.25-.328-.472l-.174-.203c-.67-.784-1.006-1.177-.889-1.553s.609-.488 1.593-.71l.254-.058c.28-.063.42-.095.532-.18s.184-.214.328-.473zm8.569 4.319c.254-.455.38-.682.57-.682s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.796.356s-.109.384-.444.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.383.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.444-.776s.304-.244.796-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237zm-16 0C3.685 7.227 3.81 7 4 7s.316.227.57.682l.065.117c.072.13.108.194.164.237s.126.058.266.09l.127.028c.492.112.738.167.797.356c.058.188-.11.384-.445.776l-.087.101c-.095.112-.143.168-.164.237s-.014.143 0 .292l.013.135c.05.523.076.785-.077.901s-.384.01-.844-.202l-.12-.055c-.13-.06-.196-.09-.265-.09c-.07 0-.135.03-.266.09l-.119.055c-.46.212-.69.318-.844.202c-.153-.116-.128-.378-.077-.901l.013-.135c.014-.15.022-.224 0-.292c-.021-.07-.069-.125-.164-.237l-.087-.101c-.335-.392-.503-.588-.445-.776c.059-.189.305-.244.797-.356l.127-.028c.14-.032.21-.048.266-.09c.056-.043.092-.108.164-.237z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Logiciels et abonnements</h6>
+                                                <p>(gestion, prise de rendez-vous en ligne, comptabilité)</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!---Client search Card--->
-
-                <div class="card mb-6 mt-6">
-                    <div class="card-body">
-                        <div class="grid grid-cols-12 gap-6 items-center justify-between">
-                            <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 p-8">
-                                <form class="max-w-[90rem] px-3 flex flex-1 items-center border rounded-full flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="size-4.5 transition-colors duration-200" fill="currentColor"
-                                         viewBox="0 0 24 24">
-                                        <path
-                                                d="M3.316 13.781l.73-.171-.73.171zm0-5.457l.73.171-.73-.171zm15.473 0l.73-.171-.73.171zm0 5.457l.73.171-.73-.171zm-5.008 5.008l-.171-.73.171.73zm-5.457 0l-.171.73.171-.73zm0-15.473l-.171-.73.171.73zm5.457 0l.171-.73-.171.73zM20.47 21.53a.75.75 0 101.06-1.06l-1.06 1.06zM4.046 13.61a11.198 11.198 0 010-5.115l-1.46-.342a12.698 12.698 0 000 5.8l1.46-.343zm14.013-5.115a11.196 11.196 0 010 5.115l1.46.342a12.698 12.698 0 000-5.8l-1.46.343zm-4.45 9.564a11.196 11.196 0 01-5.114 0l-.342 1.46c1.907.448 3.892.448 5.8 0l-.343-1.46zM8.496 4.046a11.198 11.198 0 015.115 0l.342-1.46a12.698 12.698 0 00-5.8 0l.343 1.46zm0 14.013a5.97 5.97 0 01-4.45-4.45l-1.46.343a7.47 7.47 0 005.568 5.568l.342-1.46zm5.457 1.46a7.47 7.47 0 005.568-5.567l-1.46-.342a5.97 5.97 0 01-4.45 4.45l.342 1.46zM13.61 4.046a5.97 5.97 0 014.45 4.45l1.46-.343a7.47 7.47 0 00-5.568-5.567l-.342 1.46zm-5.457-1.46a7.47 7.47 0 00-5.567 5.567l1.46.342a5.97 5.97 0 014.45-4.45l-.343-1.46zm8.652 15.28l3.665 3.664 1.06-1.06-3.665-3.665-1.06 1.06z"/>
-                                    </svg>
-                                    <input type="text"
-                                           class="w-full border-none p-3 focus:border-none focus:ring-0 focus:outline-none"
-                                           id="input-search" placeholder="Rechercher les ventes..."/>
-                                </form>
+                        <div
+                                class="flex flex-col justify-between border-4 border-transparent border-l-green-600 px-4"
+                        >
+                            <div>
+                                <p
+                                        class="text-base font-medium text-slate-600 dark:text-navy-100"
+                                >
+                                    Les charges variables
+                                </p>
+                                <p class="text-xs text-slate-400 dark:text-navy-300">
+                                    (liées à l’activité)
+                                </p>
                             </div>
-                            <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12 p-8">
-                                <div class="flex justify-end items-center gap-3">
-                                    <div class="action-btn show-btn" style="display: none">
-                                        <a href="javascript:void(0)"
-                                           class="delete-multiple btn flex gap-2 items-center btn-light-error">
-                                            <i class="ti ti-trash text-lg leading-none"></i>
-                                            Delete All Row
-                                        </a>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                          clip-rule="evenodd"/>
+                                                    <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Achat de produits cosmétiques et consommables</h6>
+                                                <p>(cire, crèmes, vernis, cotons, gants)</p>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                          clip-rule="evenodd"/>
+                                                    <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Frais de blanchisserie</h6>
+                                                <p>(serviettes, peignoirs)</p>
+                                            </div>
+                                        </div>
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                          clip-rule="evenodd"/>
+                                                    <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Entretien du matériel et du local</h6>
+                                                <!--                                                <p>(si le local est acheté)</p>-->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                          clip-rule="evenodd"/>
+                                                    <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Publicité et communication</h6>
+                                                <p>(réseaux sociaux, flyers, site internet)</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-8">
+                                    <p class="font-inter">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                    class="bg-green-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                          d="M16 16h3a3 3 0 1 1-3 3.001zM5 16l3 .001v3a3 3 0 1 1-3-3"/>
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M19 8h-3V5a3 3 0 1 1 3 3M8 8V5a3 3 0 1 0-3 3z"
+                                                          clip-rule="evenodd"/>
+                                                    <path fill="currentColor" d="M16 8H8v8h8z" opacity="0.5"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Commissions sur paiements électroniques</h6>
+                                                <p>(frais bancaires)</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="flex flex-col h-full border-4 border-transparent border-l-red-500 px-4">
+                            <div class="flex-grow">
+                                <p class="text-base font-medium text-slate-600 dark:text-navy-100">
+                                    Les charges exceptionnelles
+                                </p>
+                                <p class="text-xs text-slate-400 dark:text-navy-300">
+                                    (ponctuelles)
+                                </p>
+                            </div>
+                            <div class="mt-auto">
+                                <div class="mt-8">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div class="bg-red-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M12 1.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0V2a.75.75 0 0 1 .75-.75M1.25 12a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5H2a.75.75 0 0 1-.75-.75m18 0a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1-.75-.75M12 19.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 1 .75-.75"
+                                                          clip-rule="evenodd" opacity="0.8"/>
+                                                    <path fill="currentColor"
+                                                          d="M5.47 5.47a.75.75 0 0 1 1.06 0l.344.343a.75.75 0 0 1-1.061 1.06L5.47 6.53a.75.75 0 0 1 0-1.06m13.06 0a.75.75 0 0 1 0 1.06l-.343.344a.75.75 0 0 1-1.06-1.061l.343-.343a.75.75 0 0 1 1.06 0M6.873 17.127a.75.75 0 0 1 0 1.06l-.343.343a.75.75 0 0 1-1.06-1.06l.343-.343a.75.75 0 0 1 1.06 0m10.254 0a.75.75 0 0 1 1.06 0l.343.343a.75.75 0 1 1-1.06 1.06l-.343-.343a.75.75 0 0 1 0-1.06"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M7 11.06c0 2.542 2.01 3.897 3.48 5.11c.52.427 1.02.83 1.52.83s1-.403 1.52-.83c1.47-1.213 3.48-2.568 3.48-5.11s-2.75-4.346-5-1.902c-2.25-2.444-5-.64-5 1.902"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Achat ou renouvellement du matériel</h6>
+                                                <p>(tables de soins, appareils d’épilation, fauteuils, décoration)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-auto">
+                                <div class="mt-8">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div class="bg-red-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                                <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                     height="24"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M12 1.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0V2a.75.75 0 0 1 .75-.75M1.25 12a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5H2a.75.75 0 0 1-.75-.75m18 0a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1-.75-.75M12 19.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 1 .75-.75"
+                                                          clip-rule="evenodd" opacity="0.8"/>
+                                                    <path fill="currentColor"
+                                                          d="M5.47 5.47a.75.75 0 0 1 1.06 0l.344.343a.75.75 0 0 1-1.061 1.06L5.47 6.53a.75.75 0 0 1 0-1.06m13.06 0a.75.75 0 0 1 0 1.06l-.343.344a.75.75 0 0 1-1.06-1.061l.343-.343a.75.75 0 0 1 1.06 0M6.873 17.127a.75.75 0 0 1 0 1.06l-.343.343a.75.75 0 0 1-1.06-1.06l.343-.343a.75.75 0 0 1 1.06 0m10.254 0a.75.75 0 0 1 1.06 0l.343.343a.75.75 0 1 1-1.06 1.06l-.343-.343a.75.75 0 0 1 0-1.06"
+                                                          opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M7 11.06c0 2.542 2.01 3.897 3.48 5.11c.52.427 1.02.83 1.52.83s1-.403 1.52-.83c1.47-1.213 3.48-2.568 3.48-5.11s-2.75-4.346-5-1.902c-2.25-2.444-5-.64-5 1.902"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-base">Formations et certifications</h6>
+                                                <p>(mise à jour des compétences, nouvelles techniques)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
 
                 <div
-                        class="mt-4 grid grid-cols-12 transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6"
+                        class="mt-4 grid grid-cols-12 gap-4 transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
                 >
 
-                    <div
-                            class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 w-full">
-                        <div
-                                class="sm:max-w-lg sm:w-full sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
-                            <div
-                                    class="w-full flex flex-col p-5 bg-white dark:bg-dark shadow-md dark:shadow-dark-md rounded-md modal-content">
-                                <div class="flex min-h-full flex-col justify-center">
+                    <!-- Section Formulaires -->
+                    <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 w-full">
+                        <div class="sm:max-w-lg sm:w-full sm:mx-auto flex items-center">
+                            <div class="w-full flex flex-col p-5 bg-white dark:bg-dark shadow-md dark:shadow-dark-md rounded-md">
+
+                                <!-- Onglets -->
+                                <div class="flex border-b border-gray-200 mb-4">
+                                    <button class="tab-btn px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent focus:outline-none active-tab"
+                                            data-tab="charges">Charges
+                                    </button>
+                                    <button class="tab-btn px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent focus:outline-none"
+                                            data-tab="paiement">Paiement
+                                    </button>
+                                </div>
+
+                                <!-- Contenu des Onglets -->
+                                <div class="tab-content" id="charges">
                                     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                                        <img class="mx-auto rounded-full h-30 w-auto mt-15"
+                                        <img class="mx-auto rounded-full h-30 w-auto mt-5"
                                              src="../../../assets/logo.jpg" alt="Your Company">
-                                        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                                            Compléter les champs pour enrégistrer une charge</h2>
+                                        <h2 class="mt-5 text-center text-2xl font-bold tracking-tight text-gray-900">
+                                            Compléter les champs pour enregistrer une charge</h2>
                                     </div>
 
-                                    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-
-                                        <form class="space-y-3 py-8" action="../../components/add_charge.php" method="POST">
+                                    <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+                                        <form class="space-y-3 py-4" action="../../components/add_charge.php"
+                                              method="POST">
                                             <div>
                                                 <label for="nom">Nom de la charge :</label>
-                                                <input
-                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                                        id="nom"
-                                                        type="text" name="nom" required
-                                                />
+                                                <input class="input-field" id="nom" type="text" name="nom" required/>
                                             </div>
 
                                             <div>
                                                 <label for="montant">Montant :</label>
-                                                <input
-                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                                        type="number" step="0.01" id="montant" name="montant" required
-                                                />
+                                                <input class="input-field" type="number" step="0.01" id="montant"
+                                                       name="montant" required/>
                                             </div>
 
                                             <div>
                                                 <label for="categorie">Catégorie :</label>
-                                                <select
-                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                                        id="categorie" name="categorie" required>
-                                                    <option value="" disabled selected>-- Sélectionner une categorie --</option>
+                                                <select class="input-field" id="categorie" name="categorie" required>
+                                                    <option value="" disabled selected>-- Sélectionner une catégorie
+                                                        --
+                                                    </option>
                                                     <option value="Fixe">Fixe</option>
                                                     <option value="Variable">Variable</option>
                                                     <option value="Exceptionnelle">Exceptionnelle</option>
@@ -552,10 +845,10 @@ if (!$_SESSION['email']) {
 
                                             <div>
                                                 <label for="frequence">Fréquence :</label>
-                                                <select
-                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                                        id="frequence" name="frequence" required>
-                                                    <option value="" disabled selected>-- Sélectionner une fréquence --</option>
+                                                <select class="input-field" id="frequence" name="frequence" required>
+                                                    <option value="" disabled selected>-- Sélectionner une fréquence
+                                                        --
+                                                    </option>
                                                     <option value="Mensuel">Mensuel</option>
                                                     <option value="Trimestriel">Trimestriel</option>
                                                     <option value="Annuel">Annuel</option>
@@ -565,183 +858,386 @@ if (!$_SESSION['email']) {
 
                                             <div>
                                                 <label for="date_debut">Date de début :</label>
-                                                <input
-                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                                        id="date_debut" type="date" name="date_debut" required
-                                                >
+                                                <input class="input-field" id="date_debut" type="date" name="date_debut"
+                                                       required>
                                             </div>
 
                                             <div>
                                                 <label for="date_fin">Date de fin (optionnelle) :</label>
-                                                <input
-                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                                        id="date_fin" type="date" name="date_fin"
-                                                >
+                                                <input class="input-field" id="date_fin" type="date" name="date_fin">
                                             </div>
 
-                                            <button type="submit"
-                                                    class="w-full mt-4 cursor-pointer bg-indigo-600 text-white py-1.5 rounded-md hover:bg-indigo-500">Enregistrer la charge</button>
+                                            <button type="submit" class="submit-btn">Enregistrer la charge</button>
                                         </form>
+                                    </div>
+                                </div>
 
+                                <!-- Onglet Paiement -->
+                                <div class="tab-content hidden" id="paiement">
+                                    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                                        <img class="mx-auto rounded-full h-30 w-auto mt-5"
+                                             src="../../../assets/logo.jpg" alt="Your Company">
+                                        <h2 class="mt-5 text-center text-2xl font-bold tracking-tight text-gray-900">
+                                            Enregistrer un paiement</h2>
                                     </div>
 
+                                    <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+                                        <form class="space-y-3 py-4" action="../../components/add_paiement.php"
+                                              method="POST">
+                                            <div>
+                                                <label for="charge_id">Charge :</label>
+                                                <select class="input-field" id="charge_id" name="charge_id" required>
+                                                    <option value="" disabled selected>-- Sélectionner une charge --
+                                                    </option>
+                                                    <?php
+                                                    include_once ('../../config/config.php');
+                                                    $pdo = getConnexion();
+                                                    $charges = $pdo->query("SELECT id, nom FROM charges")->fetchAll();
+                                                    foreach ($charges as $charge) {
+                                                        echo "<option value='{$charge['id']}'>{$charge['nom']}</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
 
+                                            <div>
+                                                <label for="montant_paye">Montant Payé :</label>
+                                                <input class="input-field" type="number" step="0.01" id="montant_paye"
+                                                       name="montant_paye" required/>
+                                            </div>
+
+                                            <div>
+                                                <label for="methode_paiement">Méthode de paiement :</label>
+                                                <select class="input-field" id="methode_paiement"
+                                                        name="methode_paiement" required>
+                                                    <option value="" disabled selected>-- Sélectionner un moyen de paiement --
+                                                    <option value="espèces">Espèces</option>
+                                                    <option value="OM">Orange Money</option>
+                                                    <option value="MoMo">Mobile Money</option>
+                                                </select>
+                                            </div>
+
+                                            <button type="submit" class="submit-btn mt-5">Enregistrer le paiement</button>
+                                        </form>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+                    <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
+                        <?php
+                        // Connexion à la base de données
+                        include_once ('../../config/config.php');
 
-                    <div class="card p-8 lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
-                        <div class="card-body">
-                            <div class="flex flex-col">
-                                <div class="-m-1.5 overflow-x-auto">
-                                    <div class="p-1.5 min-w-full inline-block align-middle">
-                                        <div class="overflow-hidden">
-                                            <?php
-                                            // Nombre d'éléments par page
-                                            $items_per_page = 10;
-                                            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-                                            $start_from = ($page - 1) * $items_per_page;
+                        $conn = getConnexion();
+                        // Nombre d'éléments par page
+                        $items_per_page = 10;
+                        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                        $start_from = ($page - 1) * $items_per_page;
 
-                                            // Requête pour obtenir le total des ventes
-                                            $sql_total = "SELECT COUNT(*) FROM ventes";
-                                            $stmt_total = $conn->prepare($sql_total);
-                                            $stmt_total->execute();
-                                            $total_ventes = $stmt_total->fetchColumn();
-                                            $total_pages = ceil($total_ventes / $items_per_page);
+                        // Requête pour obtenir le total des charges
+                        $sql_total = "SELECT COUNT(*) FROM charges";
+                        $stmt_total = $conn->prepare($sql_total);
+                        $stmt_total->execute();
+                        $total_charges = $stmt_total->fetchColumn();
+                        $total_pages = ceil($total_charges / $items_per_page);
 
-                                            // Requête pour récupérer les ventes avec les informations des boissons
-                                            $query = "SELECT v.id, b.nom AS boisson_nom, b.prix_unitaire AS pu, v.quantite_vendue, v.prix_total, v.date_vente 
-                                                FROM ventes v
-                                                JOIN boissons b ON v.boisson_id = b.id
-                                                ORDER BY v.date_vente DESC 
+                        // Requête pour récupérer les charges par page
+                        $query = "SELECT c.id, cat.nom AS categorie, c.nom, c.frequence, c.montant, c.date_debut, c.date_fin
+                                                FROM charges c
+                                                JOIN categories_charges cat ON c.categorie_id = cat.id
+                                                ORDER BY c.date_debut DESC
                                                 LIMIT :start_from, :items_per_page";
 
-                                            $stmt = $conn->prepare($query);
-                                            $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
-                                            $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
-                                            $stmt->execute();
-                                            $ventes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        $stmt = $conn->prepare($query);
+                        $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
+                        $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
+                        $stmt->execute();
+                        $charges = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                                            ?>
+                        // Requête pour obtenir le total des charges
+                        $sql_total = "SELECT COUNT(*) FROM paiements";
+                        $stmt_total = $conn->prepare($sql_total);
+                        $stmt_total->execute();
+                        $total_paiements = $stmt_total->fetchColumn();
+                        $total_pages = ceil($total_paiements / $items_per_page);
 
-                                            <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
-                                                <thead>
-                                                <tr>
-                                                    <th class="p-4 ps-0">
-                                                        <div class="n-chk align-self-center text-center">
-                                                            <div class="form-check">
-                                                                <input type="checkbox"
-                                                                       class="form-check-input rounded-sm"
-                                                                       id="contact-check-all"/>
-                                                                <label class="form-check-label"
-                                                                       for="contact-check-all"></label>
-                                                                <span class="new-control-indicator"></span>
+                        // Requête pour récupérer les paiements par page
+                        $query = "SELECT p.id, c.nom AS charge, p.montant, p.moyen_paiement, p.date_paiement
+                                                FROM charges c
+                                                JOIN paiements p ON c.id = p.charge_id
+                                                ORDER BY p.date_paiement DESC
+                                                LIMIT :start_from, :items_per_page";
+
+                        $stmt = $conn->prepare($query);
+                        $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
+                        $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
+                        $stmt->execute();
+                        $paiements = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        ?>
+                        <div class="card pb-10">
+                            <div class="card-body">
+                                <div class="flex flex-col">
+                                    <div class="-m-1.5 overflow-x-auto">
+                                        <div class="p-1.5 min-w-full inline-block align-middle">
+                                            <div class="overflow-hidden">
+                                                <!-- Onglets -->
+                                                <div class="flex border-b border-gray-200 mb-4">
+                                                    <button class="tab-btn px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent focus:outline-none active-tab"
+                                                            data-tab="charges-tab">Tableau des Charges
+                                                    </button>
+                                                </div>
+                                                <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="p-4 ps-0">
+                                                            <div class="n-chk align-self-center text-center">
+                                                                <div class="form-check">
+                                                                    <input type="checkbox"
+                                                                           class="form-check-input rounded-sm"
+                                                                           id="contact-check-all"/>
+                                                                    <label class="form-check-label"
+                                                                           for="contact-check-all"></label>
+                                                                    <span class="new-control-indicator"></span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                        Boisson
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                        Quantité
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                        Prix Unitaire
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                        Prix Total
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                        Date de vente
-                                                    </th>
-                                                </tr>
-                                                </thead>
-                                                <tbody class="divide-y divide-border divide-slate-150">
-                                                <?php
-                                                foreach ($ventes as $vente) {
-                                                    echo '
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Charges
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Catégorie
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Fréquence
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Montant à payer (XOF)
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Date de debut
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Date de fin
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody class="divide-y divide-border divide-slate-150">
+                                                    <?php
+                                                    foreach ($charges as $charge) {
+                                                        echo '
                                                         <tr class="search-items">
                                                             <td class="p-4 ps-0 whitespace-nowrap">
                                                                 <div class="n-chk align-self-center text-center">
                                                                     <div class="form-check">
-                                                                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $vente['id'] . '" />
-                                                                        <label class="form-check-label" for="checkbox' . $vente['id'] . '"></label>
+                                                                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $charge['id'] . '" />
+                                                                        <label class="form-check-label" for="checkbox' . $charge['id'] . '"></label>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td class="p-4 ps-0 whitespace-nowrap">
                                                                 <div class="flex gap-3 items-center">
                                                                     <div>
-                                                                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($vente["boisson_nom"]) . '">' . htmlspecialchars($vente["boisson_nom"]) . '</h6>
+                                                                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($charge["nom"]) . '">' . htmlspecialchars($charge["nom"]) . '</h6>
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($vente["quantite_vendue"]) . '">' . htmlspecialchars($vente["quantite_vendue"]) . '</td>
-                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($vente["pu"]) . '">' . htmlspecialchars($vente["pu"]) . '</td>
-                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($vente["prix_total"]) . '">' . htmlspecialchars($vente["prix_total"]) . '</td>
-                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($vente["date_vente"]) . '">' . htmlspecialchars($vente["date_vente"]) . '</td>
+                                                            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-categorie="' . htmlspecialchars($charge["categorie"]) . '">' . htmlspecialchars($charge["categorie"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-frequence="' . htmlspecialchars($charge["frequence"]) . '">' . htmlspecialchars($charge["frequence"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-montant="' . htmlspecialchars($charge["montant"]) . '">' . htmlspecialchars($charge["montant"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-debut="' . htmlspecialchars($charge["date_debut"]) . '">' . htmlspecialchars($charge["date_debut"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-fin="' . htmlspecialchars($charge["date_fin"]) . '">' . htmlspecialchars($charge["date_fin"]) . '</td>
                                                         </tr>
                                                     ';
-                                                }
-                                                ?>
-                                                </tbody>
-                                            </table>
-
-
+                                                    }
+                                                    ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- Pagination -->
-                                    <div class="pagination mx-auto justify-center items-center">
-                                        <ul class="flex list-none gap-2">
-                                            <?php if ($page > 1): ?>
-                                                <li><a href="?page=<?php echo $page - 1; ?>"
-                                                       x-tooltip.placement.top="'Précédent'"
-                                                       class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                             viewBox="0 0 24 24">
-                                                            <path fill="currentColor" fill-rule="evenodd"
-                                                                  d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
-                                                                  clip-rule="evenodd" opacity="0.5"/>
-                                                            <path fill="currentColor"
-                                                                  d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
-                                                        </svg>
-                                                    </a></li>
-                                            <?php endif; ?>
 
-                                            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                                                <li><a href="?page=<?php echo $i; ?>"
-                                                       class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
-                                                </li>
-                                            <?php endfor; ?>
+                                        <!-- Pagination -->
+                                        <div class="pagination mx-auto justify-center items-center">
+                                            <ul class="flex list-none gap-2">
+                                                <?php if ($page > 1): ?>
+                                                    <li><a href="?page=<?php echo $page - 1; ?>"
+                                                           x-tooltip.placement.top="'Précédent'"
+                                                           class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                 viewBox="0 0 24 24">
+                                                                <path fill="currentColor" fill-rule="evenodd"
+                                                                      d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
+                                                                      clip-rule="evenodd" opacity="0.5"/>
+                                                                <path fill="currentColor"
+                                                                      d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
+                                                            </svg>
+                                                        </a></li>
+                                                <?php endif; ?>
 
-                                            <?php if ($page < $total_pages): ?>
-                                                <li>
-                                                    <a href="?page=<?php echo $page + 1; ?>"
-                                                       x-tooltip.placement.top="'Suivant'"
-                                                       class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                             viewBox="0 0 24 24">
-                                                            <path fill="currentColor" fill-rule="evenodd"
-                                                                  d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
-                                                                  clip-rule="evenodd" opacity="0.5"/>
-                                                            <path fill="currentColor"
-                                                                  d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
-                                                        </svg>
-                                                    </a>
-                                                </li>
+                                                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                                                    <li><a href="?page=<?php echo $i; ?>"
+                                                           class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                                    </li>
+                                                <?php endfor; ?>
 
-                                            <?php endif; ?>
-                                        </ul>
+                                                <?php if ($page < $total_pages): ?>
+                                                    <li>
+                                                        <a href="?page=<?php echo $page + 1; ?>"
+                                                           x-tooltip.placement.top="'Suivant'"
+                                                           class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                 viewBox="0 0 24 24">
+                                                                <path fill="currentColor" fill-rule="evenodd"
+                                                                      d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
+                                                                      clip-rule="evenodd" opacity="0.5"/>
+                                                                <path fill="currentColor"
+                                                                      d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
+                                                            </svg>
+                                                        </a>
+                                                    </li>
+
+                                                <?php endif; ?>
+                                            </ul>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="card mt-10 pb-10">
+                            <div class="card-body">
+                                <div class="flex flex-col">
+                                    <div class="-m-1.5 overflow-x-auto">
+                                        <div class="p-1.5 min-w-full inline-block align-middle">
+                                            <div class="overflow-hidden">
+                                                <!-- Onglets -->
+                                                <div class="flex border-b border-gray-200 mb-4">
+                                                    <button class="tab-btn px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent focus:outline-none active-tab"
+                                                            data-tab="paiement-tab">Tableau des Paiements
+                                                    </button>
+                                                </div>
+                                                <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="p-4 ps-0">
+                                                            <div class="n-chk align-self-center text-center">
+                                                                <div class="form-check">
+                                                                    <input type="checkbox"
+                                                                           class="form-check-input rounded-sm"
+                                                                           id="contact-check-all"/>
+                                                                    <label class="form-check-label"
+                                                                           for="contact-check-all"></label>
+                                                                    <span class="new-control-indicator"></span>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Charges
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Montant Payé (XOF)
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Méthode de paiement
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Date de paiement
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody class="divide-y divide-border divide-slate-150">
+                                                    <?php
+                                                    foreach ($paiements as $paiement) {
+                                                        echo '
+                                                        <tr class="search-items">
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="n-chk align-self-center text-center">
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $paiement['id'] . '" />
+                                                                        <label class="form-check-label" for="checkbox' . $paiement['id'] . '"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="flex gap-3 items-center">
+                                                                    <div>
+                                                                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($paiement["charge"]) . '">' . htmlspecialchars($paiement["charge"]) . '</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-montant="' . htmlspecialchars($paiement["montant"]) . '">' . htmlspecialchars($paiement["montant"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-moyen="' . htmlspecialchars($paiement["moyen_paiement"]) . '">' . htmlspecialchars($paiement["moyen_paiement"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-fin="' . htmlspecialchars($paiement["date_paiement"]) . '">' . htmlspecialchars($paiement["date_paiement"]) . '</td>
+                                                        </tr>
+                                                    ';
+                                                    }
+                                                    ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <!-- Pagination -->
+                                        <div class="pagination mx-auto justify-center items-center">
+                                            <ul class="flex list-none gap-2">
+                                                <?php if ($page > 1): ?>
+                                                    <li><a href="?page=<?php echo $page - 1; ?>"
+                                                           x-tooltip.placement.top="'Précédent'"
+                                                           class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                 viewBox="0 0 24 24">
+                                                                <path fill="currentColor" fill-rule="evenodd"
+                                                                      d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
+                                                                      clip-rule="evenodd" opacity="0.5"/>
+                                                                <path fill="currentColor"
+                                                                      d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
+                                                            </svg>
+                                                        </a></li>
+                                                <?php endif; ?>
+
+                                                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                                                    <li><a href="?page=<?php echo $i; ?>"
+                                                           class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                                    </li>
+                                                <?php endfor; ?>
+
+                                                <?php if ($page < $total_pages): ?>
+                                                    <li>
+                                                        <a href="?page=<?php echo $page + 1; ?>"
+                                                           x-tooltip.placement.top="'Suivant'"
+                                                           class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                 viewBox="0 0 24 24">
+                                                                <path fill="currentColor" fill-rule="evenodd"
+                                                                      d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
+                                                                      clip-rule="evenodd" opacity="0.5"/>
+                                                                <path fill="currentColor"
+                                                                      d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
+                                                            </svg>
+                                                        </a>
+                                                    </li>
+
+                                                <?php endif; ?>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -756,25 +1252,17 @@ if (!$_SESSION['email']) {
 <div id="x-teleport-target"></div>
 <script>
     window.addEventListener("DOMContentLoaded", () => Alpine.start());
+</script>
+<script>
+    document.querySelectorAll(".tab-btn").forEach(button => {
+        button.addEventListener("click", () => {
+            document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active-tab"));
+            document.querySelectorAll(".tab-content").forEach(tab => tab.classList.add("hidden"));
 
-    document.getElementById('boisson').addEventListener('change', function () {
-        let boissonId = this.value;
-
-        if (boissonId) {
-            fetch(`../../components/get_boisson.php?id=${boissonId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (!data.error) {
-                        document.getElementById('price').value = data.prix_unitaire;
-                        document.getElementById('quantite_disponible').value = data.quantite;
-                    } else {
-                        console.error(data.error);
-                    }
-                })
-                .catch(error => console.error('Erreur lors de la récupération des données:', error));
-        }
+            button.classList.add("active-tab");
+            document.getElementById(button.dataset.tab).classList.remove("hidden");
+        });
     });
-
 </script>
 </body>
 </html>

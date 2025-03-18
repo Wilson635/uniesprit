@@ -479,22 +479,22 @@ if (!isset($_SESSION['email'])) {
                                     <?php
                                     include_once '../../config/config.php';
 
-                                    function sumTicketsMonth()
+                                    function sumTicketsMonth(): string
                                     {
                                         $conn = getConnexion();
 
-                                        $query = "SELECT SUM(price) AS total FROM tickets WHERE MONTH(service_date) = MONTH(CURRENT_DATE()) AND YEAR(service_date) = YEAR(CURRENT_DATE())";
-                                        $result = $conn->query($query);
+                                        $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                        $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE service_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                        $queryRevenuDepenses = "SELECT SUM(montant) AS total_revenu FROM paiements WHERE date_paiement >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
 
-                                        if ($result) {
-                                            $row = $result->fetch(PDO::FETCH_ASSOC);
-                                            return isset($row['total']) ? $row['total'] : 0;
-                                        }
+                                        $revenuVentes = $conn->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                        $revenuTickets = $conn->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                        $revenuDepenses = $conn->query($queryRevenuDepenses)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
 
-                                        return 0;
+                                        return number_format(($revenuVentes + $revenuTickets) - $revenuDepenses, 2, ',', ' ');
                                     }
 
-                                    echo "<strong>" . sumTicketsMonth() . "</strong>";
+                                    echo "<strong>" . sumTicketsMonth() . " Fcfa</strong>";
                                     ?>
                                 </p>
                                 <button
@@ -528,22 +528,31 @@ if (!isset($_SESSION['email'])) {
                                     <?php
                                     include_once '../../config/config.php';
 
-                                    function sumTicketsTrimester()
+                                    function sumTicketsTrimester(): string
                                     {
                                         $conn = getConnexion();
 
-                                        $query = "SELECT SUM(price) AS total FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE()) AND YEAR(service_date) = YEAR(CURRENT_DATE())";
-                                        $result = $conn->query($query);
+//                                        $query = "SELECT SUM(price) AS total FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE()) AND YEAR(service_date) = YEAR(CURRENT_DATE())";
+//                                        $result = $conn->query($query);
+//
+//                                        if ($result) {
+//                                            $row = $result->fetch(PDO::FETCH_ASSOC);
+//                                            return isset($row['total']) ? $row['total'] : 0;
+//                                        }
+//
+//                                        return 0;
+                                        $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE QUARTER(date_vente) = QUARTER(CURRENT_DATE()) AND YEAR(date_vente) = YEAR(CURRENT_DATE())";
+                                        $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE()) AND YEAR(service_date) = YEAR(CURRENT_DATE())";
+                                        $queryRevenuDepenses = "SELECT SUM(montant) AS total_revenu FROM paiements WHERE QUARTER(date_paiement) = QUARTER(CURRENT_DATE()) AND YEAR(date_paiement) = YEAR(CURRENT_DATE())";
 
-                                        if ($result) {
-                                            $row = $result->fetch(PDO::FETCH_ASSOC);
-                                            return isset($row['total']) ? $row['total'] : 0;
-                                        }
+                                        $revenuVentes = $conn->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                        $revenuTickets = $conn->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                        $revenuDepenses = $conn->query($queryRevenuDepenses)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
 
-                                        return 0;
+                                        return number_format(($revenuVentes + $revenuTickets) - $revenuDepenses, 2, ',', ' ');
                                     }
 
-                                    echo "<strong>" . sumTicketsTrimester() . "</strong>";
+                                    echo "<strong>" . sumTicketsTrimester() . " Fcfa</strong>";
                                     ?>
                                 </p>
                                 <button
@@ -569,8 +578,8 @@ if (!isset($_SESSION['email'])) {
                                 ce trimestre
                             </p>
                         </div>
-                        <button
-                                class="btn mt-8 space-x-2 rounded-full border border-slate-300 px-3 text-xs-plus font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+                        <a href="../../components/export-rapport.php"
+                           class="btn mt-8 space-x-2 rounded-full border border-slate-300 px-3 text-xs-plus font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
                         >
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -587,7 +596,7 @@ if (!isset($_SESSION['email'])) {
                                 />
                             </svg>
                             <span> Télécharger le rapport</span>
-                        </button>
+                        </a>
                     </div>
 
                     <div class="ax-transparent-gridline grid w-full grid-cols-1">
@@ -610,22 +619,33 @@ if (!isset($_SESSION['email'])) {
                                 <?php
                                 include_once '../../config/config.php';
 
-                                function sumTickets()
+                                function sumTickets(): string
                                 {
                                     $conn = getConnexion();
 
                                     $query = "SELECT SUM(price) AS total FROM tickets WHERE DATE(service_date) = current_date()";
                                     $result = $conn->query($query);
 
-                                    if ($result) {
-                                        $row = $result->fetch(PDO::FETCH_ASSOC);
-                                        return isset($row['total']) ? $row['total'] : 0;
-                                    }
+                                    $queryDeps = "SELECT SUM(montant) AS total FROM paiements WHERE DATE(date_paiement) = current_date()";
+                                    $resultDeps = $conn->query($queryDeps);
 
-                                    return 0;
+                                    $queryRevenuVentes = "SELECT SUM(prix_total) AS total FROM ventes WHERE DATE(date_vente) = current_date()";
+                                    $resultsVentes = $conn->query($queryRevenuVentes);
+
+                                    $row = $result->fetch(PDO::FETCH_ASSOC);
+                                    $rows = $resultDeps->fetch(PDO::FETCH_ASSOC);
+                                    $rowVentes = $resultsVentes->fetch(PDO::FETCH_ASSOC);
+
+                                    $ticketTotal = $row['total'] ?? 0;
+                                    $paymentTotal = $rows['total'] ?? 0;
+                                    $VentesTotal = $rowVentes['total'] ?? 0;
+
+                                    $difference = ($ticketTotal + $VentesTotal) - $paymentTotal;
+                                    return number_format($difference, 2, '.', ' ');
                                 }
 
                                 echo "<strong>" . sumTickets() . "</strong>";
+
                                 ?>
 
                             </p>
@@ -875,7 +895,8 @@ if (!isset($_SESSION['email'])) {
                                     <div class="flex items-center gap-3">
                                         <div
                                                 class="bg-indigo-100 h-10 w-10 flex justify-center items-center rounded-md">
-                                            <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                 height="24"
                                                  viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                       d="M6.26 21.388H6c-.943 0-1.414 0-1.707-.293C4 20.804 4 20.332 4 19.389v-1.112c0-.518 0-.777.133-1.009s.334-.348.736-.582c2.646-1.539 6.403-2.405 8.91-.91q.253.151.45.368a1.49 1.49 0 0 1-.126 2.134a1 1 0 0 1-.427.24q.18-.021.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.89 1.89 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075s-1.426 1.004-2.122 1.34c-.772.373-1.624.587-2.491.728c-1.758.284-3.59.24-5.33-.118a15 15 0 0 0-3.017-.308"
@@ -957,25 +978,40 @@ if (!isset($_SESSION['email'])) {
                                             $pdo = getConnexion();
 
                                             // Récupérer les revenus (chiffre d'affaires) du mois
-                                            $query_revenu = "SELECT SUM(prix_total) AS total_revenu 
-                                                 FROM ventes 
-                                                 WHERE date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
-                                            $stmt = $pdo->query($query_revenu);
-                                            $revenu = $stmt->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                            $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                            $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE service_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+
+                                            $revenuVentes = $pdo->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                            $revenuTickets = $pdo->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+
+                                            $revenuTotal = $revenuVentes + $revenuTickets;
 
                                             // Récupérer les dépenses du mois
-                                            $query_depenses = "SELECT SUM(v.quantite_vendue * b.prix_gros) AS total_depenses
-                                                   FROM ventes v
-                                                   JOIN boissons b ON v.boisson_id = b.id
-                                                   WHERE v.date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
-                                            $stmt = $pdo->query($query_depenses);
-                                            $depenses = $stmt->fetch(PDO::FETCH_ASSOC)['total_depenses'] ?? 0;
+                                            $queryDepensesVentes = "SELECT SUM(b.prix_achat * v.quantite_vendue) AS total_depenses 
+                                                    FROM ventes v
+                                                    JOIN boissons b ON v.boisson_id = b.id
+                                                    WHERE v.date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                            $queryDepensesPaiements = "SELECT SUM(montant) AS total_depenses 
+                                                   FROM paiements 
+                                                   WHERE date_paiement >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
 
-                                            // Calcul des bénéfices
-                                            // $benefices = $revenu - $depenses;
-                                            $benefices = max(0, $revenu - $depenses);
+                                            $depensesVentes = $pdo->query($queryDepensesVentes)->fetch(PDO::FETCH_ASSOC)['total_depenses'] ?? 0;
+                                            $depensesPaiements = $pdo->query($queryDepensesPaiements)->fetch(PDO::FETCH_ASSOC)['total_depenses'] ?? 0;
 
+                                            $depensesTotal = $depensesVentes + $depensesPaiements;
+
+                                            // Calcul des bénéfices (évite les valeurs négatives)
+                                            $benefices = max(0, $revenuTotal - $depensesTotal);
+
+                                            // Récupérer le nombre de charges
+                                            $queryCharges = "SELECT COUNT(*) AS total_charges FROM charges WHERE charges.date_debut >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                            $totalCharges = $pdo->query($queryCharges)->fetch(PDO::FETCH_ASSOC)['total_charges'] ?? 0;
+
+                                            //Récupérer le total des paiements effectués
+                                            $queryPaiements = "SELECT SUM(montant) AS total_paiements FROM paiements WHERE date_paiement >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                            $totalPaiements = $pdo->query($queryPaiements)->fetch(PDO::FETCH_ASSOC)['total_paiements'] ?? 0;
                                             ?>
+
                                             <h6 class="text-base"><?= number_format($benefices, 2, ',', ' ') ?></h6>
                                             <p class=" dark:text-darklink ">Bénéfice</p>
                                         </div>
@@ -1002,7 +1038,7 @@ if (!isset($_SESSION['email'])) {
                                             </svg>
                                         </div>
                                         <div>
-                                            <h6 class="text-base"><?= number_format($depenses, 2, ',', ' ') ?></h6>
+                                            <h6 class="text-base"><?= number_format($depensesTotal, 2, ',', ' ') ?></h6>
                                             <p class=" dark:text-darklink ">Dépenses</p>
                                         </div>
                                     </div>
@@ -1022,14 +1058,63 @@ if (!isset($_SESSION['email'])) {
                                 Aperçu des charges
                             </p>
                             <p class="text-xs text-slate-400 dark:text-navy-300">
-                                Hebdomadaire & mensuel
+                                Mensuellement
                             </p>
                         </div>
                         <div>
                             <div class="mt-8">
                                 <p class="font-inter">
-                                </p>
-                                <p class="mt-1 text-xs">September 16, 2021</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                                class="bg-red-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                            <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                 height="24"
+                                                 viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M8.422 20.618C10.178 21.54 11.056 22 12 22V12L2.638 7.073l-.04.067C2 8.154 2 9.417 2 11.942v.117c0 2.524 0 3.787.597 4.801c.598 1.015 1.674 1.58 3.825 2.709z"/>
+                                                <path fill="currentColor"
+                                                      d="m17.577 4.432l-2-1.05C13.822 2.461 12.944 2 12 2c-.945 0-1.822.46-3.578 1.382l-2 1.05C4.318 5.536 3.242 6.1 2.638 7.072L12 12l9.362-4.927c-.606-.973-1.68-1.537-3.785-2.641"
+                                                      opacity="0.7"/>
+                                                <path fill="currentColor"
+                                                      d="m21.403 7.14l-.041-.067L12 12v10c.944 0 1.822-.46 3.578-1.382l2-1.05c2.151-1.129 3.227-1.693 3.825-2.708c.597-1.014.597-2.277.597-4.8v-.117c0-2.525 0-3.788-.597-4.802"
+                                                      opacity="0.5"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h6 class="text-base"><?= number_format($totalCharges) ?></h6>
+                                            <p>Charges</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="mt-8">
+                                <p class="font-inter">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                                class="bg-red-100 h-10 w-10 flex justify-center items-center rounded-md">
+                                            <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                 height="24"
+                                                 viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M8.422 20.618C10.178 21.54 11.056 22 12 22V12L2.638 7.073l-.04.067C2 8.154 2 9.417 2 11.942v.117c0 2.524 0 3.787.597 4.801c.598 1.015 1.674 1.58 3.825 2.709z"/>
+                                                <path fill="currentColor"
+                                                      d="m17.577 4.432l-2-1.05C13.822 2.461 12.944 2 12 2c-.945 0-1.822.46-3.578 1.382l-2 1.05C4.318 5.536 3.242 6.1 2.638 7.072L12 12l9.362-4.927c-.606-.973-1.68-1.537-3.785-2.641"
+                                                      opacity="0.7"/>
+                                                <path fill="currentColor"
+                                                      d="m21.403 7.14l-.041-.067L12 12v10c.944 0 1.822-.46 3.578-1.382l2-1.05c2.151-1.129 3.227-1.693 3.825-2.708c.597-1.014.597-2.277.597-4.8v-.117c0-2.525 0-3.788-.597-4.802"
+                                                      opacity="0.5"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h6 class="text-base"><?= number_format($totalPaiements, 2, ',', ' ') ?></h6>
+                                            <p>Montant décaissé</p>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
 
                         </div>
@@ -1038,217 +1123,109 @@ if (!isset($_SESSION['email'])) {
             </div>
             <div class="col-span-12 lg:col-span-4">
                 <div class="flex items-center justify-between">
-                    <h2
-                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                    >
-                        Customer Satisfaction
+                    <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                        Satisfaction client
                     </h2>
-                    <div
-                            x-data="usePopper({placement:'bottom-end',offset:4})"
-                            @click.outside="isShowPopper && (isShowPopper = false)"
-                            class="inline-flex"
-                    >
-                        <button
-                                x-ref="popperRef"
-                                @click="isShowPopper = !isShowPopper"
-                                class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                        >
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                />
-                            </svg>
-                        </button>
-
-                        <div
-                                x-ref="popperRoot"
-                                class="popper-root"
-                                :class="isShowPopper && 'show'"
-                        >
-                            <div
-                                    class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700"
-                            >
-                                <ul>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Action</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Another Action</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Something else</a
-                                        >
-                                    </li>
-                                </ul>
-                                <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
-                                <ul>
-                                    <li>
-                                        <a
-                                                href="#"
-                                                class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                                        >Separated Link</a
-                                        >
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
+                <?php
+                // Connexion à la base de données (à adapter)
+                include_once '../../config/config.php';
+
+                $pdo = getConnexion();
+
+                // Récupérer le total des tickets
+                $totalQuery = $pdo->query("SELECT COUNT(*) as total FROM tickets WHERE appreciation IS NOT NULL");
+                $total = $totalQuery->fetch(PDO::FETCH_ASSOC)['total'];
+
+                // Récupérer le nombre de tickets satisfaits et pas satisfaits
+                $query = $pdo->query("
+                    SELECT appreciation, COUNT(*) as count
+                    FROM tickets
+                    WHERE appreciation IS NOT NULL
+                    GROUP BY appreciation
+                ");
+
+                $stats = ['Satisfaite' => 0, 'Pas satisfaite' => 0];
+                while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                    $stats[$row['appreciation']] = $row['count'];
+                }
+
+                // Calcul des pourcentages
+                $percentages = [
+                    'Satisfaite' => ($total > 0) ? round(($stats['Satisfaite'] / $total) * 100) : 0,
+                    'Pas Satisfaite' => ($total > 0) ? round(($stats['Pas Satisfaite'] / $total) * 100) : 0
+                ];
+
+                // Récupération des données
+                $query = $pdo->query("
+                    SELECT 
+                        COUNT(CASE WHEN appreciation = 'Satisfaite' THEN 1 END) AS satisfaite_count,
+                        COUNT(*) AS total_feedback
+                    FROM tickets
+                ");
+
+                $result = $query->fetch(PDO::FETCH_ASSOC);
+
+                $satisfaite_count = $result['satisfaite_count'];
+                $total_feedback = $result['total_feedback'];
+
+                // Calcul du score de satisfaction sur 10
+                $satisfaction_score = $total_feedback > 0 ? ($satisfaite_count / $total_feedback) * 10 : 0;
+
+                // Compter le nombre de tickets avec une note satisfaisante
+                $query = $pdo->query("SELECT COUNT(*) as total FROM tickets WHERE appreciation = 'Satisfaite'");
+                $total_notes_satisfy = $query->fetch(PDO::FETCH_ASSOC)['total'];
+
+                // Compter le nombre de tickets avec une note insatisfaisante
+                $query = $pdo->query("SELECT COUNT(*) as total FROM tickets WHERE appreciation = 'Pas Satisfaite'");
+                $total_notes_unsatisfy = $query->fetch(PDO::FETCH_ASSOC)['total'];
+                ?>
+
+
                 <div class="mt-3">
                     <p>
-            <span class="text-3xl text-slate-700 dark:text-navy-100"
-            >9.7</span
-            >
-                        <span class="text-xs text-success">+2.1%</span>
+                        <span class="text-3xl text-slate-700 dark:text-navy-100">
+                            <?= number_format($satisfaction_score, 1) ?>
+                        </span>
+                        <span class="text-xs text-success"><?= $percentages['Satisfaite'] ?>%</span>
                     </p>
-                    <p class="text-xs-plus">Performance score</p>
+                    <p class="text-xs-plus">Taux de satisfaction</p>
                 </div>
-                <div class="mt-4 flex h-2 space-x-1">
-                    <div
-                            class="w-5/12 rounded-full bg-primary dark:bg-accent"
-                            x-tooltip.primary="'Exellent'"
-                    ></div>
-                    <div
-                            class="w-2/12 rounded-full bg-success"
-                            x-tooltip.success="'Very Good'"
-                    ></div>
-                    <div
-                            class="w-2/12 rounded-full bg-info"
-                            x-tooltip.info="'Good'"
-                    ></div>
-
-                    <div
-                            class="w-2/12 rounded-full bg-warning"
-                            x-tooltip.warning="'Poor'"
-                    ></div>
-                    <div
-                            class="w-1/12 rounded-full bg-error"
-                            x-tooltip.error="'Very Poor'"
-                    ></div>
+                <div class="mt-4 flex h-2 space-x-1 w-full">
+                    <div class="w-<?= $percentages['Satisfaite'] ?>/12 rounded-full bg-primary dark:bg-accent"
+                         x-tooltip.primary="'Satisfaite'"></div>
+                    <div class="w-<?= $percentages['Pas Satisfaite'] ?>/12 rounded-full bg-error"
+                         x-tooltip.error="'Pas satisfaite'"></div>
                 </div>
-
                 <div class="is-scrollbar-hidden mt-4 min-w-full overflow-x-auto">
                     <table class="w-full font-inter">
                         <tbody>
                         <tr>
                             <td class="whitespace-nowrap py-2">
                                 <div class="flex items-center space-x-2">
-                                    <div
-                                            class="size-3.5 rounded-full border-2 border-primary dark:border-accent"
-                                    ></div>
-                                    <p
-                                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                                    >
-                                        Exellent
-                                    </p>
+                                    <div class="size-3.5 rounded-full border-2 border-primary dark:border-accent"></div>
+                                    <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                                        Satisfaite</p>
                                 </div>
                             </td>
                             <td class="whitespace-nowrap py-2 text-right">
-                                <p class="font-medium text-slate-700 dark:text-navy-100">
-                                    1 029
-                                </p>
+                                <p class="font-medium text-slate-700 dark:text-navy-100"><?= $total_notes_satisfy ?></p>
                             </td>
-                            <td class="whitespace-nowrap py-2 text-right">42%</td>
+                            <td class="whitespace-nowrap py-2 text-right"><?= $percentages['Satisfaite'] ?>%</td>
                         </tr>
                         <tr>
                             <td class="whitespace-nowrap py-2">
                                 <div class="flex items-center space-x-2">
-                                    <div
-                                            class="size-3.5 rounded-full border-2 border-success"
-                                    ></div>
-                                    <p
-                                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                                    >
-                                        Very Good
-                                    </p>
+                                    <div class="size-3.5 rounded-full border-2 border-error"></div>
+                                    <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">Pas
+                                        satisfaite</p>
                                 </div>
                             </td>
                             <td class="whitespace-nowrap py-2 text-right">
-                                <p class="font-medium text-slate-700 dark:text-navy-100">
-                                    426
-                                </p>
+                                <p class="font-medium text-slate-700 dark:text-navy-100"> <?= $total_notes_unsatisfy ?> </p>
                             </td>
-                            <td class="whitespace-nowrap py-2 text-right">18%</td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap py-2">
-                                <div class="flex items-center space-x-2">
-                                    <div
-                                            class="size-3.5 rounded-full border-2 border-info"
-                                    ></div>
-                                    <p
-                                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                                    >
-                                        Good
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">
-                                <p class="font-medium text-slate-700 dark:text-navy-100">
-                                    326
-                                </p>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">14%</td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap py-2">
-                                <div class="flex items-center space-x-2">
-                                    <div
-                                            class="size-3.5 rounded-full border-2 border-warning"
-                                    ></div>
-                                    <p
-                                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                                    >
-                                        Poor
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">
-                                <p class="font-medium text-slate-700 dark:text-navy-100">
-                                    395
-                                </p>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">17%</td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap py-2">
-                                <div class="flex items-center space-x-2">
-                                    <div
-                                            class="size-3.5 rounded-full border-2 border-error"
-                                    ></div>
-                                    <p
-                                            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
-                                    >
-                                        Very Poor
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">
-                                <p class="font-medium text-slate-700 dark:text-navy-100">
-                                    129
-                                </p>
-                            </td>
-                            <td class="whitespace-nowrap py-2 text-right">9%</td>
+                            <td class="whitespace-nowrap py-2 text-right"><?= $percentages['Pas Satisfaite'] ?>%</td>
                         </tr>
                         </tbody>
                     </table>
@@ -1265,49 +1242,55 @@ if (!isset($_SESSION['email'])) {
                                 Historique Journalier
                             </h2>
                         </div>
-                        <div class="flex items-center space-x-4">
+                        <form action="../../config/export-excel.php?date=<?php echo date('Y-m-d'); ?>" method="GET">
+                            <div class="flex items-center space-x-4">
 
-                            <a href="../../config/export-excel.php">
-                                <div class="flex cursor-pointer items-center bg-gray-900/5 px-5 py-1.5 rounded-lg space-x-2">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                             viewBox="0 0 32 32">
-                                            <defs>
-                                                <linearGradient id="vscodeIconsFileTypeExcel0" x1="4.494" x2="13.832"
-                                                                y1="-2092.086" y2="-2075.914"
-                                                                gradientTransform="translate(0 2100)"
-                                                                gradientUnits="userSpaceOnUse">
-                                                    <stop offset="0" stop-color="#18884f"/>
-                                                    <stop offset=".5" stop-color="#117e43"/>
-                                                    <stop offset="1" stop-color="#0b6631"/>
-                                                </linearGradient>
-                                            </defs>
-                                            <path fill="#185c37"
-                                                  d="M19.581 15.35L8.512 13.4v14.409A1.19 1.19 0 0 0 9.705 29h19.1A1.19 1.19 0 0 0 30 27.809V22.5Z"/>
-                                            <path fill="#21a366"
-                                                  d="M19.581 3H9.705a1.19 1.19 0 0 0-1.193 1.191V9.5L19.581 16l5.861 1.95L30 16V9.5Z"/>
-                                            <path fill="#107c41" d="M8.512 9.5h11.069V16H8.512Z"/>
-                                            <path d="M16.434 8.2H8.512v16.25h7.922a1.2 1.2 0 0 0 1.194-1.191V9.391A1.2 1.2 0 0 0 16.434 8.2"
-                                                  opacity="0.1"/>
-                                            <path d="M15.783 8.85H8.512V25.1h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
-                                                  opacity="0.2"/>
-                                            <path d="M15.783 8.85H8.512V23.8h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
-                                                  opacity="0.2"/>
-                                            <path d="M15.132 8.85h-6.62V23.8h6.62a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
-                                                  opacity="0.2"/>
-                                            <path fill="url(#vscodeIconsFileTypeExcel0)"
-                                                  d="M3.194 8.85h11.938a1.193 1.193 0 0 1 1.194 1.191v11.918a1.193 1.193 0 0 1-1.194 1.191H3.194A1.19 1.19 0 0 1 2 21.959V10.041A1.19 1.19 0 0 1 3.194 8.85"/>
-                                            <path fill="#fff"
-                                                  d="m5.7 19.873l2.511-3.884l-2.3-3.862h1.847L9.013 14.6c.116.234.2.408.238.524h.017q.123-.281.26-.546l1.342-2.447h1.7l-2.359 3.84l2.419 3.905h-1.809l-1.45-2.711A2.4 2.4 0 0 1 9.2 16.8h-.024a1.7 1.7 0 0 1-.168.351l-1.493 2.722Z"/>
-                                            <path fill="#33c481"
-                                                  d="M28.806 3h-9.225v6.5H30V4.191A1.19 1.19 0 0 0 28.806 3"/>
-                                            <path fill="#107c41" d="M19.581 16H30v6.5H19.581Z"/>
-                                        </svg>
-                                    </div>
-                                    <p>Excel</p>
+                                <input type="date" name="date" id="date" class="px-4 py-2 rounded-lg border">
+                                <div>
+                                    <button type="submit"
+                                            class="flex cursor-pointer items-center bg-gray-900/5 px-5 py-1.5 rounded-lg space-x-2">
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                 viewBox="0 0 32 32">
+                                                <defs>
+                                                    <linearGradient id="vscodeIconsFileTypeExcel0" x1="4.494"
+                                                                    x2="13.832"
+                                                                    y1="-2092.086" y2="-2075.914"
+                                                                    gradientTransform="translate(0 2100)"
+                                                                    gradientUnits="userSpaceOnUse">
+                                                        <stop offset="0" stop-color="#18884f"/>
+                                                        <stop offset=".5" stop-color="#117e43"/>
+                                                        <stop offset="1" stop-color="#0b6631"/>
+                                                    </linearGradient>
+                                                </defs>
+                                                <path fill="#185c37"
+                                                      d="M19.581 15.35L8.512 13.4v14.409A1.19 1.19 0 0 0 9.705 29h19.1A1.19 1.19 0 0 0 30 27.809V22.5Z"/>
+                                                <path fill="#21a366"
+                                                      d="M19.581 3H9.705a1.19 1.19 0 0 0-1.193 1.191V9.5L19.581 16l5.861 1.95L30 16V9.5Z"/>
+                                                <path fill="#107c41" d="M8.512 9.5h11.069V16H8.512Z"/>
+                                                <path d="M16.434 8.2H8.512v16.25h7.922a1.2 1.2 0 0 0 1.194-1.191V9.391A1.2 1.2 0 0 0 16.434 8.2"
+                                                      opacity="0.1"/>
+                                                <path d="M15.783 8.85H8.512V25.1h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
+                                                      opacity="0.2"/>
+                                                <path d="M15.783 8.85H8.512V23.8h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
+                                                      opacity="0.2"/>
+                                                <path d="M15.132 8.85h-6.62V23.8h6.62a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
+                                                      opacity="0.2"/>
+                                                <path fill="url(#vscodeIconsFileTypeExcel0)"
+                                                      d="M3.194 8.85h11.938a1.193 1.193 0 0 1 1.194 1.191v11.918a1.193 1.193 0 0 1-1.194 1.191H3.194A1.19 1.19 0 0 1 2 21.959V10.041A1.19 1.19 0 0 1 3.194 8.85"/>
+                                                <path fill="#fff"
+                                                      d="m5.7 19.873l2.511-3.884l-2.3-3.862h1.847L9.013 14.6c.116.234.2.408.238.524h.017q.123-.281.26-.546l1.342-2.447h1.7l-2.359 3.84l2.419 3.905h-1.809l-1.45-2.711A2.4 2.4 0 0 1 9.2 16.8h-.024a1.7 1.7 0 0 1-.168.351l-1.493 2.722Z"/>
+                                                <path fill="#33c481"
+                                                      d="M28.806 3h-9.225v6.5H30V4.191A1.19 1.19 0 0 0 28.806 3"/>
+                                                <path fill="#107c41" d="M19.581 16H30v6.5H19.581Z"/>
+                                            </svg>
+                                        </div>
+                                        <p>Excel</p>
+                                    </button>
                                 </div>
-                            </a>
-                        </div>
+
+                            </div>
+                        </form>
                     </div>
 
                     <div class="grid grid-cols-12 gap-4 px-4 sm:gap-5 sm:px-5 lg:gap-6 lg:px-5">

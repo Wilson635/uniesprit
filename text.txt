@@ -18,3 +18,64 @@
 
     Achat ou renouvellement du matériel (tables de soins, appareils d’épilation, fauteuils, décoration)
     Formations et certifications (mise à jour des compétences, nouvelles techniques)
+
+
+<form action="ajouter_paiement.php" method="POST">
+    <label>Charge :</label>
+    <select name="charge_id">
+        <?php
+        // Connexion et récupération des charges
+        $pdo = new PDO("mysql:host=localhost;dbname=nom_de_ta_base;charset=utf8", "root", "");
+        $charges = $pdo->query("SELECT id, nom FROM charges")->fetchAll();
+        foreach ($charges as $charge) {
+            echo "<option value='{$charge['id']}'>{$charge['nom']}</option>";
+        }
+        ?>
+    </select>
+
+    <label>Montant Payé :</label>
+    <input type="number" step="0.01" name="montant_paye" required>
+
+    <label>Méthode de paiement :</label>
+    <select name="methode_paiement">
+        <option value="espèces">Espèces</option>
+        <option value="chèque">Chèque</option>
+        <option value="virement">Virement</option>
+    </select>
+
+    <button type="submit">Enregistrer Paiement</button>
+</form>
+
+
+<?php
+// Connexion à la base de données
+$pdo = new PDO("mysql:host=localhost;dbname=nom_de_ta_base;charset=utf8", "root", "");
+
+// Récupérer les paiements effectués
+$query = "SELECT p.id, c.nom, p.montant_paye, p.date_paiement, p.methode_paiement, p.statut
+          FROM paiements_charges p
+          JOIN charges c ON p.charge_id = c.id
+          ORDER BY p.date_paiement DESC";
+$stmt = $pdo->query($query);
+$paiements = $stmt->fetchAll();
+?>
+
+<h6 class="text-base font-bold">Historique des Paiements</h6>
+<table>
+    <tr>
+        <th>Charge</th>
+        <th>Montant</th>
+        <th>Date</th>
+        <th>Méthode</th>
+        <th>Statut</th>
+    </tr>
+    <?php foreach ($paiements as $paiement) : ?>
+        <tr>
+            <td><?= htmlspecialchars($paiement['nom']) ?></td>
+            <td><?= number_format($paiement['montant_paye'], 2, ',', ' ') ?> €</td>
+            <td><?= $paiement['date_paiement'] ?></td>
+            <td><?= ucfirst($paiement['methode_paiement']) ?></td>
+            <td><?= ucfirst($paiement['statut']) ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>

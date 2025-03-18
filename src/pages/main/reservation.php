@@ -537,6 +537,46 @@ if (!$_SESSION['email']) {
             </div>
         </div>
 
+        <div class="mb-6 mt-6">
+            <div>
+                <div class="grid grid-cols-12 gap-6 items-center justify-between">
+                    <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 p-8">
+                    </div>
+                    <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12 p-8">
+                        <div class="flex justify-end items-center gap-3">
+                            <div class="action-btn bg-gray-900/5 show-btn">
+                                <button onclick="openModal()"
+                                        class="btn flex gap-2 items-center btn-light-error bg-green-500 text-white px-4 py-2 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                         viewBox="0 0 256 256">
+                                        <path fill="#fff"
+                                              d="M225.86 102.82c-3.77-3.94-7.67-8-9.14-11.57c-1.36-3.27-1.44-8.69-1.52-13.94c-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52c-3.56-1.47-7.63-5.37-11.57-9.14C146.28 23.51 138.44 16 128 16s-18.27 7.51-25.18 14.14c-3.94 3.77-8 7.67-11.57 9.14c-3.25 1.36-8.69 1.44-13.94 1.52c-9.76.15-20.82.31-28.51 8s-7.8 18.75-8 28.51c-.08 5.25-.16 10.67-1.52 13.94c-1.47 3.56-5.37 7.63-9.14 11.57C23.51 109.72 16 117.56 16 128s7.51 18.27 14.14 25.18c3.77 3.94 7.67 8 9.14 11.57c1.36 3.27 1.44 8.69 1.52 13.94c.15 9.76.31 20.82 8 28.51s18.75 7.85 28.51 8c5.25.08 10.67.16 13.94 1.52c3.56 1.47 7.63 5.37 11.57 9.14c6.9 6.63 14.74 14.14 25.18 14.14s18.27-7.51 25.18-14.14c3.94-3.77 8-7.67 11.57-9.14c3.27-1.36 8.69-1.44 13.94-1.52c9.76-.15 20.82-.31 28.51-8s7.85-18.75 8-28.51c.08-5.25.16-10.67 1.52-13.94c1.47-3.56 5.37-7.63 9.14-11.57c6.63-6.9 14.14-14.74 14.14-25.18s-7.51-18.27-14.14-25.18m-11.55 39.29c-4.79 5-9.75 10.17-12.38 16.52c-2.52 6.1-2.63 13.07-2.73 19.82c-.1 7-.21 14.33-3.32 17.43s-10.39 3.22-17.43 3.32c-6.75.1-13.72.21-19.82 2.73c-6.35 2.63-11.52 7.59-16.52 12.38S132 224 128 224s-9.15-4.92-14.11-9.69s-10.17-9.75-16.52-12.38c-6.1-2.52-13.07-2.63-19.82-2.73c-7-.1-14.33-.21-17.43-3.32s-3.22-10.39-3.32-17.43c-.1-6.75-.21-13.72-2.73-19.82c-2.63-6.35-7.59-11.52-12.38-16.52S32 132 32 128s4.92-9.15 9.69-14.11s9.75-10.17 12.38-16.52c2.52-6.1 2.63-13.07 2.73-19.82c.1-7 .21-14.33 3.32-17.43s10.39-3.22 17.43-3.32c6.75-.1 13.72-.21 19.82-2.73c6.35-2.63 11.52-7.59 16.52-12.38S124 32 128 32s9.15 4.92 14.11 9.69s10.17 9.75 16.52 12.38c6.1 2.52 13.07 2.63 19.82 2.73c7 .1 14.33.21 17.43 3.32s3.22 10.39 3.32 17.43c.1 6.75.21 13.72 2.73 19.82c2.63 6.35 7.59 11.52 12.38 16.52S224 124 224 128s-4.92 9.15-9.69 14.11m-40.65-43.77a8 8 0 0 1 0 11.32l-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 0"/>
+                                    </svg>
+                                    Accepter
+                                </button>
+                            </div>
+                            <div class="action-btn bg-gray-900/5 show-btn">
+                                <button onclick="openModalRejected()"
+                                        class="btn flex gap-2 items-center btn-light-error bg-rose-500 text-white px-4 py-2 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-red-500 font-bold" width="25"
+                                         height="25" viewBox="0 0 512 512">
+                                        <g fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2em">
+                                            <path stroke-linejoin="round" d="m8.5 12.5l2 2l5-5"/>
+                                            <path
+                                                    d="m283.735 52.918l31.295 26.614a42.7 42.7 0 0 0 24.213 10.03l40.947 3.309c20.86 1.686 37.42 18.246 39.106 39.106l3.31 40.947a42.7 42.7 0 0 0 10.029 24.213l26.614 31.294c13.557 15.942 13.557 39.362 0 55.304l-26.614 31.295a42.7 42.7 0 0 0-10.03 24.213l-3.31 40.947c-1.685 20.86-18.246 37.42-39.105 39.106l-40.947 3.31a42.7 42.7 0 0 0-24.213 10.029l-31.295 26.614c-15.942 13.557-39.362 13.557-55.304 0l-31.294-26.614a42.7 42.7 0 0 0-24.213-10.03l-40.947-3.31c-20.86-1.685-37.42-18.246-39.106-39.105l-3.31-40.947a42.7 42.7 0 0 0-10.03-24.213l-26.613-31.295c-13.557-15.942-13.557-39.362 0-55.304l26.614-31.294a42.7 42.7 0 0 0 10.03-24.213l3.309-40.947c1.686-20.86 18.246-37.42 39.106-39.106l40.947-3.31a42.7 42.7 0 0 0 24.213-10.03l31.294-26.613c15.942-13.557 39.362-13.557 55.304 0m21.182 124L256 225.833l-48.918-48.917l-30.165 30.165L225.834 256l-48.917 48.917l30.165 30.165L256 286.165l48.917 48.917l30.165-30.165L286.165 256l48.917-48.918z"
+                                            />
+                                        </g>
+                                    </svg>
+                                    Rejeter
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Table reservations -->
         <div
                 class="mt-4 grid grid-cols-12 gap-4 transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
@@ -627,7 +667,7 @@ if (!$_SESSION['email']) {
                                 <form class="space-y-6" action="#" method="POST">
                                     <div class="grid lg:grid-cols-2 justify-between gap-3 items-center">
                                         <div>
-                                            <label for="name" >Nom du
+                                            <label for="name">Nom du
                                                 client</label>
                                             <div class="mt-2">
                                                 <input type="text" name="name" id="name"
@@ -637,7 +677,7 @@ if (!$_SESSION['email']) {
 
                                         <div>
                                             <div class="flex items-center justify-between">
-                                                <label for="surname" >Prénom
+                                                <label for="surname">Prénom
                                                     du client</label>
                                             </div>
                                             <div class="mt-2">
@@ -649,7 +689,7 @@ if (!$_SESSION['email']) {
 
                                     <div>
                                         <div class="flex items-center justify-between">
-                                            <label for="phone" >Téléphone
+                                            <label for="phone">Téléphone
                                                 du client</label>
                                         </div>
                                         <div class="mt-2">
@@ -659,7 +699,7 @@ if (!$_SESSION['email']) {
                                     </div>
 
                                     <div>
-                                        <label for="date" >Journée
+                                        <label for="date">Journée
                                             du</label>
                                         <div class="mt-2">
                                             <input type="datetime-local" name="date" id="date"
@@ -668,7 +708,7 @@ if (!$_SESSION['email']) {
                                     </div>
 
                                     <div>
-                                        <label for="services" >Type de
+                                        <label for="services">Type de
                                             service</label>
                                         <div class="mt-2">
                                             <select id="services" name="services"
@@ -743,6 +783,7 @@ if (!$_SESSION['email']) {
                                         }
                                         return $initials;
                                     }
+
                                     ?>
 
                                     <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
@@ -751,19 +792,37 @@ if (!$_SESSION['email']) {
                                             <th class="p-4 ps-0">
                                                 <div class="n-chk align-self-center text-center">
                                                     <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input rounded-sm" id="contact-check-all"/>
+                                                        <input type="checkbox" class="form-check-input rounded-sm"
+                                                               id="contact-check-all"/>
                                                         <label class="form-check-label" for="contact-check-all"></label>
                                                         <span class="new-control-indicator"></span>
                                                     </div>
                                                 </div>
                                             </th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Nom</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Prénom</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Téléphone</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Date de reservation</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Services demandés</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Status</th>
-                                            <th scope="col" class="text-left rtl:text-right p-4 font-semibold text-black text-sm">Action</th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                Nom
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                Prénom
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                Téléphone
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                Date de reservation
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                Services demandés
+                                            </th>
+                                            <th scope="col"
+                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                Status
+                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-border divide-slate-150">
@@ -794,26 +853,7 @@ if (!$_SESSION['email']) {
                                                     <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($result["date_reservation"]) . '">' . htmlspecialchars($result["date_reservation"]) . '</td>
                                                     <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($result["service"]) . '">' . htmlspecialchars($result["service"]) . '</td>
                                                     <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-phone="' . htmlspecialchars($result["statut"]) . '">' . htmlspecialchars($result["statut"]) . '</td>
-                                                    <td class="text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">
-                                                        <div class="action-btn flex gap-3">
-                                                            <a  href="javascript:void(0)" x-tooltip.placement.top="\'Accepter\'" class="text-info flex justify-center items-center bg-gray-900/5 p-2 rounded-full edit cursor-pointer">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="#42ca7d" d="M225.86 102.82c-3.77-3.94-7.67-8-9.14-11.57c-1.36-3.27-1.44-8.69-1.52-13.94c-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52c-3.56-1.47-7.63-5.37-11.57-9.14C146.28 23.51 138.44 16 128 16s-18.27 7.51-25.18 14.14c-3.94 3.77-8 7.67-11.57 9.14c-3.25 1.36-8.69 1.44-13.94 1.52c-9.76.15-20.82.31-28.51 8s-7.8 18.75-8 28.51c-.08 5.25-.16 10.67-1.52 13.94c-1.47 3.56-5.37 7.63-9.14 11.57C23.51 109.72 16 117.56 16 128s7.51 18.27 14.14 25.18c3.77 3.94 7.67 8 9.14 11.57c1.36 3.27 1.44 8.69 1.52 13.94c.15 9.76.31 20.82 8 28.51s18.75 7.85 28.51 8c5.25.08 10.67.16 13.94 1.52c3.56 1.47 7.63 5.37 11.57 9.14c6.9 6.63 14.74 14.14 25.18 14.14s18.27-7.51 25.18-14.14c3.94-3.77 8-7.67 11.57-9.14c3.27-1.36 8.69-1.44 13.94-1.52c9.76-.15 20.82-.31 28.51-8s7.85-18.75 8-28.51c.08-5.25.16-10.67 1.52-13.94c1.47-3.56 5.37-7.63 9.14-11.57c6.63-6.9 14.14-14.74 14.14-25.18s-7.51-18.27-14.14-25.18m-11.55 39.29c-4.79 5-9.75 10.17-12.38 16.52c-2.52 6.1-2.63 13.07-2.73 19.82c-.1 7-.21 14.33-3.32 17.43s-10.39 3.22-17.43 3.32c-6.75.1-13.72.21-19.82 2.73c-6.35 2.63-11.52 7.59-16.52 12.38S132 224 128 224s-9.15-4.92-14.11-9.69s-10.17-9.75-16.52-12.38c-6.1-2.52-13.07-2.63-19.82-2.73c-7-.1-14.33-.21-17.43-3.32s-3.22-10.39-3.32-17.43c-.1-6.75-.21-13.72-2.73-19.82c-2.63-6.35-7.59-11.52-12.38-16.52S32 132 32 128s4.92-9.15 9.69-14.11s9.75-10.17 12.38-16.52c2.52-6.1 2.63-13.07 2.73-19.82c.1-7 .21-14.33 3.32-17.43s10.39-3.22 17.43-3.32c6.75-.1 13.72-.21 19.82-2.73c6.35-2.63 11.52-7.59 16.52-12.38S124 32 128 32s9.15 4.92 14.11 9.69s10.17 9.75 16.52 12.38c6.1 2.52 13.07 2.63 19.82 2.73c7 .1 14.33.21 17.43 3.32s3.22 10.39 3.32 17.43c.1 6.75.21 13.72 2.73 19.82c2.63 6.35 7.59 11.52 12.38 16.52S224 124 224 128s-4.92 9.15-9.69 14.11m-40.65-43.77a8 8 0 0 1 0 11.32l-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 0"/></svg>
-                                                            </a>
-                                                            <a href="javascript:void(0)" x-tooltip.placement.top="\'Refuser\'" class="text-black delete bg-gray-900/5 p-2 rounded-full cursor-pointer">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="text-red-500 font-bold" width="25"
-                                                                     height="25" viewBox="0 0 512 512">
-                                                                    <g fill="none" stroke="#FF5724" stroke-linecap="round" stroke-width="2em">
-                                                                        <path stroke-linejoin="round" d="m8.5 12.5l2 2l5-5"/>
-                                                                        <path
-                                                                                d="m283.735 52.918l31.295 26.614a42.7 42.7 0 0 0 24.213 10.03l40.947 3.309c20.86 1.686 37.42 18.246 39.106 39.106l3.31 40.947a42.7 42.7 0 0 0 10.029 24.213l26.614 31.294c13.557 15.942 13.557 39.362 0 55.304l-26.614 31.295a42.7 42.7 0 0 0-10.03 24.213l-3.31 40.947c-1.685 20.86-18.246 37.42-39.105 39.106l-40.947 3.31a42.7 42.7 0 0 0-24.213 10.029l-31.295 26.614c-15.942 13.557-39.362 13.557-55.304 0l-31.294-26.614a42.7 42.7 0 0 0-24.213-10.03l-40.947-3.31c-20.86-1.685-37.42-18.246-39.106-39.105l-3.31-40.947a42.7 42.7 0 0 0-10.03-24.213l-26.613-31.295c-13.557-15.942-13.557-39.362 0-55.304l26.614-31.294a42.7 42.7 0 0 0 10.03-24.213l3.309-40.947c1.686-20.86 18.246-37.42 39.106-39.106l40.947-3.31a42.7 42.7 0 0 0 24.213-10.03l31.294-26.613c15.942-13.557 39.362-13.557 55.304 0m21.182 124L256 225.833l-48.918-48.917l-30.165 30.165L225.834 256l-48.917 48.917l30.165 30.165L256 286.165l48.917 48.917l30.165-30.165L286.165 256l48.917-48.918z"
-                                                                        />
-                                                                    </g>
-                                                                </svg>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>'
-                                            ;
+                                                </tr>';
                                         }
                                         ?>
                                         </tbody>
@@ -837,13 +877,13 @@ if (!$_SESSION['email']) {
                                                     </a></li>
                                             <?php endif; ?>
 
-                                            <?php for($i = 1; $i <= $total_pages; $i++): ?>
+                                            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                                                 <li><a href="?page=<?php echo $i; ?>"
                                                        class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
                                                 </li>
                                             <?php endfor; ?>
 
-                                            <?php if($page < $total_pages): ?>
+                                            <?php if ($page < $total_pages): ?>
                                                 <li>
                                                     <a href="?page=<?php echo $page + 1; ?>"
                                                        x-tooltip.placement.top="'Suivant'"
@@ -871,12 +911,151 @@ if (!$_SESSION['email']) {
             </div>
         </div>
         <!-- Table reservations End -->
+
+        <!-- Modal de Accepter -->
+        <div id="modal_accepted" class="fixed inset-0 backdrop-blur bg-gray-900/5 hidden flex items-center justify-center">
+            <div class="bg-white opacity-100 p-6 rounded-lg shadow-lg w-1/3">
+                <h2 class="text-xl font-semibold mb-4">Accepter une réservation</h2>
+
+                <?php
+                include_once '../../config/config.php';
+                $conn = getConnexion();
+
+                // Traitement du formulaire de réservation
+                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reservation_id'])) {
+                    $reservation_id = $_POST['reservation_id'];
+                    $statut = 'accepted';  // Mettre "pending" dans la requête SQL
+
+                    // Mise à jour du statut de la réservation
+                    $sql_update = "UPDATE reservations SET statut = :statut WHERE id = :reservation_id";
+                    $stmt = $conn->prepare($sql_update);
+                    $stmt->execute([
+                        ':statut' => $statut,
+                        ':reservation_id' => $reservation_id // Vous devez passer reservation_id en paramètre
+                    ]);
+
+                    // Message de succès
+                    $message = "Réservation mise à jour avec succès!";
+                    echo "<div class='alert alert-success'>$message</div>";  // Affichage du message
+                }
+
+                // Récupération des réservations
+                $sql_boissons = "SELECT * FROM reservations WHERE statut = 'pending'";
+                $stmt_boissons = $conn->prepare($sql_boissons);
+                $stmt_boissons->execute();
+                $rows = $stmt_boissons->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+
+                <!-- Formulaire de reservation -->
+                <form method="POST">
+                        <?php foreach ($rows as $row) : ?>
+                    <label for="nom">Nom client</label>
+                    <input type="text" class="w-full p-2 border rounded mb-3" name="nom" id="nom" readonly value="<?= $row['first_name'] ?> <?= $row['last_name'] ?> ">
+                    <label for="reservation_id" class="block mb-2">Choisir une réservation :</label>
+                    <select name="reservation_id" id="reservation_id" required class="w-full p-2 border rounded mb-3">
+                            <option value="<?= $row['id'] ?>">
+                                <?= $row['service'] ?> (Date : <?= $row['date_reservation'] ?>)
+                            </option>
+                    </select>
+
+                        <?php endforeach; ?>
+                    <div class="flex justify-end gap-2">
+                        <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-400 text-white rounded">
+                            Annuler
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Accepter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal de refuser -->
+        <div id="modal_rejected" class="fixed inset-0 backdrop-blur bg-gray-900/5 hidden flex items-center justify-center">
+            <div class="bg-white opacity-100 p-6 rounded-lg shadow-lg w-1/3">
+                <h2 class="text-xl font-semibold mb-4">Rejeter une réservation</h2>
+
+                <?php
+                include_once '../../config/config.php';
+                $conn = getConnexion();
+
+                // Traitement du formulaire de réservation
+                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reservation_id_delete'])) {
+                    $reservation_id_delete = $_POST['reservation_id_delete'];
+                    $statut = 'canceled';  // Mettre "pending" dans la requête SQL
+
+                    // Mise à jour du statut de la réservation
+                    $sql_update = "UPDATE reservations SET statut = :statut WHERE id = :reservation_id_delete";
+                    $stmt = $conn->prepare($sql_update);
+                    $stmt->execute([
+                        ':statut' => $statut,
+                        ':reservation_id_delete' => $reservation_id_delete // Vous devez passer reservation_id en paramètre
+                    ]);
+
+                    // Message de succès
+                    $message = "Réservation mise à jour avec succès!";
+                    echo "<div class='alert alert-success'>$message</div>";  // Affichage du message
+                }
+
+                // Récupération des réservations
+                $sql_reserv = "SELECT * FROM reservations WHERE statut = 'pending'";
+                $stmt_reserv = $conn->prepare($sql_reserv);
+                $stmt_reserv->execute();
+                $rores = $stmt_reserv->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+
+                <!-- Formulaire de reservation -->
+                <form method="POST">
+                    <?php foreach ($rores as $row) : ?>
+                        <label for="nom">Nom client</label>
+                        <input type="text" class="w-full p-2 border rounded mb-3" name="nom" id="nom" readonly value="<?= $row['first_name'] ?> <?= $row['last_name'] ?> ">
+                        <label for="reservation_id_delete" class="block mb-2">Choisir une réservation :</label>
+                        <select name="reservation_id_delete" id="reservation_id_delete" required class="w-full p-2 border rounded mb-3">
+                            <option value="<?= $row['id'] ?>">
+                                <?= $row['service'] ?> (Date : <?= $row['date_reservation'] ?>)
+                            </option>
+                        </select>
+
+                    <?php endforeach; ?>
+                    <div class="flex justify-end gap-2">
+                        <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-400 text-white rounded">
+                            Annuler
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded">Rejeter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 </div>
 
 <div id="x-teleport-target"></div>
+<!-- Script pour gérer l'affichage du modal -->
+<script>
+    function openModal() {
+        document.getElementById("modal_accepted").classList.remove("hidden");
+    }
+
+    function closeModal() {
+        document.getElementById("modal_accepted").classList.add("hidden");
+    }
+
+    function openModalRejected() {
+        document.getElementById("modal_rejected").classList.remove("hidden");
+    }
+
+    function closeModalRejected() {
+        document.getElementById("modal_rejected").classList.add("hidden");
+    }
+</script>
 <script>
     window.addEventListener("DOMContentLoaded", () => Alpine.start());
 </script>
+
+<!-- Affichage du message de confirmation -->
+<?php if (isset($message)) : ?>
+    <script>
+        alert("<?= $message ?>");
+    </script>
+<?php endif; ?>
 </body>
 </html>
