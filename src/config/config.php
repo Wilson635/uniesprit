@@ -6,7 +6,7 @@
             'db' => [
                 'host' => 'localhost',
                 'username' => 'root',
-                'password' => '',
+                'password' => 'root',
                 'database' => 'beauty'
             ]
         ];

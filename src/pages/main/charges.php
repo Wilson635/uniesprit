@@ -925,61 +925,319 @@ if (!$_SESSION['email']) {
                             </div>
                         </div>
                     </div>
+                    <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
+                        <?php
+                        // Connexion à la base de données
+                        include_once ('../../config/config.php');
 
-                    <div class="card lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
-                        <div class="card-body">
-                            <div class="flex flex-col">
-                                <div class="-m-1.5 overflow-x-auto">
-                                    <div class="p-1.5 min-w-full inline-block align-middle">
-                                        <div class="overflow-hidden">
+                        $conn = getConnexion();
+                        // Nombre d'éléments par page
+                        $items_per_page = 10;
+                        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                        $start_from = ($page - 1) * $items_per_page;
 
-                                            <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
-                                                <thead>
-                                                <tr>
-                                                    <th class="p-4 ps-0">
-                                                        <div class="n-chk align-self-center text-center">
-                                                            <div class="form-check">
-                                                                <input type="checkbox"
-                                                                       class="form-check-input rounded-sm"
-                                                                       id="contact-check-all"/>
-                                                                <label class="form-check-label"
-                                                                       for="contact-check-all"></label>
-                                                                <span class="new-control-indicator"></span>
+                        // Requête pour obtenir le total des charges
+                        $sql_total = "SELECT COUNT(*) FROM charges";
+                        $stmt_total = $conn->prepare($sql_total);
+                        $stmt_total->execute();
+                        $total_charges = $stmt_total->fetchColumn();
+                        $total_pages = ceil($total_charges / $items_per_page);
+
+                        // Requête pour récupérer les charges par page
+                        $query = "SELECT c.id, cat.nom AS categorie, c.nom, c.frequence, c.montant, c.date_debut, c.date_fin
+                                                FROM charges c
+                                                JOIN categories_charges cat ON c.categorie_id = cat.id
+                                                ORDER BY c.date_debut DESC
+                                                LIMIT :start_from, :items_per_page";
+
+                        $stmt = $conn->prepare($query);
+                        $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
+                        $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
+                        $stmt->execute();
+                        $charges = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        // Requête pour obtenir le total des charges
+                        $sql_total = "SELECT COUNT(*) FROM paiements";
+                        $stmt_total = $conn->prepare($sql_total);
+                        $stmt_total->execute();
+                        $total_paiements = $stmt_total->fetchColumn();
+                        $total_pages = ceil($total_paiements / $items_per_page);
+
+                        // Requête pour récupérer les paiements par page
+                        $query = "SELECT p.id, c.nom AS charge, p.montant, p.moyen_paiement, p.date_paiement
+                                                FROM charges c
+                                                JOIN paiements p ON c.id = p.charge_id
+                                                ORDER BY p.date_paiement DESC
+                                                LIMIT :start_from, :items_per_page";
+
+                        $stmt = $conn->prepare($query);
+                        $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
+                        $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
+                        $stmt->execute();
+                        $paiements = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        ?>
+                        <div class="card pb-10">
+                            <div class="card-body">
+                                <div class="flex flex-col">
+                                    <div class="-m-1.5 overflow-x-auto">
+                                        <div class="p-1.5 min-w-full inline-block align-middle">
+                                            <div class="overflow-hidden">
+                                                <!-- Onglets -->
+                                                <div class="flex border-b border-gray-200 mb-4">
+                                                    <button class="tab-btn px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent focus:outline-none active-tab"
+                                                            data-tab="charges-tab">Tableau des Charges
+                                                    </button>
+                                                </div>
+                                                <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="p-4 ps-0">
+                                                            <div class="n-chk align-self-center text-center">
+                                                                <div class="form-check">
+                                                                    <input type="checkbox"
+                                                                           class="form-check-input rounded-sm"
+                                                                           id="contact-check-all"/>
+                                                                    <label class="form-check-label"
+                                                                           for="contact-check-all"></label>
+                                                                    <span class="new-control-indicator"></span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                        Boisson
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                        Quantité
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                        Prix Unitaire
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                        Prix Total
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                        Date de vente
-                                                    </th>
-                                                </tr>
-                                                </thead>
-                                                <tbody class="divide-y divide-border divide-slate-150">
-                                                </tbody>
-                                            </table>
-
-
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Charges
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Catégorie
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Fréquence
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Montant à payer (XOF)
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Date de debut
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Date de fin
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody class="divide-y divide-border divide-slate-150">
+                                                    <?php
+                                                    foreach ($charges as $charge) {
+                                                        echo '
+                                                        <tr class="search-items">
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="n-chk align-self-center text-center">
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $charge['id'] . '" />
+                                                                        <label class="form-check-label" for="checkbox' . $charge['id'] . '"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="flex gap-3 items-center">
+                                                                    <div>
+                                                                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($charge["nom"]) . '">' . htmlspecialchars($charge["nom"]) . '</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-categorie="' . htmlspecialchars($charge["categorie"]) . '">' . htmlspecialchars($charge["categorie"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-frequence="' . htmlspecialchars($charge["frequence"]) . '">' . htmlspecialchars($charge["frequence"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-montant="' . htmlspecialchars($charge["montant"]) . '">' . htmlspecialchars($charge["montant"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-debut="' . htmlspecialchars($charge["date_debut"]) . '">' . htmlspecialchars($charge["date_debut"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-fin="' . htmlspecialchars($charge["date_fin"]) . '">' . htmlspecialchars($charge["date_fin"]) . '</td>
+                                                        </tr>
+                                                    ';
+                                                    }
+                                                    ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
+
+                                        <!-- Pagination -->
+                                        <div class="pagination mx-auto justify-center items-center">
+                                            <ul class="flex list-none gap-2">
+                                                <?php if ($page > 1): ?>
+                                                    <li><a href="?page=<?php echo $page - 1; ?>"
+                                                           x-tooltip.placement.top="'Précédent'"
+                                                           class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                 viewBox="0 0 24 24">
+                                                                <path fill="currentColor" fill-rule="evenodd"
+                                                                      d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
+                                                                      clip-rule="evenodd" opacity="0.5"/>
+                                                                <path fill="currentColor"
+                                                                      d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
+                                                            </svg>
+                                                        </a></li>
+                                                <?php endif; ?>
+
+                                                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                                                    <li><a href="?page=<?php echo $i; ?>"
+                                                           class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                                    </li>
+                                                <?php endfor; ?>
+
+                                                <?php if ($page < $total_pages): ?>
+                                                    <li>
+                                                        <a href="?page=<?php echo $page + 1; ?>"
+                                                           x-tooltip.placement.top="'Suivant'"
+                                                           class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                 viewBox="0 0 24 24">
+                                                                <path fill="currentColor" fill-rule="evenodd"
+                                                                      d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
+                                                                      clip-rule="evenodd" opacity="0.5"/>
+                                                                <path fill="currentColor"
+                                                                      d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
+                                                            </svg>
+                                                        </a>
+                                                    </li>
+
+                                                <?php endif; ?>
+                                            </ul>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="card mt-10 pb-10">
+                            <div class="card-body">
+                                <div class="flex flex-col">
+                                    <div class="-m-1.5 overflow-x-auto">
+                                        <div class="p-1.5 min-w-full inline-block align-middle">
+                                            <div class="overflow-hidden">
+                                                <!-- Onglets -->
+                                                <div class="flex border-b border-gray-200 mb-4">
+                                                    <button class="tab-btn px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent focus:outline-none active-tab"
+                                                            data-tab="paiement-tab">Tableau des Paiements
+                                                    </button>
+                                                </div>
+                                                <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="p-4 ps-0">
+                                                            <div class="n-chk align-self-center text-center">
+                                                                <div class="form-check">
+                                                                    <input type="checkbox"
+                                                                           class="form-check-input rounded-sm"
+                                                                           id="contact-check-all"/>
+                                                                    <label class="form-check-label"
+                                                                           for="contact-check-all"></label>
+                                                                    <span class="new-control-indicator"></span>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Charges
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Montant Payé (XOF)
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Méthode de paiement
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
+                                                            Date de paiement
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody class="divide-y divide-border divide-slate-150">
+                                                    <?php
+                                                    foreach ($paiements as $paiement) {
+                                                        echo '
+                                                        <tr class="search-items">
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="n-chk align-self-center text-center">
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $paiement['id'] . '" />
+                                                                        <label class="form-check-label" for="checkbox' . $paiement['id'] . '"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="flex gap-3 items-center">
+                                                                    <div>
+                                                                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($paiement["charge"]) . '">' . htmlspecialchars($paiement["charge"]) . '</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-montant="' . htmlspecialchars($paiement["montant"]) . '">' . htmlspecialchars($paiement["montant"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-moyen="' . htmlspecialchars($paiement["moyen_paiement"]) . '">' . htmlspecialchars($paiement["moyen_paiement"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-fin="' . htmlspecialchars($paiement["date_paiement"]) . '">' . htmlspecialchars($paiement["date_paiement"]) . '</td>
+                                                        </tr>
+                                                    ';
+                                                    }
+                                                    ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <!-- Pagination -->
+                                        <div class="pagination mx-auto justify-center items-center">
+                                            <ul class="flex list-none gap-2">
+                                                <?php if ($page > 1): ?>
+                                                    <li><a href="?page=<?php echo $page - 1; ?>"
+                                                           x-tooltip.placement.top="'Précédent'"
+                                                           class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                 viewBox="0 0 24 24">
+                                                                <path fill="currentColor" fill-rule="evenodd"
+                                                                      d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
+                                                                      clip-rule="evenodd" opacity="0.5"/>
+                                                                <path fill="currentColor"
+                                                                      d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
+                                                            </svg>
+                                                        </a></li>
+                                                <?php endif; ?>
+
+                                                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                                                    <li><a href="?page=<?php echo $i; ?>"
+                                                           class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                                    </li>
+                                                <?php endfor; ?>
+
+                                                <?php if ($page < $total_pages): ?>
+                                                    <li>
+                                                        <a href="?page=<?php echo $page + 1; ?>"
+                                                           x-tooltip.placement.top="'Suivant'"
+                                                           class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                                 viewBox="0 0 24 24">
+                                                                <path fill="currentColor" fill-rule="evenodd"
+                                                                      d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
+                                                                      clip-rule="evenodd" opacity="0.5"/>
+                                                                <path fill="currentColor"
+                                                                      d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
+                                                            </svg>
+                                                        </a>
+                                                    </li>
+
+                                                <?php endif; ?>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

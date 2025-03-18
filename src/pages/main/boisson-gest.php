@@ -594,13 +594,48 @@ if (!$_SESSION['email']) {
                     <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12 p-8">
                         <div class="flex justify-end items-center gap-3">
                             <div class="action-btn bg-gray-900/5 show-btn">
-                                <button onclick="openModal()" class="btn flex gap-2 items-center btn-light-error bg-yellow-500 text-white px-4 py-2 rounded">
+                                <button onclick="openModal()"
+                                        class="btn flex gap-2 items-center btn-light-error bg-yellow-500 text-white px-4 py-2 rounded">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28">
-                                        <path fill="white" d="M13.28 2.218a.75.75 0 0 0-1.06 1.06l1.708 1.709c-5.773.038-10.442 4.73-10.442 10.512c0 5.806 4.707 10.513 10.513 10.513c5.716 0 10.366-4.562 10.509-10.244a.75.75 0 0 0-1.5-.038a9.013 9.013 0 1 1-9.056-9.243L12.22 8.219a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06zm5 10.001a.75.75 0 0 1 0 1.06l-5.25 5.25a.75.75 0 0 1-1.06 0l-2.252-2.25a.75.75 0 0 1 1.06-1.061l1.722 1.72l4.72-4.72a.75.75 0 0 1 1.06.001"/>
+                                        <path fill="white"
+                                              d="M13.28 2.218a.75.75 0 0 0-1.06 1.06l1.708 1.709c-5.773.038-10.442 4.73-10.442 10.512c0 5.806 4.707 10.513 10.513 10.513c5.716 0 10.366-4.562 10.509-10.244a.75.75 0 0 0-1.5-.038a9.013 9.013 0 1 1-9.056-9.243L12.22 8.219a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06zm5 10.001a.75.75 0 0 1 0 1.06l-5.25 5.25a.75.75 0 0 1-1.06 0l-2.252-2.25a.75.75 0 0 1 1.06-1.061l1.722 1.72l4.72-4.72a.75.75 0 0 1 1.06.001"/>
                                     </svg>
                                     Réapprovisionner
                                 </button>
                             </div>
+                            <?php
+                            if ($_SESSION['email'] === 'ngahemeniw@gmail.com') {
+                                echo '
+                                    <div class="action-btn bg-gray-900/5 show-btn">
+                                        <button onclick="openModalEdit()"
+                                                class="btn flex gap-2 items-center btn-light-error bg-blue-500 text-white px-4 py-2 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                                <path fill="white" fill-rule="evenodd"
+                                                      d="M21.455 5.416a.75.75 0 0 1-.096.943l-9.193 9.192a.75.75 0 0 1-.34.195l-3.829 1a.75.75 0 0 1-.915-.915l1-3.828a.8.8 0 0 1 .161-.312L17.47 2.47a.75.75 0 0 1 1.06 0l2.829 2.828a1 1 0 0 1 .096.118m-1.687.412L18 4.061l-8.518 8.518l-.625 2.393l2.393-.625z"
+                                                      clip-rule="evenodd"/>
+                                                <path fill="white"
+                                                      d="M19.641 17.16a44.4 44.4 0 0 0 .261-7.04a.4.4 0 0 1 .117-.3l.984-.984a.198.198 0 0 1 .338.127a46 46 0 0 1-.21 8.372c-.236 2.022-1.86 3.607-3.873 3.832a47.8 47.8 0 0 1-10.516 0c-2.012-.225-3.637-1.81-3.873-3.832a46 46 0 0 1 0-10.67c.236-2.022 1.86-3.607 3.873-3.832a48 48 0 0 1 7.989-.213a.2.2 0 0 1 .128.34l-.993.992a.4.4 0 0 1-.297.117a46 46 0 0 0-6.66.255a2.89 2.89 0 0 0-2.55 2.516a44.4 44.4 0 0 0 0 10.32a2.89 2.89 0 0 0 2.55 2.516c3.355.375 6.827.375 10.183 0a2.89 2.89 0 0 0 2.55-2.516"/>
+                                            </svg>
+                                            Editer
+                                        </button>
+                                    </div>
+                                    <div class="action-btn bg-gray-900/5 show-btn">
+                                        <button onclick="openModalDelete()"
+                                                class="btn flex gap-2 items-center btn-light-error bg-red-500 text-white px-4 py-2 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                                <path fill="none" stroke="white" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-width="1.5"
+                                                      d="m19.5 5.5l-.62 10.025c-.158 2.561-.237 3.842-.88 4.763a4 4 0 0 1-1.2 1.128c-.957.584-2.24.584-4.806.584c-2.57 0-3.855 0-4.814-.585a4 4 0 0 1-1.2-1.13c-.642-.922-.72-2.205-.874-4.77L4.5 5.5M9 11.735h6m-4.5 3.919h3M3 5.5h18m-4.945 0l-.682-1.408c-.454-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.034 2c-1.065 0-1.598 0-2.039.234a2 2 0 0 0-.278.18c-.396.303-.617.788-1.059 1.757L8.053 5.5"
+                                                      color="white"/>
+                                            </svg>
+                                            Supprimer
+                                        </button>
+                                    </div>
+                                
+                                ';
+                            }
+
+                            ?>
                         </div>
 
                     </div>
@@ -680,7 +715,7 @@ if (!$_SESSION['email']) {
                                     <div class="grid lg:grid-cols-2 justify-between gap-3 items-center">
                                         <div>
                                             <label for="nom"
-                                                   >Nom</label>
+                                            >Nom</label>
                                             <div class="mt-2">
                                                 <input type="text" name="nom" id="nom"
                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
@@ -689,7 +724,7 @@ if (!$_SESSION['email']) {
 
                                         <div>
                                             <div class="flex items-center justify-between">
-                                                <label for="quantite" >Quantité</label>
+                                                <label for="quantite">Quantité</label>
                                             </div>
                                             <div class="mt-2">
                                                 <input type="number" name="quantite" id="quantite"
@@ -701,7 +736,7 @@ if (!$_SESSION['email']) {
                                     <div>
                                         <div class="flex items-center justify-between">
                                             <label for="prix_unitaire"
-                                                   >Prix
+                                            >Prix
                                                 Unitaire</label>
                                         </div>
                                         <div class="mt-2">
@@ -713,7 +748,7 @@ if (!$_SESSION['email']) {
                                     <div>
                                         <div class="flex items-center justify-between">
                                             <label for="prix_achat"
-                                                   >Prix
+                                            >Prix
                                                 d'achat</label>
                                         </div>
                                         <div class="mt-2">
@@ -723,7 +758,7 @@ if (!$_SESSION['email']) {
                                     </div>
 
                                     <div>
-                                        <label for="prix_gros" >Prix de
+                                        <label for="prix_gros">Prix de
                                             gros</label>
                                         <div class="mt-2">
                                             <input type="number" name="prix_gros" id="prix_gros"
@@ -732,7 +767,7 @@ if (!$_SESSION['email']) {
                                     </div>
 
                                     <div>
-                                        <label for="categorie" >Categorie</label>
+                                        <label for="categorie">Categorie</label>
                                         <div class="mt-2">
                                             <select id="categorie" name="categorie"
                                                     class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
@@ -841,10 +876,6 @@ if (!$_SESSION['email']) {
                                                 class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
                                                 Categories
                                             </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                Action
-                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-border divide-slate-150">
@@ -872,24 +903,7 @@ if (!$_SESSION['email']) {
                                                     <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_pu']) . '</td>
                                                     <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_pg']) . '</td>
                                                     <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['categorie']) . '</td>
-                                                    <td class="text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">
-                                                        <div class="action-btn flex gap-3">';
-
-
-                                            echo '
-                                                            <a href="javascript:void(0)" x-tooltip.placement.top="\'Editer\'" class="text-info flex justify-center items-center bg-gray-900/5 p-2 rounded-full edit cursor-pointer">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#1e80c5" fill-rule="evenodd" d="M21.455 5.416a.75.75 0 0 1-.096.943l-9.193 9.192a.75.75 0 0 1-.34.195l-3.829 1a.75.75 0 0 1-.915-.915l1-3.828a.8.8 0 0 1 .161-.312L17.47 2.47a.75.75 0 0 1 1.06 0l2.829 2.828a1 1 0 0 1 .096.118m-1.687.412L18 4.061l-8.518 8.518l-.625 2.393l2.393-.625z" clip-rule="evenodd"/><path fill="#1e80c5" d="M19.641 17.16a44.4 44.4 0 0 0 .261-7.04a.4.4 0 0 1 .117-.3l.984-.984a.198.198 0 0 1 .338.127a46 46 0 0 1-.21 8.372c-.236 2.022-1.86 3.607-3.873 3.832a47.8 47.8 0 0 1-10.516 0c-2.012-.225-3.637-1.81-3.873-3.832a46 46 0 0 1 0-10.67c.236-2.022 1.86-3.607 3.873-3.832a48 48 0 0 1 7.989-.213a.2.2 0 0 1 .128.34l-.993.992a.4.4 0 0 1-.297.117a46 46 0 0 0-6.66.255a2.89 2.89 0 0 0-2.55 2.516a44.4 44.4 0 0 0 0 10.32a2.89 2.89 0 0 0 2.55 2.516c3.355.375 6.827.375 10.183 0a2.89 2.89 0 0 0 2.55-2.516"/></svg>
-                                                            </a>';
-
-                                                            if ($_SESSION['email'] === 'ngahemeniw@gmail.com') {
-                                                echo '
-                                            <a href="javascript:void(0)" x-tooltip.placement.top="\'Supprimer\'" class="text-black delete bg-gray-900/5 p-2 rounded-full cursor-pointer">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#c54c1e" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 5.5l-.62 10.025c-.158 2.561-.237 3.842-.88 4.763a4 4 0 0 1-1.2 1.128c-.957.584-2.24.584-4.806.584c-2.57 0-3.855 0-4.814-.585a4 4 0 0 1-1.2-1.13c-.642-.922-.72-2.205-.874-4.77L4.5 5.5M9 11.735h6m-4.5 3.919h3M3 5.5h18m-4.945 0l-.682-1.408c-.454-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.034 2c-1.065 0-1.598 0-2.039.234a2 2 0 0 0-.278.18c-.396.303-.617.788-1.059 1.757L8.053 5.5" color="#c54c1e"/></svg>
-                                                                    </a>
-                                                        </div>
-                                                    </td>
                                                 </tr>';
-                                            }
                                         }
                                         ?>
                                         </tbody>
@@ -964,15 +978,16 @@ if (!$_SESSION['email']) {
                     $prix_achat = $_POST['prix_achat'];
 
                     // Mise à jour du stock et enregistrement dans une table historique si nécessaire
-                    $sql_update = "UPDATE boissons SET quantite = boissons.quantite + :quantite WHERE id = :boisson_id";
+                    $sql_update = "UPDATE boissons SET quantite = boissons.quantite + :quantite, prix_achat = :prix_achat WHERE id = :boisson_id";
                     $stmt = $conn->prepare($sql_update);
                     $stmt->execute([
                         ':quantite' => $quantite_ajoutee,
+                        ':prix_achat' => $prix_achat,
                         ':boisson_id' => $boisson_id
                     ]);
 
                     // Message de succès
-                    $message = "Stock mis à jour avec succès!";
+                    echo "Stock mis à jour avec succès!";
                 }
 
                 // Récupération des boissons
@@ -981,7 +996,6 @@ if (!$_SESSION['email']) {
                 $stmt_boissons->execute();
                 $boissons = $stmt_boissons->fetchAll(PDO::FETCH_ASSOC);
                 ?>
-
 
 
                 <!-- Formulaire de Réapprovisionnement -->
@@ -996,14 +1010,138 @@ if (!$_SESSION['email']) {
                     </select>
 
                     <label for="quantite_ajoutee" class="block mb-2">Quantité ajoutée :</label>
-                    <input type="number" name="quantite_ajoutee" required min="1" class="w-full p-2 border rounded mb-3">
+                    <input type="number" name="quantite_ajoutee" required min="1"
+                           class="w-full p-2 border rounded mb-3">
 
                     <label for="prix_achat" class="block mb-2">Prix d'achat (facultatif) :</label>
                     <input type="number" name="prix_achat" class="w-full p-2 border rounded mb-3">
 
                     <div class="flex justify-end gap-2">
-                        <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-400 text-white rounded">Annuler</button>
+                        <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-400 text-white rounded">
+                            Annuler
+                        </button>
                         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Valider</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal de Edition de boisson -->
+        <div id="modal_edit" class="fixed inset-0 backdrop-blur bg-gray-900/5  hidden flex items-center justify-center">
+            <div class="bg-white opacity-100 p-6 rounded-lg shadow-lg w-1/3">
+                <h2 class="text-xl font-semibold mb-4">Modifier les données d'une boisson</h2>
+
+                <?php
+                include_once '../../config/config.php';
+                $conn = getConnexion();
+
+                // Traitement du formulaire d'édition
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $boisson_id_edit = $_POST['boisson_id_edit'];
+                    $quantite = $_POST['quantite'];
+                    $prix_unitaire = $_POST['prix_unitaire'];
+
+                    // Mise à jour du stock
+                    $sql_update = "UPDATE boissons SET quantite = :quantite, prix_achat = prix_achat, prix_unitaire = :prix_unitaire WHERE id = :boisson_id_edit";
+                    $stmt = $conn->prepare($sql_update);
+
+                    $stmt->execute([
+                        ':quantite' => $quantite,
+                        ':prix_unitaire' => $prix_unitaire,
+                        ':boisson_id_edit' => $boisson_id_edit
+                    ]);
+
+                    // Message de succès
+                    $message = "Modification effectué avec succès!";
+                }
+
+                // Récupération des boissons
+                $sql_boissons = "SELECT * FROM boissons";
+                $stmt_boissons = $conn->prepare($sql_boissons);
+                $stmt_boissons->execute();
+                $boissons = $stmt_boissons->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+
+
+
+                <!-- Formulaire de Réapprovisionnement -->
+                <form method="POST">
+                    <label for="boisson_id_edit" class="block mb-2">Choisir une boisson :</label>
+                    <select name="boisson_id_edit" id="boisson_id_edit" required class="w-full p-2 border rounded mb-3">
+                        <?php foreach ($boissons as $boisson) : ?>
+                            <option value="<?= $boisson['id'] ?>">
+                                <?= $boisson['nom'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <label for="quantite" class="block mb-2">Quantité :</label>
+                    <input type="number" name="quantite" id="quantite" required min="1"
+                           class="w-full p-2 border rounded mb-3">
+
+                    <label for="prix_unitaire" class="block mb-2">Prix de vente (facultatif) :</label>
+                    <input type="number" name="prix_unitaire" id="prix_unitaire" class="w-full p-2 border rounded mb-3">
+
+                    <div class="flex justify-end gap-2">
+                        <button type="button" onclick="closeModalEdit()"
+                                class="px-4 py-2 bg-gray-400 text-white rounded">
+                            Annuler
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Valider</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal de Suppression de boissons -->
+        <div id="modal_delete"
+             class="fixed inset-0 backdrop-blur bg-gray-900/5  hidden flex items-center justify-center">
+            <div class="bg-white opacity-100 p-6 rounded-lg shadow-lg w-1/3">
+                <h2 class="text-xl font-semibold mb-4">Supprimer une boisson du stock</h2>
+
+                <?php
+                include_once '../../config/config.php';
+                $conn = getConnexion();
+
+                // Traitement du formulaire de suppression
+                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['boisson_id_delete'])) {
+                    $boisson_id_delete = $_POST['boisson_id_delete'];
+
+                    // Suppression d'une boisson
+                    $sql_delete = "DELETE FROM boissons WHERE id = :boisson_id_delete";
+                    $stmt = $conn->prepare($sql_delete);
+                    $stmt->execute([
+                        ':boisson_id_delete' => $boisson_id_delete
+                    ]);
+
+                    // Message de succès
+                    $message = "Suppression effectué avec succès!";
+                }
+
+                // Récupération des boissons
+                $sql_boissons = "SELECT id, nom, quantite FROM boissons";
+                $stmt_boissons = $conn->prepare($sql_boissons);
+                $stmt_boissons->execute();
+                $boissons = $stmt_boissons->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+
+
+                <!-- Formulaire de Réapprovisionnement -->
+                <form method="POST">
+                    <label for="boisson_id_delete" class="block mb-2">Choisir une boisson :</label>
+                    <select name="boisson_id_delete" id="boisson_id_delete" required class="w-full p-2 border rounded mb-3">
+                        <?php foreach ($boissons as $boisson) : ?>
+                            <option value="<?= $boisson['id'] ?>">
+                                <?= $boisson['nom'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="flex justify-end gap-2">
+                        <button type="button" onclick="closeModalDelete()"
+                                class="px-4 py-2 bg-gray-400 text-white rounded">
+                            Annuler
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded">Supprimer</button>
                     </div>
                 </form>
             </div>
@@ -1021,6 +1159,22 @@ if (!$_SESSION['email']) {
 
     function closeModal() {
         document.getElementById("modal").classList.add("hidden");
+    }
+
+    function openModalEdit() {
+        document.getElementById("modal_edit").classList.remove("hidden");
+    }
+
+    function closeModalEdit() {
+        document.getElementById("modal_edit").classList.add("hidden");
+    }
+
+    function openModalDelete() {
+        document.getElementById("modal_delete").classList.remove("hidden");
+    }
+
+    function closeModalDelete() {
+        document.getElementById("modal_delete").classList.add("hidden");
     }
 </script>
 <script>

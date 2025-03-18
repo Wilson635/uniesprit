@@ -479,20 +479,22 @@ if (!isset($_SESSION['email'])) {
                                     <?php
                                     include_once '../../config/config.php';
 
-                                    function sumTicketsMonth()
+                                    function sumTicketsMonth(): string
                                     {
                                         $conn = getConnexion();
 
                                         $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
                                         $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE service_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                        $queryRevenuDepenses = "SELECT SUM(montant) AS total_revenu FROM paiements WHERE date_paiement >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
 
                                         $revenuVentes = $conn->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
                                         $revenuTickets = $conn->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                        $revenuDepenses = $conn->query($queryRevenuDepenses)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
 
-                                        return number_format($revenuVentes + $revenuTickets, 2, ',', ' ');
+                                        return number_format(($revenuVentes + $revenuTickets) - $revenuDepenses, 2, ',', ' ');
                                     }
 
-                                    echo "<strong>" . sumTicketsMonth() . "</strong>";
+                                    echo "<strong>" . sumTicketsMonth() . " Fcfa</strong>";
                                     ?>
                                 </p>
                                 <button
@@ -526,7 +528,7 @@ if (!isset($_SESSION['email'])) {
                                     <?php
                                     include_once '../../config/config.php';
 
-                                    function sumTicketsTrimester()
+                                    function sumTicketsTrimester(): string
                                     {
                                         $conn = getConnexion();
 
@@ -541,14 +543,16 @@ if (!isset($_SESSION['email'])) {
 //                                        return 0;
                                         $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE QUARTER(date_vente) = QUARTER(CURRENT_DATE()) AND YEAR(date_vente) = YEAR(CURRENT_DATE())";
                                         $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE()) AND YEAR(service_date) = YEAR(CURRENT_DATE())";
+                                        $queryRevenuDepenses = "SELECT SUM(montant) AS total_revenu FROM paiements WHERE QUARTER(date_paiement) = QUARTER(CURRENT_DATE()) AND YEAR(date_paiement) = YEAR(CURRENT_DATE())";
 
                                         $revenuVentes = $conn->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
                                         $revenuTickets = $conn->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                        $revenuDepenses = $conn->query($queryRevenuDepenses)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
 
-                                        return number_format($revenuVentes + $revenuTickets, 2, ',', ' ');
+                                        return number_format(($revenuVentes + $revenuTickets) - $revenuDepenses, 2, ',', ' ');
                                     }
 
-                                    echo "<strong>" . sumTicketsTrimester() . "</strong>";
+                                    echo "<strong>" . sumTicketsTrimester() . " Fcfa</strong>";
                                     ?>
                                 </p>
                                 <button
@@ -575,7 +579,7 @@ if (!isset($_SESSION['email'])) {
                             </p>
                         </div>
                         <a href="../../components/export-rapport.php"
-                                class="btn mt-8 space-x-2 rounded-full border border-slate-300 px-3 text-xs-plus font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+                           class="btn mt-8 space-x-2 rounded-full border border-slate-300 px-3 text-xs-plus font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
                         >
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -615,22 +619,33 @@ if (!isset($_SESSION['email'])) {
                                 <?php
                                 include_once '../../config/config.php';
 
-                                function sumTickets()
+                                function sumTickets(): string
                                 {
                                     $conn = getConnexion();
 
                                     $query = "SELECT SUM(price) AS total FROM tickets WHERE DATE(service_date) = current_date()";
                                     $result = $conn->query($query);
 
-                                    if ($result) {
-                                        $row = $result->fetch(PDO::FETCH_ASSOC);
-                                        return isset($row['total']) ? $row['total'] : 0;
-                                    }
+                                    $queryDeps = "SELECT SUM(montant) AS total FROM paiements WHERE DATE(date_paiement) = current_date()";
+                                    $resultDeps = $conn->query($queryDeps);
 
-                                    return 0;
+                                    $queryRevenuVentes = "SELECT SUM(prix_total) AS total FROM ventes WHERE DATE(date_vente) = current_date()";
+                                    $resultsVentes = $conn->query($queryRevenuVentes);
+
+                                    $row = $result->fetch(PDO::FETCH_ASSOC);
+                                    $rows = $resultDeps->fetch(PDO::FETCH_ASSOC);
+                                    $rowVentes = $resultsVentes->fetch(PDO::FETCH_ASSOC);
+
+                                    $ticketTotal = $row['total'] ?? 0;
+                                    $paymentTotal = $rows['total'] ?? 0;
+                                    $VentesTotal = $rowVentes['total'] ?? 0;
+
+                                    $difference = ($ticketTotal + $VentesTotal) - $paymentTotal;
+                                    return number_format($difference, 2, '.', ' ');
                                 }
 
                                 echo "<strong>" . sumTickets() . "</strong>";
+
                                 ?>
 
                             </p>
@@ -1053,7 +1068,8 @@ if (!isset($_SESSION['email'])) {
                                     <div class="flex items-center gap-3">
                                         <div
                                                 class="bg-red-100 h-10 w-10 flex justify-center items-center rounded-md">
-                                            <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                 height="24"
                                                  viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                       d="M8.422 20.618C10.178 21.54 11.056 22 12 22V12L2.638 7.073l-.04.067C2 8.154 2 9.417 2 11.942v.117c0 2.524 0 3.787.597 4.801c.598 1.015 1.674 1.58 3.825 2.709z"/>
@@ -1079,7 +1095,8 @@ if (!isset($_SESSION['email'])) {
                                     <div class="flex items-center gap-3">
                                         <div
                                                 class="bg-red-100 h-10 w-10 flex justify-center items-center rounded-md">
-                                            <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            <svg class="text-red-500" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                 height="24"
                                                  viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                       d="M8.422 20.618C10.178 21.54 11.056 22 12 22V12L2.638 7.073l-.04.067C2 8.154 2 9.417 2 11.942v.117c0 2.524 0 3.787.597 4.801c.598 1.015 1.674 1.58 3.825 2.709z"/>
@@ -1169,15 +1186,17 @@ if (!isset($_SESSION['email'])) {
                 <div class="mt-3">
                     <p>
                         <span class="text-3xl text-slate-700 dark:text-navy-100">
-                            <?= number_format($satisfaction_score, 1)?>
+                            <?= number_format($satisfaction_score, 1) ?>
                         </span>
                         <span class="text-xs text-success"><?= $percentages['Satisfaite'] ?>%</span>
                     </p>
                     <p class="text-xs-plus">Taux de satisfaction</p>
                 </div>
                 <div class="mt-4 flex h-2 space-x-1 w-full">
-                    <div class="w-<?= $percentages['Satisfaite'] / 10 ?>/12 rounded-full bg-primary dark:bg-accent" x-tooltip.primary="'Satisfaite'"></div>
-                    <div class="w-<?= $percentages['Pas Satisfaite'] / 10 ?>/12 rounded-full bg-error" x-tooltip.error="'Pas satisfaite'"></div>
+                    <div class="w-<?= $percentages['Satisfaite'] ?>/12 rounded-full bg-primary dark:bg-accent"
+                         x-tooltip.primary="'Satisfaite'"></div>
+                    <div class="w-<?= $percentages['Pas Satisfaite'] ?>/12 rounded-full bg-error"
+                         x-tooltip.error="'Pas satisfaite'"></div>
                 </div>
                 <div class="is-scrollbar-hidden mt-4 min-w-full overflow-x-auto">
                     <table class="w-full font-inter">
@@ -1186,7 +1205,8 @@ if (!isset($_SESSION['email'])) {
                             <td class="whitespace-nowrap py-2">
                                 <div class="flex items-center space-x-2">
                                     <div class="size-3.5 rounded-full border-2 border-primary dark:border-accent"></div>
-                                    <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">Satisfaite</p>
+                                    <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                                        Satisfaite</p>
                                 </div>
                             </td>
                             <td class="whitespace-nowrap py-2 text-right">
@@ -1198,7 +1218,8 @@ if (!isset($_SESSION['email'])) {
                             <td class="whitespace-nowrap py-2">
                                 <div class="flex items-center space-x-2">
                                     <div class="size-3.5 rounded-full border-2 border-error"></div>
-                                    <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">Pas satisfaite</p>
+                                    <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">Pas
+                                        satisfaite</p>
                                 </div>
                             </td>
                             <td class="whitespace-nowrap py-2 text-right">
@@ -1221,49 +1242,55 @@ if (!isset($_SESSION['email'])) {
                                 Historique Journalier
                             </h2>
                         </div>
-                        <div class="flex items-center space-x-4">
+                        <form action="../../config/export-excel.php?date=<?php echo date('Y-m-d'); ?>" method="GET">
+                            <div class="flex items-center space-x-4">
 
-                            <a href="../../config/export-excel.php">
-                                <div class="flex cursor-pointer items-center bg-gray-900/5 px-5 py-1.5 rounded-lg space-x-2">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                             viewBox="0 0 32 32">
-                                            <defs>
-                                                <linearGradient id="vscodeIconsFileTypeExcel0" x1="4.494" x2="13.832"
-                                                                y1="-2092.086" y2="-2075.914"
-                                                                gradientTransform="translate(0 2100)"
-                                                                gradientUnits="userSpaceOnUse">
-                                                    <stop offset="0" stop-color="#18884f"/>
-                                                    <stop offset=".5" stop-color="#117e43"/>
-                                                    <stop offset="1" stop-color="#0b6631"/>
-                                                </linearGradient>
-                                            </defs>
-                                            <path fill="#185c37"
-                                                  d="M19.581 15.35L8.512 13.4v14.409A1.19 1.19 0 0 0 9.705 29h19.1A1.19 1.19 0 0 0 30 27.809V22.5Z"/>
-                                            <path fill="#21a366"
-                                                  d="M19.581 3H9.705a1.19 1.19 0 0 0-1.193 1.191V9.5L19.581 16l5.861 1.95L30 16V9.5Z"/>
-                                            <path fill="#107c41" d="M8.512 9.5h11.069V16H8.512Z"/>
-                                            <path d="M16.434 8.2H8.512v16.25h7.922a1.2 1.2 0 0 0 1.194-1.191V9.391A1.2 1.2 0 0 0 16.434 8.2"
-                                                  opacity="0.1"/>
-                                            <path d="M15.783 8.85H8.512V25.1h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
-                                                  opacity="0.2"/>
-                                            <path d="M15.783 8.85H8.512V23.8h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
-                                                  opacity="0.2"/>
-                                            <path d="M15.132 8.85h-6.62V23.8h6.62a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
-                                                  opacity="0.2"/>
-                                            <path fill="url(#vscodeIconsFileTypeExcel0)"
-                                                  d="M3.194 8.85h11.938a1.193 1.193 0 0 1 1.194 1.191v11.918a1.193 1.193 0 0 1-1.194 1.191H3.194A1.19 1.19 0 0 1 2 21.959V10.041A1.19 1.19 0 0 1 3.194 8.85"/>
-                                            <path fill="#fff"
-                                                  d="m5.7 19.873l2.511-3.884l-2.3-3.862h1.847L9.013 14.6c.116.234.2.408.238.524h.017q.123-.281.26-.546l1.342-2.447h1.7l-2.359 3.84l2.419 3.905h-1.809l-1.45-2.711A2.4 2.4 0 0 1 9.2 16.8h-.024a1.7 1.7 0 0 1-.168.351l-1.493 2.722Z"/>
-                                            <path fill="#33c481"
-                                                  d="M28.806 3h-9.225v6.5H30V4.191A1.19 1.19 0 0 0 28.806 3"/>
-                                            <path fill="#107c41" d="M19.581 16H30v6.5H19.581Z"/>
-                                        </svg>
-                                    </div>
-                                    <p>Excel</p>
+                                <input type="date" name="date" id="date" class="px-4 py-2 rounded-lg border">
+                                <div>
+                                    <button type="submit"
+                                            class="flex cursor-pointer items-center bg-gray-900/5 px-5 py-1.5 rounded-lg space-x-2">
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                 viewBox="0 0 32 32">
+                                                <defs>
+                                                    <linearGradient id="vscodeIconsFileTypeExcel0" x1="4.494"
+                                                                    x2="13.832"
+                                                                    y1="-2092.086" y2="-2075.914"
+                                                                    gradientTransform="translate(0 2100)"
+                                                                    gradientUnits="userSpaceOnUse">
+                                                        <stop offset="0" stop-color="#18884f"/>
+                                                        <stop offset=".5" stop-color="#117e43"/>
+                                                        <stop offset="1" stop-color="#0b6631"/>
+                                                    </linearGradient>
+                                                </defs>
+                                                <path fill="#185c37"
+                                                      d="M19.581 15.35L8.512 13.4v14.409A1.19 1.19 0 0 0 9.705 29h19.1A1.19 1.19 0 0 0 30 27.809V22.5Z"/>
+                                                <path fill="#21a366"
+                                                      d="M19.581 3H9.705a1.19 1.19 0 0 0-1.193 1.191V9.5L19.581 16l5.861 1.95L30 16V9.5Z"/>
+                                                <path fill="#107c41" d="M8.512 9.5h11.069V16H8.512Z"/>
+                                                <path d="M16.434 8.2H8.512v16.25h7.922a1.2 1.2 0 0 0 1.194-1.191V9.391A1.2 1.2 0 0 0 16.434 8.2"
+                                                      opacity="0.1"/>
+                                                <path d="M15.783 8.85H8.512V25.1h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
+                                                      opacity="0.2"/>
+                                                <path d="M15.783 8.85H8.512V23.8h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
+                                                      opacity="0.2"/>
+                                                <path d="M15.132 8.85h-6.62V23.8h6.62a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191"
+                                                      opacity="0.2"/>
+                                                <path fill="url(#vscodeIconsFileTypeExcel0)"
+                                                      d="M3.194 8.85h11.938a1.193 1.193 0 0 1 1.194 1.191v11.918a1.193 1.193 0 0 1-1.194 1.191H3.194A1.19 1.19 0 0 1 2 21.959V10.041A1.19 1.19 0 0 1 3.194 8.85"/>
+                                                <path fill="#fff"
+                                                      d="m5.7 19.873l2.511-3.884l-2.3-3.862h1.847L9.013 14.6c.116.234.2.408.238.524h.017q.123-.281.26-.546l1.342-2.447h1.7l-2.359 3.84l2.419 3.905h-1.809l-1.45-2.711A2.4 2.4 0 0 1 9.2 16.8h-.024a1.7 1.7 0 0 1-.168.351l-1.493 2.722Z"/>
+                                                <path fill="#33c481"
+                                                      d="M28.806 3h-9.225v6.5H30V4.191A1.19 1.19 0 0 0 28.806 3"/>
+                                                <path fill="#107c41" d="M19.581 16H30v6.5H19.581Z"/>
+                                            </svg>
+                                        </div>
+                                        <p>Excel</p>
+                                    </button>
                                 </div>
-                            </a>
-                        </div>
+
+                            </div>
+                        </form>
                     </div>
 
                     <div class="grid grid-cols-12 gap-4 px-4 sm:gap-5 sm:px-5 lg:gap-6 lg:px-5">

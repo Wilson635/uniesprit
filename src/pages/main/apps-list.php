@@ -1642,6 +1642,18 @@ if (!$_SESSION['email']) {
                                         </thead>
                                         <tbody class="divide-y divide-border divide-slate-150">
                                         <?php
+                                        // Nombre d'éléments par page
+                                        $items_per_page = 10;
+                                        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                                        $start_from = ($page - 1) * $items_per_page;
+
+                                        // Requête pour obtenir le total des ventes
+                                        $sql_total = "SELECT COUNT(*) FROM tickets";
+                                        $stmt_total = $conn->prepare($sql_total);
+                                        $stmt_total->execute();
+                                        $total_tickets = $stmt_total->fetchColumn();
+                                        $total_pages = ceil($total_tickets / $items_per_page);
+
                                         $sql = "
                                             SELECT t.id AS ticket_id, t.service_date, t.appreciation, t.price AS ticket_price, 
                                                    c.first_name AS client_first_name, c.last_name AS client_last_name, c.phone AS client_phone,
@@ -1650,8 +1662,11 @@ if (!$_SESSION['email']) {
                                             JOIN clients c ON t.client_id = c.id
                                             JOIN services s ON t.service_id = s.id
                                             ORDER BY t.service_date DESC
+                                            LIMIT :start_from, :items_per_page
                                         ";
                                         $stmt = $conn->prepare($sql);
+                                        $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
+                                        $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
                                         $stmt->execute();
                                         $tickets = $stmt->fetchAll();
 
@@ -1691,6 +1706,49 @@ if (!$_SESSION['email']) {
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
+                            <!-- Pagination -->
+                            <div class="pagination mx-auto justify-center items-center">
+                                <ul class="flex list-none gap-2">
+                                    <?php if ($page > 1): ?>
+                                        <li><a href="?page=<?php echo $page - 1; ?>"
+                                               x-tooltip.placement.top="'Précédent'"
+                                               class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
+                                                          clip-rule="evenodd" opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
+                                                </svg>
+                                            </a></li>
+                                    <?php endif; ?>
+
+                                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                                        <li><a href="?page=<?php echo $i; ?>"
+                                               class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                        </li>
+                                    <?php endfor; ?>
+
+                                    <?php if ($page < $total_pages): ?>
+                                        <li>
+                                            <a href="?page=<?php echo $page + 1; ?>"
+                                               x-tooltip.placement.top="'Suivant'"
+                                               class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                     viewBox="0 0 24 24">
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                          d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
+                                                          clip-rule="evenodd" opacity="0.5"/>
+                                                    <path fill="currentColor"
+                                                          d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
+                                                </svg>
+                                            </a>
+                                        </li>
+
+                                    <?php endif; ?>
+                                </ul>
                             </div>
                         </div>
                     </div>

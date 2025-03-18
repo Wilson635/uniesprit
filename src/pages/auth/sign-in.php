@@ -8,6 +8,7 @@
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/png" href="../../../assets/logo.jpg" />
     <script src="../../../tailwind.js"></script>
+    <script src="../../../script.js"></script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </button>
                 </div>
             </div>
-            <p class="mt-10 text-center"> Vous n'êtes pas membre? <span> <a class="text-red-500 hover:text-red-400 font-bold" href="./sign-up.php">Créer votre compte</a> </span> </p>
+            <p class="mt-10 text-center"> Veuillez contacter en cas de soucis <span> <a x-tooltip.placement.top="'Mon mobile : +237 670 74 38 08'" class="text-red-500 hover:text-red-400 font-bold">l'administrateur.</a> </span> </p>
         </div>
     </form>
 
