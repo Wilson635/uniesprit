@@ -678,6 +678,7 @@ if (!$_SESSION['email']) {
                                     $prix_achat = trim($_POST["prix_achat"]);
                                     $prix_gros = trim($_POST["prix_gros"]);
                                     $categorie_id = trim($_POST["categorie"]);
+                                    $date_ajout = trim($_POST["date_ajout"]);
 
                                     if (!empty($nom) && !empty($quantite) && !empty($prix_unitaire) && !empty($prix_gros) && !empty($categorie_id) && !empty($prix_achat)) {
                                         try {
@@ -685,8 +686,8 @@ if (!$_SESSION['email']) {
 
                                             $boisson_id = Uuid::uuid4()->toString();
 
-                                            $sql = "INSERT INTO boissons (id, nom, quantite, prix_unitaire, prix_achat, prix_gros, categorie_id)
-                                            VALUES (:id, :nom, :quantite, :prix_unitaire, :prix_achat, :prix_gros, :categorie_id)";
+                                            $sql = "INSERT INTO boissons (id, nom, quantite, prix_unitaire, prix_achat, prix_gros, categorie_id, date_ajout)
+                                            VALUES (:id, :nom, :quantite, :prix_unitaire, :prix_achat, :prix_gros, :categorie_id, :date_ajout)";
 
                                             $stmt = $conn->prepare($sql);
 
@@ -697,7 +698,8 @@ if (!$_SESSION['email']) {
                                                 ':prix_unitaire' => $prix_unitaire,
                                                 ':prix_achat' => $prix_achat,
                                                 ':prix_gros' => $prix_gros,
-                                                ':categorie_id' => $categorie_id
+                                                ':categorie_id' => $categorie_id,
+                                                ':date_ajout' => $date_ajout
                                             ]);
 
                                             echo "<div class='p-3 bg-green-400 text-center text-black '>Boisson enregistrée avec succès.</div>";
@@ -789,6 +791,14 @@ if (!$_SESSION['email']) {
                                         </div>
                                     </div>
 
+                                    <div>
+                                        <label for="date_ajout">Date d'ajout</label>
+                                        <div class="mt-2">
+                                            <input type="date" name="date_ajout" id="date_ajout"
+                                                   class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                        </div>
+                                    </div>
+
 
                                     <div>
                                         <button type="submit"
@@ -811,7 +821,7 @@ if (!$_SESSION['email']) {
                                 <div class="overflow-hidden">
                                     <?php
                                     // Nombre d'éléments par page
-                                    $items_per_page = 10;
+                                    $items_per_page = 30;
 
                                     // Calcul du numéro de page actuel (par défaut, c'est la page 1)
                                     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;

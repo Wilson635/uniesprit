@@ -69,14 +69,21 @@ $sql_vente = "SELECT v.id AS vente_id, v.date_vente AS vente_date, v.prix_unitai
             WHERE v.date_vente >= :date
             ORDER BY v.date_vente DESC";
 
+$query_boissons = "SELECT b.id as boisson_id, b.nom as boisson_nom, b.quantite as boisson_qty, b.prix_unitaire as boisson_pu, b.prix_achat as boisson_pa,  b.prix_gros as boisson_pg, c.nom as categorie FROM boissons b 
+                                    JOIN categories c ON b.categorie_id = c.id
+                                    ";
+
 $stmt = $conn->prepare($sql);
 $stmt_vente = $conn->prepare($sql_vente);
+$stmt_boissons = $conn->prepare($query_boissons);
 $stmt->bindParam(':date', $date, PDO::PARAM_STR);
 $stmt_vente->bindParam(':date', $date, PDO::PARAM_STR); // Ajouter le paramètre de date
+$stmt_boissons->execute();
 $stmt->execute();
 $stmt_vente->execute();
 $tickets = $stmt->fetchAll();
 $ventes = $stmt_vente->fetchAll();
+$boissons = $stmt_boissons->fetchAll();
 
 // Calcul du total des revenus
 $totalRevenue = array_sum(array_column($tickets, 'ticket_price'));
@@ -145,6 +152,31 @@ fputcsv($output, [], ";");
 
 // Ajouter la ligne du total des revenues
 fputcsv($output, ['Total Revenues', number_format($totalRevenue + $totalVente, 2, ',', ''), ''], ";");
+
+// Ajouter une ligne vide avant le total pour la lisibilité
+fputcsv($output, [], ";");
+// Ajouter une ligne vide avant le total pour la lisibilité
+fputcsv($output, [], ";");
+
+fputcsv($output, ['Stock des boissons'], ";");
+// Ajouter une ligne vide avant le total pour la lisibilité
+fputcsv($output, [], ";");
+// Définir un séparateur " ;" pour compatibilité Excel
+fputcsv($output, ['Référence Boisson', 'Nom Boisson', 'Quantité', 'Prix Unitaire', 'Prix Achat', 'Prix Gros', 'Categorie'], ";");
+
+foreach ($boissons as $boisson) {
+    fputcsv($output, [
+        $boisson['boisson_id'],
+        $boisson['boisson_nom'],
+        $boisson['boisson_qty'],
+        number_format($boisson['boisson_pu'], 2, ',', ''), // Formatage du prix
+        number_format($boisson['boisson_pa'], 2, ',', ''), // Formatage du prix
+        number_format($boisson['boisson_pg'], 2, ',', ''), // Formatage du prix
+        $boisson['categorie']
+    ], ";");
+}
+
+
 
 fclose($output);
 exit;

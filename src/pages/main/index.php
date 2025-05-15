@@ -541,9 +541,9 @@ if (!isset($_SESSION['email'])) {
 //                                        }
 //
 //                                        return 0;
-                                        $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE QUARTER(date_vente) = QUARTER(CURRENT_DATE()) AND YEAR(date_vente) = YEAR(CURRENT_DATE())";
-                                        $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE()) AND YEAR(service_date) = YEAR(CURRENT_DATE())";
-                                        $queryRevenuDepenses = "SELECT SUM(montant) AS total_revenu FROM paiements WHERE QUARTER(date_paiement) = QUARTER(CURRENT_DATE()) AND YEAR(date_paiement) = YEAR(CURRENT_DATE())";
+                                        $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE QUARTER(date_vente) = QUARTER(CURRENT_DATE())";
+                                        $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE())";
+                                        $queryRevenuDepenses = "SELECT SUM(montant) AS total_revenu FROM paiements WHERE QUARTER(date_paiement) = QUARTER(CURRENT_DATE())";
 
                                         $revenuVentes = $conn->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
                                         $revenuTickets = $conn->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;

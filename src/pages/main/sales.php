@@ -541,7 +541,7 @@ if (!$_SESSION['email']) {
                                             $quantite_disponible = $boisson['quantite'];
                                             $prix_unitaire = $boisson['prix_unitaire'];
 
-                                            if ($quantite_disponible < 1) {
+                                            if ($quantite_disponible < 0) {
                                                 $message = "<div class='text-white bg-red-500 p-3'>Stock indisponible</div>";
                                             }
                                         }
@@ -551,6 +551,7 @@ if (!$_SESSION['email']) {
                                     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantite_vendue']) && isset($_POST['boisson'])) {
                                         $quantite_vendue = intval($_POST['quantite_vendue']);
                                         $boisson_id = $_POST['boisson'];
+                                        $date_vente = $_POST['date_vente'];
 
                                         // Vérifier si la quantité vendue est valide
                                         if ($quantite_vendue < 1) {
@@ -567,22 +568,23 @@ if (!$_SESSION['email']) {
                                                     $quantite_disponible = $boisson['quantite'];
                                                     $prix_unitaire = $boisson['prix_unitaire'];
 
-                                                    if ($quantite_disponible < 2) {
+                                                    if ($quantite_disponible < 0) {
                                                         $message = "<div class='text-white bg-red-500 p-3'>Stock indisponible</div>";
                                                     } elseif ($quantite_disponible >= $quantite_vendue) {
                                                         $prix_total = $prix_unitaire * $quantite_vendue;
                                                         $vente_id = \Ramsey\Uuid\Uuid::uuid4()->toString();
 
                                                         // Insérer la vente
-                                                        $insertSaleQuery = "INSERT INTO ventes (id, boisson_id, quantite_vendue, prix_unitaire, prix_total)
-                                                            VALUES (:id, :boisson_id, :quantite_vendue, :prix_unitaire, :prix_total)";
+                                                        $insertSaleQuery = "INSERT INTO ventes (id, boisson_id, quantite_vendue, prix_unitaire, prix_total, date_vente)
+                                                            VALUES (:id, :boisson_id, :quantite_vendue, :prix_unitaire, :prix_total, :date_vente)";
                                                         $insertStmt = $conn->prepare($insertSaleQuery);
                                                         $insertStmt->execute([
                                                             ':id' => $vente_id,
                                                             ':boisson_id' => $boisson_id,
                                                             ':quantite_vendue' => $quantite_vendue,
                                                             ':prix_unitaire' => $prix_unitaire,
-                                                            ':prix_total' => $prix_total
+                                                            ':prix_total' => $prix_total,
+                                                            ':date_vente' => $_POST['date_vente']
                                                         ]);
 
                                                         // Mettre à jour le stock
@@ -651,6 +653,17 @@ if (!$_SESSION['email']) {
                                                     <input type="number" name="quantite_vendue" id="quantite_vendue"
                                                            min="1" max="<?= htmlspecialchars($quantite_disponible) ?>"
                                                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" <?= $quantite_disponible < 1 ? 'disabled' : '' ?>
+                                                           required>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label for="date_vente"
+                                                >Date de
+                                                    vente</label>
+                                                <div class="mt-2">
+                                                    <input type="datetime-local" name="date_vente" id="date_vente"
+                                                           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                                            required>
                                                 </div>
                                             </div>
