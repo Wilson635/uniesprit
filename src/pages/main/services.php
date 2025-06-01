@@ -632,11 +632,39 @@ if (!$_SESSION['email']) {
                                                     </a></li>
                                             <?php endif; ?>
 
-                                            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                                                <li><a href="?page=<?php echo $i; ?>"
-                                                       class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                            <!-- Logique de pagination -->
+                                            <?php
+                                            $max_display = 2;
+                                            $always_visible = 1;
+
+                                            // Affiche les 5 premières pages
+                                            for ($i = 1; $i <= min($totalPages, $always_visible); $i++): ?>
+                                                <li>
+                                                    <a href="?page=<?= $i ?>"
+                                                       class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
+                                                        <?= $i ?>
+                                                    </a>
                                                 </li>
                                             <?php endfor; ?>
+
+                                            <?php
+                                            // Affiche les 3 dernières pages dynamiques si le total dépasse les 5 premières
+                                            if ($totalPages > $always_visible):
+                                                $start = max($always_visible + 1, $page);
+                                                $end = min($start + 2, $totalPages);
+
+                                                if ($end - $start < 2 && $end > $always_visible + 1) {
+                                                    $start = max($always_visible + 1, $end - 2);
+                                                }
+
+                                                for ($i = $start; $i <= $end; $i++): ?>
+                                                    <li>
+                                                        <a href="?page=<?= $i ?>"
+                                                           class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
+                                                            <?= $i ?>
+                                                        </a>
+                                                    </li>
+                                                <?php endfor; endif; ?>
 
                                             <?php if ($page < $totalPages): ?>
                                                 <li>

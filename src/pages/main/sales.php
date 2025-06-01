@@ -541,7 +541,7 @@ if (!$_SESSION['email']) {
                                             $quantite_disponible = $boisson['quantite'];
                                             $prix_unitaire = $boisson['prix_unitaire'];
 
-                                            if ($quantite_disponible < 1) {
+                                            if ($quantite_disponible < 0) {
                                                 $message = "<div class='text-white bg-red-500 p-3'>Stock indisponible</div>";
                                             }
                                         }
@@ -551,6 +551,7 @@ if (!$_SESSION['email']) {
                                     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantite_vendue']) && isset($_POST['boisson'])) {
                                         $quantite_vendue = intval($_POST['quantite_vendue']);
                                         $boisson_id = $_POST['boisson'];
+                                        $date_vente = $_POST['date_vente'];
 
                                         // Vérifier si la quantité vendue est valide
                                         if ($quantite_vendue < 1) {
@@ -567,22 +568,23 @@ if (!$_SESSION['email']) {
                                                     $quantite_disponible = $boisson['quantite'];
                                                     $prix_unitaire = $boisson['prix_unitaire'];
 
-                                                    if ($quantite_disponible < 2) {
+                                                    if ($quantite_disponible < 0) {
                                                         $message = "<div class='text-white bg-red-500 p-3'>Stock indisponible</div>";
                                                     } elseif ($quantite_disponible >= $quantite_vendue) {
                                                         $prix_total = $prix_unitaire * $quantite_vendue;
                                                         $vente_id = \Ramsey\Uuid\Uuid::uuid4()->toString();
 
                                                         // Insérer la vente
-                                                        $insertSaleQuery = "INSERT INTO ventes (id, boisson_id, quantite_vendue, prix_unitaire, prix_total)
-                                                            VALUES (:id, :boisson_id, :quantite_vendue, :prix_unitaire, :prix_total)";
+                                                        $insertSaleQuery = "INSERT INTO ventes (id, boisson_id, quantite_vendue, prix_unitaire, prix_total, date_vente)
+                                                            VALUES (:id, :boisson_id, :quantite_vendue, :prix_unitaire, :prix_total, :date_vente)";
                                                         $insertStmt = $conn->prepare($insertSaleQuery);
                                                         $insertStmt->execute([
                                                             ':id' => $vente_id,
                                                             ':boisson_id' => $boisson_id,
                                                             ':quantite_vendue' => $quantite_vendue,
                                                             ':prix_unitaire' => $prix_unitaire,
-                                                            ':prix_total' => $prix_total
+                                                            ':prix_total' => $prix_total,
+                                                            ':date_vente' => $_POST['date_vente']
                                                         ]);
 
                                                         // Mettre à jour le stock
@@ -651,6 +653,17 @@ if (!$_SESSION['email']) {
                                                     <input type="number" name="quantite_vendue" id="quantite_vendue"
                                                            min="1" max="<?= htmlspecialchars($quantite_disponible) ?>"
                                                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" <?= $quantite_disponible < 1 ? 'disabled' : '' ?>
+                                                           required>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label for="date_vente"
+                                                >Date de
+                                                    vente</label>
+                                                <div class="mt-2">
+                                                    <input type="datetime-local" name="date_vente" id="date_vente"
+                                                           class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                                            required>
                                                 </div>
                                             </div>
@@ -804,11 +817,39 @@ if (!$_SESSION['email']) {
                                                     </a></li>
                                             <?php endif; ?>
 
-                                            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                                                <li><a href="?page=<?php echo $i; ?>"
-                                                       class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                            <!-- Logique de pagination -->
+                                            <?php
+                                            $max_display = 2;
+                                            $always_visible = 1;
+
+                                            // Affiche les 5 premières pages
+                                            for ($i = 1; $i <= min($total_pages, $always_visible); $i++): ?>
+                                                <li>
+                                                    <a href="?page=<?= $i ?>"
+                                                       class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
+                                                        <?= $i ?>
+                                                    </a>
                                                 </li>
                                             <?php endfor; ?>
+
+                                            <?php
+                                            // Affiche les 3 dernières pages dynamiques si le total dépasse les 5 premières
+                                            if ($total_pages > $always_visible):
+                                                $start = max($always_visible + 1, $page);
+                                                $end = min($start + 2, $total_pages);
+
+                                                if ($end - $start < 2 && $end > $always_visible + 1) {
+                                                    $start = max($always_visible + 1, $end - 2);
+                                                }
+
+                                                for ($i = $start; $i <= $end; $i++): ?>
+                                                    <li>
+                                                        <a href="?page=<?= $i ?>"
+                                                           class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
+                                                            <?= $i ?>
+                                                        </a>
+                                                    </li>
+                                                <?php endfor; endif; ?>
 
                                             <?php if ($page < $total_pages): ?>
                                                 <li>

@@ -678,6 +678,7 @@ if (!$_SESSION['email']) {
                                     $prix_achat = trim($_POST["prix_achat"]);
                                     $prix_gros = trim($_POST["prix_gros"]);
                                     $categorie_id = trim($_POST["categorie"]);
+                                    $date_ajout = trim($_POST["date_ajout"]);
 
                                     if (!empty($nom) && !empty($quantite) && !empty($prix_unitaire) && !empty($prix_gros) && !empty($categorie_id) && !empty($prix_achat)) {
                                         try {
@@ -685,8 +686,8 @@ if (!$_SESSION['email']) {
 
                                             $boisson_id = Uuid::uuid4()->toString();
 
-                                            $sql = "INSERT INTO boissons (id, nom, quantite, prix_unitaire, prix_achat, prix_gros, categorie_id)
-                                            VALUES (:id, :nom, :quantite, :prix_unitaire, :prix_achat, :prix_gros, :categorie_id)";
+                                            $sql = "INSERT INTO boissons (id, nom, quantite, prix_unitaire, prix_achat, prix_gros, categorie_id, date_ajout)
+                                            VALUES (:id, :nom, :quantite, :prix_unitaire, :prix_achat, :prix_gros, :categorie_id, :date_ajout)";
 
                                             $stmt = $conn->prepare($sql);
 
@@ -697,7 +698,8 @@ if (!$_SESSION['email']) {
                                                 ':prix_unitaire' => $prix_unitaire,
                                                 ':prix_achat' => $prix_achat,
                                                 ':prix_gros' => $prix_gros,
-                                                ':categorie_id' => $categorie_id
+                                                ':categorie_id' => $categorie_id,
+                                                ':date_ajout' => $date_ajout
                                             ]);
 
                                             echo "<div class='p-3 bg-green-400 text-center text-black '>Boisson enregistrée avec succès.</div>";
@@ -786,6 +788,14 @@ if (!$_SESSION['email']) {
                                                 }
                                                 ?>
                                             </select>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label for="date_ajout">Date d'ajout</label>
+                                        <div class="mt-2">
+                                            <input type="date" name="date_ajout" id="date_ajout"
+                                                   class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                         </div>
                                     </div>
 
@@ -927,11 +937,39 @@ if (!$_SESSION['email']) {
                                                     </a></li>
                                             <?php endif; ?>
 
-                                            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                                                <li><a href="?page=<?php echo $i; ?>"
-                                                       class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                            <!-- Logique de pagination -->
+                                            <?php
+                                            $max_display = 2;
+                                            $always_visible = 1;
+
+                                            // Affiche les 5 premières pages
+                                            for ($i = 1; $i <= min($total_pages, $always_visible); $i++): ?>
+                                                <li>
+                                                    <a href="?page=<?= $i ?>"
+                                                       class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
+                                                        <?= $i ?>
+                                                    </a>
                                                 </li>
                                             <?php endfor; ?>
+
+                                            <?php
+                                            // Affiche les 3 dernières pages dynamiques si le total dépasse les 5 premières
+                                            if ($total_pages > $always_visible):
+                                                $start = max($always_visible + 1, $page);
+                                                $end = min($start + 2, $total_pages);
+
+                                                if ($end - $start < 2 && $end > $always_visible + 1) {
+                                                    $start = max($always_visible + 1, $end - 2);
+                                                }
+
+                                                for ($i = $start; $i <= $end; $i++): ?>
+                                                    <li>
+                                                        <a href="?page=<?= $i ?>"
+                                                           class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
+                                                            <?= $i ?>
+                                                        </a>
+                                                    </li>
+                                                <?php endfor; endif; ?>
 
                                             <?php if ($page < $total_pages): ?>
                                                 <li>
