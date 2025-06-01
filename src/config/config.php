@@ -5,9 +5,9 @@
         $config = [
             'db' => [
                 'host' => 'localhost',
-                'port' => '3307',
+                'port' => '3308',
                 'username' => 'root',
-                'password' => 'root',
+                'password' => 'pass',
                 'database' => 'beauty'
             ]
         ];

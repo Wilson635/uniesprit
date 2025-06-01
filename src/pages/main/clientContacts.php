@@ -575,28 +575,28 @@ if (!$_SESSION['email']) {
                                                 // Affichage des clients
                                                 foreach ($clients as $client) {
                                                     echo '
-            <tr class="search-items">
-                <td class="p-4 ps-0 whitespace-nowrap">
-                    <div class="n-chk align-self-center text-center">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $client['id'] . '" />
-                            <label class="form-check-label" for="checkbox' . $client['id'] . '"></label>
-                        </div>
-                    </div>
-                </td>
-                <td class="p-4 ps-0 whitespace-nowrap">
-                    <div class="flex gap-3 items-center">
-                        <div>
-                            <p class="rounded-circle bg-indigo-200 items-center justify-center leading-9 text-center font-bold h-9 w-9 rounded-full"> ' . htmlspecialchars($initials = getInitials($client['first_name'])) . ' </p>
-                        </div>
-                        <div>
-                            <h6 class="user-name mb-1" data-name="' . htmlspecialchars($client["first_name"]) . '">' . htmlspecialchars($client["first_name"]) . '</h6>
-                        </div>
-                    </div>
-                </td>
-                <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($client["last_name"]) . '">' . htmlspecialchars($client["last_name"]) . '</td>
-                <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($client["phone"]) . '">' . htmlspecialchars($client["phone"]) . '</td>
-            </tr>';
+                                                        <tr class="search-items">
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="n-chk align-self-center text-center">
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $client['id'] . '" />
+                                                                        <label class="form-check-label" for="checkbox' . $client['id'] . '"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 ps-0 whitespace-nowrap">
+                                                                <div class="flex gap-3 items-center">
+                                                                    <div>
+                                                                        <p class="rounded-circle bg-indigo-200 items-center justify-center leading-9 text-center font-bold h-9 w-9 rounded-full"> ' . htmlspecialchars($initials = getInitials($client['first_name'])) . ' </p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h6 class="user-name mb-1" data-name="' . htmlspecialchars($client["first_name"]) . '">' . htmlspecialchars($client["first_name"]) . '</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-email="' . htmlspecialchars($client["last_name"]) . '">' . htmlspecialchars($client["last_name"]) . '</td>
+                                                            <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4" data-location="' . htmlspecialchars($client["phone"]) . '">' . htmlspecialchars($client["phone"]) . '</td>
+                                                        </tr>';
                                                 }
                                                 ?>
                                                 </tbody>
@@ -620,11 +620,39 @@ if (!$_SESSION['email']) {
                                                             </a></li>
                                                     <?php endif; ?>
 
-                                                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                                                        <li><a href="?page=<?php echo $i; ?>"
-                                                               class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?php if ($i == $page) echo 'font-bold bg-blue-200 border-none'; ?>"><?php echo $i; ?></a>
+                                                    <!-- Logique de pagination -->
+                                                    <?php
+                                                    $max_display = 2;
+                                                    $always_visible = 1;
+
+                                                    // Affiche les 5 premières pages
+                                                    for ($i = 1; $i <= min($totalPages, $always_visible); $i++): ?>
+                                                        <li>
+                                                            <a href="?page=<?= $i ?>"
+                                                               class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
+                                                                <?= $i ?>
+                                                            </a>
                                                         </li>
                                                     <?php endfor; ?>
+
+                                                    <?php
+                                                    // Affiche les 3 dernières pages dynamiques si le total dépasse les 5 premières
+                                                    if ($totalPages > $always_visible):
+                                                        $start = max($always_visible + 1, $page);
+                                                        $end = min($start + 2, $totalPages);
+
+                                                        if ($end - $start < 2 && $end > $always_visible + 1) {
+                                                            $start = max($always_visible + 1, $end - 2);
+                                                        }
+
+                                                        for ($i = $start; $i <= $end; $i++): ?>
+                                                            <li>
+                                                                <a href="?page=<?= $i ?>"
+                                                                   class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
+                                                                    <?= $i ?>
+                                                                </a>
+                                                            </li>
+                                                        <?php endfor; endif; ?>
 
                                                     <?php if ($page < $totalPages): ?>
                                                         <li>
