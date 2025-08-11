@@ -13,9 +13,23 @@ $sql = "
     WHERE t.service_date >= CURRENT_DATE
     ORDER BY t.service_date DESC
 ";
+
+$sql_vente = "SELECT v.id AS vente_id, v.date_vente AS vente_date, v.prix_unitaire AS vente_price, v.prix_total AS prix_total, v.quantite_vendue AS quantite_vendue,
+b.nom AS boisson_name, b.quantite AS boisson_quantite
+FROM ventes v
+JOIN boissons b ON v.boisson_id = b.id
+WHERE v.date_vente >= CURRENT_DATE
+ORDER BY v.date_vente DESC";
+
 $stmt = $conn->prepare($sql);
+$stmt_vente = $conn->prepare($sql_vente);
 $stmt->execute();
+$stmt_vente->execute();
 $tickets = $stmt->fetchAll();
+$ventes = $stmt_vente->fetchAll();
+
+$totalTickets = array_sum(array_column($tickets, 'ticket_price'));
+$totalVentes = array_sum(array_column($ventes, 'prix_total'));
 
 $filename = "tickets_history.csv";
 
@@ -24,7 +38,7 @@ header('Content-Disposition: attachment; filename="' . $filename . '"');
 
 $output = fopen('php://output', 'w');
 
-// Définir un séparateur ";" pour compatibilité Excel
+// Bloc des tickets
 fputcsv($output, ['Ticket ID', 'Client', 'Service Date', 'Service Name', 'Employee', 'Ticket Price'], ";");
 
 foreach ($tickets as $ticket) {
@@ -37,6 +51,33 @@ foreach ($tickets as $ticket) {
         $ticket['ticket_price']
     ], ";");
 }
+
+fputcsv($output, ['Total ', '', '', '', '', '', number_format($totalTickets, 2, ',', '')], ";");
+
+fputcsv($output, [], ";");
+fputcsv($output, [], ";");
+
+//Bloc des ventes
+fputcsv($output, ['Référence Vente', 'Boisson', 'Date de vente', 'Prix de vente', 'Quantité Vendue', 'Quantité Disponible', 'Prix Total'], ";");
+
+foreach ($ventes as $vente) {
+    fputcsv($output, [
+        $vente['vente_id'],
+        $vente['boisson_name'],
+        $vente['vente_date'],
+        number_format($vente['vente_price'], 2, ',', ''), // Formatage du prix
+        $vente['quantite_vendue'],
+        $vente['boisson_quantite'],
+        number_format($vente['prix_total'], 2, ',', '') // Formatage du prix
+    ], ";");
+}
+
+fputcsv($output, [], ";");
+
+fputcsv($output, ['Total Ventes', '', '', '', number_format($totalVentes, 2, ',', ''), ''], ";");
+
+
+//Bloc des boissons
 
 fclose($output);
 exit;

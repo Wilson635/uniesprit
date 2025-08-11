@@ -175,8 +175,8 @@ include_once '../config/config.php';
 $pdo = getConnexion();
 
 // Déterminer la plage du mois en cours
-$startDate = date('Y-m-01');
-$endDate = date('Y-m-t');
+$startDate = date('2025-06-01');
+$endDate = date('2025-06-30');
 
 // Créer une structure pour stocker les données par date
 $dataByDate = [];

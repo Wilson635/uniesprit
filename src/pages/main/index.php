@@ -40,6 +40,8 @@ if (!isset($_SESSION['email'])) {
           integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
     <!-- Dark mode -->
     <script>
         /**
@@ -358,30 +360,40 @@ if (!isset($_SESSION['email'])) {
                 class="mt-4 grid grid-cols-12 gap-4 px-[var(--margin-x)] transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
         >
             <!---Welcome back Card--->
-            <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
-                <div class="card bg-slate-150 dark:bg-navy-700 mb-0 overflow-hidden">
+            <div class="lg:col-span-8 md:col-span-12 col-span-12">
+                <div class="card bg-blue-50 dark:bg-blue-100 rounded-2xl overflow-hidden">
                     <div class="card-body pb-10">
-                        <div class="grid grid-cols-12">
-                            <div class="lg:col-span-7 p-8 md:col-span-7 sm:col-span-12 col-span-12">
-                                <div class="flex gap-3 items-center mb-7">
-                                    <div class="rounded-full overflow-hidden">
+                        <div class="grid grid-cols-12 gap-4 items-center">
+                            <!-- Texte et photo de profil -->
+                            <div class="lg:col-span-7 md:col-span-7 col-span-12 p-6">
+                                <div class="flex gap-4 items-center mb-6">
+                                    <div class="rounded-full overflow-hidden shadow-md border-4 border-white">
                                         <img src="../../../assets/user-7.jpg"
-                                             class="h-20 w-20" alt="">
+                                             class="h-20 w-20 object-cover" alt="Photo de profil">
                                     </div>
-                                    <div class="flex flex-col text-left justify-start">
-                                        <h5 class="text-lg">
-                                            Welcome back <strong><?php echo $_SESSION['username']; ?></strong>
-                                        </h5>
-                                        <p class="mt-5 ">Êtes - vous prêt à démarrer la journée ?</p>
+                                    <div class="flex flex-col">
+                                        <h2 class="text-2xl font-semibold text-pink-800">
+                                            Bonjour, <strong><?php echo $_SESSION['username']; ?></strong> 🌸
+                                        </h2>
+                                        <p class="mt-2 text-sm text-gray-600">
+                                            Prête pour une nouvelle journée de bien-être ?
+                                        </p>
                                     </div>
+                                </div>
 
-                                </div>
+                                <p class="text-md text-gray-700 mb-4">
+                                    Profitez de soins personnalisés, d'un accueil chaleureux et laissez-vous sublimer par notre équipe.
+                                </p>
+
+                                <a href="./reservation.php" class="inline-block px-5 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-700 transition">
+                                    💅 Prendre un rendez-vous
+                                </a>
                             </div>
-                            <div class="lg:col-span-5 md:col-span-5 sm:col-span-12 col-span-12">
-                                <div class="sm:absolute relative right-0 rtl:right-auto rtl:left-0 -bottom-8">
-                                    <img src="../../../assets/welcome-bg.svg" alt=""
-                                         class="img-fluid">
-                                </div>
+
+                            <!-- Illustration ou visuel -->
+                            <div class="lg:col-span-5 md:col-span-5 col-span-12 relative">
+                                <img src="../../../assets/welcome-bg.svg" alt="Illustration"
+                                     class="w-full max-w-2xl lg:-top-24 lg:absolute md:absolute md:-top-5 mx-auto">
                             </div>
                         </div>
                     </div>
@@ -391,13 +403,13 @@ if (!isset($_SESSION['email'])) {
 
             <!---Date Cards--->
             <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12">
-                <div class="card bg-indigo-500 p-8 overflow-hidden">
+                <div class="card bg-white/8 shadow-none p-8 overflow-hidden">
                     <div class="card-body pb-0">
                         <?php
                         setlocale(LC_TIME, 'fr_FR.UTF-8', 'fra'); // Définir la langue en français
                         $date_fr = strftime('%A, %d %B %Y'); // Format long : Lundi 04 Mars 2024
                         ?>
-                        <h5 class="card-title text-xl text-white"><?php echo ucfirst($date_fr); ?></h5>
+                        <h5 class="card-title text-xl"><?php echo ucfirst($date_fr); ?></h5>
 
                         <div class="flex justify-center mt-3">
                             <img src="../../../assets/piggy.png" class="w-50" alt/>
@@ -405,9 +417,9 @@ if (!isset($_SESSION['email'])) {
                     </div>
                     <div class="px-2 pb-2">
                         <div>
-                            <div class="bg-white/8 backdrop-blur rounded-lg">
+                            <div class="bg-indigo-100 backdrop-blur rounded-xl">
                                 <div id="live-clock"
-                                     class="text-5xl text-white p-5 font-bold justify-center text-center items-center">
+                                     class="text-5xl text-indigo-500 p-5 font-bold justify-center text-center items-center">
                                     <!-- L'heure sera mise à jour ici -->
                                 </div>
                             </div>
@@ -418,7 +430,7 @@ if (!isset($_SESSION['email'])) {
             <!---Date Cards End--->
 
             <!---Count data database--->
-            <div class="col-span-12 lg:col-span-8">
+            <!-- <div class="col-span-12 lg:col-span-8">
                 <div class="flex items-center justify-between space-x-2">
                     <h2
                             class="text-base font-medium tracking-wide text-slate-800 line-clamp-1 dark:text-navy-100"
@@ -476,26 +488,26 @@ if (!isset($_SESSION['email'])) {
                                 <p
                                         class="text-2xl font-semibold text-slate-700 dark:text-navy-100"
                                 >
-                                    <?php
-                                    include_once '../../config/config.php';
-
-                                    function sumTicketsMonth(): string
-                                    {
-                                        $conn = getConnexion();
-
-                                        $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
-                                        $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE service_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
-                                        $queryRevenuDepenses = "SELECT SUM(montant) AS total_revenu FROM paiements WHERE date_paiement >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
-
-                                        $revenuVentes = $conn->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
-                                        $revenuTickets = $conn->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
-                                        $revenuDepenses = $conn->query($queryRevenuDepenses)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
-
-                                        return number_format(($revenuVentes + $revenuTickets) - $revenuDepenses, 2, ',', ' ');
-                                    }
-
-                                    echo "<strong>" . sumTicketsMonth() . " Fcfa</strong>";
-                                    ?>
+//                                    <?php
+            //                                    include_once '../../config/config.php';
+            //
+            //                                    function sumTicketsMonth(): string
+            //                                    {
+            //                                        $conn = getConnexion();
+            //
+            //                                        $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+            //                                        $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE service_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+            //                                        $queryRevenuDepenses = "SELECT SUM(montant) AS total_revenu FROM paiements WHERE date_paiement >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+            //
+            //                                        $revenuVentes = $conn->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+            //                                        $revenuTickets = $conn->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+            //                                        $revenuDepenses = $conn->query($queryRevenuDepenses)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+            //
+            //                                        return number_format(($revenuVentes + $revenuTickets) - $revenuDepenses, 2, ',', ' ');
+            //                                    }
+            //
+            //                                    echo "<strong>" . sumTicketsMonth() . " Fcfa</strong>";
+            //                                    ?>
                                 </p>
                                 <button
                                         class="btn size-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
@@ -525,35 +537,35 @@ if (!isset($_SESSION['email'])) {
                                 <p
                                         class="text-2xl font-semibold text-slate-700 dark:text-navy-100"
                                 >
-                                    <?php
-                                    include_once '../../config/config.php';
-
-                                    function sumTicketsTrimester(): string
-                                    {
-                                        $conn = getConnexion();
-
-//                                        $query = "SELECT SUM(price) AS total FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE()) AND YEAR(service_date) = YEAR(CURRENT_DATE())";
-//                                        $result = $conn->query($query);
-//
-//                                        if ($result) {
-//                                            $row = $result->fetch(PDO::FETCH_ASSOC);
-//                                            return isset($row['total']) ? $row['total'] : 0;
-//                                        }
-//
-//                                        return 0;
-                                        $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE QUARTER(date_vente) = QUARTER(CURRENT_DATE())";
-                                        $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE())";
-                                        $queryRevenuDepenses = "SELECT SUM(montant) AS total_revenu FROM paiements WHERE QUARTER(date_paiement) = QUARTER(CURRENT_DATE())";
-
-                                        $revenuVentes = $conn->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
-                                        $revenuTickets = $conn->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
-                                        $revenuDepenses = $conn->query($queryRevenuDepenses)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
-
-                                        return number_format(($revenuVentes + $revenuTickets) - $revenuDepenses, 2, ',', ' ');
-                                    }
-
-                                    echo "<strong>" . sumTicketsTrimester() . " Fcfa</strong>";
-                                    ?>
+//                                    <?php
+            //                                    include_once '../../config/config.php';
+            //
+            //                                    function sumTicketsTrimester(): string
+            //                                    {
+            //                                        $conn = getConnexion();
+            //
+            ////                                        $query = "SELECT SUM(price) AS total FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE()) AND YEAR(service_date) = YEAR(CURRENT_DATE())";
+            ////                                        $result = $conn->query($query);
+            ////
+            ////                                        if ($result) {
+            ////                                            $row = $result->fetch(PDO::FETCH_ASSOC);
+            ////                                            return isset($row['total']) ? $row['total'] : 0;
+            ////                                        }
+            ////
+            ////                                        return 0;
+            //                                        $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE QUARTER(date_vente) = QUARTER(CURRENT_DATE())";
+            //                                        $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE())";
+            //                                        $queryRevenuDepenses = "SELECT SUM(montant) AS total_revenu FROM paiements WHERE QUARTER(date_paiement) = QUARTER(CURRENT_DATE())";
+            //
+            //                                        $revenuVentes = $conn->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+            //                                        $revenuTickets = $conn->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+            //                                        $revenuDepenses = $conn->query($queryRevenuDepenses)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+            //
+            //                                        return number_format(($revenuVentes + $revenuTickets) - $revenuDepenses, 2, ',', ' ');
+            //                                    }
+            //
+            //                                    echo "<strong>" . sumTicketsTrimester() . " Fcfa</strong>";
+            //                                    ?>
                                 </p>
                                 <button
                                         class="btn size-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
@@ -605,9 +617,249 @@ if (!isset($_SESSION['email'])) {
                         ></div>
                     </div>
                 </div>
+            </div> -->
+            <!---Revenu Update / Yearly Breakups Cards--->
+            <?php
+                include_once '../../config/config.php';
+
+                $conn = getConnexion();
+
+                // On récupère les 12 derniers mois sous forme AAAA-MM
+                $months = [];
+                for ($i = 11; $i >= 0; $i--) {
+                    $months[] = date('Y-m', strtotime("-$i months"));
+                }
+
+                // Initialisation des tableaux
+                $ventes = array_fill(0, count($months), 0);
+                $tickets = array_fill(0, count($months), 0);
+                $depenses = array_fill(0, count($months), 0);
+
+                // --- Ventes ---
+                $sqlVentes = "
+                SELECT DATE_FORMAT(date_vente, '%Y-%m') AS mois, SUM(prix_total) AS total
+                FROM ventes
+                GROUP BY mois
+                ";
+                foreach ($conn->query($sqlVentes) as $row) {
+                    $index = array_search($row['mois'], $months);
+                    if ($index !== false) {
+                        $ventes[$index] = (float) $row['total'];
+                    }
+                }
+
+                // --- Tickets ---
+                $sqlTickets = "
+                SELECT DATE_FORMAT(service_date, '%Y-%m') AS mois, SUM(price) AS total
+                FROM tickets
+                GROUP BY mois
+                ";
+                foreach ($conn->query($sqlTickets) as $row) {
+                    $index = array_search($row['mois'], $months);
+                    if ($index !== false) {
+                        $tickets[$index] = (float) $row['total'];
+                    }
+                }
+
+                // --- Dépenses ---
+                $sqlDepenses = "
+                SELECT DATE_FORMAT(date_paiement, '%Y-%m') AS mois, SUM(montant) AS total
+                FROM paiements
+                GROUP BY mois
+                ";
+                foreach ($conn->query($sqlDepenses) as $row) {
+                    $index = array_search($row['mois'], $months);
+                    if ($index !== false) {
+                        $depenses[$index] = (float) $row['total'];
+                    }
+                }
+            ?>
+
+            <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
+                <div class="card">
+                    <div class="py-5 px-5 gap-5">
+                        <div class="sm:flex items-center justify-between mb-6">
+                            <div>
+                                <h5 class="card-title text-base font-medium text-slate-700">
+                                    Mises à jour des revenus
+                                </h5>
+                                <p class="card-subtitle text-sm ">Aperçu des revenus</p>
+                            </div>
+                            <!-- <div class="sm:mt-0 mt-4">
+                                <select>
+                                    <option selected>March</option>
+                                    <option>April</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                </select>
+                            </div>-->
+                        </div>
+                        <div class="grid grid-cols-12 gap-6">
+                            <div class="lg:col-span-8 md:col-span-8 sm:col-span-12 col-span-12">
+                                <div class="-me-6 ax-transparent-gridline">
+                                    <!--<div
+                                            x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.analyticsSalesOverview); $el._x_chart.render() });"
+                                    ></div>-->
+                                    <div id="revenuChart"></div>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-4 md:col-span-4 sm:col-span-12 col-span-12">
+                                <div class="flex items-center gap-4 pt-6">
+                                    <div
+                                            class="bg-blue-50 h-10 w-10 flex justify-center items-center rounded-md">
+                                        <i class="ti ti-grid-dots text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-2xl text-black font-semibold">
+                                            <?php
+                                            include_once '../../config/config.php';
+
+                                            function sumTicketsTrimester(): string
+                                            {
+                                                $conn = getConnexion();
+                                                $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE QUARTER(date_vente) = QUARTER(CURRENT_DATE())";
+                                                $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE QUARTER(service_date) = QUARTER(CURRENT_DATE())";
+                                                $queryRevenuDepenses = "SELECT SUM(montant) AS total_revenu FROM paiements WHERE QUARTER(date_paiement) = QUARTER(CURRENT_DATE())";
+
+                                                $revenuVentes = $conn->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                                $revenuTickets = $conn->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                                $revenuDepenses = $conn->query($queryRevenuDepenses)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+
+                                                return number_format(($revenuVentes + $revenuTickets) - $revenuDepenses, 2, ',', ' ');
+                                            }
+
+                                            echo "<strong>" . sumTicketsTrimester() . " Fcfa</strong>";
+                                            ?>
+                                        </h4>
+                                        <p>Total ce trimestre
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-baseline gap-3 pt-9">
+                                    <i class="h-2 w-2 rounded-full bg-primary"></i>
+                                    <div>
+                                        <p>CA de ce mois-ci</p>
+                                        <h6 class="text-lg text-black">
+                                            <?php
+                                            include_once '../../config/config.php';
+
+                                            function sumTicketsMonth(): string
+                                            {
+                                                try {
+                                                    $conn = getConnexion();
+
+                                                    // Requête pour le revenu des ventes ce mois
+                                                    $queryRevenuVentes = "
+                                                        SELECT SUM(prix_total) AS total_revenu 
+                                                        FROM ventes 
+                                                        WHERE DATE(date_vente) BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01') AND LAST_DAY(NOW())
+                                                    ";
+
+                                                    // Requête pour le revenu des tickets ce mois
+                                                    $queryRevenuTickets = "
+                                                        SELECT SUM(price) AS total_revenu 
+                                                        FROM tickets 
+                                                        WHERE DATE(service_date) BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01') AND LAST_DAY(NOW())
+                                                    ";
+
+                                                    // Requête pour les dépenses ce mois
+                                                    $queryRevenuDepenses = "
+                                                        SELECT SUM(montant) AS total_revenu 
+                                                        FROM paiements 
+                                                        WHERE DATE(date_paiement) BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01') AND LAST_DAY(NOW())
+                                                    ";
+
+                                                    $revenuVentes = $conn->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                                    $revenuTickets = $conn->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+                                                    $depenses = $conn->query($queryRevenuDepenses)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
+
+                                                    $benefice = ($revenuVentes + $revenuTickets) - $depenses;
+
+                                                    return number_format($benefice, 2, ',', ' ');
+                                                } catch (PDOException $e) {
+                                                    return "Erreur : " . $e->getMessage();
+                                                }
+                                            }
+
+                                            echo "<strong>" . sumTicketsMonth() . " Fcfa</strong>";
+                                            ?>
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="flex items-baseline gap-3 pt-5">
+                                    <i class="h-2 w-2  rounded-full bg-secondary"></i>
+                                    <div>
+                                        <p>CA de cette semaine</p>
+                                        <h6 class="text-lg text-black">
+                                            <?php
+                                                include_once '../../config/config.php';
+
+                                                function calculRevenuHebdomadaire(): string
+                                                {
+                                                    try {
+                                                        $connexion = getConnexion();
+
+                                                        // Début et fin de la semaine (lundi à dimanche)
+                                                        $sqlVentes = "
+                                                            SELECT SUM(prix_total) AS total_ventes 
+                                                            FROM ventes 
+                                                            WHERE DATE(date_vente) 
+                                                            BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)
+                                                            AND DATE_ADD(CURDATE(), INTERVAL (6 - WEEKDAY(CURDATE())) DAY)
+                                                        ";
+
+                                                        $resultatVentes = $connexion->query($sqlVentes)->fetch(PDO::FETCH_ASSOC);
+                                                        $revenuVentes = $resultatVentes['total_ventes'] ?? 0;
+
+                                                        $sqlTickets = "
+                                                            SELECT SUM(price) AS total_tickets 
+                                                            FROM tickets 
+                                                            WHERE DATE(service_date) 
+                                                            BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)
+                                                            AND DATE_ADD(CURDATE(), INTERVAL (6 - WEEKDAY(CURDATE())) DAY)
+                                                        ";
+
+                                                        $resultatTickets = $connexion->query($sqlTickets)->fetch(PDO::FETCH_ASSOC);
+                                                        $revenuTickets = $resultatTickets['total_tickets'] ?? 0;
+
+                                                        $sqlDepenses = "
+                                                            SELECT SUM(montant) AS total_depenses 
+                                                            FROM paiements 
+                                                            WHERE DATE(date_paiement) 
+                                                            BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)
+                                                            AND DATE_ADD(CURDATE(), INTERVAL (6 - WEEKDAY(CURDATE())) DAY)
+                                                        ";
+
+                                                        $resultatDepenses = $connexion->query($sqlDepenses)->fetch(PDO::FETCH_ASSOC);
+                                                        $totalDepenses = $resultatDepenses['total_depenses'] ?? 0;
+
+                                                        $revenuNet = ($revenuVentes + $revenuTickets) - $totalDepenses;
+
+                                                        return number_format($revenuNet, 2, ',', ' ');
+                                                    } catch (PDOException $e) {
+                                                        return "Erreur: " . $e->getMessage();
+                                                    }
+                                                }
+
+                                                echo "<strong>" . calculRevenuHebdomadaire() . " Fcfa</strong>";
+                                            ?>
+                                        </h6>
+                                    </div>
+                                </div>
+                                <form action="../../components/export-rapport.php" method="GET">
+                                    <button type="submit"
+                                            class="rounded-md cursor-pointer w-full mt-7 bg-blue-500 py-3 text-white font-medium hover:bg-blue-700">
+                                        Rapport complet
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-span-12 lg:col-span-4"
-            >
+            <!---Revenu Update / Yearly Breakups Cards End--->
+
+            <div class="col-span-12 lg:col-span-4">
                 <div
                         class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-2"
                 >
@@ -749,19 +1001,17 @@ if (!isset($_SESSION['email'])) {
                                 echo "<strong>" . countServices() . "</strong>";
                                 ?>
                             </p>
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5 text-secondary"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                                />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="icon icon-tabler icons-tabler-outline icon-tabler-affiliate text-secondary">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M5.931 6.936l1.275 4.249m5.607 5.609l4.251 1.275"/>
+                                <path d="M11.683 12.317l5.759 -5.759"/>
+                                <path d="M5.5 5.5m-1.5 0a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0 -3 0"/>
+                                <path d="M18.5 5.5m-1.5 0a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0 -3 0"/>
+                                <path d="M18.5 18.5m-1.5 0a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0 -3 0"/>
+                                <path d="M8.5 15.5m-4.5 0a4.5 4.5 0 1 0 9 0a4.5 4.5 0 1 0 -9 0"/>
                             </svg>
                         </div>
                         <p class="mt-1 text-xs-plus">Services</p>
@@ -785,22 +1035,93 @@ if (!isset($_SESSION['email'])) {
                                 echo "<strong>" . countClient() . "</strong>";
                                 ?>
                             </p>
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5 text-error"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                            >
-                                <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                                />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="icon icon-tabler icons-tabler-outline text-error icon-tabler-users">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/>
+                                <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/>
                             </svg>
                         </div>
                         <p class="mt-1 text-xs-plus">Clients</p>
+                    </div>
+                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
+                        <div class="flex justify-between">
+                            <p
+                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+                            >
+                                <?php
+                                include_once '../../config/config.php';
+
+                                function compterClientsAujourdHui(): int
+                                {
+                                    try {
+                                        $connexion = getConnexion();
+                                        $requete = "SELECT COUNT(*) AS total_clients 
+                                                    FROM clients 
+                                                    WHERE DATE(date_creation) = CURDATE()";
+
+                                        $resultat = $connexion->query($requete);
+                                        $donnees = $resultat->fetch(PDO::FETCH_ASSOC);
+
+                                        return $donnees['total_clients'] ?? 0;
+                                    } catch (PDOException $e) {
+                                        return 0;
+                                    }
+                                }
+
+                                echo "<strong>" . compterClientsAujourdHui() . "</strong>";
+                                ?>
+
+                            </p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="icon icon-tabler icons-tabler-outline icon-tabler-users-group">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+                                <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"/>
+                                <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+                                <path d="M17 10h2a2 2 0 0 1 2 2v1"/>
+                                <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+                                <path d="M3 13v-1a2 2 0 0 1 2 -2h2"/>
+                            </svg>
+                        </div>
+                        <p class="mt-1 text-xs-plus">Clients Journaliers</p>
+                    </div>
+                    <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
+                        <div class="flex justify-between">
+                            <p
+                                    class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+                            >
+                                <?php
+                                include_once '../../config/config.php';
+                                function countProduitRupture()
+                                {
+                                    $conn = getConnexion();
+                                    $query = "SELECT COUNT(*) as total FROM boissons WHERE quantite <= 1 ";
+                                    $result = $conn->query($query);
+                                    $data = $result->fetch();
+                                    return $data['total'];
+                                }
+
+                                echo "<strong>" . countProduitRupture() . "</strong>";
+                                ?>
+                            </p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M12 9v4"/>
+                                <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z"/>
+                                <path d="M12 16h.01"/>
+                            </svg>
+                        </div>
+                        <p class="mt-1 text-xs-plus">Produits en rupture</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
@@ -821,15 +1142,22 @@ if (!isset($_SESSION['email'])) {
                                 echo "<strong>" . countUsers() . "</strong>";
                                 ?>
                             </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <g fill="none" stroke="#b27811" stroke-width="1.5">
-                                    <circle cx="12" cy="6" r="4"/>
-                                    <path stroke-linecap="round"
-                                          d="M18 9c1.657 0 3-1.12 3-2.5S19.657 4 18 4M6 9C4.343 9 3 7.88 3 6.5S4.343 4 6 4"/>
-                                    <ellipse cx="12" cy="17" rx="6" ry="4"/>
-                                    <path stroke-linecap="round"
-                                          d="M20 19c1.754-.385 3-1.359 3-2.5s-1.246-2.115-3-2.5M4 19c-1.754-.385-3-1.359-3-2.5s1.246-2.115 3-2.5"/>
-                                </g>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="#b27811" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="icon icon-tabler icons-tabler-outline icon-tabler-password-user">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M12 17v4"/>
+                                <path d="M10 20l4 -2"/>
+                                <path d="M10 18l4 2"/>
+                                <path d="M5 17v4"/>
+                                <path d="M3 20l4 -2"/>
+                                <path d="M3 18l4 2"/>
+                                <path d="M19 17v4"/>
+                                <path d="M17 20l4 -2"/>
+                                <path d="M17 18l4 2"/>
+                                <path d="M9 6a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/>
+                                <path d="M7 14a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2"/>
                             </svg>
                         </div>
                         <p class="mt-1 text-xs-plus">Utilisateurs</p>
@@ -978,38 +1306,50 @@ if (!isset($_SESSION['email'])) {
 
                                             $pdo = getConnexion();
 
-                                            // Récupérer les revenus (chiffre d'affaires) du mois
-                                            $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu FROM ventes WHERE date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
-                                            $queryRevenuTickets = "SELECT SUM(price) AS total_revenu FROM tickets WHERE service_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                            // Requête pour les revenus du mois courant
+                                            $queryRevenuVentes = "SELECT SUM(prix_total) AS total_revenu 
+                      FROM ventes 
+                      WHERE DATE(date_vente) BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01') AND LAST_DAY(NOW())";
+
+                                            $queryRevenuTickets = "SELECT SUM(price) AS total_revenu 
+                       FROM tickets 
+                       WHERE DATE(service_date) BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01') AND LAST_DAY(NOW())";
 
                                             $revenuVentes = $pdo->query($queryRevenuVentes)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
                                             $revenuTickets = $pdo->query($queryRevenuTickets)->fetch(PDO::FETCH_ASSOC)['total_revenu'] ?? 0;
 
                                             $revenuTotal = $revenuVentes + $revenuTickets;
 
-                                            // Récupérer les dépenses du mois
+                                            // Dépenses du mois courant (achats et paiements)
                                             $queryDepensesVentes = "SELECT SUM(b.prix_achat * v.quantite_vendue) AS total_depenses 
-                                                    FROM ventes v
-                                                    JOIN boissons b ON v.boisson_id = b.id
-                                                    WHERE v.date_vente >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                        FROM ventes v
+                        JOIN boissons b ON v.boisson_id = b.id
+                        WHERE DATE(v.date_vente) BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01') AND LAST_DAY(NOW())";
+
                                             $queryDepensesPaiements = "SELECT SUM(montant) AS total_depenses 
-                                                   FROM paiements 
-                                                   WHERE date_paiement >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                           FROM paiements 
+                           WHERE DATE(date_paiement) BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01') AND LAST_DAY(NOW())";
 
                                             $depensesVentes = $pdo->query($queryDepensesVentes)->fetch(PDO::FETCH_ASSOC)['total_depenses'] ?? 0;
                                             $depensesPaiements = $pdo->query($queryDepensesPaiements)->fetch(PDO::FETCH_ASSOC)['total_depenses'] ?? 0;
 
                                             $depensesTotal = $depensesVentes + $depensesPaiements;
 
-                                            // Calcul des bénéfices (évite les valeurs négatives)
+                                            // Calcul du bénéfice
                                             $benefices = max(0, $revenuTotal - $depensesTotal);
 
-                                            // Récupérer le nombre de charges
-                                            $queryCharges = "SELECT COUNT(*) AS total_charges FROM charges WHERE charges.date_debut >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                            // Charges du mois
+                                            $queryCharges = "SELECT COUNT(*) AS total_charges 
+                 FROM charges 
+                 WHERE DATE(date_debut) BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01') AND LAST_DAY(NOW())";
+
                                             $totalCharges = $pdo->query($queryCharges)->fetch(PDO::FETCH_ASSOC)['total_charges'] ?? 0;
 
-                                            //Récupérer le total des paiements effectués
-                                            $queryPaiements = "SELECT SUM(montant) AS total_paiements FROM paiements WHERE date_paiement >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+                                            // Paiements du mois
+                                            $queryPaiements = "SELECT SUM(montant) AS total_paiements 
+                   FROM paiements 
+                   WHERE DATE(date_paiement) BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01') AND LAST_DAY(NOW())";
+
                                             $totalPaiements = $pdo->query($queryPaiements)->fetch(PDO::FETCH_ASSOC)['total_paiements'] ?? 0;
                                             ?>
 
@@ -1248,9 +1588,10 @@ if (!isset($_SESSION['email'])) {
                         // Supposons que l'email de l'utilisateur est stocké dans une variable $email
                         $email = $_SESSION['email'] ?? ''; // Par exemple
 
-                        if ($email == 'ngahemeniw@gmail.com' || $email == 'ngahemeni@gmail.com') {
+                        if ($email == 'ngahemeniw@gmail.com' || $email == 'smongahemeni@gmail.com') {
                             ?>
-                            <form action="../../config/export-excel-all.php?date=<?php echo date('Y-m-d'); ?>" method="GET">
+                            <form action="../../config/export-excel-all.php?date=<?php echo date('Y-m-d'); ?>"
+                                  method="GET">
                                 <div class="flex items-center space-x-4">
                                     <input type="date" name="date" id="date" class="px-4 py-2 rounded-lg border">
                                     <div>
@@ -1354,7 +1695,6 @@ if (!isset($_SESSION['email'])) {
                             <?php
                         }
                         ?>
-
 
 
                     </div>
@@ -1588,12 +1928,106 @@ if (!isset($_SESSION['email'])) {
                 </div>
             </div>
         </div>
+
+        <!--<div class="card bg-white dark:bg-gray-900 rounded-xl shadow-md">
+            <div class="card-body p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <form class="relative">
+                        <input
+                                type="text"
+                                id="text-srh"
+                                placeholder="Search Products"
+                                class="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
+                        />
+                        <i class="ti ti-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 text-lg"></i>
+                    </form>
+                    <a
+                            href="javascript:void(0)"
+                            class="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 transition"
+                    >
+                        <i class="ti ti-filter text-lg"></i>
+                        <span class="text-sm">Filter List</span>
+                    </a>
+                </div>
+
+                <div class="card border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+                            <thead class="bg-gray-50 dark:bg-gray-800">
+                            <tr>
+                                <th class="p-4">
+                                    <input type="checkbox" class="rounded-sm border-gray-300 dark:border-gray-600" />
+                                </th>
+                                <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">Products</th>
+                                <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">Date</th>
+                                <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">Status</th>
+                                <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">Price</th>
+                                <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr>
+                                <td class="p-4 text-center">
+                                    <input type="checkbox" class="rounded-sm border-gray-300 dark:border-gray-600" />
+                                </td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="../assets/images/products/s1.jpg" alt="user" class="h-14 w-14 rounded-full" />
+                                        <div>
+                                            <h6 class="font-semibold text-gray-900 dark:text-gray-100">How Innovation Works</h6>
+                                            <p class="text-gray-500 dark:text-gray-400 text-sm">books</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-gray-500 dark:text-gray-400">Thu, Jan 12 2025</td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <span class="h-2 w-2 rounded-full bg-green-500"></span>
+                                        <span class="text-gray-700 dark:text-gray-300">In Stock</span>
+                                    </div>
+                                </td>
+                                <td class="p-4 font-medium text-gray-700 dark:text-gray-300">$275</td>
+                                <td class="p-4 text-center">
+                                    <a href="javascript:void(0)" class="text-gray-500 hover:text-blue-500 transition">
+                                        <i class="ti ti-dots-vertical text-lg"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800">
+                        <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                            <span>Rows per page:</span>
+                            <select class="bg-transparent border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-xs">
+                                <option selected>5</option>
+                                <option>10</option>
+                                <option>25</option>
+                            </select>
+                            <span>1–5 of 12</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button
+                                    type="button"
+                                    class="h-8 w-8 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                <i class="ti ti-chevron-left text-gray-600 dark:text-gray-300"></i>
+                            </button>
+                            <button
+                                    type="button"
+                                    class="h-8 w-8 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                <i class="ti ti-chevron-right text-gray-600 dark:text-gray-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
     </main>
 </div>
-<!--
-    This is a place for Alpine.js Teleport feature
-    @see https://alpinejs.dev/directives/teleport
-  -->
 <div id="x-teleport-target"></div>
 <script>
     function updateClock() {
@@ -1606,6 +2040,62 @@ if (!isset($_SESSION['email'])) {
     updateClock();
     setInterval(updateClock, 1000);
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var options = {
+            chart: {
+                type: 'line',
+                height: 350,
+                toolbar: { show: true }
+            },
+            series: [
+                {
+                    name: "Ventes",
+                    data: <?= json_encode($ventes) ?>
+                },
+                {
+                    name: "Tickets",
+                    data: <?= json_encode($tickets) ?>
+                },
+                {
+                    name: "Dépenses",
+                    data: <?= json_encode($depenses) ?>
+                }
+            ],
+            xaxis: {
+                categories: <?= json_encode($months) ?>,
+                // title: { text: 'Mois' }
+            },
+            yaxis: {
+                title: { text: 'Montant (FCFA)' }
+            },
+            colors: ['#28a745', '#007bff', '#dc3545'],
+            stroke: {
+                curve: 'smooth',
+                width: 3
+            },
+            markers: {
+                size: 4
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val.toLocaleString() + " FCFA";
+                    }
+                }
+            },
+            legend: {
+                position: 'top'
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#revenuChart"), options);
+        chart.render();
+    });
+</script>
+
 <script>
     window.addEventListener("DOMContentLoaded", () => Alpine.start());
 </script>

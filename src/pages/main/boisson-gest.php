@@ -652,10 +652,10 @@ if (!$_SESSION['email']) {
             <div
                     class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12 w-full">
                 <div
-                        class="sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
+                        class="sm:max-w-lg sm:w-full m-3 sm:mx-auto flex items-center">
                     <div
-                            class="w-full flex flex-col bg-white p-8 dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
-                        <div class="flex min-h-full flex-col justify-center">
+                            class="w-full flex flex-col bg-white p-8 dark:bg-dark shadow-md dark:shadow-dark-md rounded-md modal-content">
+                        <div class="flex flex-col justify-center">
                             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                                 <img class="mx-auto rounded-full h-30 w-auto mt-8" src="../../../assets/logo.jpg"
                                      alt="Your Company">
@@ -802,7 +802,7 @@ if (!$_SESSION['email']) {
 
                                     <div>
                                         <button type="submit"
-                                                class="flex mt-4 cursor-pointer mb-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                class="flex mt-4 cursor-pointer mb-5 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                             Enrégistrer
                                         </button>
                                     </div>
@@ -813,185 +813,163 @@ if (!$_SESSION['email']) {
                 </div>
             </div>
 
-            <div class="card p-8 lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
-                <div class="card-body">
-                    <div class="flex flex-col">
-                        <div class="-m-1.5 overflow-x-auto">
-                            <div class="p-1.5 min-w-full inline-block align-middle">
-                                <div class="overflow-hidden">
-                                    <?php
-                                    // Nombre d'éléments par page
-                                    $items_per_page = 10;
+            <div class="card lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12 bg-white dark:bg-gray-900 rounded-xl shadow-md">
+                <div class="card-body p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <form class="relative">
+                            <input
+                                    type="text"
+                                    id="text-srh"
+                                    placeholder="Rechercher une boisson"
+                                    class="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg outline-none text-sm"
+                            />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="icon icon-tabler icons-tabler-outline icon-tabler-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 text-lg">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/>
+                                <path d="M21 21l-6 -6"/>
+                            </svg>
+                        </form>
+                    </div>
 
-                                    // Calcul du numéro de page actuel (par défaut, c'est la page 1)
-                                    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-                                    $start_from = ($page - 1) * $items_per_page;
+                    <div class="card border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <?php
+                            // Récupération dynamique du nombre d'éléments par page
+                            $items_per_page = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
 
-                                    // Connexion à la base de données
-                                    include_once '../../config/config.php';
-                                    $conn = getConnexion();
+                            // Calcul du numéro de page actuel (par défaut, c'est la page 1)
+                            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                            $start_from = ($page - 1) * $items_per_page;
 
-                                    // Requête pour récupérer le total des boissons pour calculer le nombre de pages
-                                    $sql_total = "SELECT COUNT(*) FROM boissons";
-                                    $stmt_total = $conn->prepare($sql_total);
-                                    $stmt_total->execute();
-                                    $total_boissons = $stmt_total->fetchColumn();
-                                    $total_pages = ceil($total_boissons / $items_per_page);
+                            // Connexion à la base de données
+                            include_once '../../config/config.php';
+                            $conn = getConnexion();
 
-                                    // Requête pour récupérer les boissons de la page actuelle
-                                    $query = "SELECT b.id as boisson_id, b.nom as boisson_nom, b.quantite as boisson_qty, b.prix_unitaire as boisson_pu, b.prix_achat as boisson_pa,  b.prix_gros as boisson_pg, c.nom as categorie FROM boissons b 
-                                    JOIN categories c ON b.categorie_id = c.id 
-                                    LIMIT :start_from, :items_per_page";
-                                    $stmt = $conn->prepare($query);
-                                    $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
-                                    $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
-                                    $stmt->execute();
-                                    $boissons = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    ?>
+                            // Total des boissons pour pagination
+                            $sql_total = "SELECT COUNT(*) FROM boissons";
+                            $stmt_total = $conn->prepare($sql_total);
+                            $stmt_total->execute();
+                            $total_boissons = $stmt_total->fetchColumn();
+                            $total_pages = ceil($total_boissons / $items_per_page);
 
-                                    <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
-                                        <thead>
-                                        <tr>
-                                            <th class="p-4 ps-0">
-                                                <div class="n-chk align-self-center text-center">
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input rounded-sm"
-                                                               id="contact-check-all"/>
-                                                        <label class="form-check-label" for="contact-check-all"></label>
-                                                        <span class="new-control-indicator"></span>
-                                                    </div>
+                            // Récupération des boissons
+                            $query = "SELECT b.id as boisson_id, b.nom as boisson_nom, b.quantite as boisson_qty, 
+                                             b.prix_unitaire as boisson_pu, b.prix_achat as boisson_pa,  
+                                             b.prix_gros as boisson_pg, c.nom as categorie 
+                                      FROM boissons b 
+                                      JOIN categories c ON b.categorie_id = c.id 
+                                      LIMIT :start_from, :items_per_page";
+                            $stmt = $conn->prepare($query);
+                            $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
+                            $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
+                            $stmt->execute();
+                            $boissons = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
+                            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+                                <thead class="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <th class="p-4">
+                                        <input type="checkbox" class="rounded-sm border-gray-300 dark:border-gray-600" />
+                                    </th>
+                                    <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">Nom</th>
+                                    <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">Quantité</th>
+                                    <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">P. Achat</th>
+                                    <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">P. Unitaire</th>
+                                    <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">P. Gros</th>
+                                    <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">Categories</th>
+                                    <th class="p-4 text-left font-semibold text-gray-700 dark:text-gray-200">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                <?php foreach ($boissons as $boisson): ?>
+                                    <tr class="search-items">
+                                        <td class="p-4 ps-0 whitespace-nowrap">
+                                            <div class="form-check text-center">
+                                                <input type="checkbox" class="form-check-input rounded-sm" id="checkbox<?= $boisson['boisson_id'] ?>" />
+                                                <label class="form-check-label" for="checkbox<?= $boisson['boisson_id'] ?>"></label>
+                                            </div>
+                                        </td>
+                                        <td class="p-4"><?= htmlspecialchars($boisson['boisson_nom']) ?></td>
+                                        <td class="p-4"><?= htmlspecialchars($boisson['boisson_qty']) ?></td>
+                                        <td class="p-4"><?= htmlspecialchars($boisson['boisson_pa']) ?></td>
+                                        <td class="p-4"><?= htmlspecialchars($boisson['boisson_pu']) ?></td>
+                                        <td class="p-4"><?= htmlspecialchars($boisson['boisson_pg']) ?></td>
+                                        <td class="p-4"><?= htmlspecialchars($boisson['categorie']) ?></td>
+                                        <td class="p-4">
+                                            <?php if ($boisson['boisson_qty'] > 0): ?>
+                                                <div class="flex items-center gap-2 bg-green-100 p-2 w-fit rounded-lg">
+                                                    <span class="h-2 w-2 rounded-full bg-green-500"></span>
+                                                    <span class="text-green-500">en stock</span>
                                                 </div>
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                Nom
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                Quantité
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">P.
-                                                Achat
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">P.
-                                                Unitaire
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">P.
-                                                Gros
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right p-4 font-semibold text-black text-sm">
-                                                Categories
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody class="divide-y divide-border divide-slate-150">
-                                        <?php
-                                        foreach ($boissons as $boisson) {
-                                            echo '
-                                                <tr class="search-items">
-                                                    <td class="p-4 ps-0 whitespace-nowrap">
-                                                        <div class="n-chk align-self-center text-center">
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input rounded-sm contact-chkbox" id="checkbox' . $boisson['boisson_id'] . '" />
-                                                                <label class="form-check-label" for="checkbox' . $boisson['boisson_id'] . '"></label>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="p-4 ps-0 whitespace-nowrap">
-                                                        <div class="flex gap-3 items-center">
-                                                            <div>
-                                                                <h6 class="user-name mb-1" data-name="' . $boisson['boisson_nom'] . '">' . htmlspecialchars($boisson['boisson_nom']) . '</h6>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_qty']) . '</td>
-                                                    <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_pa']) . '</td>
-                                                    <td class="usr-email-addr text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_pu']) . '</td>
-                                                    <td class="usr-location text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['boisson_pg']) . '</td>
-                                                    <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($boisson['categorie']) . '</td>
-                                                </tr>';
-                                        }
-                                        ?>
-                                        </tbody>
-                                    </table>
-
-                                    <!-- Pagination -->
-                                    <div class="pagination mx-auto justify-center items-center bottom-0">
-                                        <ul class="flex list-none gap-2">
-                                            <?php if ($page > 1): ?>
-                                                <li><a href="?page=<?php echo $page - 1; ?>"
-                                                       x-tooltip.placement.top="'Précédent'"
-                                                       class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                             viewBox="0 0 24 24">
-                                                            <path fill="currentColor" fill-rule="evenodd"
-                                                                  d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
-                                                                  clip-rule="evenodd" opacity="0.5"/>
-                                                            <path fill="currentColor"
-                                                                  d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
-                                                        </svg>
-                                                    </a></li>
+                                            <?php else: ?>
+                                                <div class="flex items-center gap-2 bg-rose-100 p-2 w-fit rounded-lg">
+                                                    <span class="h-2 w-2 rounded-full bg-rose-500 "></span>
+                                                    <span class="text-rose-500">en rupture</span>
+                                                </div>
                                             <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
 
-                                            <!-- Logique de pagination -->
-                                            <?php
-                                            $max_display = 2;
-                                            $always_visible = 1;
+                        <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800">
+                            <!-- Sélecteur Rows per page -->
+                            <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                                <span>Rows per page:</span>
+                                <select
+                                        class="bg-transparent border border-gray-300 dark:border-gray-600 outline-none rounded px-2 py-1 text-xs"
+                                        onchange="window.location.href='?page=1&limit='+this.value"
+                                >
+                                    <option value="5" <?= ($items_per_page == 5) ? 'selected' : '' ?>>5</option>
+                                    <option value="10" <?= ($items_per_page == 10) ? 'selected' : '' ?>>10</option>
+                                    <option value="25" <?= ($items_per_page == 25) ? 'selected' : '' ?>>25</option>
+                                </select>
+                                <span>
+                                    <?= ($start_from + 1) ?>–<?= min($start_from + $items_per_page, $total_boissons) ?>
+                                    of <?= $total_boissons ?>
+                                </span>
+                            </div>
 
-                                            // Affiche les 5 premières pages
-                                            for ($i = 1; $i <= min($total_pages, $always_visible); $i++): ?>
-                                                <li>
-                                                    <a href="?page=<?= $i ?>"
-                                                       class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
-                                                        <?= $i ?>
-                                                    </a>
-                                                </li>
-                                            <?php endfor; ?>
+                            <!-- Boutons navigation -->
+                            <div class="flex items-center gap-2">
+                                <!-- Précédent -->
+                                <button
+                                        type="button"
+                                        class="h-8 w-8 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 <?= ($page <= 1) ? 'opacity-50 cursor-not-allowed' : '' ?>"
+                                        onclick="if(<?= $page ?> > 1) window.location.href='?page=<?= max(1, $page - 1) ?>&limit=<?= $items_per_page ?>'"
+                                    <?= ($page <= 1) ? 'disabled' : '' ?>
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                         viewBox="0 0 24 24">
+                                        <path fill="currentColor" fill-rule="evenodd"
+                                              d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
+                                              clip-rule="evenodd" opacity="0.5"/>
+                                        <path fill="currentColor"
+                                              d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
+                                    </svg>
+                                </button>
 
-                                            <?php
-                                            // Affiche les 3 dernières pages dynamiques si le total dépasse les 5 premières
-                                            if ($total_pages > $always_visible):
-                                                $start = max($always_visible + 1, $page);
-                                                $end = min($start + 2, $total_pages);
-
-                                                if ($end - $start < 2 && $end > $always_visible + 1) {
-                                                    $start = max($always_visible + 1, $end - 2);
-                                                }
-
-                                                for ($i = $start; $i <= $end; $i++): ?>
-                                                    <li>
-                                                        <a href="?page=<?= $i ?>"
-                                                           class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
-                                                            <?= $i ?>
-                                                        </a>
-                                                    </li>
-                                                <?php endfor; endif; ?>
-
-                                            <?php if ($page < $total_pages): ?>
-                                                <li>
-                                                    <a href="?page=<?php echo $page + 1; ?>"
-                                                       x-tooltip.placement.top="'Suivant'"
-                                                       class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                             viewBox="0 0 24 24">
-                                                            <path fill="currentColor" fill-rule="evenodd"
-                                                                  d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
-                                                                  clip-rule="evenodd" opacity="0.5"/>
-                                                            <path fill="currentColor"
-                                                                  d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
-                                                        </svg>
-                                                    </a>
-                                                </li>
-
-                                            <?php endif; ?>
-                                        </ul>
-                                    </div>
-
-                                </div>
+                                <!-- Suivant -->
+                                <button
+                                        type="button"
+                                        class="h-8 w-8 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 <?= ($page >= $total_pages) ? 'opacity-50 cursor-not-allowed' : '' ?>"
+                                        onclick="if(<?= $page ?> < <?= $total_pages ?>) window.location.href='?page=<?= min($total_pages, $page + 1) ?>&limit=<?= $items_per_page ?>'"
+                                    <?= ($page >= $total_pages) ? 'disabled' : '' ?>
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                         viewBox="0 0 24 24">
+                                        <path fill="currentColor" fill-rule="evenodd"
+                                              d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
+                                              clip-rule="evenodd" opacity="0.5"/>
+                                        <path fill="currentColor"
+                                              d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>

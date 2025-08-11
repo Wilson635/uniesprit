@@ -1591,70 +1591,39 @@ if (!$_SESSION['email']) {
                 </div>
             </div>
 
-            <div class="card p-8 lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
-                <div class="card-body">
-                    <div class="flex flex-col">
-                        <div class="-m-1.5 overflow-x-auto">
-                            <div class="p-1.5 min-w-full inline-block align-middle">
-                                <div class="overflow-hidden">
-                                    <table class="table search-table min-w-full divide-y divide-border divide-slate-150">
-                                        <thead>
-                                        <tr>
-                                            <th class="p-4 ps-0">
-                                                <div class="n-chk align-self-center text-center">
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input rounded-sm"
-                                                               id="contact-check-all"/>
-                                                        <label class="form-check-label" for="contact-check-all"></label>
-                                                        <span class="new-control-indicator"></span>
-                                                    </div>
-                                                </div>
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                Nom
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                Prénom
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                Téléphone
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                Date du ticket
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                Services effectués
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                Prix
-                                            </th>
-                                            <th scope="col"
-                                                class="text-left rtl:text-right  p-4 font-semibold text-black  text-sm">
-                                                Appréciation
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody class="divide-y divide-border divide-slate-150">
-                                        <?php
-                                        // Nombre d'éléments par page
-                                        $items_per_page = 10;
-                                        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-                                        $start_from = ($page - 1) * $items_per_page;
+            <div class="card lg:col-span-8 md:col-span-12 col-span-12">
+                <div class="card-body p-8">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full border border-slate-200 rounded-lg overflow-hidden">
+                            <thead class="bg-slate-100 text-slate-700 text-sm tracking-wider">
+                            <tr>
+                                <th class="p-3 text-center">
+                                    <input type="checkbox" id="check-all" class="form-checkbox h-4 w-4 text-blue-500 border-gray-300 rounded">
+                                </th>
+                                <th class="p-3 text-left">Nom</th>
+                                <th class="p-3 text-left">Prénom</th>
+                                <th class="p-3 text-left">Téléphone</th>
+                                <th class="p-3 text-left">Date du ticket</th>
+                                <th class="p-3 text-left">Services effectués</th>
+                                <th class="p-3 text-left">Prix</th>
+                                <th class="p-3 text-left">Appréciation</th>
+                            </tr>
+                            </thead>
+                            <tbody class="divide-y divide-border divide-slate-150">
+                            <?php
+                            // Nombre d'éléments par page
+                            $items_per_page = 10;
+                            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                            $start_from = ($page - 1) * $items_per_page;
 
-                                        // Requête pour obtenir le total des ventes
-                                        $sql_total = "SELECT COUNT(*) FROM tickets";
-                                        $stmt_total = $conn->prepare($sql_total);
-                                        $stmt_total->execute();
-                                        $total_tickets = $stmt_total->fetchColumn();
-                                        $total_pages = ceil($total_tickets / $items_per_page);
+                            // Requête pour obtenir le total des ventes
+                            $sql_total = "SELECT COUNT(*) FROM tickets";
+                            $stmt_total = $conn->prepare($sql_total);
+                            $stmt_total->execute();
+                            $total_tickets = $stmt_total->fetchColumn();
+                            $total_pages = ceil($total_tickets / $items_per_page);
 
-                                        $sql = "
+                            $sql = "
                                             SELECT t.id AS ticket_id, t.service_date, t.appreciation, t.price AS ticket_price, 
                                                    c.first_name AS client_first_name, c.last_name AS client_last_name, c.phone AS client_phone,
                                                    s.name AS service_name
@@ -1664,16 +1633,16 @@ if (!$_SESSION['email']) {
                                             ORDER BY t.service_date DESC
                                             LIMIT :start_from, :items_per_page
                                         ";
-                                        $stmt = $conn->prepare($sql);
-                                        $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
-                                        $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
-                                        $stmt->execute();
-                                        $tickets = $stmt->fetchAll();
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bindParam(':start_from', $start_from, PDO::PARAM_INT);
+                            $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
+                            $stmt->execute();
+                            $tickets = $stmt->fetchAll();
 
-                                        // Affichage des tickets
-                                        foreach ($tickets as $ticket) {
-                                            $initials = strtoupper(substr($ticket['client_first_name'], 0, 1) . substr($ticket['client_last_name'], 0, 1));
-                                            echo '
+                            // Affichage des tickets
+                            foreach ($tickets as $ticket) {
+                                $initials = strtoupper(substr($ticket['client_first_name'], 0, 1) . substr($ticket['client_last_name'], 0, 1));
+                                echo '
                                                 <tr class="search-items">
                                                     <td class="p-4 ps-0 whitespace-nowrap">
                                                         <div class="n-chk align-self-center text-center">
@@ -1701,87 +1670,72 @@ if (!$_SESSION['email']) {
                                                     <td class="usr-ph-no text-sm whitespace-nowrap text-bodytext dark:text-blacklink p-4">' . htmlspecialchars($ticket['appreciation']) . '</td>
                                                 </tr>
                                             ';
-                                        }
-                                        ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- Pagination -->
-                            <div class="pagination mx-auto justify-center items-center">
-                                <ul class="flex list-none gap-2">
-                                    <?php if ($page > 1): ?>
-                                        <li><a href="?page=<?php echo $page - 1; ?>"
-                                               x-tooltip.placement.top="'Précédent'"
-                                               class="text-white bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                     viewBox="0 0 24 24">
-                                                    <path fill="currentColor" fill-rule="evenodd"
-                                                          d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
-                                                          clip-rule="evenodd" opacity="0.5"/>
-                                                    <path fill="currentColor"
-                                                          d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
-                                                </svg>
-                                            </a></li>
-                                    <?php endif; ?>
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
 
-                                    <!-- Logique de pagination -->
-                                    <?php
-                                    $max_display = 2;
-                                    $always_visible = 1;
+                    <!-- Nouvelle pagination style "Rows per page" -->
+                    <div class="flex items-center justify-between p-4 mt-4 rounded-b-lg border-t border-gray-200 dark:border-gray-700">
+                        <!-- Sélecteur nombre de lignes -->
+                        <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                            <span>Lignes par page:</span>
+                            <select
+                                    class="bg-transparent border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-xs"
+                                    onchange="window.location.href='?page=1&limit='+this.value"
+                            >
+                                <option value="5" <?= ($items_per_page == 5) ? 'selected' : '' ?>>5</option>
+                                <option value="10" <?= ($items_per_page == 10) ? 'selected' : '' ?>>10</option>
+                                <option value="25" <?= ($items_per_page == 25) ? 'selected' : '' ?>>25</option>
+                            </select>
+                            <span>
+                                <?= ($start_from + 1) ?>–<?= min($start_from + $items_per_page, $total_tickets) ?>
+                                of <?= $total_tickets ?>
+                            </span>
+                        </div>
 
-                                    // Affiche les 5 premières pages
-                                    for ($i = 1; $i <= min($total_pages, $always_visible); $i++): ?>
-                                        <li>
-                                            <a href="?page=<?= $i ?>"
-                                               class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
-                                                <?= $i ?>
-                                            </a>
-                                        </li>
-                                    <?php endfor; ?>
+                        <!-- Boutons navigation -->
+                        <div class="flex items-center gap-2">
+                            <!-- Bouton précédent -->
+                            <button
+                                    type="button"
+                                    class="h-8 w-8 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 <?= ($page <= 1) ? 'opacity-50 cursor-not-allowed' : '' ?>"
+                                    onclick="window.location.href='?page=<?= max(1, $page - 1) ?>&limit=<?= $items_per_page ?>'"
+                                <?= ($page <= 1) ? 'disabled' : '' ?>
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                     viewBox="0 0 24 24">
+                                    <path fill="currentColor" fill-rule="evenodd"
+                                          d="M20.75 12a.75.75 0 0 0-.75-.75h-9.25v1.5H20a.75.75 0 0 0 .75-.75"
+                                          clip-rule="evenodd" opacity="0.5"/>
+                                    <path fill="currentColor"
+                                          d="M10.75 18a.75.75 0 0 1-1.28.53l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.28.53z"/>
+                                </svg>
+                            </button>
 
-                                    <?php
-                                    // Affiche les 3 dernières pages dynamiques si le total dépasse les 5 premières
-                                    if ($total_pages > $always_visible):
-                                        $start = max($always_visible + 1, $page);
-                                        $end = min($start + 2, $total_pages);
-
-                                        if ($end - $start < 2 && $end > $always_visible + 1) {
-                                            $start = max($always_visible + 1, $end - 2);
-                                        }
-
-                                        for ($i = $start; $i <= $end; $i++): ?>
-                                            <li>
-                                                <a href="?page=<?= $i ?>"
-                                                   class="text-blue-500 bg-none border-blue-500 flex items-center border justify-center h-9 w-9 rounded-full <?= ($i == $page) ? 'font-bold bg-blue-200 border-none' : ''; ?>">
-                                                    <?= $i ?>
-                                                </a>
-                                            </li>
-                                        <?php endfor; endif; ?>
-
-                                    <?php if ($page < $total_pages): ?>
-                                        <li>
-                                            <a href="?page=<?php echo $page + 1; ?>"
-                                               x-tooltip.placement.top="'Suivant'"
-                                               class="bg-blue-500 flex items-center justify-center h-9 w-9 rounded-full text-white">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                     viewBox="0 0 24 24">
-                                                    <path fill="currentColor" fill-rule="evenodd"
-                                                          d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
-                                                          clip-rule="evenodd" opacity="0.5"/>
-                                                    <path fill="currentColor"
-                                                          d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
-                                                </svg>
-                                            </a>
-                                        </li>
-
-                                    <?php endif; ?>
-                                </ul>
-                            </div>
+                            <!-- Bouton suivant -->
+                            <button
+                                    type="button"
+                                    class="h-8 w-8 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 <?= ($page >= $total_pages) ? 'opacity-50 cursor-not-allowed' : '' ?>"
+                                    onclick="window.location.href='?page=<?= min($total_pages, $page + 1) ?>&limit=<?= $items_per_page ?>'"
+                                <?= ($page >= $total_pages) ? 'disabled' : '' ?>
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                     viewBox="0 0 24 24">
+                                    <path fill="currentColor" fill-rule="evenodd"
+                                          d="M3.25 12a.75.75 0 0 1 .75-.75h9.25v1.5H4a.75.75 0 0 1-.75-.75"
+                                          clip-rule="evenodd" opacity="0.5"/>
+                                    <path fill="currentColor"
+                                          d="M13.25 12.75V18a.75.75 0 0 0 1.28.53l6-6a.75.75 0 0 0 0-1.06l-6-6a.75.75 0 0 0-1.28.53z"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
+
                 </div>
             </div>
+
         </div>
         <!-- Table Tickets End -->
     </main>
