@@ -435,11 +435,28 @@ if (!$_SESSION['email']) {
                             <div
                                     class="w-full flex flex-col p-5 bg-white dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
                                 <div class="flex min-h-full flex-col justify-center">
-                                    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                                        <img class="mx-auto rounded-full h-30 w-auto mt-15"
-                                             src="../../../assets/logo.jpg" alt="Your Company">
-                                        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                                            Compléter les champs pour enrégistrer un service</h2>
+                                    <div class="sm:mx-auto sm:w-full sm:max-w-2xl mt-16">
+                                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4">
+                                            <!-- Image -->
+                                            <div class="flex-shrink-0">
+                                                <img class="rounded-full h-20 w-20 object-cover shadow-lg"
+                                                     src="../../../assets/logo.jpg"
+                                                     alt="Your Company">
+                                            </div>
+
+                                            <!-- Ligne verticale -->
+                                            <div class="hidden sm:block h-24 w-px bg-gradient-to-b from-indigo-500 to-indigo-300 rounded-full"></div>
+
+                                            <!-- Texte avec titre et sous-titre -->
+                                            <div class="flex-1 text-center sm:text-left">
+                                                <h2 class="text-2xl font-bold tracking-tight text-indigo-900">
+                                                    Nouveau Service
+                                                </h2>
+                                                <p class="mt-1.5 text-sm text-gray-600">
+                                                    Renseignez les informations du service
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

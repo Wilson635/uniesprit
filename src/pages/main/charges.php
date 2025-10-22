@@ -811,7 +811,7 @@ if (!$_SESSION['email']) {
                                 <!-- Contenu des Onglets -->
                                 <div class="tab-content" id="charges">
                                     <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
-                                        <div class="flex items-center gap-6 p-6 bg-white rounded-lg border border-gray-200">
+                                        <div class="flex items-center gap-6 p-6 bg-white rounded-lg">
                                             <!-- Logo -->
                                             <div class="flex-shrink-0">
                                                 <img class="h-24 w-24 rounded-full object-cover border-2 border-gray-300"
@@ -820,14 +820,14 @@ if (!$_SESSION['email']) {
                                             </div>
 
                                             <!-- Ligne verticale séparatrice -->
-                                            <div class="h-24 w-px bg-gray-300"></div>
+                                            <div class="hidden sm:block h-24 w-px bg-gradient-to-b from-indigo-500 to-indigo-300 rounded-full"></div>
 
                                             <!-- Textes -->
-                                            <div class="flex-1">
-                                                <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                            <div class="flex-1 text-center sm:text-left">
+                                                <h2 class="text-2xl font-bold tracking-tight text-indigo-900">
                                                     Nouvelle charge
                                                 </h2>
-                                                <p class="text-sm text-gray-600">
+                                                <p class="mt-1.5 text-sm text-gray-600">
                                                     Ajoutez une dépense récurrente ou ponctuelle
                                                 </p>
                                             </div>
@@ -892,7 +892,7 @@ if (!$_SESSION['email']) {
                                 <!-- Onglet Paiement -->
                                 <div class="tab-content hidden" id="paiement">
                                     <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
-                                        <div class="flex items-center gap-6 p-6 bg-white rounded-lg border border-gray-200">
+                                        <div class="flex items-center gap-6 p-6 bg-white rounded-lg">
                                             <!-- Logo -->
                                             <div class="flex-shrink-0">
                                                 <img class="h-24 w-24 rounded-full object-cover border-2 border-gray-300"
@@ -901,14 +901,14 @@ if (!$_SESSION['email']) {
                                             </div>
 
                                             <!-- Ligne verticale séparatrice -->
-                                            <div class="h-24 w-px bg-gray-300"></div>
+                                            <div class="hidden sm:block h-24 w-px bg-gradient-to-b from-indigo-500 to-indigo-300 rounded-full"></div>
 
                                             <!-- Textes -->
-                                            <div class="flex-1">
-                                                <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                            <div class="flex-1 text-center sm:text-left">
+                                                <h2 class="text-2xl font-bold tracking-tight text-indigo-900">
                                                     Nouveau paiement
                                                 </h2>
-                                                <p class="text-sm text-gray-600">
+                                                <p class="mt-1.5 text-sm text-gray-600">
                                                     Enregistrez le règlement d'une charge
                                                 </p>
                                             </div>

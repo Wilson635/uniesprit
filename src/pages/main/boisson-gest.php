@@ -656,18 +656,29 @@ if (!$_SESSION['email']) {
                     <div
                             class="w-full flex flex-col bg-white p-8 dark:bg-dark shadow-md dark:shadow-dark-md rounded-md modal-content">
                         <div class="flex flex-col justify-center">
-                            <div class="sm:mx-auto sm:w-full sm:max-w-sm flex items-center space-x-6">
-                                <!-- Image -->
-                                <img class="rounded-full h-20 w-auto" src="../../../assets/logo.jpg" alt="Your Company">
 
-                                <!-- Divider -->
-                                <div class="w-px h-14 bg-gray-300"></div>
+                            <div class="sm:mx-auto sm:w-full sm:max-w-2xl mt-16">
+                                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4">
+                                    <!-- Image -->
+                                    <div class="flex-shrink-0">
+                                        <img class="rounded-full h-24 w-24 object-cover border-2 border-indigo-200"
+                                             src="../../../assets/logo.jpg"
+                                             alt="Your Company">
+                                    </div>
 
-                                <!-- Texte -->
-                                <h2 class="flex flex-col text-gray-900">
-                                    <span class="text-xl font-bold tracking-tight">Ajouter une boisson</span>
-                                    <span class="text-xs mt-2">Renseignez les informations ci-dessous pour ajouter une boisson</span>
-                                </h2>
+                                    <!-- Ligne verticale avec gradient -->
+                                    <div class="hidden sm:block h-24 w-px bg-gradient-to-b from-indigo-500 to-indigo-300 rounded-full"></div>
+
+                                    <!-- Texte avec titre et sous-titre -->
+                                    <div class="flex-1 text-center sm:text-left">
+                                        <h2 class="text-2xl font-bold tracking-tight text-indigo-900">
+                                            Ajouter une boisson
+                                        </h2>
+                                        <p class="mt-1.5 text-sm text-gray-600">
+                                            Renseignez les informations ci-dessous pour ajouter une boisson
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
 

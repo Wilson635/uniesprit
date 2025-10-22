@@ -608,24 +608,24 @@ if (!$_SESSION['email']) {
                             <div
                                     class="w-full flex flex-col p-5 bg-white dark:bg-dark shadow-md dark:shadow-dark-md rounded-md modal-content">
                                 <div class="flex min-h-full flex-col justify-center">
-                                    <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
-                                        <div class="flex items-center gap-6 p-6 bg-white rounded-lg ">
-                                            <!-- Logo -->
+                                    <div class="sm:mx-auto sm:w-full sm:max-w-2xl mt-16">
+                                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4">
+                                            <!-- Image -->
                                             <div class="flex-shrink-0">
-                                                <img class="h-24 w-24 rounded-full object-cover border-2 border-gray-300"
+                                                <img class="rounded-full h-24 w-24 object-cover border-2 border-indigo-200"
                                                      src="../../../assets/logo.jpg"
-                                                     alt="Logo entreprise">
+                                                     alt="Your Company">
                                             </div>
 
-                                            <!-- Ligne verticale séparatrice -->
-                                            <div class="h-24 w-px bg-gray-300"></div>
+                                            <!-- Ligne verticale avec gradient -->
+                                            <div class="hidden sm:block h-24 w-px bg-gradient-to-b from-indigo-500 to-indigo-300 rounded-full"></div>
 
-                                            <!-- Textes -->
-                                            <div class="flex-1">
-                                                <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                            <!-- Texte avec titre et sous-titre -->
+                                            <div class="flex-1 text-center sm:text-left">
+                                                <h2 class="text-2xl font-bold tracking-tight text-indigo-900">
                                                     Nouvelle vente
                                                 </h2>
-                                                <p class="text-sm text-gray-600">
+                                                <p class="mt-1.5 text-sm text-gray-600">
                                                     Enregistrez les détails de la transaction
                                                 </p>
                                             </div>

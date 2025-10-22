@@ -1394,16 +1394,32 @@ if (!$_SESSION['email']) {
                     <div
                             class="w-full flex flex-col bg-white p-8 dark:bg-dark  shadow-md dark:shadow-dark-md rounded-md modal-content">
                         <div class="flex min-h-full flex-col justify-center">
-                            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                                <img class="mx-auto rounded-full h-30 w-auto mt-8" src="../../../assets/logo.jpg"
-                                     alt="Your Company">
-                                <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                                    Compléter les champs pour enrégistrer un ticket</h2>
+                            <div class="sm:mx-auto sm:w-full sm:max-w-2xl mt-16">
+                                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4">
+                                    <!-- Image -->
+                                    <div class="flex-shrink-0">
+                                        <img class="rounded-full h-24 w-24 object-cover border-2 border-indigo-200"
+                                             src="../../../assets/logo.jpg"
+                                             alt="Your Company">
+                                    </div>
+
+                                    <!-- Ligne verticale avec gradient -->
+                                    <div class="hidden sm:block h-24 w-px bg-gradient-to-b from-indigo-500 to-indigo-300 rounded-full"></div>
+
+                                    <!-- Texte avec titre et sous-titre -->
+                                    <div class="flex-1 text-center sm:text-left">
+                                        <h2 class="text-2xl font-bold tracking-tight text-indigo-900">
+                                            Nouveau Ticket Client
+                                        </h2>
+                                        <p class="mt-1.5 text-sm text-gray-600">
+                                            Renseignez les informations du client et du service effectué
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                                 <?php
-
                                 include_once '../../config/config.php';
                                 require_once '../../../vendor/autoload.php';
 
@@ -1458,35 +1474,33 @@ if (!$_SESSION['email']) {
                                                 ":appreciation" => $satisfaction
                                             ]);
 
-                                            echo "<div class='bg-green-400 text-black p-3 text-center rounded-md'>Ticket enregistré avec succès.</div>";
+                                            echo "<div class='bg-green-400 text-black p-3 text-center rounded-md mb-4'>Ticket enregistré avec succès.</div>";
                                         } catch (PDOException $e) {
-                                            echo "Erreur : " . $e->getMessage();
+                                            echo "<div class='bg-red-400 text-white p-3 text-center rounded-md mb-4'>Erreur : " . $e->getMessage() . "</div>";
                                         }
                                     } else {
-                                        echo "Veuillez remplir tous les champs.";
+                                        echo "<div class='bg-yellow-400 text-black p-3 text-center rounded-md mb-4'>Veuillez remplir tous les champs.</div>";
                                     }
                                 }
                                 ?>
 
-
                                 <form class="space-y-3" action="#" method="POST">
+                                    <div id="client-notification" class="mt-2"></div>
                                     <div class="grid lg:grid-cols-2 grid-cols-1 justify-between gap-3 items-center">
                                         <div>
-                                            <label for="name" >Nom du
-                                                client</label>
+                                            <label for="name">Nom du client</label>
                                             <div class="mt-2">
-                                                <input type="text" name="name" id="name"
+                                                <input type="text" name="name" id="name" required
                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                             </div>
                                         </div>
 
                                         <div>
                                             <div class="flex items-center justify-between">
-                                                <label for="surname" >Prénom
-                                                    du client</label>
+                                                <label for="surname">Prénom du client</label>
                                             </div>
                                             <div class="mt-2">
-                                                <input type="text" name="surname" id="surname"
+                                                <input type="text" name="surname" id="surname" required
                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                             </div>
                                         </div>
@@ -1494,23 +1508,23 @@ if (!$_SESSION['email']) {
 
                                     <div>
                                         <div class="flex items-center justify-between">
-                                            <label for="phone" >Téléphone
-                                                du client</label>
+                                            <label for="phone">Téléphone du client</label>
                                         </div>
                                         <div class="mt-2">
-                                            <input type="text" name="phone" id="phone"
+                                            <input type="text" name="phone" id="phone" required
+                                                   placeholder="Entrez le numéro de téléphone"
                                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                         </div>
+
                                     </div>
 
                                     <div class="grid grid-cols-12 gap-4 transition-all duration-[.25s] justify-between items-center">
                                         <div class="lg:col-span-8 md:col-span-12 sm:col-span-12 col-span-12">
-                                            <label for="services" >Type
-                                                de service</label>
+                                            <label for="services">Type de service</label>
                                             <div class="mt-2">
-                                                <select id="services" name="services"
+                                                <select id="services" name="services" required
                                                         class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                                                    <option disabled selected>Choisir un service</option>
+                                                    <option disabled selected value="">Choisir un service</option>
                                                     <?php
                                                     include_once '../../config/config.php';
 
@@ -1529,22 +1543,20 @@ if (!$_SESSION['email']) {
                                         </div>
 
                                         <div class="lg:col-span-4 md:col-span-12 sm:col-span-12 col-span-12">
-                                            <label for="price"
-                                                   >Price</label>
+                                            <label for="price">Price</label>
                                             <div class="mt-2">
-                                                <input type="text" name="price" id="price"
+                                                <input type="text" name="price" id="price" required
                                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label for="employee" >Fait(e)
-                                            par</label>
+                                        <label for="employee">Fait(e) par</label>
                                         <div class="mt-2">
-                                            <select id="employee" name="employee"
+                                            <select id="employee" name="employee" required
                                                     class="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                                                <option disabled selected>Choisir un employé</option>
+                                                <option disabled selected value="">Choisir un employé</option>
                                                 <?php
                                                 include_once '../../config/config.php';
 
@@ -1564,19 +1576,17 @@ if (!$_SESSION['email']) {
 
                                     <div>
                                         <div class="flex items-center justify-between">
-                                            <label for="satisfaction" >Appréciation</label>
+                                            <label for="satisfaction">Appréciation</label>
                                         </div>
                                         <div class="mt-2">
-                                            <!--<input type="text" name="satisfaction" id="satisfaction"  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">-->
-                                            <select id="satisfaction" name="satisfaction"
+                                            <select id="satisfaction" name="satisfaction" required
                                                     class="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                                                <option disabled selected>Choisir une appréciation</option>
+                                                <option disabled selected value="">Choisir une appréciation</option>
                                                 <option value="Satisfaite">Satisfaite</option>
                                                 <option value="Pas Satisfaite">Pas Satisfaite</option>
                                             </select>
                                         </div>
                                     </div>
-
 
                                     <div>
                                         <button type="submit"
@@ -1772,6 +1782,76 @@ if (!$_SESSION['email']) {
                 chart.render();
             })
             .catch(error => console.error("Erreur lors de la récupération des données :", error));
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const phoneInput = document.getElementById('phone');
+        const nameInput = document.getElementById('name');
+        const surnameInput = document.getElementById('surname');
+        const notificationDiv = document.getElementById('client-notification');
+
+        let isExistingClient = false;
+
+        phoneInput.addEventListener('blur', function() {
+            const phone = this.value.trim();
+
+            if (phone.length >= 9) {
+                // Afficher un loader
+                notificationDiv.innerHTML = '<div class="text-indigo-600 text-sm">🔍 Recherche du client...</div>';
+
+                fetch('../../components/get_client.php?phone=' + encodeURIComponent(phone))
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.first_name && data.last_name) {
+                            // Client existant trouvé
+                            isExistingClient = true;
+                            nameInput.value = data.last_name;
+                            surnameInput.value = data.first_name;
+
+                            // Rendre les champs en lecture seule
+                            nameInput.classList.add('bg-gray-100', 'cursor-not-allowed');
+                            surnameInput.classList.add('bg-gray-100', 'cursor-not-allowed');
+                            nameInput.readOnly = true;
+                            surnameInput.readOnly = true;
+
+                            // Message de confirmation
+                            notificationDiv.innerHTML = '<div class="bg-green-100 text-green-800 p-2 rounded-md text-sm">✓ Client existant trouvé : ' + data.first_name + ' ' + data.last_name + '</div>';
+                        } else {
+                            // Nouveau client
+                            isExistingClient = false;
+                            resetClientFields();
+                            notificationDiv.innerHTML = '<div class="bg-blue-100 text-blue-800 p-2 rounded-md text-sm">ℹ️ Nouveau client - Veuillez remplir le nom et prénom</div>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        notificationDiv.innerHTML = '<div class="bg-red-100 text-red-800 p-2 rounded-md text-sm">⚠️ Erreur lors de la recherche</div>';
+                        resetClientFields();
+                    });
+            } else {
+                notificationDiv.innerHTML = '';
+                resetClientFields();
+            }
+        });
+
+        // Réinitialiser les champs si l'utilisateur modifie le téléphone
+        phoneInput.addEventListener('input', function() {
+            if (isExistingClient) {
+                notificationDiv.innerHTML = '<div class="bg-yellow-100 text-yellow-800 p-2 rounded-md text-sm">⚠️ Modification du numéro détectée</div>';
+            }
+        });
+
+        function resetClientFields() {
+            nameInput.value = '';
+            surnameInput.value = '';
+            nameInput.classList.remove('bg-gray-100', 'cursor-not-allowed');
+            surnameInput.classList.remove('bg-gray-100', 'cursor-not-allowed');
+            nameInput.readOnly = false;
+            surnameInput.readOnly = false;
+            isExistingClient = false;
+        }
     });
 </script>
 </body>
