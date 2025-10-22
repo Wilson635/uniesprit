@@ -390,12 +390,10 @@ if (!$_SESSION['email']) {
 
                 <div class="grid grid-cols-12 gap-6 mt-6">
 
-                    <div
-                            class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
+                    <div class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
                         <div class="card shadow-none border-s border-[#cc2384]">
                             <div class="card-body p-8">
-                                <div
-                                        class="flex justify-between items-center">
+                                <div class="flex justify-between items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
                                         <g fill="none" stroke="#cc2384" stroke-linecap="round" stroke-linejoin="round"
                                            stroke-width="1.5" color="#cc2384">
@@ -403,61 +401,160 @@ if (!$_SESSION['email']) {
                                             <path d="M10.438 11.667V6.333m1.562 0V5m0 8v-1.333M10.438 9h3.124m0 0c.518 0 .938.448.938 1v.667c0 .552-.42 1-.937 1H9.5M13.563 9c.517 0 .937-.448.937-1v-.667c0-.552-.42-1-.937-1H9.5"/>
                                         </g>
                                     </svg>
-                                    <div
-                                            class="ms-auto sm:text-start text-end">
-                                        <h5
-                                                class="font-medium text-2xl ">
+                                    <div class="ms-auto sm:text-start text-end">
+                                        <h5 class="font-medium text-2xl">
                                             <?php
                                             include_once '../../config/config.php';
 
-                                            $conn = getConnexion();
-                                            $sql_profit_total = "SELECT SUM(v.prix_total - (b.prix_achat * v.quantite_vendue)) AS profit_total 
-                                                FROM ventes v
-                                                JOIN boissons b ON v.boisson_id = b.id";
+                                            function calculerProfitJournalier(): array
+                                            {
+                                                try {
+                                                    $conn = getConnexion();
 
-                                            $stmt_profit = $conn->prepare($sql_profit_total);
-                                            $stmt_profit->execute();
-                                            $profit_total = $stmt_profit->fetchColumn();
+                                                    // Profit d'aujourd'hui (ventes uniquement)
+                                                    $sql_profit_jour = "
+                                    SELECT SUM(v.prix_total - (b.prix_achat * v.quantite_vendue)) AS profit_jour
+                                    FROM ventes v
+                                    JOIN boissons b ON v.boisson_id = b.id
+                                    WHERE DATE(v.date_vente) = CURDATE()
+                                ";
 
-                                            echo "<strong>" . number_format($profit_total, 2) . " FCFA</strong>";
+                                                    $stmt = $conn->prepare($sql_profit_jour);
+                                                    $stmt->execute();
+                                                    $profitJour = $stmt->fetchColumn() ?? 0;
+
+                                                    // Profit d'hier pour comparaison
+                                                    $sql_profit_hier = "
+                                    SELECT SUM(v.prix_total - (b.prix_achat * v.quantite_vendue)) AS profit_hier
+                                    FROM ventes v
+                                    JOIN boissons b ON v.boisson_id = b.id
+                                    WHERE DATE(v.date_vente) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+                                ";
+
+                                                    $stmt = $conn->prepare($sql_profit_hier);
+                                                    $stmt->execute();
+                                                    $profitHier = $stmt->fetchColumn() ?? 0;
+
+                                                    // Calcul de la variation
+                                                    $variation = 0;
+                                                    if ($profitHier > 0) {
+                                                        $variation = (($profitJour - $profitHier) / $profitHier) * 100;
+                                                    }
+
+                                                    return [
+                                                        'profit' => $profitJour,
+                                                        'variation' => $variation
+                                                    ];
+                                                } catch (PDOException $e) {
+                                                    return ['profit' => 0, 'variation' => 0];
+                                                }
+                                            }
+
+                                            $resultProfit = calculerProfitJournalier();
+                                            echo "<strong>" . number_format($resultProfit['profit'], 0, ',', ' ') . " FCFA</strong>";
                                             ?>
                                         </h5>
-                                        <p
-                                                class="text-[#cc2384] font-medium text-right">Profit</p>
+                                        <div class="flex items-center justify-end gap-2">
+                                            <p class="text-[#cc2384] font-medium">Profit du jour</p>
+                                            <?php
+                                            $variation = $resultProfit['variation'];
+                                            if ($variation != 0) {
+                                                $couleur = $variation > 0 ? 'text-green-600' : 'text-red-600';
+                                                $icone = $variation > 0 ? '↑' : '↓';
+                                                echo "<span class='text-xs {$couleur} font-semibold'>{$icone} " .
+                                                    number_format(abs($variation), 1) . "%</span>";
+                                            }
+                                            ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div
-                            class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
+
+                    <div class="lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-12">
                         <div class="card shadow-none border-s border-[#ccc423]">
                             <div class="card-body p-8">
-                                <div
-                                        class="flex justify-between items-center">
+                                <div class="flex justify-between items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
                                         <path fill="#ccc423"
                                               d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8 8a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828zM7 9a2 2 0 1 1 .001-4.001A2 2 0 0 1 7 9"/>
                                     </svg>
-                                    <div
-                                            class="ms-auto sm:text-start text-end">
-                                        <h5
-                                                class="font-medium text-2xl ">
+                                    <div class="ms-auto sm:text-start text-end">
+                                        <h5 class="font-medium text-2xl">
                                             <?php
                                             include_once '../../config/config.php';
 
-                                            $conn = getConnexion();
-                                            $sql_ventes_total = "SELECT SUM(prix_total) AS ventes_total FROM ventes";
+                                            function calculerVentesJournalieres(): array
+                                            {
+                                                try {
+                                                    $conn = getConnexion();
 
-                                            $stmt_ventes = $conn->prepare($sql_ventes_total);
-                                            $stmt_ventes->execute();
-                                            $ventes_total = $stmt_ventes->fetchColumn();
-                                            echo "<strong>" . number_format($ventes_total, 2) . " FCFA</strong>";
+                                                    // Ventes d'aujourd'hui
+                                                    $sql_ventes_jour = "
+                                    SELECT 
+                                        SUM(prix_total) AS ventes_jour,
+                                        COUNT(*) AS nombre_ventes
+                                    FROM ventes 
+                                    WHERE DATE(date_vente) = CURDATE()
+                                ";
+
+                                                    $stmt = $conn->prepare($sql_ventes_jour);
+                                                    $stmt->execute();
+                                                    $resultJour = $stmt->fetch(PDO::FETCH_ASSOC);
+                                                    $ventesJour = $resultJour['ventes_jour'] ?? 0;
+                                                    $nombreVentes = $resultJour['nombre_ventes'] ?? 0;
+
+                                                    // Ventes d'hier pour comparaison
+                                                    $sql_ventes_hier = "
+                                    SELECT SUM(prix_total) AS ventes_hier
+                                    FROM ventes 
+                                    WHERE DATE(date_vente) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+                                ";
+
+                                                    $stmt = $conn->prepare($sql_ventes_hier);
+                                                    $stmt->execute();
+                                                    $ventesHier = $stmt->fetchColumn() ?? 0;
+
+                                                    // Calcul de la variation
+                                                    $variation = 0;
+                                                    if ($ventesHier > 0) {
+                                                        $variation = (($ventesJour - $ventesHier) / $ventesHier) * 100;
+                                                    }
+
+                                                    return [
+                                                        'ventes' => $ventesJour,
+                                                        'nombre' => $nombreVentes,
+                                                        'variation' => $variation
+                                                    ];
+                                                } catch (PDOException $e) {
+                                                    return ['ventes' => 0, 'nombre' => 0, 'variation' => 0];
+                                                }
+                                            }
+
+                                            $resultVentes = calculerVentesJournalieres();
+                                            echo "<strong>" . number_format($resultVentes['ventes'], 0, ',', ' ') . " FCFA</strong>";
                                             ?>
-
                                         </h5>
-                                        <p
-                                                class="text-[#ccc423] font-medium text-right">Ventes</p>
+                                        <div class="flex items-center justify-end gap-2">
+                                            <p class="text-[#ccc423] font-medium">
+                                                Ventes du jour
+                                                <?php
+                                                if ($resultVentes['nombre'] > 0) {
+                                                    echo "<span class='text-xs text-gray-500'>({$resultVentes['nombre']})</span>";
+                                                }
+                                                ?>
+                                            </p>
+                                            <?php
+                                            $variation = $resultVentes['variation'];
+                                            if ($variation != 0) {
+                                                $couleur = $variation > 0 ? 'text-green-600' : 'text-red-600';
+                                                $icone = $variation > 0 ? '↑' : '↓';
+                                                echo "<span class='text-xs {$couleur} font-semibold'>{$icone} " .
+                                                    number_format(abs($variation), 1) . "%</span>";
+                                            }
+                                            ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -511,11 +608,28 @@ if (!$_SESSION['email']) {
                             <div
                                     class="w-full flex flex-col p-5 bg-white dark:bg-dark shadow-md dark:shadow-dark-md rounded-md modal-content">
                                 <div class="flex min-h-full flex-col justify-center">
-                                    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                                        <img class="mx-auto rounded-full h-30 w-auto mt-15"
-                                             src="../../../assets/logo.jpg" alt="Your Company">
-                                        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                                            Compléter les champs pour enrégistrer une vente</h2>
+                                    <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
+                                        <div class="flex items-center gap-6 p-6 bg-white rounded-lg ">
+                                            <!-- Logo -->
+                                            <div class="flex-shrink-0">
+                                                <img class="h-24 w-24 rounded-full object-cover border-2 border-gray-300"
+                                                     src="../../../assets/logo.jpg"
+                                                     alt="Logo entreprise">
+                                            </div>
+
+                                            <!-- Ligne verticale séparatrice -->
+                                            <div class="h-24 w-px bg-gray-300"></div>
+
+                                            <!-- Textes -->
+                                            <div class="flex-1">
+                                                <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                                    Nouvelle vente
+                                                </h2>
+                                                <p class="text-sm text-gray-600">
+                                                    Enregistrez les détails de la transaction
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <?php

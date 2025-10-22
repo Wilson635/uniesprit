@@ -846,12 +846,36 @@ if (!isset($_SESSION['email'])) {
                                         </h6>
                                     </div>
                                 </div>
-                                <form action="../../components/export-rapport.php" method="GET">
-                                    <button type="submit"
-                                            class="rounded-md cursor-pointer w-full mt-7 bg-blue-500 py-3 text-white font-medium hover:bg-blue-700">
-                                        Rapport complet
-                                    </button>
-                                </form>
+                                <?php
+                                // Fonction pour vérifier si on est dans la période autorisée
+                                function estPeriodeRapport(): bool
+                                {
+                                    $jourActuel = (int)date('j'); // Jour du mois (1-31)
+                                    $dernierJourDuMois = (int)date('t'); // Dernier jour du mois en cours
+
+                                    // Vérifier si on est le dernier jour du mois
+                                    $estDernierJour = ($jourActuel === $dernierJourDuMois);
+
+                                    // Vérifier si on est entre le 1er et le 5 du mois
+                                    $estDebutMois = ($jourActuel >= 1 && $jourActuel <= 22);
+
+                                    return $estDernierJour || $estDebutMois;
+                                }
+                                ?>
+
+                                <!-- Remplacez votre balise <form> actuelle par ce code : -->
+                                <?php if (estPeriodeRapport()): ?>
+                                    <form action="../../components/export-rapport.php" method="GET">
+                                        <button type="submit"
+                                                class="rounded-md cursor-pointer w-full mt-7 bg-blue-500 py-3 text-white font-medium hover:bg-blue-700">
+                                            Rapport mensuel
+                                        </button>
+                                    </form>
+                                <?php else: ?>
+                                    <div class="rounded-md w-full mt-7 bg-gray-300 py-3 text-gray-600 font-medium text-center cursor-not-allowed">
+                                        Rapport disponible en fin de mois
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

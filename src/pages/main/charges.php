@@ -810,11 +810,28 @@ if (!$_SESSION['email']) {
 
                                 <!-- Contenu des Onglets -->
                                 <div class="tab-content" id="charges">
-                                    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                                        <img class="mx-auto rounded-full h-30 w-auto mt-5"
-                                             src="../../../assets/logo.jpg" alt="Your Company">
-                                        <h2 class="mt-5 text-center text-2xl font-bold tracking-tight text-gray-900">
-                                            Compléter les champs pour enregistrer une charge</h2>
+                                    <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
+                                        <div class="flex items-center gap-6 p-6 bg-white rounded-lg border border-gray-200">
+                                            <!-- Logo -->
+                                            <div class="flex-shrink-0">
+                                                <img class="h-24 w-24 rounded-full object-cover border-2 border-gray-300"
+                                                     src="../../../assets/logo.jpg"
+                                                     alt="Logo entreprise">
+                                            </div>
+
+                                            <!-- Ligne verticale séparatrice -->
+                                            <div class="h-24 w-px bg-gray-300"></div>
+
+                                            <!-- Textes -->
+                                            <div class="flex-1">
+                                                <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                                    Nouvelle charge
+                                                </h2>
+                                                <p class="text-sm text-gray-600">
+                                                    Ajoutez une dépense récurrente ou ponctuelle
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -874,11 +891,28 @@ if (!$_SESSION['email']) {
 
                                 <!-- Onglet Paiement -->
                                 <div class="tab-content hidden" id="paiement">
-                                    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                                        <img class="mx-auto rounded-full h-30 w-auto mt-5"
-                                             src="../../../assets/logo.jpg" alt="Your Company">
-                                        <h2 class="mt-5 text-center text-2xl font-bold tracking-tight text-gray-900">
-                                            Enregistrer un paiement</h2>
+                                    <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
+                                        <div class="flex items-center gap-6 p-6 bg-white rounded-lg border border-gray-200">
+                                            <!-- Logo -->
+                                            <div class="flex-shrink-0">
+                                                <img class="h-24 w-24 rounded-full object-cover border-2 border-gray-300"
+                                                     src="../../../assets/logo.jpg"
+                                                     alt="Logo entreprise">
+                                            </div>
+
+                                            <!-- Ligne verticale séparatrice -->
+                                            <div class="h-24 w-px bg-gray-300"></div>
+
+                                            <!-- Textes -->
+                                            <div class="flex-1">
+                                                <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                                    Nouveau paiement
+                                                </h2>
+                                                <p class="text-sm text-gray-600">
+                                                    Enregistrez le règlement d'une charge
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">

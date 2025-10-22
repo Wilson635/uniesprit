@@ -656,12 +656,20 @@ if (!$_SESSION['email']) {
                     <div
                             class="w-full flex flex-col bg-white p-8 dark:bg-dark shadow-md dark:shadow-dark-md rounded-md modal-content">
                         <div class="flex flex-col justify-center">
-                            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                                <img class="mx-auto rounded-full h-30 w-auto mt-8" src="../../../assets/logo.jpg"
-                                     alt="Your Company">
-                                <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                                    Compléter les champs pour enrégistrer une boisson</h2>
+                            <div class="sm:mx-auto sm:w-full sm:max-w-sm flex items-center space-x-6">
+                                <!-- Image -->
+                                <img class="rounded-full h-20 w-auto" src="../../../assets/logo.jpg" alt="Your Company">
+
+                                <!-- Divider -->
+                                <div class="w-px h-14 bg-gray-300"></div>
+
+                                <!-- Texte -->
+                                <h2 class="flex flex-col text-gray-900">
+                                    <span class="text-xl font-bold tracking-tight">Ajouter une boisson</span>
+                                    <span class="text-xs mt-2">Renseignez les informations ci-dessous pour ajouter une boisson</span>
+                                </h2>
                             </div>
+
 
                             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                                 <?php
