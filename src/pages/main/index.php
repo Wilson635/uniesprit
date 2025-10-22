@@ -857,7 +857,7 @@ if (!isset($_SESSION['email'])) {
                                     $estDernierJour = ($jourActuel === $dernierJourDuMois);
 
                                     // Vérifier si on est entre le 1er et le 5 du mois
-                                    $estDebutMois = ($jourActuel >= 1 && $jourActuel <= 22);
+                                    $estDebutMois = ($jourActuel >= 1 && $jourActuel <= 5);
 
                                     return $estDernierJour || $estDebutMois;
                                 }

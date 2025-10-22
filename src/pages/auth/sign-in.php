@@ -89,12 +89,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div>
                     <button type="submit"
-                        class="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm/6 font-semibold text-white cursor-pointer shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm/6 font-semibold text-white cursor-pointer shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         ☬ Envoyer ☬
                     </button>
                 </div>
             </div>
-            <p class="mt-10 text-center"> Veuillez contacter en cas de soucis <span> <a x-tooltip.placement.top="'Mon mobile : +237 670 74 38 08'" class="text-red-500 hover:text-red-400 font-bold">l'administrateur.</a> </span> </p>
+            <p class="mt-10 text-center"> Veuillez contacter en cas de soucis <span> <a x-tooltip.placement.top="'Mon mobile : +237 670 74 38 08'" class="text-blue-500 hover:text-blue-400 font-bold">l'administrateur.</a> </span> </p>
         </div>
     </form>
 
