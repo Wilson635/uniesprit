@@ -66,8 +66,8 @@ if (!$_SESSION['email']) {
                 <!-- Application Logo -->
                 <div class="flex pt-4">
                     <a href="/">
-                        <img class="rounded-full size-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
-                             src="../../../assets/logo.jpg" alt="logo"/>
+                        <img class="size-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+                             src="../../../assets/g67.png" alt="logo"/>
                     </a>
                 </div>
 
@@ -612,8 +612,8 @@ if (!$_SESSION['email']) {
                                         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4">
                                             <!-- Image -->
                                             <div class="flex-shrink-0">
-                                                <img class="rounded-full h-24 w-24 object-cover border-2 border-indigo-200"
-                                                     src="../../../assets/logo.jpg"
+                                                <img class="h-24 w-24"
+                                                     src="../../../assets/g67.png"
                                                      alt="Your Company">
                                             </div>
 

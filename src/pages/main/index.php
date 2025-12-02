@@ -69,8 +69,8 @@ if (!isset($_SESSION['email'])) {
                 <!-- Application Logo -->
                 <div class="flex pt-4">
                     <a href="/">
-                        <img class="rounded-full size-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
-                             src="../../../assets/logo.jpg" alt="logo"/>
+                        <img class="size-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+                             src="../../../assets/g67.png" alt="logo"/>
                     </a>
                 </div>
 
@@ -1889,8 +1889,8 @@ if (!isset($_SESSION['email'])) {
                                     echo '
                                         <div class="flex cursor-pointer items-center justify-between">
                                             <div class="flex items-center space-x-3">
-                                                <div class="avatar">
-                                                    <img class="rounded-full" src="../../../assets/logo.jpg" alt="avatar" />
+                                                <div class="h-10 w-10 p-2 bg-black rounded-lg">
+                                                    <img class="rounded-full" src="../../../assets/g66.png" alt="avatar" />
                                                 </div>
                                                 <div>
                                                     <p class="text-slate-700 line-clamp-1 dark:text-navy-100">

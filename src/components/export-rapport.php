@@ -21,9 +21,9 @@ $resume = [];
 // Revenus du mois en cours
 $queryRevenus = "
     SELECT 
-        COALESCE(SUM(v.prix_total), 0) as revenus_ventes,
+        COALESCE(SUM(v.prix_unitaire), 0) as revenus_ventes,
         COALESCE(SUM(t.price), 0) as revenus_services,
-        COALESCE(SUM(v.prix_total), 0) + COALESCE(SUM(t.price), 0) as total_revenus
+        COALESCE(SUM(v.prix_unitaire), 0) + COALESCE(SUM(t.price), 0) as total_revenus
     FROM (SELECT 1) dummy
     LEFT JOIN ventes v ON DATE(v.date_vente) BETWEEN :start AND :end
     LEFT JOIN tickets t ON DATE(t.service_date) BETWEEN :start AND :end

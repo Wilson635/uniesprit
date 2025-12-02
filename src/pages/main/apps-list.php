@@ -65,8 +65,8 @@ if (!$_SESSION['email']) {
                 <!-- Application Logo -->
                 <div class="flex pt-4">
                     <a href="/">
-                        <img class="rounded-full size-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
-                             src="../../../assets/logo.jpg" alt="logo"/>
+                        <img class="size-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+                             src="../../../assets/g67.png" alt="logo"/>
                     </a>
                 </div>
 
@@ -1398,8 +1398,8 @@ if (!$_SESSION['email']) {
                                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4">
                                     <!-- Image -->
                                     <div class="flex-shrink-0">
-                                        <img class="rounded-full h-24 w-24 object-cover border-2 border-indigo-200"
-                                             src="../../../assets/logo.jpg"
+                                        <img class="h-24 w-24"
+                                             src="../../../assets/g67.png"
                                              alt="Your Company">
                                     </div>
 
@@ -1596,6 +1596,34 @@ if (!$_SESSION['email']) {
                                     </div>
                                 </form>
                             </div>
+
+                            <!-- Modal pour sélection de clients multiples -->
+                            <div id="clientModal" class="hidden fixed inset-0 backdrop-blur-sm bg-black/30 overflow-y-auto h-full w-full z-50">
+                                <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+                                    <div class="mt-3">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <h3 class="text-lg font-medium text-gray-900">Plusieurs clients trouvés</h3>
+                                            <button id="closeModal" class="text-gray-400 hover:text-gray-500">
+                                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        </div>
+
+                                        <p class="text-sm text-gray-500 mb-4">Sélectionnez le client correspondant :</p>
+
+                                        <div id="clientList" class="space-y-2 max-h-96 overflow-y-auto">
+                                            <!-- Les clients seront insérés ici dynamiquement -->
+                                        </div>
+
+                                        <div class="mt-4 flex justify-end">
+                                            <button id="cancelModal" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
+                                                Annuler
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1788,6 +1816,301 @@ if (!$_SESSION['email']) {
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const phoneInput = document.getElementById('phone');
+        const nameInput = document.getElementById('surname');
+        const surnameInput = document.getElementById('name');
+        const notificationDiv = document.getElementById('client-notification');
+        const clientModal = document.getElementById('clientModal');
+        const clientList = document.getElementById('clientList');
+        const closeModalBtn = document.getElementById('closeModal');
+        const cancelModalBtn = document.getElementById('cancelModal');
+
+        let isExistingClient = false;
+        let searchTimeout = null;
+
+        // Fonction pour afficher le modal
+        function showModal(clients) {
+            clientList.innerHTML = '';
+
+            clients.forEach(client => {
+                const clientCard = document.createElement('div');
+                clientCard.className = 'p-4 border border-gray-200 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors';
+                clientCard.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="font-semibold text-gray-900">${client.first_name} ${client.last_name}</p>
+                            <p class="text-sm text-gray-600">📞 ${client.phone}</p>
+                        </div>
+                        <svg class="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                `;
+
+                clientCard.addEventListener('click', function() {
+                    selectClient(client);
+                    hideModal();
+                });
+
+                clientList.appendChild(clientCard);
+            });
+
+            clientModal.classList.remove('hidden');
+        }
+
+        // Fonction pour cacher le modal
+        function hideModal() {
+            clientModal.classList.add('hidden');
+        }
+
+        // Événements de fermeture du modal
+        closeModalBtn.addEventListener('click', hideModal);
+        cancelModalBtn.addEventListener('click', hideModal);
+
+        // Fermer le modal en cliquant en dehors
+        clientModal.addEventListener('click', function(e) {
+            if (e.target === clientModal) {
+                hideModal();
+            }
+        });
+
+        // Fonction pour sélectionner un client
+        function selectClient(client) {
+            isExistingClient = true;
+
+            // Remplir tous les champs
+            nameInput.value = client.last_name;
+            surnameInput.value = client.first_name;
+            phoneInput.value = client.phone;
+
+            // Rendre les champs en lecture seule
+            lockFields();
+
+            // Message de confirmation
+            notificationDiv.innerHTML = `<div class="bg-green-100 text-green-800 p-2 rounded-md text-sm">✓ Client sélectionné : ${client.first_name} ${client.last_name} (${client.phone})</div>`;
+        }
+
+        // Fonction pour verrouiller les champs
+        function lockFields() {
+            nameInput.classList.add('bg-gray-100', 'cursor-not-allowed');
+            surnameInput.classList.add('bg-gray-100', 'cursor-not-allowed');
+            phoneInput.classList.add('bg-gray-100', 'cursor-not-allowed');
+            nameInput.readOnly = true;
+            surnameInput.readOnly = true;
+            phoneInput.readOnly = true;
+        }
+
+        // Fonction de recherche générique
+        function searchClient(param, value) {
+            if (searchTimeout) {
+                clearTimeout(searchTimeout);
+            }
+
+            searchTimeout = setTimeout(() => {
+                notificationDiv.innerHTML = '<div class="text-indigo-600 text-sm">🔍 Recherche du client...</div>';
+
+                fetch(`../../components/get_client.php?${param}=` + encodeURIComponent(value))
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.found) {
+                            if (data.multiple) {
+                                // Plusieurs clients trouvés - afficher le modal
+                                notificationDiv.innerHTML = '<div class="bg-blue-100 text-blue-800 p-2 rounded-md text-sm">ℹ️ Plusieurs clients trouvés - Sélectionnez le bon client</div>';
+                                showModal(data.clients);
+                            } else {
+                                // Un seul client trouvé - remplir automatiquement
+                                selectClient(data.client);
+                            }
+                        } else {
+                            // Nouveau client
+                            isExistingClient = false;
+                            notificationDiv.innerHTML = '<div class="bg-blue-100 text-blue-800 p-2 rounded-md text-sm">ℹ️ Nouveau client - Veuillez remplir tous les champs</div>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        notificationDiv.innerHTML = '<div class="bg-red-100 text-red-800 p-2 rounded-md text-sm">⚠️ Erreur lors de la recherche</div>';
+                    });
+            }, 500);
+        }
+
+        // Recherche par téléphone
+        phoneInput.addEventListener('blur', function() {
+            const phone = this.value.trim();
+            if (phone.length >= 9 && !isExistingClient) {
+                searchClient('phone', phone);
+            }
+        });
+
+        // Recherche par nom
+        nameInput.addEventListener('blur', function() {
+            const name = this.value.trim();
+            if (!isExistingClient && name.length >= 2) {
+                searchClient('last_name', name);
+            }
+        });
+
+        // Recherche par prénom
+        surnameInput.addEventListener('blur', function() {
+            const surname = this.value.trim();
+            if (!isExistingClient && surname.length >= 2) {
+                searchClient('first_name', surname);
+            }
+        });
+
+        // Réinitialiser si modification détectée
+        phoneInput.addEventListener('input', function() {
+            if (isExistingClient) {
+                resetClientFields();
+                notificationDiv.innerHTML = '<div class="bg-yellow-100 text-yellow-800 p-2 rounded-md text-sm">⚠️ Modification détectée - Nouveau client</div>';
+            }
+        });
+
+        nameInput.addEventListener('input', function() {
+            if (isExistingClient) {
+                resetClientFields();
+                notificationDiv.innerHTML = '<div class="bg-yellow-100 text-yellow-800 p-2 rounded-md text-sm">⚠️ Modification détectée - Nouveau client</div>';
+            }
+        });
+
+        surnameInput.addEventListener('input', function() {
+            if (isExistingClient) {
+                resetClientFields();
+                notificationDiv.innerHTML = '<div class="bg-yellow-100 text-yellow-800 p-2 rounded-md text-sm">⚠️ Modification détectée - Nouveau client</div>';
+            }
+        });
+
+        function resetClientFields() {
+            nameInput.classList.remove('bg-gray-100', 'cursor-not-allowed');
+            surnameInput.classList.remove('bg-gray-100', 'cursor-not-allowed');
+            phoneInput.classList.remove('bg-gray-100', 'cursor-not-allowed');
+            nameInput.readOnly = false;
+            surnameInput.readOnly = false;
+            phoneInput.readOnly = false;
+            isExistingClient = false;
+        }
+    });
+</script>
+
+<!--
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const phoneInput = document.getElementById('phone');
+        const nameInput = document.getElementById('name');
+        const surnameInput = document.getElementById('surname');
+        const notificationDiv = document.getElementById('client-notification');
+
+        let isExistingClient = false;
+        let searchTimeout = null;
+
+        // Fonction de recherche générique
+        function searchClient(param, value) {
+            if (searchTimeout) {
+                clearTimeout(searchTimeout);
+            }
+
+            searchTimeout = setTimeout(() => {
+                notificationDiv.innerHTML = '<div class="text-indigo-600 text-sm">🔍 Recherche du client...</div>';
+
+                fetch(`../../components/get_client.php?${param}=` + encodeURIComponent(value))
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.first_name && data.last_name && data.phone) {
+                            // Client existant trouvé
+                            isExistingClient = true;
+
+                            // Remplir tous les champs
+                            nameInput.value = data.last_name;
+                            surnameInput.value = data.first_name;
+                            phoneInput.value = data.phone;
+
+                            // Rendre les champs en lecture seule
+                            nameInput.classList.add('bg-gray-100', 'cursor-not-allowed');
+                            surnameInput.classList.add('bg-gray-100', 'cursor-not-allowed');
+                            phoneInput.classList.add('bg-gray-100', 'cursor-not-allowed');
+                            nameInput.readOnly = true;
+                            surnameInput.readOnly = true;
+                            phoneInput.readOnly = true;
+
+                            // Message de confirmation
+                            notificationDiv.innerHTML = '<div class="bg-green-100 text-green-800 p-2 rounded-md text-sm">✓ Client existant : ' + data.first_name + ' ' + data.last_name + ' (' + data.phone + ')</div>';
+                        } else {
+                            // Nouveau client
+                            isExistingClient = false;
+                            notificationDiv.innerHTML = '<div class="bg-blue-100 text-blue-800 p-2 rounded-md text-sm">ℹ️ Nouveau client - Veuillez remplir tous les champs</div>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        notificationDiv.innerHTML = '<div class="bg-red-100 text-red-800 p-2 rounded-md text-sm">⚠️ Erreur lors de la recherche</div>';
+                    });
+            }, 500); // Délai de 500ms pour éviter trop de requêtes
+        }
+
+        // Recherche par téléphone
+        phoneInput.addEventListener('blur', function() {
+            const phone = this.value.trim();
+            if (phone.length >= 9) {
+                searchClient('phone', phone);
+            } else {
+                notificationDiv.innerHTML = '';
+                resetClientFields();
+            }
+        });
+
+        // Recherche par nom
+        nameInput.addEventListener('blur', function() {
+            const name = this.value.trim();
+            if (!isExistingClient && name.length >= 2) {
+                searchClient('last_name', name);
+            }
+        });
+
+        // Recherche par prénom
+        surnameInput.addEventListener('blur', function() {
+            const surname = this.value.trim();
+            if (!isExistingClient && surname.length >= 2) {
+                searchClient('first_name', surname);
+            }
+        });
+
+        // Réinitialiser si modification détectée
+        phoneInput.addEventListener('input', function() {
+            if (isExistingClient) {
+                resetClientFields();
+                notificationDiv.innerHTML = '<div class="bg-yellow-100 text-yellow-800 p-2 rounded-md text-sm">⚠️ Modification détectée - Nouveau client</div>';
+            }
+        });
+
+        nameInput.addEventListener('input', function() {
+            if (isExistingClient) {
+                resetClientFields();
+                notificationDiv.innerHTML = '<div class="bg-yellow-100 text-yellow-800 p-2 rounded-md text-sm">⚠️ Modification détectée - Nouveau client</div>';
+            }
+        });
+
+        surnameInput.addEventListener('input', function() {
+            if (isExistingClient) {
+                resetClientFields();
+                notificationDiv.innerHTML = '<div class="bg-yellow-100 text-yellow-800 p-2 rounded-md text-sm">⚠️ Modification détectée - Nouveau client</div>';
+            }
+        });
+
+        function resetClientFields() {
+            nameInput.classList.remove('bg-gray-100', 'cursor-not-allowed');
+            surnameInput.classList.remove('bg-gray-100', 'cursor-not-allowed');
+            phoneInput.classList.remove('bg-gray-100', 'cursor-not-allowed');
+            nameInput.readOnly = false;
+            surnameInput.readOnly = false;
+            phoneInput.readOnly = false;
+            isExistingClient = false;
+        }
+    });
+</script>
+-->
+<!--
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const phoneInput = document.getElementById('phone');
         const nameInput = document.getElementById('name');
         const surnameInput = document.getElementById('surname');
         const notificationDiv = document.getElementById('client-notification');
@@ -1854,6 +2177,8 @@ if (!$_SESSION['email']) {
         }
     });
 </script>
+
+-->
 </body>
 
 </html>

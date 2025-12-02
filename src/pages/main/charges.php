@@ -94,8 +94,8 @@ if (!$_SESSION['email']) {
                 <!-- Application Logo -->
                 <div class="flex pt-4">
                     <a href="/">
-                        <img class="rounded-full size-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
-                             src="../../../assets/logo.jpg" alt="logo"/>
+                        <img class="size-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+                             src="../../../assets/g67.png" alt="logo"/>
                     </a>
                 </div>
 
@@ -814,8 +814,8 @@ if (!$_SESSION['email']) {
                                         <div class="flex items-center gap-6 p-6 bg-white rounded-lg">
                                             <!-- Logo -->
                                             <div class="flex-shrink-0">
-                                                <img class="h-24 w-24 rounded-full object-cover border-2 border-gray-300"
-                                                     src="../../../assets/logo.jpg"
+                                                <img class="h-24 w-24"
+                                                     src="../../../assets/g67.png"
                                                      alt="Logo entreprise">
                                             </div>
 
@@ -895,8 +895,8 @@ if (!$_SESSION['email']) {
                                         <div class="flex items-center gap-6 p-6 bg-white rounded-lg">
                                             <!-- Logo -->
                                             <div class="flex-shrink-0">
-                                                <img class="h-24 w-24 rounded-full object-cover border-2 border-gray-300"
-                                                     src="../../../assets/logo.jpg"
+                                                <img class="h-24 w-24"
+                                                     src="../../../assets/g67.png"
                                                      alt="Logo entreprise">
                                             </div>
 
